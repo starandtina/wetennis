@@ -3,7 +3,6 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { increment, doubleAsync } from '../../redux/modules/counter'
 import { fetchLatestNews } from '../../redux/modules/latestNews'
-import DuckImage from './Duck.jpg'
 import classes from './HomeView.scss'
 
 import Footer from 'components/Footer/Footer'
