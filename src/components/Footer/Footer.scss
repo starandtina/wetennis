@@ -1,0 +1,36 @@
+.circle-container
+{
+
+}
+
+.circle
+{
+    width: 24px;
+    height: 24px;
+
+    border: 1px solid #e6eef1;
+    border-radius: 50%;
+    background-color: white;
+
+    display: inline-block;
+}
+
+.circle-label
+{
+  font-size: 10px;
+}
+
+
+.active
+{
+  .circle
+  {
+      background-color: green;
+  }
+
+  .circle-label
+  {
+      color: green;
+  }
+
+}
