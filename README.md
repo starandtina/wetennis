@@ -25,20 +25,20 @@ Setup Dev Env
 -------------
 
 * [React](https://github.com/facebook/react) (`^15.0.0`)
+* [immutable-js](https://github.com/facebook/immutable-js) (`^3.7.6`)
 * [Redux](https://github.com/rackt/redux) (`^3.0.0`)
   * react-redux (`^4.0.0`)
-  * redux-devtools
+  * redux-devtools (`Maybe we can use the Redux DevTools chrome extensions`)
   * redux-thunk middleware
+* [redux-promise](https://github.com/acdlite/redux-promise) (`^0.5.3`)
+* [redux-actions](https://github.com/acdlite/redux-actions) (`^0.9.1`)
+* [redux-immutable](https://github.com/gajus/redux-immutable) (`^3.0.6`)
 * [react-router](https://github.com/rackt/react-router) (`^2.0.0`)
 * [react-router-redux](https://github.com/rackt/react-router-redux) (`^4.0.0`)
 * [Webpack](https://github.com/webpack/webpack)
   * Bundle splitting and CSS extraction
   * Sass w/ CSS modules, autoprefixer, and minification
 * [Koa](https://github.com/koajs/koa) (`^2.0.0-alpha`)
-* [Karma](https://github.com/karma-runner/karma)
-  * Mocha w/ chai, sinon-chai, and chai-as-promised, and [chai-enzyme](https://github.com/producthunt/chai-enzyme)
-  * PhantomJS
-  * Code coverage reports/instrumentation with [isparta](https://github.com/deepsweet/isparta-loader)
 * [Flow](http://flowtype.org/) (`^0.22.0`)
 * [Babel](https://github.com/babel/babel) (`^6.3.0`)
   * [react-transform-hmr](https://github.com/gaearon/react-transform-hmr) hot reloading for React components
