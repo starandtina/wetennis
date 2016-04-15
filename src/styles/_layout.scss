@@ -83,7 +83,15 @@
   height: 100%;
 }
 
-
+.wetennis-footer
+{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  border-top: 1px solid #eee;
+  padding-top: 5px;
+}
 
 .grid {
   display: -webkit-flex;

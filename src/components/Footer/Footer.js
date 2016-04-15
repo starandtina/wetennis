@@ -1,7 +1,7 @@
 import React from 'react'
 import { push } from 'react-router-redux'
 import classes from './Footer.scss'
-import { Link }               from 'react-router'
+import { Link } from 'react-router'
 
 type Props = {
 

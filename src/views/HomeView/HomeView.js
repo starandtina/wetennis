@@ -7,6 +7,8 @@ import classes from './HomeView.scss'
 
 import Footer from 'components/Footer/Footer'
 
+import NewList from './NewList'
+
 // We can use Flow (http://flowtype.org/) to type our component's props
 // and state. For convenience we've included both regular propTypes and
 // Flow types, but if you want to try just using Flow you'll want to
@@ -35,19 +37,12 @@ export class HomeView extends React.Component<void, Props, void> {
   }
 
   render () {
-    var latestNewsNode = this.props.latestNews.map(function(p) {
-      return (
-        <div key='{p.id}'>
-          {p.email}:  {p.name.title} {p.name.first} {p.name.middle}
-        </div>
-      )
-    });
-
     return (
-      <div className='container text-center wetennis'>
+      <div className='text-center wetennis'>
         <header className='wetennis-header'>…</header>
         <div className="wetennis-body">
-          {latestNewsNode}
+          <h2>WeTennis</h2>
+          <NewList data={this.props.latestNews} />
         </div>
        <footer className='wetennis-footer'>
         <Footer currentTab='LATEST' />
