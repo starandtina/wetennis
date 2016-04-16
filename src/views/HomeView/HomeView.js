@@ -1,8 +1,9 @@
 /* @flow */
 import React, { PropTypes } from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { increment, doubleAsync } from '../../redux/modules/counter'
-import { fetchLatestNews } from '../../redux/modules/latestNews'
+import { fetchLatestNews } from 'redux/modules/latestNews'
+import { setActiveNavTab } from 'redux/modules/activeNavTab'
 import classes from './HomeView.scss'
 
 import Footer from 'components/Footer/Footer'
@@ -17,9 +18,8 @@ import NewList from './NewList'
 // code, or `npm i -g flow-bin` to have access to the binary globally.
 // Sorry Windows users :(.
 type Props = {
-  counter: number,
-  doubleAsync: Function,
-  increment: Function
+  activeNavTab: string,
+  actions: Object
 };
 
 // We avoid using the `@connect` decorator on the class definition so
@@ -27,16 +27,16 @@ type Props = {
 // See: http://rackt.github.io/redux/docs/recipes/WritingTests.html
 export class HomeView extends React.Component<void, Props, void> {
   static propTypes = {
-    counter: PropTypes.number.isRequired,
-    doubleAsync: PropTypes.func.isRequired,
-    increment: PropTypes.func.isRequired
+    activeNavTab: PropTypes.number.isRequired,
+    latestNews: PropTypes.func.isRequired,
+    actions: PropTypes.func.isRequired
   };
 
   componentWillMount() {
-    this.props.fetchLatestNews()
+    this.props.actions.fetchLatestNews()
   }
 
-  render () {
+  render () {debugger
     return (
       <div className='text-center wetennis'>
         <header className='wetennis-header'>…</header>
@@ -45,7 +45,7 @@ export class HomeView extends React.Component<void, Props, void> {
           <NewList data={this.props.latestNews} />
         </div>
        <footer className='wetennis-footer'>
-        <Footer currentTab='LATEST' />
+        <Footer {...this.props} />
        </footer>
       </div>
     )
@@ -53,11 +53,13 @@ export class HomeView extends React.Component<void, Props, void> {
 }
 
 const mapStateToProps = (state) => ({
-  counter: state.counter,
-  latestNews: state.latestNews
+  latestNews: state.latestNews,
+  activeNavTab: state.activeNavTab
 })
-export default connect((mapStateToProps), {
-  increment: () => increment(1),
-  doubleAsync,
-  fetchLatestNews
-})(HomeView)
+
+const mapDispatchToProps = (dispatch) => ({
+  actions : bindActionCreators({ setActiveNavTab, fetchLatestNews }, dispatch)
+})
+
+// Wrap the component to inject dispatch and state into it
+export default connect(mapStateToProps, mapDispatchToProps)(HomeView)

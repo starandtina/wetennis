@@ -1,14 +1,13 @@
 /* @flow */
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { increment, doubleAsync } from '../../redux/modules/counter'
+import { activeNavTab } from '../../redux/modules/activeNavTab'
 
 import Footer from 'components/Footer/Footer'
 
 type Props = {
-  counter: number,
-  doubleAsync: Function,
-  increment: Function
+  activeNavTab: string,
+  actions: Object
 };
 
 // We avoid using the `@connect` decorator on the class definition so
@@ -16,9 +15,7 @@ type Props = {
 // See: http://rackt.github.io/redux/docs/recipes/WritingTests.html
 export class EventView extends React.Component<void, Props, void> {
   static propTypes = {
-    counter: PropTypes.number.isRequired,
-    doubleAsync: PropTypes.func.isRequired,
-    increment: PropTypes.func.isRequired
+    activeNavTab: PropTypes.func.isRequired
   };
 
   render () {
@@ -29,7 +26,7 @@ export class EventView extends React.Component<void, Props, void> {
           <h1>EVENT VIEW</h1>
         </div>
        <footer className='wetennis-footer'>
-        <Footer currentTab='EVENT' />
+        <Footer {...this.props} />
        </footer>
       </div>
     )
@@ -37,9 +34,8 @@ export class EventView extends React.Component<void, Props, void> {
 }
 
 const mapStateToProps = (state) => ({
-  counter: state.counter
+  activeNavTab: state.activeNavTab
 })
 export default connect((mapStateToProps), {
-  increment: () => increment(1),
-  doubleAsync
+  activeNavTab
 })(EventView)

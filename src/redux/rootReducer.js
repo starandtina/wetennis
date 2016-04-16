@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 import { routerReducer as router } from 'react-router-redux'
-import counter from './modules/counter'
+import activeNavTab from './modules/activeNavTab'
 import latestNews from './modules/latestNews'
 
 export default combineReducers({
-  counter,
+  activeNavTab,
   latestNews,
   router
 })

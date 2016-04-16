@@ -1,5 +1,5 @@
 import React from 'react'
-import { push } from 'react-router-redux'
+
 import classes from './Footer.scss'
 import { Link } from 'react-router'
 
@@ -11,20 +11,20 @@ export class Footer extends React.Component {
   props: Props;
 
   renderItem(currentTab, name, to) {
-    let className = '';
+    let className = ''
 
-    if(this.props.currentTab === currentTab) {
+    if(this.props.activeNavTab === currentTab) {
       className += classes.active
     }
 
     return (
       <div className='grid-cell'>
-        <Link className={className} to={to}>
+        <a className={className} onClick={() => this.handleClick(currentTab, to) }>
           <div className={classes.circle}></div>
           <div className={`text-muted ${classes['circle-label']}`}>{name}</div>
-        </Link>
+        </a>
       </div>
-    );
+    )
   }
 
   render() {
@@ -37,6 +37,11 @@ export class Footer extends React.Component {
         {this.renderItem('ME', '我', '/me')}
      </div>
     )
+  }
+
+  handleClick(currentTab, to) {
+    this.props.actions.setActiveNavTab(currentTab)
+    this.props.history.push(to);
   }
 }
 
