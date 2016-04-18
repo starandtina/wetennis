@@ -1,0 +1,54 @@
+FORMAT: 1A
+HOST: http://wetennis.cn:83/WebService/WeNews.ashx/
+
+# News
+
+Polls is a simple API allowing consumers to view polls and vote in them. You can view this documentation over at [Apiary](http://docs.pollsapi.apiary.io).
+
+## Group New
+
+Resources related to new in the API.
+
+## New [/]
+
+A New object has the following attributes:
+
++ title
++ date
++ thumbImgUrl
+
+
+### List All News [POST]
+
+You may create your own question using this action. It takes a JSON object containing a question and a collection of answers in the form of choices.
+
++ typename (string) - The method
+
++ Request (application/json)
+
+        {
+            "typename": "LoadNews"
+        }
+
++ Response 201 (application/json)
+
+  + Body
+
+            {
+                Code: 0,
+                errorMsg: "",
+                data: [
+                  {
+                    id: 1,
+                    title: "习近平再提 \"头等大事\" 干货全在这儿",
+                    date: "2016 年04月15日 23: 42: 18",
+                    thumbImgUrl: "http: //e.hiphotos.baidu.com/news/q%3D100/sign=3abb8c8fbe389b503effe452b534e5f1/fc1f4134970a304e2975366bd6c8a786c8175ccf.jpg",
+                    likeCount: 999,
+                    commentCount: 999,
+                    provider: "Sina",
+                    providerImgUrl: "http: //www.sina.com.cn/favicon.ico"
+                  }
+                ]
+            }
+
+
