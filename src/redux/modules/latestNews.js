@@ -59,13 +59,9 @@ const initState = [
 export const fetchLatestNews = createAction(FETCH_LATEST_NEWS, (args) => {
   return dispatch => {
     dispatch(
-      get(FETCH_LATEST_NEWS, { url: 'http://wetennis.cn:83/WebService/WeNews.ashx?typename=LoadNewsXml&pagesize=20&page=1&status=0&type=Pro' })
+      post(FETCH_LATEST_NEWS, { url: '/WebService/WeNews.ashx' })
     )
   }
-
-  // return fetch(args).then(function(response) {
-  //   return response.json();
-  // })
 })
 
 const loading = createAction('LOADING');
@@ -76,6 +72,25 @@ const get = createAction('get', (type, opts) => {
     dispatch({
       type,
       payload: fetch(opts.url).then(response => response.json())
+    })
+  }
+})
+
+const post = createAction('post', (type, opts) => {
+  return dispatch => {
+    dispatch(loading())
+    dispatch({
+      type,
+      payload: fetch(opts.url, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          method: 'fetchNews'
+        })
+      }).then(response => response.json())
     })
   }
 })
@@ -92,7 +107,7 @@ const reducer = handleActions({
   LOADING: (state, action) => {
     return state
   },
-  [FETCH_LATEST_NEWS]: (state, action) => action.payload
+  [FETCH_LATEST_NEWS]: (state, action) => action.payload.data
 }, initState)
 
 export default reducer

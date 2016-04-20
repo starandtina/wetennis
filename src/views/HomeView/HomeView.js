@@ -27,16 +27,16 @@ type Props = {
 // See: http://rackt.github.io/redux/docs/recipes/WritingTests.html
 export class HomeView extends React.Component<void, Props, void> {
   static propTypes = {
-    activeNavTab: PropTypes.number.isRequired,
-    latestNews: PropTypes.func.isRequired,
-    actions: PropTypes.func.isRequired
+    activeNavTab: PropTypes.string.isRequired,
+    latestNews: PropTypes.array.isRequired,
+    actions: PropTypes.object.isRequired
   };
 
   componentWillMount() {
     this.props.actions.fetchLatestNews()
   }
 
-  render () {debugger
+  render () {
     return (
       <div className='text-center wetennis'>
         <header className='wetennis-header'>…</header>
