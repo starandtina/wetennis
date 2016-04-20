@@ -9,7 +9,7 @@ Polls is a simple API allowing consumers to view polls and vote in them. You can
 
 Resources related to new in the API.
 
-## Event [/api/fetchEvents]
+## Events [/api/events]
 
 A Event object has the following attributes:
 
@@ -27,7 +27,10 @@ You may create your own question using this action. It takes a JSON object conta
 + Request (application/json)
 
         {
-            "method": "fetchEvents"
+            "method": "fetchEvents",
+            "status": "ALL/ENROLLING/ASSIGN_DRAW/IN_PROGRESS/DONE",
+            "eventFilter": "ALL/RECOMMENDATION/ME",
+            "locationFilter": "CHENGDU/DEYANG/..."
         }
 
 + Response 200 (application/json)
@@ -40,15 +43,82 @@ You may create your own question using this action. It takes a JSON object conta
                 "data": [
                   {
                     "id": 1,
-                    "name": "event name",
-                    "date": "2016 年04月15日 23: 42: 18",
-                    "thumbImgUrl": "http://e.hiphotos.baidu.com/news/q%3D100/sign=3abb8c8fbe389b503effe452b534e5f1/fc1f4134970a304e2975366bd6c8a786c8175ccf.jpg",
-                    "likeCount": 999,
-                    "commentCount": 999,
-                    "provider": "Sina",
-                    "providerIconUrl": "http://www.sina.com.cn/favicon.ico"
+                    "name": "华桥城*东岸2016成都业余网球精英赛 成都站",
+                    "startDate": "2016.04.15",
+                    "endDate": "2016.04.20",
+                    "type": "俱乐部",
+                    "location": {
+                      "province": "四川省",
+                      "city": "成都市",
+                      "district": "锦江区",
+                      "road": "红星路1号"
+                    },
+                    "thumbImgUrl": "http://e.hiphotos.baidu.com/news/q%3D100/sign=3abb8c8fbe389b503effe452b534e5f1/fc1f4134970a304e2975366bd6c8a786c8175ccf.jpg"
                   }
                 ]
             }
 
+## Event [/api/events/{event_id}]
 
+A Event object has the following attributes:
+
++ title
++ date
++ thumbImgUrl
+
++ Parameters
+    + event_id: 1 (required, number) - ID of the Event in form of an integer
+
+### View a Event Detail [POST]
+
++ method (string) - The calling method
+
++ Request (application/json)
+
+        {
+            "method": "fetchEvent",
+            "eventId": 1
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+                "code": 0,
+                "errorMsg": "",
+                "data": {
+                    "id": 1,
+                    "name": "华桥城*东岸2016成都业余网球精英赛 成都站",
+                    "startDate": "2016.04.15",
+                    "endDate": "2016.04.20",
+                    "type": "俱乐部",
+                    "location": {
+                      "province": "四川省",
+                      "city": "成都市",
+                      "district": "锦江区",
+                      "street": "红星路1号 省体育馆"
+                    },
+                    "imageUrl": "http://e.hiphotos.baidu.com/news/q%3D100/sign=3abb8c8fbe389b503effe452b534e5f1/fc1f4134970a304e2975366bd6c8a786c8175ccf.jpg",
+                    "noticeList": [
+                      {
+                        "date": "2016.04.15",
+                        "content": "4月16日,由南昌市体育局主办,南昌市网球协会承办的2016年第二届南昌市“体彩杯”单项网球赛在国体中心网球馆开拍。 4月16日,由南昌市体育局主办,南... "
+                      }
+                    ],
+                    "sponsorList": [
+                      {
+                        "name": "赞助商华侨城",
+                        "thumbImgUrl": "http://e.hiphotos.baidu.com/news/q%3D100/sign=3abb8c8fbe389b503effe452b534e5f1/fc1f4134970a304e2975366bd6c8a786c8175ccf.jpg"
+                      },
+                      {
+                        "name": "赞助商华侨城",
+                        "thumbImgUrl": "http://e.hiphotos.baidu.com/news/q%3D100/sign=3abb8c8fbe389b503effe452b534e5f1/fc1f4134970a304e2975366bd6c8a786c8175ccf.jpg"
+                      },
+                      {
+                        "name": "赞助商华侨城",
+                        "thumbImgUrl": "http://e.hiphotos.baidu.com/news/q%3D100/sign=3abb8c8fbe389b503effe452b534e5f1/fc1f4134970a304e2975366bd6c8a786c8175ccf.jpg"
+                      }
+                    ]
+                }
+            }
