@@ -1,0 +1,54 @@
+FORMAT: 1A
+HOST: http://wetennis.cn:83/WebService/WeEvents.ashx/
+
+# Events
+
+Polls is a simple API allowing consumers to view polls and vote in them. You can view this documentation over at [Apiary](http://docs.pollsapi.apiary.io).
+
+## Group Event
+
+Resources related to new in the API.
+
+## Event [/api/fetchEvents]
+
+A Event object has the following attributes:
+
++ title
++ date
++ thumbImgUrl
+
+
+### List All Events [POST]
+
+You may create your own question using this action. It takes a JSON object containing a question and a collection of answers in the form of choices.
+
++ method (string) - The calling method
+
++ Request (application/json)
+
+        {
+            "method": "fetchEvents"
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+                "code": 0,
+                "errorMsg": "",
+                "data": [
+                  {
+                    "id": 1,
+                    "name": "event name",
+                    "date": "2016 年04月15日 23: 42: 18",
+                    "thumbImgUrl": "http://e.hiphotos.baidu.com/news/q%3D100/sign=3abb8c8fbe389b503effe452b534e5f1/fc1f4134970a304e2975366bd6c8a786c8175ccf.jpg",
+                    "likeCount": 999,
+                    "commentCount": 999,
+                    "provider": "Sina",
+                    "providerIconUrl": "http://www.sina.com.cn/favicon.ico"
+                  }
+                ]
+            }
+
+
