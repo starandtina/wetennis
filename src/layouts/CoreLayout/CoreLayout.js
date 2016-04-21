@@ -16,14 +16,10 @@ function CoreLayout ({ children }) {
     <div className='page-container'>
       <div className='view-container'>
         <div className='text-center wetennis'>
-          <header className='wetennis-header'>…</header>
-          <div className="wetennis-body">
-            <h2>WeTennis</h2>
+          <header className='wetennis-header'></header>
+          <div className='wetennis-body'>
             {children}
           </div>
-          <footer className='wetennis-footer'>
-            <Footer />
-          </footer>
          </div>
       </div>
     </div>

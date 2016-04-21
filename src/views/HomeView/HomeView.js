@@ -40,7 +40,9 @@ export class HomeView extends React.Component<void, Props, void> {
     return (
       <div>
         <NewList data={this.props.latestNews} />
-
+        <footer className='wetennis-footer'>
+          <Footer {...this.props}/>
+        </footer>
       </div>
     )
   }

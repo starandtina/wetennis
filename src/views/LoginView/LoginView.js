@@ -13,6 +13,9 @@ export class Login extends React.Component {
     return (
       <div className='container'>
         <LoginForm />
+        <footer className='wetennis-footer'>
+          <Footer {...this.props}/>
+        </footer>
       </div>
     )
   }
