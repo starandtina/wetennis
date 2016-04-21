@@ -25,11 +25,21 @@ export class EventView extends React.Component<void, Props, void> {
 
   render () {
     const {getEventsList} = this.props.actions;
+    const {eventsList} = this.props;
+    console.log("eventsList");
+    console.log(eventsList);
     return (
       <div className='container text-center wetennis'>
         <header className='wetennis-header'>…</header>
         <div className='wetennis-body'>
           <h1>EVENT VIEW</h1>
+          <ul>
+          {eventsList.map((_, index) => {
+            return (
+              <li key={index}>{_.name}</li>
+            );
+          })}
+          </ul>
         <button onClick={() => {
           getEventsList();
         }}>ajax test</button>

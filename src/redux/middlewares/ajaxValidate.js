@@ -1,29 +1,23 @@
-import {loaded} from "../modules/ajaxAction";
-import {error as errorAction} from "../modules/errorAction";
+import {loaded} from "../utils/ajaxAction";
+import {error as errorAction} from "../utils/errorAction";
 
 
 export default function ajaxValidateMiddleware({ dispatch, getState }) {
   return next => action => {
     const {meta, error, payload, ...otherActionAttr} = action;
-    if (meta && meta.isAjax) {
+    if (meta && meta.isAjax && payload && "code" in payload) {
       dispatch(loaded());
-      if (payload && "code" in payload) {
-        if (payload.code !== "0") {
-          dispatch(errorAction(payload.errorMsg));
-        } else {
-          dispatch({
-            ...otherActionAttr,
-            meta: {
-              ...meta,
-              isAjax: false
-            },
-            payload: payload.data
-          });
-        }
-      }
-
-      if (error || payload.error) {
-          dispatch(errorAction(error));
+      if (payload.code !== 0) {
+        dispatch(errorAction(payload.errorMsg));
+      } else {
+        dispatch({
+          ...otherActionAttr,
+          meta: {
+            ...meta,
+            isAjax: false
+          },
+          payload: payload.data
+        });
       }
     } else {
       next(action);
