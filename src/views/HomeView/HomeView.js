@@ -38,15 +38,9 @@ export class HomeView extends React.Component<void, Props, void> {
 
   render () {
     return (
-      <div className='text-center wetennis'>
-        <header className='wetennis-header'>…</header>
-        <div className="wetennis-body">
-          <h2>WeTennis</h2>
-          <NewList data={this.props.latestNews} />
-        </div>
-       <footer className='wetennis-footer'>
-        <Footer {...this.props} />
-       </footer>
+      <div>
+        <NewList data={this.props.latestNews} />
+
       </div>
     )
   }
