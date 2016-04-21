@@ -1,0 +1,122 @@
+FORMAT: 1A
+HOST: http://wetennis.cn:83/WebService/WeGroups.ashx/
+
+# Register
+
+Register is a simple API allowing consumers to register by yourself.
+
+# Group Register
+
+Resources related  to new in the API.
+
+## Groups and Items [/api/groups]
+
+A Group object has the following attributes:
+
++ id
++ name
+
+A Item object has the following attributes:
+
++ id
++ name
++ price
+
+### List All Groups [POST]
+
+It takes a JSON object containing a question and a collection of answers in the form of choices.
+
++ method (string) - The calling method
+
++ Request (application/json)
+
+  + Body
+
+        {
+            "method": "fetchGroups",
+            "eventId": "eventId"
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+                "code": 0,
+                "errorMsg": "",
+                "data": {
+                  "groups": [
+                    {
+                      "id": 1,
+                      "name": "青少年 金组"
+                    },
+                    {
+                      "id": 2,
+                      "name": "青少年 金组"
+                    },
+                    {
+                      "id": 3,
+                      "name": "青少年 橙组"
+                    },
+                    {
+                      "id": 4,
+                      "name": "青少年 红组"
+                    },
+                    {
+                      "id": 5,
+                      "name": "元老组"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "id": 1,
+                      "name": "男子单打",
+                      "price": "50.00"
+                    },
+                    {
+                      "id": 2,
+                      "女子双打",
+                      "price": "150.00"
+                    }
+                  ]
+                }
+            }
+
+
+## Registered Users [/api/registeredUsers]
+
+### List All Registered Users [POST]
+
+It takes a JSON object containing a question and a collection of answers in the form of choices.
+
++ method (string) - The calling method
+
++ Request (application/json)
+
+  + Body
+
+        {
+            "method": "fetchRegisteredUsers",
+            "eventId": "eventId"
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+                "code": 0,
+                "errorMsg": "",
+                "data": [
+                  {
+                    "id": 1,
+                    "name": "用户名",
+                    "registerDate": "2016.04.20"
+                  },
+                  {
+                    "id": 2,
+                    "name": "用户名",
+                    "registerDate": "2016.04.21"
+                  }
+                ]
+            }
