@@ -22,7 +22,9 @@
     "deploy:dev": "better-npm-run deploy:dev",
     "deploy:prod": "better-npm-run deploy:prod",
     "flow:check": "babel-node bin/flow-check",
-    "codecov": "cat coverage/*/lcov.info | codecov"
+    "codecov": "cat coverage/*/lcov.info | codecov",
+    "api2": "drakov -f './blueprint/*.apib' -p 8000",
+    "api": "api-mock ./blueprint/*.apib -p 8000"
   },
   "betterScripts": {
     "compile": {

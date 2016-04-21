@@ -87,9 +87,7 @@ const post = createAction('post', (type, opts) => {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          method: 'fetchNews'
-        })
+        body: JSON.stringify(opts.data)
       }).then(response => response.json())
     })
   }
