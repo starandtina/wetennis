@@ -34,7 +34,7 @@ export class Footer extends React.Component {
         {this.renderItem('EVENT', '赛事', '/event')}
         {this.renderItem('TIME', '时光', '/time')}
         {this.renderItem('GUESS', '竟猜', '/guess')}
-        {this.renderItem('ME', '我', '/me')}
+        {this.renderItem('ME', '我', '/dashboard')}
      </div>
     )
   }

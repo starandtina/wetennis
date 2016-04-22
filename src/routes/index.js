@@ -9,7 +9,13 @@ import { Route, IndexRoute } from 'react-router'
 import CoreLayout from 'layouts/CoreLayout/CoreLayout'
 import HomeView from 'views/HomeView'
 import EventView from 'views/EventView'
-import LoginView from 'views/LoginView'
+
+
+import DashboardView from 'views/DashboardView'
+import SignupView from 'views/SignupView'
+
+
+import { requireAuth } from 'utils/auth'
 
 export default (store) => (
   <Route path='/' component={CoreLayout}>
@@ -17,6 +23,7 @@ export default (store) => (
     <Route path='/event' component={EventView} />
     <Route path='/time' component={HomeView} />
     <Route path='/guess' component={HomeView} />
-    <Route path='/me' component={LoginView} />
+    <Route path='/dashboard' component={DashboardView} onEnter={requireAuth} />
+    <Route path='/signup' component={SignupView} />
   </Route>
 )

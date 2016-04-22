@@ -1,0 +1,112 @@
+FORMAT: 1A
+
+# Dashboad
+
+Dashboad is a simple API allowing consumers to signin and signup.
+
+# Group Dashboad
+
+Resources related to `Dashboad` in the API.
+
+## Dashboad Signup [/api/signup]
+
+### Signup [POST]
+
+Sign up.
+
++ method (string) - The calling method
++ id (string) - The id for user
++ name (string) - The real user name
++ username (string) - The user name used for login
++ password (string) - The user password
++ phone (string) - The phone number
++ gender (string) - The gender, it's male or female
+
++ Request (application/json)
+
+  + Body
+
+        {
+            "method": "signup"
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+                "code": 0,
+                "errorMsg": "",
+                "data": {
+                    "id": "user id",
+                    "name": "real name",
+                    "username": "user name",
+                    "password": "user password",
+                    "phone": "user phone",
+                    "gender": "mail/female"
+                }
+            }
+
+
+## Dashboad Signin [/api/signin]
+
+### Signin [POST]
+
+Sign in.
+
++ method (string) - The calling method
++ id (string) - The id for user
++ username (string) - The user name
++ password (string) - The user password
+
++ Request (application/json)
+
+  + Body
+
+        {
+            "method": "signin",
+            "username": "user name",
+            "password": "user password"
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+                "code": 0,
+                "errorMsg": "",
+                "data": {
+                    "id": "user id",
+                    "name": "real name",
+                    "username": "user name",
+                    "password": "user password",
+                    "phone": "user phone",
+                    "gender": "mail/female"
+                }
+            }
+
+### Logout [POST]
+
+Log out, we need to clear cookie.
+
++ method (string) - The calling method
+
++ Request (application/json)
+
+  + Body
+
+        {
+            "method": "logout"
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+                "code": 0,
+                "errorMsg": "",
+                "data": {
+                }
+            }

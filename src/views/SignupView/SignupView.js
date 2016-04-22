@@ -3,7 +3,9 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { setActiveNavTab } from 'redux/modules/activeNavTab'
-import LoginForm from 'forms/LoginForm'
+import { signUpUser } from 'redux/modules/dashboard'
+
+import SignUpForm from 'forms/SignUpForm'
 import Footer from 'components/Footer/Footer'
 
 export class Login extends React.Component {
@@ -11,13 +13,14 @@ export class Login extends React.Component {
 
   render () {
     return (
-      <div className='container'>
-        <LoginForm />
-        <footer className='wetennis-footer'>
-          <Footer {...this.props}/>
-        </footer>
+      <div>
+        <SignUpForm onSubmit={this.handleSubmit.bind(this)} />
       </div>
     )
+  }
+
+  handleSubmit (data) {
+    this.props.actions.signUpUser(data);
   }
 }
 
@@ -26,7 +29,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  actions : bindActionCreators({ setActiveNavTab }, dispatch)
+  actions : bindActionCreators({ setActiveNavTab, signUpUser }, dispatch)
 })
 
 // Wrap the component to inject dispatch and state into it

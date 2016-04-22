@@ -13,9 +13,9 @@ import Footer from 'components/Footer/Footer'
 // define it with a plain javascript function...
 function CoreLayout ({ children }) {
   return (
-    <div className='page-container'>
+    <div className='page-container container'>
       <div className='view-container'>
-        <div className='text-center wetennis'>
+        <div className='wetennis'>
           <header className='wetennis-header'></header>
           <div className='wetennis-body'>
             {children}

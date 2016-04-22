@@ -1,30 +1,32 @@
 import { createAction, handleActions } from 'redux-actions'
-import {post} from '../utils/ajaxAction';
+import { post } from '../utils/ajaxAction';
 
 // Constants
 // ------------------------------------
-export const GET_EVENTS_LIST = 'GET_EVENTS_LIST';
+export const SIGN_UP_USER = 'SIGN_UP_USER';
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const getEventsList = createAction(GET_EVENTS_LIST, _ => {
-  return dispatch => {
-    dispatch(post(GET_EVENTS_LIST, {
-      url: '/events',
-      data: {
-        'method': 'events'
-      }
-    }));
+export const signUpUser = createAction(
+  SIGN_UP_USER,
+  _ => {
+    return dispatch => {
+      dispatch(post(SIGN_UP_USER, {
+        url: '/signup',
+        data: {
+          'method': 'signup'
+        }
+      }));
+    }
   }
-});
+  );
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
 export default handleActions({
-  [GET_EVENTS_LIST]: (state, _) => {
-    debugger
+  [SIGN_UP_USER]: (state, _) => {
     return _.payload;
   }
 }, []);
