@@ -23,7 +23,8 @@
     "deploy:prod": "better-npm-run deploy:prod",
     "flow:check": "babel-node bin/flow-check",
     "codecov": "cat coverage/*/lcov.info | codecov",
-    "api": "drakov -f './blueprint/*.apib' -p 8000"
+    "api": "drakov -f './blueprint/*.apib' -p 8000",
+    "api-docs": "aglio -i ./blueprint/index.apib -o api.html --verbose"
   },
   "betterScripts": {
     "compile": {
@@ -129,6 +130,7 @@
     "yargs": "^4.0.0"
   },
   "devDependencies": {
+    "aglio": "^2.2.0",
     "babel-eslint": "^6.0.0-beta.6",
     "babel-plugin-add-module-exports": "^0.1.2",
     "chai": "^3.4.1",
