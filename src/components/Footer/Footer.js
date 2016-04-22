@@ -1,4 +1,8 @@
 import React from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
+import { setActiveNavTab } from 'redux/modules/activeNavTab'
 
 import classes from './Footer.scss'
 import { Link } from 'react-router'
@@ -34,7 +38,7 @@ export class Footer extends React.Component {
         {this.renderItem('EVENT', '赛事', '/event')}
         {this.renderItem('TIME', '时光', '/time')}
         {this.renderItem('GUESS', '竟猜', '/guess')}
-        {this.renderItem('ME', '我', '/dashboard')}
+        {this.renderItem('DASHBOARD', '我', '/dashboard')}
      </div>
     )
   }
@@ -45,5 +49,12 @@ export class Footer extends React.Component {
   }
 }
 
-export default Footer
+const mapStateToProps = (state) => ({
+  activeNavTab: state.activeNavTab
+})
 
+const mapDispatchToProps = (dispatch) => ({
+  actions : bindActionCreators({ setActiveNavTab }, dispatch)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Footer)
