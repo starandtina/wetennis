@@ -13,8 +13,14 @@ export const getEventsList = createAction(GET_EVENTS_LIST, _ => {
     dispatch(post(GET_EVENTS_LIST, {
       url: '/events',
       data: {
-        'method': 'events'
-      }
+            "method": "fetchEvents",
+            "status": "ALL/REGISTERING/ASSIGN_DRAW/IN_PROGRESS/DONE",
+            "eventFilter": "ALL/RECOMMENDATION/ME",
+            "locationFilter": "CHENGDU/DEYANG/...",
+            "currentPage": 6,
+            "limit": 30
+        }
+      
     }));
   }
 });

@@ -40,9 +40,9 @@ export class EventView extends React.Component<void, Props, void> {
             );
           })}
           </ul>
-        <button onClick={() => {
-          getEventsList();
-        }}>ajax test</button>
+          <button onClick={() => {
+            getEventsList();
+          }}>ajax test</button>
         </div>
        <footer className='wetennis-footer'>
         <Footer {...this.props} />

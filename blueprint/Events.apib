@@ -11,16 +11,19 @@ Resources related to event in the API.
 
 ## Events [/api/events]
 
-A Event object has the following attributes:
+赛事列表
 
-+ title
-+ date
-+ thumbImgUrl
+Evnets 必须是一个数组，数组中包含的Object 需要包含以下字段
 
++ id : (Number, required) - Evnet id
++ name : (String, required) - Event Name
++ startDate : (String) - Event start date
++ endDate : (String) - Event end date
++ type : (String) - Event type
++ location : (String) - Event location
++ thumbImgUrl : (String) - Event thumb
 
 ### List All Events [POST]
-
-You may create your own question using this action. It takes a JSON object containing a question and a collection of answers in the form of choices.
 
 + method (string) - The calling method
 
@@ -32,7 +35,9 @@ You may create your own question using this action. It takes a JSON object conta
             "method": "fetchEvents",
             "status": "ALL/REGISTERING/ASSIGN_DRAW/IN_PROGRESS/DONE",
             "eventFilter": "ALL/RECOMMENDATION/ME",
-            "locationFilter": "CHENGDU/DEYANG/..."
+            "locationFilter": "CHENGDU/DEYANG/...",
+            "currentPage": 6,
+            "limit": 30
         }
 
 + Response 200 (application/json)
@@ -49,12 +54,7 @@ You may create your own question using this action. It takes a JSON object conta
                     "startDate": "2016.04.15",
                     "endDate": "2016.04.20",
                     "type": "俱乐部",
-                    "location": {
-                      "province": "四川省",
-                      "city": "成都市",
-                      "district": "锦江区",
-                      "road": "红星路1号"
-                    },
+                    "location": "四川省 成都市 锦江区 红星路1号",
                     "thumbImgUrl": "http://e.hiphotos.baidu.com/news/q%3D100/sign=3abb8c8fbe389b503effe452b534e5f1/fc1f4134970a304e2975366bd6c8a786c8175ccf.jpg"
                   }
                 ]
@@ -62,14 +62,23 @@ You may create your own question using this action. It takes a JSON object conta
 
 ## Event [/api/events/{event_id}]
 
-A Event object has the following attributes:
+比赛详情页
 
-+ title
-+ date
-+ thumbImgUrl
+返回的data字段中需要包含以下字段
 
-+ Parameters
-    + event_id: 1 (required, number) - ID of the Event in form of an integer
++ id: (Number, Required) - Event id
++ name: (String, Required) - Event name
++ startDate: (String) - Event start date
++ endDate: (String) - Event end date
++ type: (String) - Event type
++ location: (String) - Event location
++ imageUrl: (String) - Event banner image
++ noticeList: (Array, required) - Notice message list of this event
+  + date: (String, required) - Notice message published time
+  + content: (String, required) - Notice message content
++ sponsorList: (Array, required) - Sponsor list
+  + name: (String, required) - Sponsor name
+  + thumbImgUrl: (String, required) - Sponsor thumb image
 
 ### View a Event Detail [POST]
 
@@ -95,12 +104,7 @@ A Event object has the following attributes:
                     "startDate": "2016.04.15",
                     "endDate": "2016.04.20",
                     "type": "俱乐部",
-                    "location": {
-                      "province": "四川省",
-                      "city": "成都市",
-                      "district": "锦江区",
-                      "street": "红星路1号 省体育馆"
-                    },
+                    "location": "四川省 成都市 锦江区 红星路1号 省体育馆",
                     "imageUrl": "http://e.hiphotos.baidu.com/news/q%3D100/sign=3abb8c8fbe389b503effe452b534e5f1/fc1f4134970a304e2975366bd6c8a786c8175ccf.jpg",
                     "noticeList": [
                       {
@@ -124,3 +128,1702 @@ A Event object has the following attributes:
                     ]
                 }
             }
+
+## Event [/api/events/{event_id}/register]
+
+比赛报名
+
++ data: (String, required) - fadeback reigster status, "ok" is success other
+  string is fail
+
+
+### Event Rgister [POST]
+
++ method (string) - The calling method
+
++ Request (application/json)
+
+  + Body
+
+        {
+            "method": "eventRegister",
+            "eventId": 1
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+                "code": 0,
+                "errorMsg": "",
+                "data": "ok"
+            }
+
+## Event [/api/events/{event_id}/draw]
+
+抽签
+
++ data: (String, required) - fadeback reigster status, "ok" is success other
+  string is fail
+
+
+### Event Draw [POST]
+
++ method (string) - The calling method
+
++ Request (application/json)
+
+  + Body
+
+        {
+            "method": "eventDraw",
+            "eventId": 1
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+                "code": 0,
+                "errorMsg": "",
+                "data": "ok"
+            }
+
+## Event [/api/events/{event_id}/arrive]
+
+签到
+
++ data: (String, required) - fadeback reigster status, "ok" is success other
+  string is fail
+
+
+### Event Draw [POST]
+
++ method (string) - The calling method
+
++ Request (application/json)
+
+  + Body
+
+        {
+            "method": "eventArrive",
+            "eventId": 1
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+                "code": 0,
+                "errorMsg": "",
+                "data": ""
+            }
+
+## Event [/api/events/{event_id}/score]
+
+得分
+按比赛分组返回一个数组 如：女子单打，青年精英赛等 每个分组中需要包含以下字段
+
++ name: (String, required) - event name
++ groupMatch: (Array, required) - group match of this event
+  + memberName: (String, required) - member name
+  + memberThumb: (String, required) - member thumb image
+  + menberEnglishName: (String, required) - member english name
+  + numberOfPlay: (Number, required) - member have already played a few game
+  + outcome: (Number, required) - outcome of games
+  + outcomeGame: (Number, required) - outcome of score
++ firstRound: (Array, required) - first round of this event
+  + memberName: (String, required) - member name
+  + memberThumb: (String, required) - member thumb image
+  + menberEnglishName: (String, required) - member english name
+  + numberOfPlay: (Number, required) - member have already played a few game
+  + outcome: (Number, required) - outcome of games
+  + outcomeGame: (Number, required) - outcome of score
++ secondRound: (Array, required) - second round of this event
+  + memberName: (String, required) - member name
+  + memberThumb: (String, required) - member thumb image
+  + menberEnglishName: (String, required) - member english name
+  + numberOfPlay: (Number, required) - member have already played a few game
+  + outcome: (Number, required) - outcome of games
+  + outcomeGame: (Number, required) - outcome of score
++ semifinal: (Array, required) - semifinal of this event
+  + memberName: (String, required) - member name
+  + memberThumb: (String, required) - member thumb image
+  + menberEnglishName: (String, required) - member english name
+  + numberOfPlay: (Number, required) - member have already played a few game
+  + outcome: (Number, required) - outcome of games
+  + outcomeGame: (Number, required) - outcome of score
++ final: (Array, required) - final of this event
+  + memberName: (String, required) - member name
+  + memberThumb: (String, required) - member thumb image
+  + menberEnglishName: (String, required) - member english name
+  + numberOfPlay: (Number, required) - member have already played a few game
+  + outcome: (Number, required) - outcome of games
+  + outcomeGame: (Number, required) - outcome of score
+
+
+### Event Draw [POST]
+
++ method (string) - The calling method
+
++ Request (application/json)
+
+  + Body
+
+        {
+            "method": "eventScore",
+            "eventId": 1,
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+                "code": 0,
+                "errorMsg": "",
+                "data": [
+                  {
+                    name: "青年组 精英B",
+                    groupMatch: [
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                    ],
+                    firstRound: [
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                    ],
+                    secondRound: [
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                    ],
+                    semifinal: [
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                    ],
+                    final: [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                    ],
+                  },
+                  {
+                    name: "女子单打",
+                    groupMatch: [
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                    ],
+                    firstRound: [
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                    ],
+                    secondRound: [
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                    ],
+                    semifinal: [
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                      [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                      ],
+                    ],
+                    final: [
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                        {
+                          memberName:"李韵竹",
+                          memberThumb: "",
+                          menberEnglishName: "teamchen",
+                          numberOfPlay: 3,
+                          outcome: "3:0",
+                          outcomeGame: "14:1"
+                        },
+                    ],
+                  },
+                ]
+            }
+
+## Event [/api/events/{event_id}/schedule]
+
+赛程
+有三种filter，时间，地点，不同的比赛
+场次为一个数组，包含numberOfPlay下所有的字段
+
++ dateFilter: (Array, required) - date list of this schedule
+  + text: (String, required) - text of this filter
+  + value: (String, required) - value of this filter
++ placeFilter: (Array, required) - place list of this schedule
+  + text: (String, required) - text of this filter
+  + value: (String, required) - value of this filter
++ groupFilter: (Array, required) - group list of this schedule
+  + text: (String, required) - text of this filter
+  + value: (String, required) - value of this filter
++ numberOfPlay: (Array, required) - number of showing of this schedule
+  + memberName: (String, required) - member name
+  + memberThumb: (String, required) - member thumb image
+  + menberEnglishName: (String, required) - member english name
+
+
+### Event Schedule [POST]
+
++ method (string) - The calling method
+
++ Request (application/json)
+
+  + Body
+
+        {
+            "method": "eventSchedule",
+            "eventId": 1,
+            "dateFilter": "auto",
+            "placeFilter": "auto",
+            "groupFilter": "auto",
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+                "code": 0,
+                "errorMsg": "",
+                "data": {
+                  "dateFilter": [
+                    {"text": "2017.2.16", "value": "2017.2.16"},
+                    {"text": "2017.2.16", "value": "2017.2.16"},
+                    {"text": "2017.2.16", "value": "2017.2.16"},
+                  ],
+                  "placeFilter": [
+                    {"text": "一号球场", "value": "1"},
+                    {"text": "二号球场", "value": "2"},
+                  ],
+                  "groupFilter": [
+                    {"text": "精英B", "value": "1"},
+                    {"text": "女子双打", "value": "2"},
+                    {"text": "小组资格赛", "value": "3"},
+                    {"text": "第一组", "value": "4"},
+                  ],
+                  "numberOfPlay": [
+                    [
+                      [
+                        {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                        {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                      ],
+                      [
+                        {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                        {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                      ],
+                    ],
+                    [
+                      [
+                        {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                      ],
+                      [
+                        {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                      ],
+                    ],
+                    [
+                      [
+                        {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                        {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                      ],
+                      [
+                        {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                        {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                      ],
+                    ],
+                  ]
+                }
+            }
+
+
+
+## Event [/api/events/{event_id}/drawResult]
+
+抽签结果
+
++ name: (String, required) - event name
++ groupMatch: (Array, required) - group match of this event
+  + member: (Array, required) - member list of this team
+    + memberName: (String, required) - member name
+    + memberThumb: (String, required) - member thumb image
+    + menberEnglishName: (String, required) - member english name
+  + score: (Number, required) - match score
++ firstRound: (Array, required) - first of this event
+  + member: (Array, required) - member list of this team
+    + memberName: (String, required) - member name
+    + memberThumb: (String, required) - member thumb image
+    + menberEnglishName: (String, required) - member english name
+  + score: (Number, required) - match score
++ secondRound: (Array, required) - second round of this event
+  + member: (Array, required) - member list of this team
+    + memberName: (String, required) - member name
+    + memberThumb: (String, required) - member thumb image
+    + menberEnglishName: (String, required) - member english name
+  + score: (Number, required) - match score
++ semifinal: (Array, required) - semifinal of this event
+  + member: (Array, required) - member list of this team
+    + memberName: (String, required) - member name
+    + memberThumb: (String, required) - member thumb image
+    + menberEnglishName: (String, required) - member english name
+  + score: (Number, required) - match score
++ final: (Array, required) - final of this event
+  + member: (Array, required) - member list of this team
+    + memberName: (String, required) - member name
+    + memberThumb: (String, required) - member thumb image
+    + menberEnglishName: (String, required) - member english name
+  + score: (Number, required) - match score
+
+
+### Event Draw Result [POST]
+
++ method (string) - The calling method
+
++ Request (application/json)
+
+  + Body
+
+        {
+            "method": "fetchEventDrawResult",
+            "eventId": 1,
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+                "code": 0,
+                "errorMsg": "",
+                "data": [
+                  {
+                    "name": "青年组 精英B",
+                    "groupMatch": [
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                    ],
+                    "firstRound": [
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                    ],
+                    "secondRound": [
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                    ],
+                    "semifinal": [
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                    ],
+                    "final": [
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                    ],
+                  },
+                  {
+                    "name": "女子双打",
+                    "groupMatch": [
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                    ],
+                    "firstRound": [
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                    ],
+                    "secondRound": [
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                    ],
+                    "semifinal": [
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                    ],
+                    "final": [
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                      [
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 6,
+                        },
+                        {
+                          "member": [
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
+                          ],
+                          "score": 3,
+                        },
+                      ],
+                    ],
+                  },
+                ]
+            }
+
+
+
