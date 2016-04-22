@@ -3,6 +3,7 @@ import thunk from 'redux/middlewares/thunk'
 import promiseMiddleware from 'redux-promise'
 import errorMiddleware from 'redux/middlewares/error'
 import ajaxValidate from "redux/middlewares/ajaxValidate";
+import callbackMiddleware from "redux/middlewares/callback";
 import rootReducer from './rootReducer'
 import { routerMiddleware } from 'react-router-redux'
 
@@ -12,6 +13,7 @@ export default function configureStore (initialState = {}, history) {
     thunk,
     ajaxValidate,
     promiseMiddleware,
+    callbackMiddleware,
     errorMiddleware,
     routerMiddleware(history)
   );
