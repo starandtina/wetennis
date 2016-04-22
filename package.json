@@ -23,8 +23,7 @@
     "deploy:prod": "better-npm-run deploy:prod",
     "flow:check": "babel-node bin/flow-check",
     "codecov": "cat coverage/*/lcov.info | codecov",
-    "api2": "drakov -f './blueprint/*.apib' -p 8000",
-    "api": "api-mock ./blueprint/*.apib -p 8000"
+    "api": "drakov -f './blueprint/*.apib' -p 8000"
   },
   "betterScripts": {
     "compile": {
@@ -137,6 +136,7 @@
     "chai-enzyme": "^0.4.0",
     "cheerio": "^0.20.0",
     "codecov": "^1.0.1",
+    "drakov": "^1.0.0",
     "enzyme": "^2.0.0",
     "eslint": "^2.4.0",
     "eslint-config-standard": "^5.1.0",
