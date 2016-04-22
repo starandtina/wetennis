@@ -19,16 +19,18 @@ export const signUpUser = createAction(
   SIGN_UP_USER,
   _ => {
     return dispatch => {
-      dispatch(post(SIGN_UP_USER, {
-        url: '/signup',
-        data: {
-          'method': 'signup'
-        }
-      }));
+      dispatch(
+        post(
+          SIGN_UP_USER, {
+            url: '/signup',
+            data: {
+              'method': 'signup'
+            }
+          })
+      );
     }
   }
 )
-
 
 
 

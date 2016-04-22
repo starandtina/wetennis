@@ -27,7 +27,12 @@ Sign up. If it's success, the front-end side will see a cookie named `user_id` w
   + Body
 
         {
-            "method": "signup"
+            "method": "signup",
+            "name": "real name",
+            "username": "user name",
+            "password": "user password",
+            "phone": "user phone",
+            "gender": "mail/female"
         }
 
 + Response 200 (application/json)
@@ -86,9 +91,11 @@ Sign in.
                 }
             }
 
+## User Logout [/api/logout]
+
 ### Logout [POST]
 
-Log out, we need to clear cookie.
+Log out, we need to clear cookie after it's successful.
 
 + method (string) - The calling method
 
