@@ -24,6 +24,7 @@
 //     ]
 //   }
 // }
+const invaildAction = {type: Date.now().toString(8)};
 
 export default function callbackMiddleware({ dispatch, getState }) {
   return next => action => {
@@ -36,6 +37,13 @@ export default function callbackMiddleware({ dispatch, getState }) {
       } else {
         callbackProcess(dispatch, payload, meta.callback);
       }
+      return next({
+        ...action,
+        meta: {
+          ...action.meta,
+          callback: false
+        }
+      });
     } else {
       return next(action);
     }
@@ -44,11 +52,13 @@ export default function callbackMiddleware({ dispatch, getState }) {
 
 function callbackProcess(dispatch, payload, cb) {
   if (typeof cb === "function") {
-    dispatch(cb(payload));
+    dispatch(cb(payload) || invaildAction);
   } else {
-    dispatch(cb);
+    dispatch(cb || invaildAction);
   }
 }
+
+
 
 function isPromise(f) {
   return f && typeof f.then === "function";

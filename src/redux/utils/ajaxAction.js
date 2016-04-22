@@ -36,7 +36,8 @@ export const post = createAction(POST, (type, _) => {
     dispatch({
       type,
       meta: {
-        isAjax: true
+        isAjax: true,
+        callback: _.callback
       },
       payload: __post(`${PREURL}${_.url}`, _.data)
     });

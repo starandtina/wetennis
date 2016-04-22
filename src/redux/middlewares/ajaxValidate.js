@@ -20,7 +20,7 @@ export default function ajaxValidateMiddleware({ dispatch, getState }) {
         });
       }
     } else {
-      next(action);
+      return next(action);
     }
   };
 }

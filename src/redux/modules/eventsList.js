@@ -13,14 +13,16 @@ export const getEventsList = createAction(GET_EVENTS_LIST, _ => {
     dispatch(post(GET_EVENTS_LIST, {
       url: '/events',
       data: {
-            "method": "fetchEvents",
-            "status": "ALL/REGISTERING/ASSIGN_DRAW/IN_PROGRESS/DONE",
-            "eventFilter": "ALL/RECOMMENDATION/ME",
-            "locationFilter": "CHENGDU/DEYANG/...",
-            "currentPage": 6,
-            "limit": 30
-        }
-      
+        "method": "fetchEvents",
+        "status": "ALL/REGISTERING/ASSIGN_DRAW/IN_PROGRESS/DONE",
+        "eventFilter": "ALL/RECOMMENDATION/ME",
+        "locationFilter": "CHENGDU/DEYANG/...",
+        "currentPage": 6,
+        "limit": 30
+      },
+      callback: () => {
+        console.log("GET_EVENTS_LIST: callback");
+      }
     }));
   }
 });
@@ -30,7 +32,6 @@ export const getEventsList = createAction(GET_EVENTS_LIST, _ => {
 // ------------------------------------
 export default handleActions({
   [GET_EVENTS_LIST]: (state, _) => {
-    debugger
     return _.payload;
   }
 }, []);
