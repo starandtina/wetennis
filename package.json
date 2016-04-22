@@ -23,8 +23,8 @@
     "deploy:prod": "better-npm-run deploy:prod",
     "flow:check": "babel-node bin/flow-check",
     "codecov": "cat coverage/*/lcov.info | codecov",
-    "api": "drakov -f './blueprint/*.apib' -p 8000 --public",
-    "api-docs": "aglio -i ./blueprint/index.apib -o api.html --verbose"
+    "api-docs": "aglio -i ./blueprint/index.apib -o api.html --verbose",
+    "api": "drakov -f \"./blueprint/*.apib\" -p 8000 --watch"
   },
   "betterScripts": {
     "compile": {
