@@ -1,5 +1,12 @@
-import { createAction, handleActions } from 'redux-actions'
-import { post } from '../utils/ajaxAction';
+import {
+  createAction,
+  handleActions
+} from 'redux-actions'
+
+
+import {
+  post
+} from '../utils/ajaxAction';
 
 // Constants
 // ------------------------------------
@@ -20,7 +27,10 @@ export const signUpUser = createAction(
       }));
     }
   }
-  );
+)
+
+
+
 
 // ------------------------------------
 // Reducer

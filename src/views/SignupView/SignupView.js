@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { setActiveNavTab } from 'redux/modules/activeNavTab'
-import { signUpUser } from 'redux/modules/dashboard'
+import { signUpUser } from 'redux/modules/users'
 
 import SignUpForm from 'forms/SignUpForm'
 import Footer from 'components/Footer/Footer'

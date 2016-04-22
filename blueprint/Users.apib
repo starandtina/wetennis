@@ -1,18 +1,18 @@
 FORMAT: 1A
 
-# Dashboad
+# User
 
-Dashboad is a simple API allowing consumers to signin and signup.
+User is a simple API allowing consumers to signin and signup.
 
-# Group Dashboad
+# Group User
 
-Resources related to `Dashboad` in the API.
+Resources related to `User` in the API.
 
-## Dashboad Signup [/api/signup]
+## User SignUp [/api/signup]
 
-### Signup [POST]
+### SignUp [POST]
 
-Sign up.
+Sign up. If it's success, the front-end side will see a cookie named `user_id` with the id of logined user.
 
 + method (string) - The calling method
 + id (string) - The id for user
@@ -48,9 +48,9 @@ Sign up.
             }
 
 
-## Dashboad Signin [/api/signin]
+## User SignIn [/api/signin]
 
-### Signin [POST]
+### SignIn [POST]
 
 Sign in.
 
