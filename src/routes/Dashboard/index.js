@@ -18,7 +18,7 @@ export default (store) => ({
       const Dashboard = require('./containers/DashboardContainer')
       const reducer = require('./modules/dashboard').default
 
-      injectReducer(store, { key: 'user', reducer })
+      injectReducer(store, { key: 'dashboard', reducer })
 
       next(null, Dashboard)
     })

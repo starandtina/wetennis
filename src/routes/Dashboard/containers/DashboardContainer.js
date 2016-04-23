@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 
-import { logoutUser } from '../modules/dashboard'
+import { logoutUser } from 'routes/Signup/modules/signup'
 import Dashboard from '../components/Dashboard'
 
 const mapStateToProps = (state) => ({

@@ -36,7 +36,7 @@ export class SignupForm extends React.Component {
         <div className={`form-group ${phone.touched && phone.invalid ? 'has-error' : ''}`}>
           <label className='col-xs-4 control-label'>手机号</label>
           <div className='col-xs-8'>
-            <input className='form-control' type="text" placeholder="Mobile phone" {...phone}/>
+            <input className='form-control' type="text" placeholder="移动电话" {...phone}/>
              <div className="help-block">
               {phone.touched ? phone.error : ''}
             </div>

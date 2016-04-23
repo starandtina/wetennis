@@ -4,10 +4,10 @@ import { push } from 'react-router-redux'
 import { reduxForm } from 'redux-form'
 
 import { signUpUser } from '../modules/signup'
-import SignUpForm from 'components/SignupForm'
+import SignupForm from 'components/SignupForm'
 
 
-export const fields = [ 'username', 'phone', 'name', 'gender', 'password', 'confirmPassword']
+export const fields = ['username', 'phone', 'name', 'gender', 'password', 'confirmPassword']
 
 const validate = (values) => {
   var errors = {};
@@ -39,7 +39,8 @@ const validate = (values) => {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.user
+  user: state.user,
+  initialValues: state.user.initialValues
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -49,7 +50,7 @@ const mapDispatchToProps = (dispatch) => ({
 // connect: first argument is mapStateToProps, 2nd is mapDispatchToProps
 // reduxForm: 1st is form config, 2nd is mapStateToProps, 3rd is mapDispatchToProps
 export default reduxForm({
-  form: 'SignUpForm',
+  form: 'SignupForm',
   fields,
   // validate
-}, mapStateToProps, mapDispatchToProps)(SignUpForm)
+}, mapStateToProps, mapDispatchToProps)(SignupForm)
