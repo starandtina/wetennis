@@ -1,29 +1,29 @@
-import React from 'react'
-import { Route, IndexRoute } from 'react-router'
+// We only need to import the modules necessary for initial render
+import CoreLayout from '../layouts/CoreLayout/CoreLayout'
+import Home from './Home'
 
-// NOTE: here we're making use of the `resolve.root` configuration
-// option in webpack, which allows us to specify import paths as if
-// they were from the root of the ~/src directory. This makes it
-// very easy to navigate to files regardless of how deeply nested
-// your current file is.
-import CoreLayout from 'layouts/CoreLayout/CoreLayout'
-import HomeView from 'views/HomeView'
-import EventView from 'views/EventView'
+export const createRoutes = (store) => {
+/*  Note: Instead of using JSX, we are using react-router PlainRoute,
+    a simple javascript object to provide route definitions.
+    When creating a new async route, pass the instantiated store!   */
 
+  const routes = {
+    path: '/',
+    component: CoreLayout,
+    indexRoute: Home,
+    getChildRoutes (location, next) {
+      require.ensure([], (require) => {
+        next(null, [
+          // Provide store for async reducers and middleware
+          require('./Dashboard')(store),
+          require('./Signup')(store),
+          require('./NotFound')
+        ])
+      })
+    }
+  }
 
-import DashboardView from 'views/DashboardView'
-import SignupView from 'views/SignupView'
+  return routes
+}
 
-
-import { requireAuth } from 'utils/auth'
-
-export default (store) => (
-  <Route path='/' component={CoreLayout}>
-    <IndexRoute component={HomeView} />
-    <Route path='/event' component={EventView} />
-    <Route path='/time' component={HomeView} />
-    <Route path='/guess' component={HomeView} />
-    <Route path='/dashboard' component={DashboardView} onEnter={requireAuth} />
-    <Route path='/signup' component={SignupView} />
-  </Route>
-)
+export default createRoutes

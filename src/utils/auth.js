@@ -1,4 +1,10 @@
-import { is, del } from 'utils/cookie'
+import {
+  is,
+  del,
+  set
+} from 'utils/cookie'
+
+const USER_ID = 'USER_ID'
 
 function requireAuth(nextState, replace) {
   if (!loggedIn()) {
@@ -11,12 +17,16 @@ function requireAuth(nextState, replace) {
   }
 }
 
+function setCookie(user_id) {
+  set(USER_ID, user_id)
+}
+
 function loggedIn() {
-  return !!is('user_id')
+  return !!is(USER_ID)
 }
 
 function logout(cb) {
-  del('user_id')
+  del(USER_ID)
 
   if (cb) {
     cb();
@@ -25,6 +35,7 @@ function logout(cb) {
 
 export {
   requireAuth,
+  setCookie,
   loggedIn,
   logout
 }

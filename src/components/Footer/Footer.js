@@ -1,15 +1,12 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+// import { bindActionCreators } from 'redux'
+// import { connect } from 'react-redux'
 
-import { setActiveNavTab } from 'redux/modules/activeNavTab'
+// import { setActiveNavTab } from 'redux/modules/activeNavTab'
 
 import classes from './Footer.scss'
 import { Link } from 'react-router'
 
-type Props = {
-
-};
 
 export class Footer extends React.Component {
   props: Props;
@@ -22,7 +19,7 @@ export class Footer extends React.Component {
     }
 
     return (
-      <div className='grid-cell'>
+      <div className='grid-cell text-center'>
         <a className={className} onClick={() => this.handleClick(currentTab, to) }>
           <div className={classes.circle}></div>
           <div className={`text-muted ${classes['circle-label']}`}>{name}</div>
@@ -33,28 +30,33 @@ export class Footer extends React.Component {
 
   render() {
     return (
-      <div className='grid'>
-        {this.renderItem('LATEST', '最新', '')}
-        {this.renderItem('EVENT', '赛事', '/event')}
-        {this.renderItem('TIME', '时光', '/time')}
-        {this.renderItem('GUESS', '竟猜', '/guess')}
-        {this.renderItem('DASHBOARD', '我', '/dashboard')}
+      <div className='wetennis-footer'>
+        <div className='grid'>
+          {this.renderItem('LATEST', '最新', '')}
+          {this.renderItem('EVENT', '赛事', '/event')}
+          {this.renderItem('TIME', '时光', '/time')}
+          {this.renderItem('GUESS', '竟猜', '/guess')}
+          {this.renderItem('DASHBOARD', '我', '/dashboard')}
+       </div>
      </div>
     )
   }
 
   handleClick(currentTab, to) {
-    this.props.actions.setActiveNavTab(currentTab)
+    // this.props.actions.setActiveNavTab(currentTab)
     this.props.history.push(to);
   }
 }
 
 const mapStateToProps = (state) => ({
-  activeNavTab: state.activeNavTab
+  // activeNavTab: state.activeNavTab
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  actions : bindActionCreators({ setActiveNavTab }, dispatch)
+  // actions : bindActionCreators({ setActiveNavTab }, dispatch)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Footer)
+// export default connect(mapStateToProps, mapDispatchToProps)(Footer)
+
+
+export default Footer

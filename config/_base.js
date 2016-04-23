@@ -77,7 +77,6 @@ config.globals = {
   '__PROD__'     : config.env === 'production',
   '__TEST__'     : config.env === 'test',
   '__DEBUG__'    : config.env === 'development' && !argv.no_debug,
-  '__DEBUG_NEW_WINDOW__' : !!argv.nw,
   '__BASENAME__' : JSON.stringify(process.env.BASENAME || '')
 }
 
@@ -100,17 +99,14 @@ config.compiler_vendor = config.compiler_vendor
 // ------------------------------------
 // Utilities
 // ------------------------------------
-config.utils_paths = (() => {
-  const resolve = path.resolve
+const resolve = path.resolve
+const base = (...args) =>
+  Reflect.apply(resolve, null, [config.path_base, ...args])
 
-  const base = (...args) =>
-    resolve.apply(resolve, [config.path_base, ...args])
-
-  return {
-    base   : base,
-    client : base.bind(null, config.dir_client),
-    dist   : base.bind(null, config.dir_dist)
-  }
-})()
+config.utils_paths = {
+  base   : base,
+  client : base.bind(null, config.dir_client),
+  dist   : base.bind(null, config.dir_dist)
+}
 
 export default config
