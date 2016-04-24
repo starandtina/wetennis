@@ -8,7 +8,7 @@ Register is a simple API allowing consumers to register by yourself.
 
 Resources related  to new in the API.
 
-## Groups and Items [/api/groups]
+## Groups and Items [/api/eventCategories]
 
 A Group object has the following attributes:
 
@@ -32,7 +32,7 @@ It takes a JSON object containing a question and a collection of answers in the 
   + Body
 
         {
-            "method": "fetchGroups",
+            "method": "fetchEventCategories",
             "eventId": "eventId"
         }
 
@@ -44,40 +44,40 @@ It takes a JSON object containing a question and a collection of answers in the 
                 "code": 0,
                 "errorMsg": "",
                 "data": {
-                  "groups": [
-                    {
-                      "id": 1,
-                      "name": "青少年 金组"
-                    },
-                    {
-                      "id": 2,
-                      "name": "青少年 金组"
-                    },
-                    {
-                      "id": 3,
-                      "name": "青少年 橙组"
-                    },
-                    {
-                      "id": 4,
-                      "name": "青少年 红组"
-                    },
-                    {
-                      "id": 5,
-                      "name": "元老组"
-                    }
-                  ],
-                  "items": [
-                    {
-                      "id": 1,
-                      "name": "男子单打",
-                      "price": "50.00"
-                    },
-                    {
-                      "id": 2,
-                      "女子双打",
-                      "price": "150.00"
-                    }
-                  ]
+                    "groups": [
+                        {
+                            "id": 1,
+                            "name": "青少年 金组"
+                        },
+                        {
+                            "id": 2,
+                            "name": "青少年 金组"
+                        },
+                        {
+                            "id": 3,
+                            "name": "青少年 橙组"
+                        },
+                        {
+                            "id": 4,
+                            "name": "青少年 红组"
+                        },
+                        {
+                            "id": 5,
+                            "name": "元老组"
+                        }
+                    ],
+                    "items": [
+                        {
+                            "id": 1,
+                            "name": "男子单打",
+                            "price": "50.00"
+                        },
+                        {
+                            "id": 2,
+                            "name": "女子双打",
+                            "price": "150.00"
+                        }
+                    ]
                 }
             }
 
@@ -110,11 +110,13 @@ It takes a JSON object containing a question and a collection of answers in the 
                   {
                     "id": 1,
                     "name": "用户名",
+                    "thumbImgUrl": "http://img0.imgtn.bdimg.com/it/u=2833976744,4249581374&fm=11&gp=0.jpg",
                     "registerDate": "2016.04.20"
                   },
                   {
                     "id": 2,
                     "name": "用户名",
+                    "thumbImgUrl": "http://img0.imgtn.bdimg.com/it/u=2833976744,4249581374&fm=11&gp=0.jpg",
                     "registerDate": "2016.04.21"
                   }
                 ]

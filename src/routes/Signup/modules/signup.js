@@ -12,6 +12,7 @@ import {
   logout
 } from 'utils/auth'
 
+// ------------------------------------
 // Constants
 // ------------------------------------
 export const SIGNUP_USER = 'SIGNUP_USER'

@@ -8,7 +8,7 @@ export const CoreLayout = ({ children }) => (
   <div className='page-container'>
     <div className='wetennis'>
       <Header/>
-      <div className='wetennis-body container'>
+      <div className='wetennis-body'>
         {children}
       </div>
       <Footer />

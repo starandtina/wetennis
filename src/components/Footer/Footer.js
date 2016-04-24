@@ -3,8 +3,6 @@ import classes from './Footer.scss'
 import { Link } from 'react-router'
 
 export class Footer extends React.Component {
-  props: Props;
-
   renderItem(currentTab, name, to) {
     let className = ''
 

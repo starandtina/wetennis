@@ -1,0 +1,56 @@
+.li
+{
+    display: block;
+
+    padding: 6px 15px;
+}
+
+.li:hover
+{
+    cursor: pointer;
+}
+
+.selected
+{
+    background-color: #5cb85c;
+
+    color: white;
+}
+
+.fontcolor
+{
+    color: #5cb85c;
+}
+
+
+.register-user-container
+{
+    margin: 10px;
+}
+
+
+:global
+{
+    .register
+    {
+        .panel-default
+        {
+            border: none;
+        }
+
+        .panel-body
+        {
+            padding: 15px 0;
+        }
+
+        .panel-title
+        {
+            a
+            {
+                cursor: pointer;
+                display: block;
+            }
+        }
+    }
+}
+
