@@ -24,12 +24,14 @@ export class SigninForm extends React.Component {
         <TextField
           style={style}
           hintText="用户名"
+          errorText={username.touched ? username.error : ''}
           floatingLabelText="用户名"
           {...username}
         />
         <TextField
           style={style}
           hintText="密码"
+          errorText={password.touched ? password.error : ''}
           floatingLabelText="密码"
           {...password}
         />
