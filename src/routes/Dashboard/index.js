@@ -1,15 +1,18 @@
-import { injectReducer } from '../../store/reducers'
+import { injectReducer } from 'store/reducers'
 import { requireAuth } from 'utils/auth'
 
 export default (store) => ({
   path: 'dashboard',
-  onEnter() {
-    requireAuth.apply(this, arguments)
+  onEnter (nextState) {
+    if (nextState.location.pathname === '/dashboard') {debugger
+      requireAuth.apply(this, arguments)
+    }
   },
   getChildRoutes (location, cb) {
     require.ensure([], (require) => {
       cb(null, [
-        require('./routes/Signup')(store)
+        require('./routes/Signup')(store),
+        require('./routes/Signin')(store)
       ])
     })
   },
