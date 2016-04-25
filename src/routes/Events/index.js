@@ -4,23 +4,23 @@ import { requireAuth } from 'utils/auth'
 export default (store) => ({
   path: 'events',
   onEnter() {
-    requireAuth.apply(this, arguments)
+    // requireAuth.apply(this, arguments)
   },
   getComponent (nextState, next) {
     require.ensure([
-      './containers/DashboardContainer',
-      './components/Dashboard',
-      './modules/dashboard'
+      './containers/EventContainer',
+      './components/EventList',
+      './modules'
     ], (require) => {
   /*  These modules are lazily evaluated using require hook, and
       will not loaded until the router invokes this callback. */
 
-      const Dashboard = require('./containers/DashboardContainer')
-      const reducer = require('./modules/dashboard').default
+      const Container = require('./containers/EventContainer')
+      const reducer = require('./modules')
 
-      injectReducer(store, { key: 'user', reducer })
+      injectReducer(store, { key: 'events', reducer })
 
-      next(null, Dashboard)
+      next(null, Container)
     })
   }
 })

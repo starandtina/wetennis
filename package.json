@@ -24,7 +24,8 @@
     "flow:check": "babel-node bin/flow-check",
     "codecov": "cat coverage/*/lcov.info | codecov",
     "api-docs": "aglio -i ./blueprint/index.apib -o api.html --verbose",
-    "api": "drakov -f \"./blueprint/*.apib\" -p 8000 --watch"
+    "api": "drakov -f \"./blueprint/*.apib\" -p 8000 --watch",
+    "api2": "node ./apiServer"
   },
   "betterScripts": {
     "compile": {
@@ -109,6 +110,7 @@
     "koa-connect-history-api-fallback": "^0.3.0",
     "koa-convert": "^1.2.0",
     "koa-proxy": "^0.5.0",
+    "koa-router": "^7.0.1",
     "koa-static": "^2.0.0",
     "material-ui": "^0.15.0-beta.2",
     "node-sass": "^3.3.3",

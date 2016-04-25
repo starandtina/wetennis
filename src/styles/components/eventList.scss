@@ -1,0 +1,33 @@
+$space: 20px;
+$thumbSize: 60px;
+
+.eventList {
+  background-color: #fff;
+}
+
+.eventList-item {
+  padding: $space 0;
+  margin: 0 $space;
+  border-bottom: 1px solid #ccc;
+  overflow: hidden;
+  display: block;
+  .thumb{
+    height: $thumbSize;
+    width: $thumbSize;
+    background-color: #ddd;
+  }
+  .type{
+    margin-top: $space;
+    background-color: #DCF0DE;
+    color: #A9BFA5;
+    text-align: center;
+  }
+}
+
+.eventList-left{
+  float: left;
+}
+
+.eventList-right{
+  margin-left: $thumbSize + $space;
+}
