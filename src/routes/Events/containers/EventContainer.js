@@ -26,9 +26,9 @@ class EventContainer extends React.Component {
 
   // initinal param
   state = {
-    status: "ALL/REGISTERING/ASSIGN_DRAW/IN_PROGRESS/DONE",
-    eventFilter: "ALL/RECOMMENDATION/ME",
-    locationFilter: "CHENGDU/DEYANG/...",
+    status: "ALL",
+    eventFilter: "ALL",
+    locationFilter: "CHENGDU",
     currentPage: 1,
     limit: 30
   }
@@ -36,11 +36,9 @@ class EventContainer extends React.Component {
   // get event list from server
   getList = param => {
     const {getEventList} = this.props.action;
-    console.log(param);
     const newParam = Object.assign({}, this.state, param || {});
-    console.log(newParam);
     if (param) {
-      this.setState({ newParam });
+      this.setState(newParam);
     }
     getEventList(newParam);
   }

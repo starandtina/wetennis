@@ -24,7 +24,7 @@ const LOADED = "__LOADED__";
 
 let PREURL = "http://wetennis.cn:83/WebService";
 if (__DEV__) {
-  PREURL = "/api";
+  PREURL = "http://localhost:8000/api";
 }
 
 export const loading = createAction(LOADING);
