@@ -25,10 +25,10 @@ export const fetchGroups = createAction(
       dispatch(
         post(
           FETCH_GROUPS, {
-            url: '/eventCategories',
+            url: '/eventGroups',
             data: {
               ...args,
-              method: 'fetchEventCategories'
+              method: 'fetchEventGroups'
             }
           }
         )
@@ -65,8 +65,7 @@ export default handleActions({
   [FETCH_GROUPS]: (state, action) => {
     return {
       ...state,
-      groups: action.payload.groups,
-      items: action.payload.items
+      groups: action.payload.groups
     }
   },
   [FETCH_REGISTERED_USERS]: (state, action) => {
@@ -81,4 +80,4 @@ export default handleActions({
       ...action.payload
     }
   }
-}, { groups: [], items: [], registeredUsers: [], group: { name: '级别'  }, item: { name: '项目' }})
+}, { groups: [], registeredUsers: [], group: { name: '级别', items: []  }, item: { name: '项目' }})

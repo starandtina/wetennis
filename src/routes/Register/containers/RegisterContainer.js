@@ -8,7 +8,6 @@ import Register from '../components/Register'
 
 const mapStateToProps = (state) => ({
   groups: state.register.groups,
-  items: state.register.items,
   group: state.register.group,
   item: state.register.item,
   registeredUsers: state.register.registeredUsers

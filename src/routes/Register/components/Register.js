@@ -8,16 +8,14 @@ import RegisteredUsers from './RegisteredUsers'
 import classes from './Register.scss'
 
 export class Register extends React.Component {
-  constructor(props) {
-    super(props)
-    const { group, item } = props
-    this.state = {
-      group,
-      item
-    }
+  state = {
+    group: this.props.group,
+    item: this.props.item
   }
 
-  componentWillMount() {
+  constructor(props) {
+    super(props)
+
     const { params } = this.props
     const requestPayload = { eventId: params.eventId }
 
@@ -26,6 +24,8 @@ export class Register extends React.Component {
   }
 
   renderCategories() {
+    const { items } = this.state.group
+
     return (
       <Accordion defaultActiveKey="1">
         <Panel header={this.state.group.name} eventKey="1">
@@ -39,7 +39,7 @@ export class Register extends React.Component {
         </Panel>
         <Panel header={this.state.item.name} eventKey="2">
           <ul className='list-unstyled'>
-          {this.props.items.map(item => (
+          {items.map(item => (
             <li className={this.state.item.id === item.id ? `${classes.li} ${classes.selected}` : classes.li } key={item.id} onClick={this.handleItemHeaderClick.bind(this, item)}>
               <div className='clearfix'>
                 <div className='pull-left'>{item.name}</div>

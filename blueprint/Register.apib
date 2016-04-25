@@ -8,7 +8,7 @@ Register is a simple API allowing consumers to register by yourself.
 
 Resources related  to new in the API.
 
-## Groups and Items [/api/eventCategories]
+## Groups and Items [/api/eventGroups]
 
 A Group object has the following attributes:
 
@@ -32,7 +32,7 @@ It takes a JSON object containing a question and a collection of answers in the 
   + Body
 
         {
-            "method": "fetchEventCategories",
+            "method": "fetchEventGroups",
             "eventId": "eventId"
         }
 
@@ -47,35 +47,83 @@ It takes a JSON object containing a question and a collection of answers in the 
                     "groups": [
                         {
                             "id": 1,
-                            "name": "青少年 金组"
+                            "name": "青少年 钻石组",
+                            "items": [
+                                {
+                                    "id": 1,
+                                    "name": "男子单打",
+                                    "price": "50.00"
+                                },
+                                {
+                                    "id": 2,
+                                    "name": "女子单打",
+                                    "price": "150.00"
+                                }
+                            ]
                         },
                         {
                             "id": 2,
-                            "name": "青少年 金组"
+                            "name": "青少年 金组",
+                            "items": [
+                                {
+                                    "id": 1,
+                                    "name": "男子单打",
+                                    "price": "2250.00"
+                                },
+                                {
+                                    "id": 2,
+                                    "name": "女子双打",
+                                    "price": "150.00"
+                                }
+                            ]
                         },
                         {
                             "id": 3,
-                            "name": "青少年 橙组"
+                            "name": "青少年 橙组",
+                            "items": [
+                                {
+                                    "id": 1,
+                                    "name": "男子单打",
+                                    "price": "50.00"
+                                },
+                                {
+                                    "id": 2,
+                                    "name": "女子双打",
+                                    "price": "150.00"
+                                }
+                            ]
                         },
                         {
                             "id": 4,
-                            "name": "青少年 红组"
+                            "name": "青少年 红组",
+                            "items": [
+                                {
+                                    "id": 1,
+                                    "name": "男子单打",
+                                    "price": "50.00"
+                                },
+                                {
+                                    "id": 2,
+                                    "name": "女子双打",
+                                    "price": "150.00"
+                                }
+                            ]
                         },
                         {
                             "id": 5,
-                            "name": "元老组"
-                        }
-                    ],
-                    "items": [
-                        {
-                            "id": 1,
-                            "name": "男子单打",
-                            "price": "50.00"
-                        },
-                        {
-                            "id": 2,
-                            "name": "女子双打",
-                            "price": "150.00"
+                            "name": "元老组",
+                            "items": [
+                                {
+                                    "id": 1,
+                                    "name": "男子单打",
+                                    "price": "50.00"
+                                },
+                                {
+                                    "id": 2,
+                                    "name": "女子双打",
+                                    "price": "150.00"
+                                }
+                            ]
                         }
                     ]
                 }
