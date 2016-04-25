@@ -6,6 +6,13 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import createStore from './store/createStore'
 import { Provider } from 'react-redux'
 import createRoutes from './routes'
+import injectTapEventPlugin from 'react-tap-event-plugin'
+
+//Needed for onTouchTap
+//Can go away when react 1.0 release
+//Check this repo:
+//https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin()
 
 const MOUNT_ELEMENT = document.getElementById('root')
 

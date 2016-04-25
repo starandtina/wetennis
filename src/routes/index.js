@@ -16,8 +16,7 @@ export const createRoutes = (store) => {
         next(null, [
           // Provide store for async reducers and middleware
           require('./Dashboard')(store),
-          require('./Register')(store),
-          require('./Signup')(store),
+          require('./Register')(store), // TODO: Should be moved to `Events` and it's url looks like `events/:eventID/register`
           require('./NotFound')
         ])
       })

@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from 'components/Footer'
 
 export class Dashboard extends React.Component {
   props: Props;
@@ -10,11 +11,16 @@ export class Dashboard extends React.Component {
   }
 
   render () {
+    const { children } = this.props
+    let content = (<div>Dashboard<button onClick={this.props.actions.logoutUser.bind(this)}>LOGOUT</button></div>)
 
+    if (children) {
+      content = children
+    }
     return (
       <div>
-        Dashboard!
-        <button onClick={this.props.actions.logoutUser.bind(this)}>LOGOUT</button>
+        {content}
+        <Footer activeNavTab='DASHBOARD' />
       </div>
     )
   }

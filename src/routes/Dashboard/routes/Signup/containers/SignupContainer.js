@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { push } from 'react-router-redux'
 import { reduxForm } from 'redux-form'
 
-import { signUpUser } from '../modules/signup'
+import { signUpUser } from 'routes/Dashboard/modules/user'
 import SignupForm from 'components/SignupForm'
 
 
@@ -52,5 +52,5 @@ const mapDispatchToProps = (dispatch) => ({
 export default reduxForm({
   form: 'SignupForm',
   fields,
-  // validate
+  validate
 }, mapStateToProps, mapDispatchToProps)(SignupForm)

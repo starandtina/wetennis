@@ -6,19 +6,23 @@ export default (store) => ({
   onEnter() {
     requireAuth.apply(this, arguments)
   },
+  getChildRoutes (location, cb) {
+    require.ensure([], (require) => {
+      cb(null, [
+        require('./routes/Signup')(store)
+      ])
+    })
+  },
   getComponent (nextState, next) {
     require.ensure([
       './containers/DashboardContainer',
       './components/Dashboard',
-      './modules/dashboard'
+      './modules/user'
     ], (require) => {
-  /*  These modules are lazily evaluated using require hook, and
-      will not loaded until the router invokes this callback. */
-
       const Dashboard = require('./containers/DashboardContainer')
-      const reducer = require('./modules/dashboard').default
+      const reducer = require('./modules/user').default
 
-      injectReducer(store, { key: 'dashboard', reducer })
+      injectReducer(store, { key: 'user', reducer })
 
       next(null, Dashboard)
     })
