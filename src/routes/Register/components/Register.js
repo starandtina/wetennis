@@ -8,9 +8,14 @@ import RegisteredUsers from './RegisteredUsers'
 import classes from './Register.scss'
 
 export class Register extends React.Component {
-  static defaultProps = { initialCount: 0 }
-
-  state = { group: { name: '级别'  }, item: { name: '项目' } }
+  constructor(props) {
+    super(props)
+    const { group, item } = props
+    this.state = {
+      group,
+      item
+    }
+  }
 
   componentWillMount() {
     const { params } = this.props
@@ -62,7 +67,7 @@ export class Register extends React.Component {
       let registeredUsers = (<div></div>)
 
       if (this.state.group.id && this.state.item.id) {
-        registerView = <RegisterView {...this.state} {...this.props} />
+        registerView = <RegisterView  {...this.props} {...this.state} />
         registeredUsers = <RegisteredUsers {...this.props} />
       }
 

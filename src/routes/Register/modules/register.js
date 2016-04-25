@@ -81,4 +81,4 @@ export default handleActions({
       ...action.payload
     }
   }
-}, { groups: [], items: [], registeredUsers: [], group: {}, item: {}})
+}, { groups: [], items: [], registeredUsers: [], group: { name: '级别'  }, item: { name: '项目' }})
