@@ -132,5 +132,18 @@ export default handleActions({
       user: null,
       status: 'logout'
     }
-  }
+  },
+  [SIGNUP_USER]: (state, action) => {
+    return {
+      ...state,
+      user: action.payload
+    }
+  },
+  [SIGNUP_USER_SUCCESS]: (state, action) => {
+    return {
+      ...state,
+      user: action.payload,
+      status: 'authenticated'
+    }
+  },
 }, INITIAL_STATE)
