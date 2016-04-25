@@ -1,6 +1,29 @@
 .signin-background
 {
-    background: url('../assets/signin_background.png') no-repeat center center fixed;
+    position: fixed;
+    top: 0;
+    bottom: 0;
 
-    background-size: cover;
+    width: 100%;
+    height: auto;
+}
+
+.form-container
+{
+    position: relative;
+    top: 80px;
+    left: 40px;
+}
+
+.text
+{
+    font-size: 84px;
+    line-height: .8;
+
+    width: 241px;
+    height: 160px;
+
+    letter-spacing: -5px;
+
+    color: #fff;
 }
