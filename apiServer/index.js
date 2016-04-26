@@ -12,6 +12,8 @@ const router = Router({
 app.use(body());
 app.use(cors());
 
+router.use(apis.routes());
+
 router.post('/:method', function (rep, res) {
   var fs = require('fs')
   var path = require('path')
@@ -23,7 +25,6 @@ router.post('/:method', function (rep, res) {
   rep.body = JSON.parse(data)
 });
 
-router.use(apis.routes());
 
 app.use(router.routes())
   .use(router.allowedMethods())

@@ -2,10 +2,11 @@ import React from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 
-import EventList from "../components/EventList";
 import {getEventList} from "../modules/eventList";
 
 import EventFilter from "../components/EventFilter";
+import EventList from "../components/EventList";
+import EventTopNav from "../components/EventTopNav";
 
 class EventContainer extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class EventContainer extends React.Component {
     const {eventFilter} = this.state;
     return (
       <div>
+        <EventTopNav />
         <EventFilter onChange={this.getList} current={eventFilter} />
         <EventList data={eventList} />
       </div>
