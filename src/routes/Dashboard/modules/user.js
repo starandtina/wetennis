@@ -23,9 +23,10 @@ export const SIGNUP_USER_SUCCESS = 'SIGNUP_USER_SUCCESS'
 
 
 // Sign In User
-export const SIGNIN_USER = 'SIGNIN_USER';
-export const SIGNIN_USER_SUCCESS = 'SIGNIN_USER_SUCCESS';
-export const SIGNIN_USER_FAILURE = 'SIGNIN_USER_FAILURE';
+export const SIGNIN_USER = 'SIGNIN_USER'
+export const SIGNIN_USER_SUCCESS = 'SIGNIN_USER_SUCCESS'
+export const SIGNIN_USER_FAILURE = 'SIGNIN_USER_FAILURE'
+
 
 
 // Logout User
@@ -47,6 +48,7 @@ export const signUpUser = createAction(
               method: 'signup'
             },
             callback(resp) {
+
               setCookie(resp.id)
               dispatch(signUpUserSuccess(resp))
             }
@@ -72,8 +74,12 @@ export const signInUser = createAction(
               method: 'signin'
             },
             callback(resp) {
-              setCookie(resp.id)
-              dispatch(signInUserSuccess(resp))
+              if (resp.code !== 0) {
+                dispatch(signInUserFail(resp.errorMsg));
+              } else {
+                setCookie(resp.id)
+                dispatch(signInUserSuccess(resp))
+              }
             }
           }
         )
@@ -83,8 +89,7 @@ export const signInUser = createAction(
 )
 
 export const signInUserSuccess = createAction(SIGNIN_USER_SUCCESS)
-
-
+export const signInUserFail = createAction(SIGNIN_USER_FAILURE)
 
 
 export const logoutUser = createAction(
@@ -126,24 +131,36 @@ export default handleActions({
       status: 'authenticated'
     }
   },
-   [LOGOUT_USER]: (state, action) => {
+  [LOGOUT_USER]: (state, action) => {
     return {
       ...state,
       user: null,
       status: 'logout'
     }
   },
-  [SIGNUP_USER]: (state, action) => {
+  [SIGNIN_USER]: (state, action) => {
     return {
       ...state,
-      user: action.payload
+      user: action.payload,
+      status: 'signin'
     }
   },
-  [SIGNUP_USER_SUCCESS]: (state, action) => {
+  [SIGNIN_USER_SUCCESS]: (state, action) => {
     return {
       ...state,
       user: action.payload,
       status: 'authenticated'
     }
   },
+  [SIGNIN_USER_FAILURE]: (state, action) => {
+    debugger
+    return {
+      ...state,
+      status: 'signin',
+      error: {
+        message: action.payload
+      },
+      user: null
+    }
+  }
 }, INITIAL_STATE)

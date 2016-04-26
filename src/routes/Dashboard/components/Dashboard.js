@@ -5,9 +5,9 @@ export class Dashboard extends React.Component {
   props: Props;
 
   componentWillReceiveProps(nextProps) {
-    if (!this.props.user.user || (this.props.user.user && !nextProps.user.user)) {
-      this.props.actions.push('/dashboard/signup')
-    }
+    // if (!this.props.user.user || (this.props.user.user && !nextProps.user.user)) {
+    //   this.props.actions.push('/dashboard/signup')
+    // }
   }
 
   render () {

@@ -12,9 +12,9 @@ import reducers from './reducers'
 export default (initialState = {}, history) => {
   let middleware = applyMiddleware(
     thunk,
+    callbackMiddleware,
     ajaxValidate,
     promiseMiddleware,
-    callbackMiddleware,
     errorMiddleware,
     routerMiddleware(history)
   )

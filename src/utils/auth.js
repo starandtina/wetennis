@@ -6,7 +6,7 @@ import {
 
 const USER_ID = 'USER_ID'
 
-function requireAuth(nextState, replace) {
+function requireAuth(nextState, replace) {debugger
   if (!loggedIn()) {
     replace({
       pathname: '/dashboard/signup',

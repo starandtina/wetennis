@@ -12,10 +12,22 @@ const router = Router({
 app.use(body());
 app.use(cors());
 
+router.post('/:method', function (rep, res) {
+  var fs = require('fs')
+  var path = require('path')
+  var file = path.resolve(__dirname, 'JSON', rep.params.method + '.json')
+
+  var data = fs.readFileSync(file, 'utf8')
+
+  console.log('Reading JSON file from ' + file + ' for ' + rep.path);
+  rep.body = JSON.parse(data)
+});
+
 router.use(apis.routes());
 
 app.use(router.routes())
-   .use(router.allowedMethods())
+  .use(router.allowedMethods())
+
 
 app.listen(8000);
 

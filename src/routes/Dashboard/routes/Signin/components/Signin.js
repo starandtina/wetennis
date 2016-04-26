@@ -15,7 +15,7 @@ export class Sign extends React.Component {
             <p>WE</p>
             <p>TENNIS</p>
           </div>
-          <SigninFormContainer />
+          <SigninFormContainer {...this.props} />
         </div>
       </div>
     )

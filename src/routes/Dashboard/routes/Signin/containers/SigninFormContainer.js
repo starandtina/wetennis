@@ -1,5 +1,6 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
+import { push } from 'react-router-redux'
 import { reduxForm } from 'redux-form'
 
 import { signInUser } from 'routes/Dashboard/modules/user'
@@ -13,11 +14,11 @@ const validate = (values) => {
   var hasErrors = false;
 
   if (!values.username || values.username.trim() === '') {
-    errors.username = 'Enter username';
+    errors.username = '请输入用户名';
     hasErrors = true;
   }
   if(!values.password || values.password.trim() === '') {
-    errors.password = 'Enter password';
+    errors.password = '请输入密码';
     hasErrors = true;
   }
 
@@ -29,7 +30,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  actions : bindActionCreators({ signInUser }, dispatch)
+  actions : bindActionCreators({ signInUser, push }, dispatch)
 })
 
 export default reduxForm({
