@@ -1,5 +1,7 @@
 import React from 'react'
 
+import NavBack from 'components/NavBack'
+import VerifyPhoneFormContainer from '../containers/VerifyPhoneFormContainer'
 import classes from './VerifyPhone.scss'
 
 export class Sign extends React.Component {
@@ -9,15 +11,8 @@ export class Sign extends React.Component {
 
     return (
       <div>
-        <div className={classes['nav-header']}>
-          <div className='grid'>
-            <div className='grid-cell'>
-              <i className="material-icons">clear</i>
-            </div>
-            <div className='grid-cell'>验证手机</div>
-            <div className='grid-cell'><i className="material-icons">keyboard_arrow_right</i></div>
-          </div>
-        </div>
+        <NavBack caption='验证手机' style={{color: 'white'}} />
+        <VerifyPhoneFormContainer {...this.props} />
       </div>
     )
   }

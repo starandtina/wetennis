@@ -157,12 +157,15 @@ const PATHS_TO_TREAT_AS_CSS_MODULES = [
 // If config has CSS modules enabled, treat this project's styles as CSS modules.
 if (config.compiler_css_modules) {
   PATHS_TO_TREAT_AS_CSS_MODULES.push(
-    paths.client().replace(/[\^\$\.\*\+\-\?\=\!\:\|\\\/\(\)\[\]\{\}\,]/g, '\\$&')
+    // We only treat `src/routes` and `src/components` styles as CSS modules
+    (paths.client() + '/routes').replace(/[\^\$\.\*\+\-\?\=\!\:\|\\\/\(\)\[\]\{\}\,]/g, '\\$&'),
+    (paths.client() + '/components').replace(/[\^\$\.\*\+\-\?\=\!\:\|\\\/\(\)\[\]\{\}\,]/g, '\\$&')
   )
 }
 
 const isUsingCSSModules = !!PATHS_TO_TREAT_AS_CSS_MODULES.length
 const cssModulesRegex = new RegExp(`(${PATHS_TO_TREAT_AS_CSS_MODULES.join('|')})`)
+
 
 // Loaders for styles that need to be treated as CSS modules.
 if (isUsingCSSModules) {

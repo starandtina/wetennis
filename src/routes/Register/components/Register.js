@@ -1,7 +1,7 @@
 import React from 'react'
 
 import NavBack from 'components/NavBack'
-import { Accordion, Panel } from 'react-bootstrap';
+import { Accordion, Panel } from 'react-bootstrap'
 
 import RegisterView from './RegisterView'
 import RegisteredUsers from './RegisteredUsers'

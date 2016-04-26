@@ -8,11 +8,11 @@ const goBack = (e) => {
   return browserHistory.goBack()
 }
 
-export const NavBack = ( {caption} ) => (
-  <div className={`${classes['nav-back']} text-center`}>
+export const NavBack = ( {caption, style} ) => (
+  <div className={`${classes['nav-back']} text-center clearfix`}>
     <h4>
-      <a className={`${classes['nav-back-icon']} pull-left`} href='#' onClick={goBack}>&lt;</a>
-      <span className={classes.caption}>{caption || 'wetennis'}</span>
+      <a style={style} className={`${classes['nav-back-icon']} pull-left`} href='#' onClick={goBack}><i className='material-icons'>keyboard_arrow_left</i></a>
+      <span style={style} className={classes.caption}>{caption || 'wetennis'}</span>
     </h4>
   </div>
 )

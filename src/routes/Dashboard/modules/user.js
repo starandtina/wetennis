@@ -27,7 +27,10 @@ export const SIGNIN_USER = 'SIGNIN_USER'
 export const SIGNIN_USER_SUCCESS = 'SIGNIN_USER_SUCCESS'
 export const SIGNIN_USER_FAILURE = 'SIGNIN_USER_FAILURE'
 
-
+// Verify Code
+export const VERIFY_PHONE = 'VERIFY_PHONE'
+export const VERIFY_PHONE_SUCCESS = 'VERIFY_PHONE_SUCCESS'
+export const VERIFY_PHONE_FAILURE = 'VERIFY_PHONE_FAILURE'
 
 // Logout User
 export const LOGOUT_USER = 'LOGOUT_USER'
@@ -91,6 +94,36 @@ export const signInUser = createAction(
 export const signInUserSuccess = createAction(SIGNIN_USER_SUCCESS)
 export const signInUserFail = createAction(SIGNIN_USER_FAILURE)
 
+
+export const verifyPhone = createAction(
+  VERIFY_PHONE,
+  args => {
+    return dispatch => {
+      dispatch(
+        post(
+          VERIFY_PHONE, {
+            url: '/verifyPhone',
+            data: {
+              ...args,
+              method: 'verifyPhone'
+            },
+            callback(resp) {
+              if (resp.code !== 0) {
+                dispatch(verifyPhoneFailure(resp.errorMsg));
+              } else {
+                setCookie(resp.id)
+                dispatch(verifyPhoneSuccess(resp))
+              }
+            }
+          }
+        )
+      )
+    }
+  }
+)
+
+export const verifyPhoneSuccess = createAction(VERIFY_PHONE_SUCCESS)
+export const verifyPhoneFailure = createAction(VERIFY_PHONE_FAILURE)
 
 export const logoutUser = createAction(
   LOGOUT_USER,

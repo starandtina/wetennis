@@ -24,7 +24,7 @@ export class SigninForm extends React.Component {
       } = this.props
 
     const style = {
-      width: '256px'
+      width: '100%'
     }
     return (
       <form className={classes['form']} onSubmit={handleSubmit(this.props.actions.signInUser.bind(this))}>

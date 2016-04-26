@@ -1,49 +1,43 @@
-:global {
-  @import 'vendor/bootstrap';
 
-  //
-  // Base
-  // --------------------------------------------------
+@import 'vendor/bootstrap';
 
-  @import 'base/font';
+//
+// Base
+// --------------------------------------------------
 
-  //
-  // Move all utility and helper classes to the very end of your CSS in order to introduce a spike right at the end,
-  // meaning you’re far less likely to have to undo or override high specificity selectors in your subsequent work.
-  // But it must not be higher that CSS of pages.
-  // --------------------------------------------------
-  @import 'base/utility';
+@import 'base/font';
+
+//
+// Move all utility and helper classes to the very end of your CSS in order to introduce a spike right at the end,
+// meaning you’re far less likely to have to undo or override high specificity selectors in your subsequent work.
+// But it must not be higher that CSS of pages.
+// --------------------------------------------------
+@import 'base/utility';
 
 
-  //
-  // Layout
-  // --------------------------------------------------
+//
+// Layout
+// --------------------------------------------------
 
-  @import "layout";
+@import "layout";
 
-  @import 'components/eventList';
+@import 'components/eventList';
 
-  // Some best-practice CSS that's useful for most apps
-  // Just remove them if they're not what you want
-  html {
-    box-sizing: border-box;
-  }
-
-  html,
-  body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-  }
-
-  *,
-  *:before,
-  *:after {
-    box-sizing: inherit;
-  }
-
-  a:hover
-  {
-    text-decoration: none;
-  }
+// Some best-practice CSS that's useful for most apps
+// Just remove them if they're not what you want
+html {
+  box-sizing: border-box;
 }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+a:hover
+{
+  text-decoration: none;
+}
+
