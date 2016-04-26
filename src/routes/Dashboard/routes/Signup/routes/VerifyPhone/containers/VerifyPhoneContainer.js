@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 
-import Signup from '../components/Signup'
+import VerifyPhone from '../components/VerifyPhone'
 
 const mapStateToProps = (state) => ({
 
@@ -13,4 +13,4 @@ const mapDispatchToProps = (dispatch) => ({
   actions : bindActionCreators({ }, dispatch)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signup)
+export default connect(mapStateToProps, mapDispatchToProps)(VerifyPhone)

@@ -4,7 +4,7 @@ import { requireAuth } from 'utils/auth'
 export default (store) => ({
   path: 'dashboard',
   onEnter (nextState) {
-    if (nextState.location.pathname === '/dashboard') {debugger
+    if (nextState.location.pathname === '/dashboard') {
       requireAuth.apply(this, arguments)
     }
   },

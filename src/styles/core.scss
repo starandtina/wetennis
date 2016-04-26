@@ -5,13 +5,7 @@
   // Base
   // --------------------------------------------------
 
-  @import 'base/base';
-
-  //
-  // Layout
-  // --------------------------------------------------
-
-  @import "layout";
+  @import 'base/font';
 
   //
   // Move all utility and helper classes to the very end of your CSS in order to introduce a spike right at the end,
@@ -19,6 +13,14 @@
   // But it must not be higher that CSS of pages.
   // --------------------------------------------------
   @import 'base/utility';
+
+
+  //
+  // Layout
+  // --------------------------------------------------
+
+  @import "layout";
+
   @import 'components/eventList';
 
   // Some best-practice CSS that's useful for most apps
