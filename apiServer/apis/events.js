@@ -1,10 +1,8 @@
 const Router = require("koa-router");
 
-const router = new Router({
-  prefix: "/events"
-});
+const router = new Router();
 
-router.post("/", function (ctx, next) {
+router.post("/events", function (ctx, next) {
   const locationFilter = ctx.body.locationFilter;
   const eventFilter = ctx.body.eventFilter;
   const status = ctx.body.status;
@@ -27,8 +25,23 @@ router.post("/", function (ctx, next) {
   }
 });
 
-router.post("/:id", function(ctx, next) {
-  ctx.body = "123";
+router.post("/eventFilter", function(ctx, next) {
+  ctx.body = {
+    locationFilter: [
+      {text: "全部", value: 1},
+      {text: "成都", value: 2},
+      {text: "上海", value: 3},
+      {text: "北京", value: 4},
+      {text: "广州", value: 5}
+    ],
+    status: [
+      {text: "全部", value: 1},
+      {text: "正在报名", value: 2},
+      {text: "分配签表", value: 3},
+      {text: "正在进行", value: 4},
+      {text: "已完成", value: 5}
+    ]
+  }
 });
 
 module.exports = router;

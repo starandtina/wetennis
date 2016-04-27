@@ -1,7 +1,8 @@
 import {combineReducers} from "redux";
 
-import list from "./eventList";
+import {list, locationFilter} from "./eventList";
 
 export default combineReducers({
   list,
+  locationFilter
 })
