@@ -1,0 +1,39 @@
+@import "variables.scss";
+
+.container {
+  height: $topNavHeight;
+  background-color: $whiteTranBgc;
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  z-index: 4;
+  line-height: $topNavHeight;
+  box-sizing: border-box;
+  border-bottom: 1px solid $borderColor;
+}
+
+.title {
+  position: absolute;
+  text-align: center;
+  color: $mainFontColor;
+  font-size: 1rem;
+  font-weight: bold;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+}
+
+.left {
+  float: left;
+  position: relative;
+  z-index: 3;
+}
+
+.right {
+  float: right;
+  position: relative;
+  z-index: 3;
+}

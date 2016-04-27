@@ -1,0 +1,36 @@
+@import "variables";
+
+.container {
+  position: fixed;
+  top: $topNavHeight;
+  background-color: $whiteTranBgc;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  height: 2.75rem;
+  line-height: 2.75rem;
+  box-shadow: 0 1px 0 0 $borderColor;
+}
+
+.item {
+  display: inline-block;
+  width: 33.33%;
+  text-align: center;
+  color: $secondaryFontColor;
+  font-size: $px14;
+}
+
+.item-active {
+  @extend .item;
+  color: $mainColor;
+  position: relative;
+}
+.item-active:after {
+  content: "";
+  height: 2px;
+  background-color: $mainColor;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
