@@ -76,7 +76,7 @@ export const signInUser = createAction(
               ...args,
               method: 'signin'
             },
-            callback(resp) {
+            callback(resp) {debugger
               if (resp.code !== 0) {
                 dispatch(signInUserFail(resp.errorMsg));
               } else {
@@ -172,6 +172,7 @@ export default handleActions({
     }
   },
   [SIGNIN_USER]: (state, action) => {
+    debugger
     return {
       ...state,
       user: action.payload,
@@ -179,6 +180,7 @@ export default handleActions({
     }
   },
   [SIGNIN_USER_SUCCESS]: (state, action) => {
+    debugger
     return {
       ...state,
       user: action.payload,

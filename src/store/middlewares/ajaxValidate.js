@@ -5,6 +5,9 @@ import {error as errorAction} from 'store/utils/errorAction'
 export default function ajaxValidateMiddleware({ dispatch, getState }) {
   return next => action => {
     const {meta, error, payload, ...otherActionAttr} = action;
+
+    next(action)
+
     if (meta && meta.isAjax && payload && "code" in payload) {
       dispatch(loaded());
       if (payload.code !== 0) {
@@ -19,8 +22,6 @@ export default function ajaxValidateMiddleware({ dispatch, getState }) {
           payload: payload.data
         });
       }
-    } else {
-      return next(action);
     }
   };
 }

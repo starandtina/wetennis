@@ -30,6 +30,14 @@ export default function callbackMiddleware({ dispatch, getState }) {
   return next => action => {
     const {payload, meta} = action;
     if (meta && meta.callback && !isPromise(payload)) {
+      next({
+        ...action,
+        meta: {
+          ...action.meta,
+          callback: false
+        }
+      })
+
       if(Array.isArray(meta.callback)) {
         meta.callback.forEach(item => {
           callbackProcess(dispatch, payload, item);
@@ -37,15 +45,8 @@ export default function callbackMiddleware({ dispatch, getState }) {
       } else {
         callbackProcess(dispatch, payload, meta.callback);
       }
-      return next({
-        ...action,
-        meta: {
-          ...action.meta,
-          callback: false
-        }
-      });
     } else {
-      return next(action);
+      next(action);
     }
   };
 }
