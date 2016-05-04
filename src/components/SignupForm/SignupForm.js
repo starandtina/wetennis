@@ -50,16 +50,10 @@ export class SignupForm extends React.Component {
         />
         <div className='button-groups clearfix'>
           {this.props.user.error ? <p className='u-errorText'>{this.props.user.error.message}</p> : ''}
-          <button type="button" onClick={this.handleSignupButtonClick.bind(this)} className="btn btn-default btn-lg btn-block" disabled={submitting}>注册</button>
+          <button type="submit" className="btn btn-default btn-lg btn-block" disabled={submitting}>注册</button>
         </div>
       </form>
     )
-  }
-
-  handleSignupButtonClick(e) {
-    e.preventDefault()
-
-
   }
 }
 
