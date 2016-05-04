@@ -37,3 +37,29 @@
   position: relative;
   z-index: 3;
 }
+
+.nav-back
+{
+    font-weight: bold;
+    line-height: 30px;
+
+    margin: 0 3px;
+
+    color: #5cb85c;
+}
+
+.nav-back-icon
+{
+    font-size: 18px;
+
+    width: 32px;
+    height: 32px;
+
+    color: #5cb85c;
+}
+
+.caption
+{
+    margin-left: -32px;
+}
+

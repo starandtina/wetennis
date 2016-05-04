@@ -13,7 +13,7 @@ export default (store) => ({
     require.ensure([
       './containers/SignupContainer'
     ], (require) => {
-      const Signup = require('./containers/SignupContainer').default
+      const Signup = require('./containers/SignupContainer')
 
       next(null, Signup)
     })
