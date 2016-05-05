@@ -26,9 +26,10 @@ class EventContainer extends React.Component {
     this.getList();
   }
   render() {
-    const {eventList, locationFilter, status, action} = this.props;
+    const {eventList, locationFilter, status, action, children} = this.props;
     const s = this.state;
-    return (
+
+    let content = (
       <div className={cs.container}>
         <button className="btn btn-default">123</button>
         <EventTopNav
@@ -46,7 +47,17 @@ class EventContainer extends React.Component {
         />
         <EventList data={eventList} />
       </div>
-    );
+    )
+
+    if (children) {
+      content = children
+    }
+
+    return (
+      <div>
+        {content}
+      </div>
+    )
   }
 
   selectStatus = _ => {

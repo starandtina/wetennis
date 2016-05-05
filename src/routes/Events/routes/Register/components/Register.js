@@ -19,7 +19,7 @@ export class Register extends React.Component {
     const { params } = this.props
     const requestPayload = { eventId: params.eventId }
 
-    this.props.actions.fetchGroups(requestPayload)
+    this.props.actions.fetchEventGroups(requestPayload)
     this.props.actions.fetchRegisteredUsers(requestPayload)
   }
 

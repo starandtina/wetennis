@@ -6,6 +6,13 @@ export default (store) => ({
   onEnter() {
     // requireAuth.apply(this, arguments)
   },
+  getChildRoutes (location, cb) {
+    require.ensure([], (require) => {
+      cb(null, [
+        require('./routes/Register')(store)
+      ])
+    })
+  },
   getComponent (nextState, next) {
     require.ensure([
       './containers/EventContainer',

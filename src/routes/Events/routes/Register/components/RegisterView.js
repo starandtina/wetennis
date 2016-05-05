@@ -24,7 +24,7 @@ export class RegisterView extends React.Component {
       group,
       item
     })
-    this.props.actions.push(`/register/${eventId}/confirmation`)
+    this.props.actions.push(`/events/${eventId}/register/confirmation`)
   }
 }
 

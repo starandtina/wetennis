@@ -1,7 +1,7 @@
-import { injectReducer } from '../../store/reducers'
+import { injectReducer } from 'store/reducers'
 
 export default (store) => ({
-  path: 'register/:eventId',
+  path: ':eventId/register',
 
   getChildRoutes (location, cb) {
     require.ensure([], (require) => {
@@ -13,9 +13,6 @@ export default (store) => ({
 
   getComponent (nextState, next) {
     require.ensure([], (require) => {
-  /*  These modules are lazily evaluated using require hook, and
-      will not loaded until the router invokes this callback. */
-
       const Register = require('./containers/RegisterContainer')
       const reducer = require('./modules/register').default
 

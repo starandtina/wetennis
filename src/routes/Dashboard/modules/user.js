@@ -14,7 +14,7 @@ import {
 
 import API from 'utils/API'
 
-import URLConf from './url'
+import URLConf from 'utils/url'
 
 // ------------------------------------
 // Constants
@@ -43,10 +43,17 @@ export const LOGOUT_USER = 'LOGOUT_USER'
 // Actions
 // ------------------------------------
 
-export function signUpUser() {
+function signUpUser(data) {
   return {
     type: SIGNUP_USER,
-    promise: () => API.post(URLConf.signUp)
+    promise: () => API.post(URLConf.signUp, data)
+  }
+}
+
+export function signUpUserThenSetCookie(data) {
+  return async(dispatch, getState) => {
+    const resp = await dispatch(signUpUser(data))
+    setCookie(resp.payload.id)
   }
 }
 
@@ -170,7 +177,6 @@ export default handleActions({
     }
   },
   [SIGNUP_USER_SUCCESS]: (state, action) => {
-    debugger
     return {
       ...state,
       user: action.payload,

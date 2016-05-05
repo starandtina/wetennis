@@ -7,54 +7,38 @@ import {
   post
 } from 'store/utils/ajaxAction'
 
+import API from 'utils/API'
+
+import URLConf from 'utils/url'
+
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const FETCH_GROUPS = 'FETCH_GROUPS'
+export const FETCH_EVENT_GROUPS = 'FETCH_EVENT_GROUPS'
+export const FETCH_EVENT_GROUPS_SUCCESS = 'FETCH_EVENT_GROUPS_SUCCESS'
+
 export const FETCH_REGISTERED_USERS = 'FETCH_REGISTERED_USERS'
+export const FETCH_REGISTERED_USERS_SUCCESS = 'FETCH_REGISTERED_USERS_SUCCESS'
+
 export const SELECT_CATEGORY = 'SELECT_CATEGORY'
 
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const fetchGroups = createAction(
-  FETCH_GROUPS,
-  args => {
-    return dispatch => {
-      dispatch(
-        post(
-          FETCH_GROUPS, {
-            url: '/eventGroups',
-            data: {
-              ...args,
-              method: 'fetchEventGroups'
-            }
-          }
-        )
-      )
-    }
+export function fetchEventGroups(data) {
+  return {
+    type: FETCH_EVENT_GROUPS,
+    promise: () => API.post(URLConf.fetchEventGroups, { ...data, method: 'fetchEventGroups' })
   }
-)
+}
 
-export const fetchRegisteredUsers = createAction(
-  FETCH_REGISTERED_USERS,
-  args => {
-    return dispatch => {
-      dispatch(
-        post(
-          FETCH_REGISTERED_USERS, {
-            url: '/registeredUsers',
-            data: {
-              ...args,
-              method: 'fetchRegisteredUsers'
-            }
-          }
-        )
-      )
-    }
+export function fetchRegisteredUsers(data) {
+  return {
+    type: FETCH_EVENT_GROUPS,
+    promise: () => API.post(URLConf.fetchRegisteredUsers, data)
   }
-)
+}
 
 export const selectCategory = createAction(SELECT_CATEGORY)
 
@@ -62,7 +46,13 @@ export const selectCategory = createAction(SELECT_CATEGORY)
 // Reducer
 // ------------------------------------
 export default handleActions({
-  [FETCH_GROUPS]: (state, action) => {
+  [FETCH_EVENT_GROUPS]: (state, action) => {
+    return {
+      ...state
+    }
+  },
+  [FETCH_EVENT_GROUPS_SUCCESS]: (state, action) => {
+    debugger
     return {
       ...state,
       groups: action.payload.groups

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { push } from 'react-router-redux'
 
-import { fetchGroups, fetchRegisteredUsers, selectCategory } from '../modules/register'
+import { fetchEventGroups, fetchRegisteredUsers, selectCategory } from '../modules/register'
 import Register from '../components/Register'
 
 const mapStateToProps = (state) => ({
@@ -14,7 +14,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  actions : bindActionCreators({ fetchGroups, fetchRegisteredUsers, selectCategory, push }, dispatch)
+  actions : bindActionCreators({ fetchEventGroups, fetchRegisteredUsers, selectCategory, push }, dispatch)
 })
 
 // Wrap the component to inject dispatch and state into it

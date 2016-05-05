@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { push } from 'react-router-redux'
 import { reduxForm } from 'redux-form'
 
-import { signUpUser } from 'routes/Dashboard/modules/user'
+import { signUpUserThenSetCookie } from 'routes/Dashboard/modules/user'
 import SignupForm from 'components/SignupForm'
 
 
@@ -49,4 +49,4 @@ export default reduxForm({
   form: 'SignupForm',
   fields,
   validate
-}, mapStateToProps, mapDispatchToProps)(SignupForm)
+}, mapStateToProps, { signUpUserThenSetCookie, push })(SignupForm)

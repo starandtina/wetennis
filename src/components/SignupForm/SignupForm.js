@@ -10,7 +10,7 @@ export class SignupForm extends React.Component {
     if(nextProps.user.status === 'authenticated' && nextProps.user.user) {
       const locationState = this.props.location.state
 
-      this.props.actions.push(locationState && locationState.nextPathname || '/');
+      this.props.push(locationState && locationState.nextPathname || '/');
     }
   }
 
@@ -26,7 +26,7 @@ export class SignupForm extends React.Component {
       width: '100%'
     }
     return (
-      <form className='registration-form' onSubmit={handleSubmit(this.props.actions.signUpUser.bind(this))}>
+      <form className='registration-form' onSubmit={handleSubmit(this.props.signUpUserThenSetCookie.bind(this))}>
         <TextField
           style={style}
           hintText="用户名"

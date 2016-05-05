@@ -4,14 +4,14 @@ function isPromise(val) {
 
 export default function asyncMiddleware({ dispatch }) {
   return next => async(action) => {
-    const { promise} = action;
+    const { promise } = action;
 
     if (!promise) {
       return next(action);
     }
 
-    const type = action.type
-
+    const { type, ...restParams } = action
+    next({ type: type, ...restParams })
     // dispatch(loading())
     try {
       const resp = await action.promise()
@@ -19,7 +19,6 @@ export default function asyncMiddleware({ dispatch }) {
     } catch(err) {
       return next({ type: `${type}_FAILTURE`, error: true, payload: err });
     }
-
     // dispatch(loaded())
   };
 }
