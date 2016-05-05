@@ -12,6 +12,10 @@ import {
   logout
 } from 'utils/auth'
 
+import API from 'utils/API'
+
+import URLConf from './url'
+
 // ------------------------------------
 // Constants
 // ------------------------------------
@@ -38,29 +42,37 @@ export const LOGOUT_USER = 'LOGOUT_USER'
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const signUpUser = createAction(
-  SIGNUP_USER,
-  args => {
-    return dispatch => {
-      dispatch(
-        post(
-          SIGNUP_USER, {
-            url: '/signup',
-            data: {
-              ...args,
-              method: 'signup'
-            },
-            callback(resp) {
 
-              setCookie(resp.id)
-              dispatch(signUpUserSuccess(resp))
-            }
-          }
-        )
-      )
-    }
+export function signUpUser() {
+  return {
+    type: SIGNUP_USER,
+    promise: () => API.post(URLConf.signUp)
   }
-)
+}
+
+// export const signUpUser = createAction(
+//   SIGNUP_USER,
+//   args => {
+//     return dispatch => {
+//       dispatch(
+//         post(
+//           SIGNUP_USER, {
+//             url: '/signup',
+//             data: {
+//               ...args,
+//               method: 'signup'
+//             },
+//             callback(resp) {
+
+//               setCookie(resp.id)
+//               dispatch(signUpUserSuccess(resp))
+//             }
+//           }
+//         )
+//       )
+//     }
+//   }
+// )
 
 export const signUpUserSuccess = createAction(SIGNUP_USER_SUCCESS)
 
@@ -158,6 +170,7 @@ export default handleActions({
     }
   },
   [SIGNUP_USER_SUCCESS]: (state, action) => {
+    debugger
     return {
       ...state,
       user: action.payload,

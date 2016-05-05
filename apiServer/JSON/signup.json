@@ -1,0 +1,12 @@
+{
+  "code": 0,
+  "errorMsg": "",
+  "data": {
+    "id": "user id",
+    "name": "real name",
+    "username": "user name",
+    "password": "user password",
+    "phone": "user phone",
+    "gender": "mail/female"
+  }
+}

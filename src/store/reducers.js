@@ -7,7 +7,8 @@ export const reducers = (asyncReducers) => {
     // Add sync reducers here
     router,
     form: formReducer,
-    ...asyncReducers })
+    ...asyncReducers
+  })
 }
 
 export const injectReducer = (store, { key, reducer }) => {

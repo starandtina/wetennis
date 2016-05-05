@@ -27,8 +27,8 @@ const APP_ENTRY_PATH = paths.client('main.js')
 
 webpackConfig.entry = {
   app: __DEV__
-    ? [APP_ENTRY_PATH, `webpack-hot-middleware/client?path=${config.compiler_public_path}__webpack_hmr`]
-    : [APP_ENTRY_PATH],
+    ? ['babel-regenerator-runtime', APP_ENTRY_PATH, `webpack-hot-middleware/client?path=${config.compiler_public_path}__webpack_hmr`]
+    : ['babel-regenerator-runtime', APP_ENTRY_PATH],
   vendor: config.compiler_vendor
 }
 

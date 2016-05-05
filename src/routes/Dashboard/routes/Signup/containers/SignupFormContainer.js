@@ -13,10 +13,6 @@ const validate = (values) => {
   var errors = {};
   var hasErrors = false;
 
-  if (!values.name || values.name.trim() === '') {
-    errors.name = 'Enter a name';
-    hasErrors = true;
-  }
   if (!values.username || values.username.trim() === '') {
     errors.username = 'Enter username';
     hasErrors = true;
