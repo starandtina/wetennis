@@ -1,21 +1,15 @@
 import { applyMiddleware, compose, createStore } from 'redux'
 
 import { routerMiddleware } from 'react-router-redux'
-import asyncMiddleware from 'store/middlewares/asyncMiddleware'
+import promiseMiddleware from 'store/middlewares/promiseMiddleware'
 import thunk from 'store/middlewares/thunk'
-// import errorMiddleware from 'store/middlewares/error'
-// import ajaxValidate from 'store/middlewares/ajaxValidate'
-// import callbackMiddleware from 'store/middlewares/callback'
 
 import reducers from './reducers'
 
 export default (initialState = {}, history) => {
   let middleware = applyMiddleware(
     thunk,
-    // callbackMiddleware,
-    // ajaxValidate,
-    asyncMiddleware,
-    // errorMiddleware,
+    promiseMiddleware,
     routerMiddleware(history)
   )
 

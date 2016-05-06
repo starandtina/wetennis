@@ -15,7 +15,6 @@ const muiTheme = getMuiTheme({
 export class Signup extends React.Component {
 
   render () {
-    document.querySelector('body').classList.add('u-backgroundColorGreen')
     const { children } = this.props
 
     return (

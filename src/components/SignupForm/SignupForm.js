@@ -5,12 +5,19 @@ import RaisedButton from 'material-ui/RaisedButton'
 import classes from './SignupForm.scss'
 
 export class SignupForm extends React.Component {
+  constructor(props) {
+    super(props)
+    document.querySelector('body').classList.add('u-backgroundColorGreen')
+  }
+
   componentWillReceiveProps(nextProps) {
     // If `authenticated` then redirect to
     if(nextProps.user.status === 'authenticated' && nextProps.user.user) {
       const locationState = this.props.location.state
 
-      this.props.push(locationState && locationState.nextPathname || '/');
+      // this.props.push(locationState && locationState.nextPathname || '/');
+      document.querySelector('body').classList.remove('u-backgroundColorGreen')
+      this.props.push('/');
     }
   }
 

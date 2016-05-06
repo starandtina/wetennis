@@ -24,6 +24,7 @@ import URLConf from 'utils/url'
 // Sign Up User
 export const SIGNUP_USER = 'SIGNUP_USER'
 export const SIGNUP_USER_SUCCESS = 'SIGNUP_USER_SUCCESS'
+export const SIGNUP_USER_FAILTURE = 'SIGNUP_USER_FAILTURE'
 
 
 // Sign In User
@@ -34,7 +35,7 @@ export const SIGNIN_USER_FAILURE = 'SIGNIN_USER_FAILURE'
 // Verify Code
 export const VERIFY_PHONE = 'VERIFY_PHONE'
 export const VERIFY_PHONE_SUCCESS = 'VERIFY_PHONE_SUCCESS'
-export const VERIFY_PHONE_FAILURE = 'VERIFY_PHONE_FAILURE'
+export const VERIFY_PHONE_FAILURE = 'VERIFY_PHONE_FAILTURE'
 
 // Logout User
 export const LOGOUT_USER = 'LOGOUT_USER'
@@ -45,15 +46,16 @@ export const LOGOUT_USER = 'LOGOUT_USER'
 
 function signUpUser(data) {
   return {
-    type: SIGNUP_USER,
+    types: [SIGNUP_USER, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAILTURE],
     promise: () => API.post(URLConf.signUp, data)
   }
 }
 
 export function signUpUserThenSetCookie(data) {
-  return async(dispatch, getState) => {
-    const resp = await dispatch(signUpUser(data))
-    setCookie(resp.payload.id)
+  return (dispatch, getState) => {
+    dispatch(signUpUser(data)).then(resp => {
+      setCookie(resp.payload.id)
+    })
   }
 }
 
