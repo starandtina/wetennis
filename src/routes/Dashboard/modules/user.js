@@ -59,61 +59,10 @@ export function signUpUserThenSetCookie(data) {
   }
 }
 
-// export const signUpUser = createAction(
-//   SIGNUP_USER,
-//   args => {
-//     return dispatch => {
-//       dispatch(
-//         post(
-//           SIGNUP_USER, {
-//             url: '/signup',
-//             data: {
-//               ...args,
-//               method: 'signup'
-//             },
-//             callback(resp) {
-
-//               setCookie(resp.id)
-//               dispatch(signUpUserSuccess(resp))
-//             }
-//           }
-//         )
-//       )
-//     }
-//   }
-// )
-
-export const signUpUserSuccess = createAction(SIGNUP_USER_SUCCESS)
-
-export const signInUser = createAction(
-  SIGNIN_USER,
-  args => {
-    return dispatch => {
-      dispatch(
-        post(
-          SIGNIN_USER, {
-            url: '/signin',
-            data: {
-              ...args,
-              method: 'signin'
-            },
-            callback(resp) {debugger
-              if (resp.code !== 0) {
-                dispatch(signInUserFail(resp.errorMsg));
-              } else {
-                setCookie(resp.id)
-                dispatch(signInUserSuccess(resp))
-              }
-            }
-          }
-        )
-      )
-    }
-  }
-)
-
-export const signInUserSuccess = createAction(SIGNIN_USER_SUCCESS)
-export const signInUserFail = createAction(SIGNIN_USER_FAILURE)
+export const signInUser = (data) => ({
+  types: [SIGNIN_USER, SIGNIN_USER_SUCCESS, SIGNIN_USER_FAILURE],
+  promise: () => API.post(URLConf.signIn, data)
+})
 
 
 export const verifyPhone = createAction(
@@ -172,51 +121,44 @@ const INITIAL_STATE = {
 }
 
 export default handleActions({
-  [SIGNUP_USER]: (state, action) => {
-    return {
-      ...state,
-      user: action.payload
-    }
-  },
-  [SIGNUP_USER_SUCCESS]: (state, action) => {
-    return {
-      ...state,
-      user: action.payload,
-      status: 'authenticated'
-    }
-  },
-  [LOGOUT_USER]: (state, action) => {
-    return {
-      ...state,
-      user: null,
-      status: 'logout'
-    }
-  },
-  [SIGNIN_USER]: (state, action) => {
-    debugger
-    return {
-      ...state,
-      user: action.payload,
-      status: 'signin'
-    }
-  },
-  [SIGNIN_USER_SUCCESS]: (state, action) => {
-    debugger
-    return {
-      ...state,
-      user: action.payload,
-      status: 'authenticated'
-    }
-  },
-  [SIGNIN_USER_FAILURE]: (state, action) => {
-    debugger
-    return {
-      ...state,
-      status: 'signin',
-      error: {
-        message: action.payload
-      },
-      user: null
-    }
-  }
+  [SIGNUP_USER]: (state, action) => ({
+    ...state,
+    user: action.payload
+  }),
+  [SIGNUP_USER_SUCCESS]: (state, action) => ({
+    ...state,
+    user: action.payload,
+    status: 'authenticated'
+  }),
+  [SIGNIN_USER_FAILURE]: (state, action) => ({
+    ...state,
+    status: 'signin',
+    error: {
+      message: action.payload
+    },
+    user: null
+  }),
+  [LOGOUT_USER]: (state, action) => ({
+    ...state,
+    user: null,
+    status: 'logout'
+  }),
+  [SIGNIN_USER]: (state, action) => ({
+    ...state,
+    user: action.payload,
+    status: 'signin'
+  }),
+  [SIGNIN_USER_SUCCESS]: (state, action) => ({
+    ...state,
+    user: action.payload,
+    status: 'authenticated'
+  }),
+  [SIGNIN_USER_FAILURE]: (state, action) => ({
+    ...state,
+    status: 'signin',
+    error: {
+      message: action.payload
+    },
+    user: null
+  })
 }, INITIAL_STATE)
