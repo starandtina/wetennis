@@ -1,36 +1,32 @@
 import React from "react";
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 
 import cs from "./EventStatus.scss";
-
-const statusData = [
-  {text: "全部", value: "ALL"},
-  {text: "正在报名", value: "REGISTRATION"},
-  {text: "分配签表", value: "DRAW"},
-  {text: "正在进行", value: "IN_PROGRESS"},
-  {text: "已完成", value: "COMPLETED"},
-]
 
 export default class EventStatus extends React.Component {
   render() {
     const {currentStatus, status} = this.props;
+    console.log("currentStatus: ", currentStatus);
     return (
       <div className={cs.container}>
-        <select
-          value={currentStatus || "ALL"}
+        <SelectField
+          value={currentStatus || 0}
           onChange={this.selectStatus}
+          underlineStyle={{display: "none"}}
         >
           {status.map((item, index) => {
             return (
-              <option key={index} value={item.value}>{item.text}</option>
+              <MenuItem key={index} value={item.value} primaryText={item.text} />
             );
           })}
-        </select>
+        </SelectField>
       </div>
     );
   }
 
-  selectStatus = (e) => {
+  selectStatus = (e, index, value) => {
     const {selectStatus} = this.props;
-    selectStatus(e.target.value >> 0);
+    selectStatus(value);
   }
 }
