@@ -12,14 +12,14 @@ const statusData = [
 
 export default class EventStatus extends React.Component {
   render() {
-    const {currentStatus} = this.props;
+    const {currentStatus, status} = this.props;
     return (
       <div className={cs.container}>
         <select
           value={currentStatus || "ALL"}
           onChange={this.selectStatus}
         >
-          {statusData.map((item, index) => {
+          {status.map((item, index) => {
             return (
               <option key={index} value={item.value}>{item.text}</option>
             );
@@ -31,6 +31,6 @@ export default class EventStatus extends React.Component {
 
   selectStatus = (e) => {
     const {selectStatus} = this.props;
-    selectStatus && selectStatus(e.target.value);
+    selectStatus(e.target.value >> 0);
   }
 }

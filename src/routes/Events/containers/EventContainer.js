@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 
-import {getEventList, getFilter} from "../modules/eventList";
+import {getEventList, getFilter, setCurrentFilter} from "../modules/eventList";
 
 import EventFilter from "../components/EventFilter";
 import EventList from "../components/EventList";
@@ -14,35 +14,36 @@ import cs from "./EventContainer.scss";
 class EventContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      status: 'ALL',
-      eventFilter: "ALL",
-      locationFilter: null,
-      currentPage: 1,
-      limit: 30
-    };
+    const {action: {getFilter, getEventList}, currentFilter} = this.props;
     // get initial list data from server
-    this.props.action.getFilter();
-    this.getList();
+    getFilter().then(data => {
+      const {status, location} = data.payload;
+      const __obj = Object.assign({}, currentFilter, {
+        status: status[0].value,
+        location: location[0].value,
+      });
+      setCurrentFilter(__obj);
+      getEventList(__obj);
+    });
   }
   render() {
-    const {eventList, locationFilter, status, action, children} = this.props;
-    const s = this.state;
+    const {eventList, location, status, action, children, currentFilter} = this.props;
+    const s = currentFilter;
 
     let content = (
       <div className={cs.container}>
-        <button className="btn btn-default">123</button>
         <EventTopNav
-          selectLocation={this.selectLocation}
-          locationFilter={locationFilter}
-          currentLocation={s.locationFilter}
+          selectLocation={this.setCurrentFilter.bind(this, "location")}
+          location={location}
+          currentLocation={s.location}
         />
         <EventFilter
-          onChange={this.getList}
+          onChange={this.setCurrentFilter.bind(this, "eventFilter")}
           current={s.eventFilter}
         />
         <EventStatus
-          selectStatus={this.selectStatus}
+          selectStatus={this.setCurrentFilter.bind(this, "status")}
+          status={status}
           currentStatus={s.status}
         />
         <EventList data={eventList} />
@@ -60,59 +61,32 @@ class EventContainer extends React.Component {
     )
   }
 
-  selectStatus = _ => {
-    this.getList({
-      status: _
+  setCurrentFilter(key, value) {
+    let {action: {setCurrentFilter, getEventList}, currentFilter} = this.props;
+    const filter = Object.assign({}, currentFilter, {
+      [key]: value
     });
-  }
-
-  selectLocation = _ => {
-    this.getList({
-      locationFilter: _
-    });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    let s = this.state;
-    if (s.locationFilter) return;
-    const {locationFilter} = nextProps;
-    if (locationFilter){
-      this.setState({
-        locationFilter: locationFilter[0]
-      });
-    }
-  }
-
-  // get event list from server
-  getList = param => {
-    const {getEventList} = this.props.action;
-    const newParam = Object.assign({}, this.state, param || {});
-    if (param) {
-      this.setState({
-        ...newParam
-      });
-    }
-    getEventList({
-      ...newParam,
-      locationFilter: newParam.locationFilter ? newParam.locationFilter.value : "ALL",
-    });
+    setCurrentFilter(filter);
+    getEventList(filter);
   }
 }
 
 const mapStateToProps = state => {
-  const {list, details, locationFilter, status} = state.events;
+  const {list, details, location, status, currentFilter} = state.events;
   return {
     eventList: list,
     eventDetails: details,
-    locationFilter,
-    status
+    location,
+    status,
+    currentFilter
   };
 }
 
 const mapDispatchToProps = dispatch => ({
   action: bindActionCreators({
     getEventList,
-    getFilter
+    getFilter,
+    setCurrentFilter,
   }, dispatch)
 })
 

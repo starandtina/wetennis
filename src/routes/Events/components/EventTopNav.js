@@ -4,22 +4,30 @@ import FullSelector from "components/FullSelector";
 
 export default class EventTopNav extends React.Component {
   state = {
-    locationFilterDisplay: false
+    locationDisplay: false
   }
   render() {
-    let {locationFilter, currentLocation} = this.props;
+    let {location, currentLocation} = this.props;
     currentLocation = currentLocation || {};
+    let currentFilterText = "";
+    if (location.length > 0) {
+      for (let i = 0, l = location.length; i < l; i++) {
+        let v = location[i];
+        if (v.value === currentLocation) {
+          currentFilterText = v.text;
+          break;
+        }
+      }
+    }
     return (
       <TopNav title="赛事列表">
         <div ref="left">
-          <div onClick={this.showLocationSelector}>
-            {currentLocation['text']}
-          </div>
+          <div onClick={this.showLocationSelector}>{currentFilterText}</div>
           <FullSelector
-            show={this.state.locationFilterDisplay}
+            show={this.state.locationDisplay}
             align="left"
             onChange={this.selectLocation}
-            data={locationFilter}
+            data={location}
             selected={currentLocation}
           />
         </div>
@@ -30,15 +38,15 @@ export default class EventTopNav extends React.Component {
 
   showLocationSelector = _ => {
     this.setState({
-      locationFilterDisplay: true
+      locationDisplay: true
     });
   }
 
   selectLocation = item => {
     const {selectLocation} = this.props;
-    selectLocation && selectLocation(item);
+    selectLocation && selectLocation(item.value);
     this.setState({
-      locationFilterDisplay: false 
+      locationDisplay: false 
     });
   }
 }

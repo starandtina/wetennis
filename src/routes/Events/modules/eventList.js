@@ -1,45 +1,92 @@
-import {createAction, handleActions} from "redux-actions";
-import {post} from "store/utils/ajaxAction";
+import API from 'utils/API';
+import URLConf from 'utils/url';
 
+// get event list.
 export const GET_EVENT_LIST = "GET_EVENT_LIST";
+export const GET_EVENT_LIST_SUCCESS = "GET_EVENT_LIST_SUCCESS";
+export const GET_EVENT_LIST_FAILTURE = "GET_EVENT_LIST_FAILTURE";
+
+// get event filter.
 export const GET_EVENT_FILTER = "GET_EVENT_FILTER";
+export const GET_EVENT_FILTER_SUCCESS = "GET_EVENT_FILTER_SUCCESS";
+export const GET_EVENT_FILTER_FAILTURE = "GET_EVENT_FILTER_FAILTURE";
+
+// modify filter.
+export const MODIFY_EVENT_FILTER = "MODIFY_EVENT_FILTER";
 
 // -----------------------------
 // Action
 // -----------------------------
 
-export const getEventList = createAction(GET_EVENT_LIST, (param) => {
+export function getEventList(data) {
+  return {
+    types: [GET_EVENT_LIST, GET_EVENT_LIST_SUCCESS, GET_EVENT_LIST_FAILTURE],
+    promise: () => API.post(URLConf.events, data)
+  };
+}
 
-  return dispatch => {
-    dispatch(post(GET_EVENT_LIST, {
-      url: "/events",
-      data: {
-        "method": "fetchEvents",
-        ...param
-      }
-    }));
-  }
-});
+export function getFilter() {
+  return {
+    types: [GET_EVENT_FILTER, GET_EVENT_FILTER_SUCCESS, GET_EVENT_FILTER_FAILTURE],
+    promise: () => API.post(URLConf.eventFilter)
+  };
+}
 
-export const getFilter = createAction(GET_EVENT_FILTER, _ => {
-  return dispatch => {
-    dispatch(post(GET_EVENT_FILTER, {
-      url: "/eventFilter",
-      data: {
-        method: "fetchEventFilter"
-      }
-    }))
-  }
-});
+export function setCurrentFilter(data) {
+  return {
+    type: MODIFY_EVENT_FILTER,
+    payload: data
+  };
+}
+
 
 // -----------------------------
 // Reducer
 // -----------------------------
+export function list(state = [], {type, payload}) {
+  let s = state;
+  switch (type) {
+    case GET_EVENT_LIST_SUCCESS:
+      s = payload;
+      break;
+  }
 
-export const list = handleActions({
-  [GET_EVENT_LIST]: (state, {payload}) => payload
-}, []);
+  return s;
+}
 
-export const locationFilter = handleActions({
-  [GET_EVENT_FILTER]: (_, {payload}) => payload.locationFilter
-}, []);
+export function location(state = [], {type, payload}) {
+  let s = state;
+  switch (type) {
+    case GET_EVENT_FILTER_SUCCESS:
+      s = payload.location;
+      break;
+  }
+  return s;
+}
+
+export function status(state = [], {type, payload}) {
+  let s = state;
+  switch (type) {
+    case GET_EVENT_FILTER_SUCCESS:
+      s = payload.status;
+      break;
+  }
+  return s;
+}
+
+export function currentFilter(state = {
+  status: 1,
+  eventFilter: "ALL",
+  location: 1,
+  currentPage: 1,
+  limit: 30
+}, {type, payload}) {
+  let s = state;
+  switch (type) {
+    case MODIFY_EVENT_FILTER:
+      s = payload;
+      break;
+  }
+
+  return s;
+}

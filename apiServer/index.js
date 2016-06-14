@@ -4,7 +4,6 @@ const body = require("koa-better-body");
 const cors = require("koa-cors");
 const app = new Koa();
 
-const apis = require("./apis");
 const router = Router({
   prefix: "/api"
 });
@@ -12,7 +11,6 @@ const router = Router({
 app.use(body());
 app.use(cors());
 
-router.use(apis.routes());
 
 router.post('/:method', function (rep, res) {
   var fs = require('fs')

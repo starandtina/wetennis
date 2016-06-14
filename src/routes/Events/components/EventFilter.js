@@ -23,8 +23,6 @@ export default class EventFilter extends React.Component {
   
   eventFilter(filter) {
     const {onChange} = this.props;
-    onChange({
-      eventFilter: filter
-    });
+    onChange(filter);
   }
 }
