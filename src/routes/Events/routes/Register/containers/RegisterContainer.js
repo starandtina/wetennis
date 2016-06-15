@@ -13,9 +13,12 @@ const mapStateToProps = (state) => ({
   registeredUsers: state.register.registeredUsers
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  actions : bindActionCreators({ fetchEventGroups, fetchRegisteredUsers, selectCategory, push }, dispatch)
-})
-
-// Wrap the component to inject dispatch and state into it
-export default connect(mapStateToProps, mapDispatchToProps)(Register)
+export default connect(
+  mapStateToProps,
+  {
+    fetchEventGroups,
+    fetchRegisteredUsers,
+    selectCategory,
+    push
+  }
+)(Register)

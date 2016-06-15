@@ -2,7 +2,7 @@ import React from 'react'
 
 import classes from './Register.scss'
 
-export const RegisterView = ( {registeredUsers} ) => {
+export const RegisterView = ( { registeredUsers } ) => {
   return (
     <div>
       <hr/>

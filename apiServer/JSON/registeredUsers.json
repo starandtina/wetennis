@@ -1,0 +1,18 @@
+{
+  "code": 0,
+  "errorMsg": "",
+  "data": [
+    {
+      "id": 1,
+      "name": "用户名",
+      "thumbImgUrl": "http://img0.imgtn.bdimg.com/it/u=2833976744,4249581374&fm=11&gp=0.jpg",
+      "registerDate": "2016.04.20"
+      },
+    {
+      "id": 2,
+      "name": "用户名",
+      "thumbImgUrl": "http://img0.imgtn.bdimg.com/it/u=2833976744,4249581374&fm=11&gp=0.jpg",
+      "registerDate": "2016.04.21"
+      }
+    ]
+}

@@ -17,7 +17,6 @@ export default function promiseMiddleware({ dispatch, getState }) {
         return next({...rest, error, type: FAILURE})
       }
     ).catch((error)=> {
-      console.error('MIDDLEWARE ERROR:', error)
       next({...rest, error, type: FAILURE})
     })
 

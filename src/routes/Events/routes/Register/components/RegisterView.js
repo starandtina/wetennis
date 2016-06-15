@@ -20,11 +20,11 @@ export class RegisterView extends React.Component {
 
     const { group, item } = this.props
     const eventId = this.props.params.eventId
-    this.props.actions.selectCategory({
+    this.props.selectCategory({
       group,
       item
     })
-    this.props.actions.push(`/events/${eventId}/register/confirmation`)
+    this.props.push(`/events/${eventId}/register/confirmation`)
   }
 }
 

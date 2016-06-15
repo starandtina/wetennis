@@ -15,45 +15,65 @@ export class Register extends React.Component {
 
   constructor(props) {
     super(props)
+  }
 
+  componentDidMount() {
     const { params } = this.props
     const requestPayload = { eventId: params.eventId }
 
-    this.props.actions.fetchEventGroups(requestPayload)
-    this.props.actions.fetchRegisteredUsers(requestPayload)
+    this.props.fetchEventGroups(requestPayload)
+    this.props.fetchRegisteredUsers(requestPayload)
+  }
+
+  _renderEventGroups() {
+    const { groups } = this.props
+
+    return (
+      <ul className='list-unstyled'>
+        {groups.map(group => (
+          <li className={this.state.group.id === group.id ? `${classes.li} ${classes.selected}` : classes.li } key={group.id} onClick={this.handleGroupHeaderClick.bind(this, group)}>
+            <div>{group.name}</div>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
+  _renderEventGroupItems() {
+    const { items } = this.state.group
+
+    return (
+      <ul className='list-unstyled'>
+        {items.map(item => (
+          <li className={this.state.item.id === item.id ? `${classes.li} ${classes.selected}` : classes.li } key={item.id} onClick={this.handleItemHeaderClick.bind(this, item)}>
+            <div className='clearfix'>
+              <div className='pull-left'>{item.name}</div>
+              <div className='pull-right'>&yen; {item.price}</div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    )
   }
 
   renderCategories() {
-    const { items } = this.state.group
+
+
+
 
     return (
       <Accordion defaultActiveKey="1">
         <Panel header={this.state.group.name} eventKey="1">
-          <ul className='list-unstyled'>
-          {this.props.groups.map(group => (
-            <li className={this.state.group.id === group.id ? `${classes.li} ${classes.selected}` : classes.li } key={group.id} onClick={this.handleGroupHeaderClick.bind(this, group)}>
-              <div>{group.name}</div>
-            </li>
-          ))}
-          </ul>
+          {this._renderEventGroups()}
         </Panel>
         <Panel header={this.state.item.name} eventKey="2">
-          <ul className='list-unstyled'>
-          {items.map(item => (
-            <li className={this.state.item.id === item.id ? `${classes.li} ${classes.selected}` : classes.li } key={item.id} onClick={this.handleItemHeaderClick.bind(this, item)}>
-              <div className='clearfix'>
-                <div className='pull-left'>{item.name}</div>
-                <div className='pull-right'>&yen; {item.price}</div>
-              </div>
-            </li>
-          ))}
-          </ul>
+          {this._renderEventGroupItems()}
         </Panel>
       </Accordion>
     )
   }
 
-  render () {
+  render() {
     const { children } = this.props
 
     let content
