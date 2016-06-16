@@ -9,7 +9,8 @@ export default (store) => ({
   getChildRoutes (location, cb) {
     require.ensure([], (require) => {
       cb(null, [
-        require('./routes/Register')(store)
+        require('./routes/Register')(store),
+        require('./routes/Details')(store),
       ])
     })
   },
