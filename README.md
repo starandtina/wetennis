@@ -3,25 +3,26 @@ wetennis
 
 Table of Contents
 -----------------
-1. [Setup Dev Env](#setup-dev-env)
-1. [Latest News](#latest-news)
-1. [Event](#event)
-1. [Time](#time)
-1. [Guess](#guess)
-1. [Me](#me)
-
+1. [搭建开发环境](#setup-dev-env)
+1. [最新新闻](#latest-news)
+1. [赛事](#event)
+1. [时光](#time)
+1. [竟猜](#guess)
+1. [我](#me)
+1. [裁判](#裁判)
 
 |Task|Description|Time|Progress|
 |---|---|---|---|
 |搭建开发环境||||
-|最新||||
+|最新新闻||||
 |赛事||||
 |时光||||
 |竟猜||||
 |我|||||
+|裁判|||||
 
 
-Setup Dev Env
+<a name='setup-dev-env'>搭建开发环境</a>
 -------------
 
 * [React](https://github.com/facebook/react) (`^15.0.0`)
@@ -50,7 +51,7 @@ Setup Dev Env
   * Uses [Standard Style](https://github.com/feross/standard) by default, but you're welcome to change this.
 
 
-Latest News
+<a name='latest-news'>最新新闻</a>
 -----------
 
 - [ ] 最新新闻列表
@@ -60,10 +61,10 @@ Latest News
 - [ ] 新闻评论
 
 
-Event
+<a name='event'>赛事</a>
 -----
 
-- [ ] 赛事列表 (Done)
+- [x] ~~赛事列表~~
 - [ ] 赛事详细页面 (6/23/2016)
 - [ ] 赛事信息 (6/27/2016)
 - [ ] 比分 (7/3/2016)
@@ -92,12 +93,13 @@ Event
       - [ ] 竞猜页面 (复用竞猜)
       - [ ] 评论页面 (7/31/2016)
 
-Time
+
+<a name='time'>时光</a>
 -----
 
 ？？？
 
-Guess
+<a name='guess'>竟猜</a>
 -----
 
 - [ ] 竞猜列表页面
@@ -108,13 +110,11 @@ Guess
 - [ ] 投注确认页面
 
 
-Me
+<a name='me'>我</a>
 --
 
-????
-
-- [ ] 登录页面？？？
-- [ ] 注册页面？？？
+- [x] ~~登录页面~~
+- [x] ~~注册页面~~
 - [ ] Dashboard页面
   - [ ] 个人基本信息(6/23/2016)
   - [ ] 我的比赛页面(6/25/2016)
@@ -122,4 +122,4 @@ Me
   - [ ] 我的竞猜页面(6/29/2016)
     - [ ] 我的竞猜(7/01/2016)
     - [ ] 历史竞猜(7/03/2016)
-  - [ ] Addon 添加的图片是用于哪里的？(7/05/2016)
+  - [ ] 个人装备(7/05/2016)
