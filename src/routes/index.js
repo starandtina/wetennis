@@ -13,6 +13,7 @@ export const createRoutes = (store) => {
           // Provide store for async reducers and middleware
           require('./Dashboard')(store),
           require('./Events')(store),
+          require('./Referee')(store),
           require('./NotFound')
         ])
       })

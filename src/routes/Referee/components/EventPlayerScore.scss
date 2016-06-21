@@ -1,0 +1,51 @@
+$playLineHeight: 2rem;
+
+.event-game-score
+{
+    margin: 10px;
+}
+
+.player-1
+{
+    display: inline-block;
+
+    line-height: $playLineHeight;
+
+    margin-right: 10px;
+    padding: 4px;
+
+    background-color: red;
+}
+
+.player-2-container
+{
+    margin-top: 10px;
+}
+
+.player-2
+{
+    display: inline-block;
+
+    line-height: $playLineHeight;
+
+    margin-right: 10px;
+    padding: 4px;
+
+    background-color: blue;
+}
+
+.game-score
+{
+    margin-right: 20px;
+
+    display: inline-block;
+
+    line-height: $playLineHeight;
+
+    color: gray;
+}
+
+.game-score.highlight
+{
+    color: black;
+}
