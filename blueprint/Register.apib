@@ -1,29 +1,16 @@
 FORMAT: 1A
 
-# Register
+# 报名
 
 Register is a simple API allowing consumers to register by yourself.
 
-# Group Register
+# Group 报名
 
-Resources related  to new in the API.
+## 获取所有组别及其项目 [/api/eventGroups]
 
-## Groups and Items [/api/eventGroups]
+### 获取所有组别及其项目 [POST]
 
-A Group object has the following attributes:
-
-+ id
-+ name
-
-A Item object has the following attributes:
-
-+ id
-+ name
-+ price
-
-### List All Groups [POST]
-
-It takes a JSON object containing a question and a collection of answers in the form of choices.
+报名时 获取所有组别及其项目
 
 + method (string) - The calling method
 
@@ -130,11 +117,15 @@ It takes a JSON object containing a question and a collection of answers in the 
             }
 
 
-## Registered Users [/api/registeredUsers]
+## 获取该项目最新报名人员 [/api/registeredUsers]
 
-### List All Registered Users [POST]
+### 获取该项目最新报名人员 [POST]
 
-It takes a JSON object containing a question and a collection of answers in the form of choices.
+后台可以控制返回的数量(例如不超过10个)
+注意 后台返回的数据格式 name 和 thumbImgUrl 为数组
+单打时 数组有一个元素 双打时数组有两个元素
+返回的注册日期registerDatestr 建议后台直接处理后返回显示格式
+1个小时前 6个小时前 1天前 2天前 ...
 
 + method (string) - The calling method
 
@@ -144,7 +135,47 @@ It takes a JSON object containing a question and a collection of answers in the 
 
         {
             "method": "fetchRegisteredUsers",
-            "eventId": "eventId"
+            "eventId": "eventId",
+            "groupId": "groupId",
+            "itemId": "itemId"
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+                "code": 0,
+                "errorMsg": "",
+                "data": [
+                  {
+                    "name": ["用户1","用户2"],
+                    "thumbImgUrl": ["http://img0.imgtn.bdimg.com/it/u=2833976744,4249581374&fm=11&gp=0.jpg"],
+                    "registerDatestr": "1小时前"
+                  },
+                  {
+                    "name": ["用户1","用户2"],
+                    "thumbImgUrl": ["http://img0.imgtn.bdimg.com/it/u=2833976744,4249581374&fm=11&gp=0.jpg"],
+                    "registerDatestr": "1天前"
+                  }
+                ]
+            }
+
+## 双打时选择搭档名单 [/api/getPartners]
+
+### 双打时选择搭档名单 [POST]
+
++ method (string) - The calling method
+
++ Request (application/json)
+
+  + Body
+
+        {
+            "method": "getPartners",
+            "eventId": "eventId",
+            "groupId": "groupId",
+            "itemId": "itemId"
         }
 
 + Response 200 (application/json)
@@ -157,15 +188,51 @@ It takes a JSON object containing a question and a collection of answers in the 
                 "data": [
                   {
                     "id": 1,
-                    "name": "用户名",
-                    "thumbImgUrl": "http://img0.imgtn.bdimg.com/it/u=2833976744,4249581374&fm=11&gp=0.jpg",
-                    "registerDate": "2016.04.20"
+                    "name": "真实姓名",
+                    "username":"用户名",
+                    "phone":"1422133221"
                   },
                   {
                     "id": 2,
                     "name": "用户名",
-                    "thumbImgUrl": "http://img0.imgtn.bdimg.com/it/u=2833976744,4249581374&fm=11&gp=0.jpg",
-                    "registerDate": "2016.04.21"
+                    "username":"用户名",
+                    "phone":"1422133221"
                   }
+                ]
+            }
+
+## 提交报名信息 [/api/registerEvent]
+
+### 提交报名信息 [POST]
+
+单打的时候 partnerId 为空字符串
+
++ method (string) - The calling method
+
++ Request (application/json)
+
+  + Body
+
+        {
+            "method": "registerEvent",
+            "eventId": "eventId",
+            "groupId": "groupId",
+            "itemId": "itemId",
+            "id": "1",
+            "gender": "mail/female",
+            "name": "real name",
+            "phone":"13456789011",
+            "personCard": "1121214353455465"
+            "partnerId": "21334332"
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+                "code": 0,
+                "errorMsg": "",
+                "data": [
                 ]
             }
