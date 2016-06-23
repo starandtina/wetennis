@@ -1,26 +1,20 @@
 FORMAT: 1A
 
-# User
+# 用户
 
 User is a simple API allowing consumers to signin and signup.
 
-# Group User
+# Group 用户
 
-Resources related to `User` in the API.
+## 用户注册 [/api/signup]
 
-## User SignUp [/api/signup]
-
-### SignUp [POST]
-
-Sign up. If it's success, the front-end side will see a cookie named `user_id` with the id of logined user.
+### 用户注册 [POST]
 
 + method (string) - The calling method
-+ id (string) - The id for user
-+ name (string) - The real user name
++ activationCode (string) - The activationCode
 + username (string) - The user name used for login
 + password (string) - The user password
 + phone (string) - The phone number
-+ gender (string) - The gender, it's male or female
 
 + Request (application/json)
 
@@ -28,12 +22,10 @@ Sign up. If it's success, the front-end side will see a cookie named `user_id` w
 
         {
             "method": "signup",
-            "name": "1",
             "password": "1",
-            "confirmPassword": "1",
-            "gender": "male",
             "username": "1",
-            "phone": "1"
+            "phone": "1",
+            "activationCode": "123567"
         }
 
 + Response 200 (application/json)
@@ -45,23 +37,18 @@ Sign up. If it's success, the front-end side will see a cookie named `user_id` w
                 "errorMsg": "",
                 "data": {
                     "id": "user id",
-                    "name": "real name",
                     "username": "user name",
                     "password": "user password",
                     "phone": "user phone",
-                    "gender": "mail/female"
                 }
             }
 
 
-## User SignIn [/api/signin]
+## 用户登录 [/api/signin]
 
-### SignIn [POST]
-
-Sign in.
+### 用户登录 [POST]
 
 + method (string) - The calling method
-+ id (string) - The id for user
 + username (string) - The user name
 + password (string) - The user password
 
@@ -83,20 +70,14 @@ Sign in.
                 "code": 0,
                 "errorMsg": "",
                 "data": {
-                    "id": "user id",
-                    "name": "real name",
-                    "username": "user name",
-                    "password": "user password",
-                    "phone": "user phone",
-                    "gender": "mail/female"
                 }
             }
 
-## User Logout [/api/logout]
+## 用户登出 [/api/logout]
 
-### Logout [POST]
+### 用户登出 [POST]
 
-Log out, we need to clear cookie after it's successful.
+退出登录
 
 + method (string) - The calling method
 
@@ -118,3 +99,31 @@ Log out, we need to clear cookie after it's successful.
                 "data": {
                 }
             }
+
+## 发送短信校验码 [/api/sendActivationCode]
+
+### 发送短信校验码 [POST]
+
++ method (string) - The calling method
++ phone (string) - The phone number
+
++ Request (application/json)
+
+  + Body
+
+        {
+            "method": "sendActivationCode",
+            "phone": "18629032103"
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+                "code": 0,
+                "errorMsg": "",
+                "data": {
+                }
+            }
+
