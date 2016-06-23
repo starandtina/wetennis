@@ -1,0 +1,87 @@
+@import 'variables.scss';
+
+$thumbSize: 48*$px1;
+$thumbPosi: 15*$px1;
+
+.banner {
+  position: relative;
+  max-height: 300*$px1;
+  overflow: hidden;
+}
+
+.thumb {
+  position: absolute;
+  right: $thumbPosi;
+  bottom: $thumbPosi;
+  border-radius: 50%;
+  width: $thumbSize;
+  height: $thumbSize;
+}
+
+.bannerImg {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.name {
+  margin-right: $thumbPosi + 65*$px1;
+  font-size: 18*$px1;
+  color: #fff;
+  position: absolute;
+  left: $thumbPosi;
+  bottom: $thumbPosi;
+  height: $thumbSize;
+  overflow: hidden;
+  &:before, span {
+    vertical-align: middle;
+    display: inline-block;
+  }
+  &:before {
+    content: "";
+    height: 100%;
+    width: 0;
+  }
+}
+
+.midInfo {
+  background-color: $mainColor;
+}
+
+.location, .time {
+  display: inline-block;
+  height: 66px;
+  font-size: 12*$px1;
+  color: #fff;
+  line-height: 1.2;
+  &:before, span {
+    vertical-align: middle;
+    display: inline-block;
+  }
+  &:before {
+    content: "";
+    height: 100%;
+    width: 0;
+  }
+}
+
+.location {
+  width: 70%;
+}
+
+.time {
+  width: 30%;
+}
+
+.countdown {
+  color: $mainColor;
+  height: 80*$px1;
+  line-height: 80*$px1;
+  font-size: 36*$px1;
+  text-align: center;
+  
+  i {
+    font-size: 10*$px1;
+    font-style: normal;
+    margin-right: 17*$px1;
+  }
+}

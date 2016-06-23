@@ -1,0 +1,80 @@
+@import "variables.scss";
+
+$userimageSize: 30*$px1;
+$submitBtnWidth: 40*$px1;
+$submitBtnHeight: 32*$px1;
+
+.container {
+  margin: 15*$px1 15*$px1 0 15*$px1;
+  padding-bottom: 15*$px1;
+  border-bottom: 1px solid #ddd;
+  &:last-child {
+    border-bottom: none;
+  }
+}
+.userimage {
+  height: $userimageSize;
+  width: $userimageSize;
+  border-radius: 50%;
+  float: left;
+}
+
+.right {
+  margin-left: $userimageSize + 10*$px1;
+  padding: 5*$px1;
+}
+
+.username {
+  color: $mainColor;
+  float: left;
+  font-size: 10*$px1;
+}
+
+.time, .likeNumber{
+  margin-left: 10*$px1;
+  color: $mainFontColor;
+  float: left;
+  font-size: 10*$px1;
+}
+
+.likeNumber {
+  float: right;
+}
+
+.like {
+  color: #3159d8;
+}
+
+.context {
+  margin-top: -5*$px1;
+  font-size: 12*$px1;
+  line-height: 1.5;
+  color: $thirdFontColor;
+}
+
+.likeIcon {
+  font-size: 12*$px1;
+  vertical-align: text-top;
+}
+
+.messageBox {
+  background-color: #e8e8e8;
+  padding: 9*$px1 15*$px1;
+  input {
+    width: calc(100% - #{$submitBtnWidth + 10*$px1});
+    font-size: 12*$px1;
+    height: $submitBtnHeight;
+    text-indent: 10*$px1;
+  }
+}
+
+.sendMessage {
+  width: $submitBtnWidth;
+  height: $submitBtnHeight;
+  font-size: 12*$px1;
+  margin-left: 10*$px1;
+  background-color: $mainColor;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+}

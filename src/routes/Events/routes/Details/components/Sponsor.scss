@@ -1,0 +1,25 @@
+@import "variables.scss";
+
+.list {
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  li {
+    width: 33.33%;
+    list-style: none;
+    margin: 0;
+    display: inline-block;
+  }
+}
+
+.thumb {
+  border-radius: 50%;
+  margin-bottom: 8*$px1;
+  height: 60*$px1;
+  width: 60*$px1;
+}
+
+.name {
+  color: $mainFontColor;
+  font-size: 10*$px1;
+}

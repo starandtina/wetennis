@@ -1,18 +1,26 @@
 import React from 'react'
 
 import EventInfo from "./EventInfo";
+import Notice from "./Notice";
+import Sponsors from "./Sponsors";
+import Comments from "./Comments";
 
 export default class EventDetails extends React.Component {
-  constructor(props) {
-    super(props);
-    const {getDetails, params: {eventId}} = this.props;
+  componentDidMount() {
+    const {getDetails, getNotices, getSponsors, getComments, params: {eventId}} = this.props;
     getDetails(eventId);
+    getNotices(eventId);
+    getComments(eventId);
+    getSponsors(eventId);
   }
   render() {
-    const {details} = this.props;
+    const {details, notices, comments, sponsors} = this.props;
     return (
       <div>
         <EventInfo data={details} />
+        <Notice data={notices} />
+        <Sponsors data={sponsors} />
+        <Comments data={comments} />
       </div>
     );
   }

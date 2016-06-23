@@ -1,11 +1,16 @@
 {
   "code": 0,
   "data": {
+    "id": 1,
     "thumb": "http://hbimg.b0.upaiyun.com/65ad7509d8f8ea45beb7589cca3c557d02f15ac0e9e82-QDUx6P_sq120",
     "name": "2016成都业余网球精英赛事1",
     "startDate": "2016.04.15",
     "endDate": "2016.04.20",
     "location": "四川省 成都市 锦江区 红星路1号",
-    "banner": "http://hbimg.b0.upaiyun.com/02d7023e92a7227116fad577b50fbcdf0aab4e4ead0bb-lryBLC_fw658"
+    "banner": "http://hbimg.b0.upaiyun.com/02d7023e92a7227116fad577b50fbcdf0aab4e4ead0bb-lryBLC_fw658",
+    "countdown": 50000,
+    "drawTable": false,
+    "score": false,
+    "schedule": false
   }
 }
