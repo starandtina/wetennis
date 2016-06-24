@@ -5,6 +5,23 @@ $playLineHeight: 2rem;
     margin: 10px;
 }
 
+.player-name
+{
+    font-size: 0.8rem;
+}
+
+.player-icon
+{
+    display: inline-block;
+
+    width: 16px;
+    height: 16px;
+
+    margin: 0 5px;
+
+    border-radius: 50% 50%;
+}
+
 .player-1
 {
     display: inline-block;
@@ -47,5 +64,22 @@ $playLineHeight: 2rem;
 
 .game-score.highlight
 {
-    color: black;
+    color: white;
+}
+
+
+.living-score-container
+{
+    color: white;
+
+    padding: 20px 20px 30px 20px;
+
+    background-color: blue;
+}
+
+.living-score
+{
+    text-align: center;
+
+    font-size: 48px;
 }
