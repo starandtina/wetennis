@@ -4,7 +4,7 @@ export default (store) => ({
   path: 'referee',
   getComponent (nextState, next) {
     require.ensure([], (require) => {
-      const reducer = require('./modules/referee')
+      const reducer = require('./modules/referee').default
 
       injectReducer(store, { key: 'referee', reducer })
 

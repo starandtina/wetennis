@@ -1,9 +1,9 @@
-import { handleActions } from 'redux-actions'
+import {
+  handleActions
+} from 'redux-actions'
 
 import API from 'utils/API'
-
 import URLConf from 'utils/url'
-
 
 // ------------------------------------
 // Constants
@@ -23,12 +23,24 @@ export const fetchReferee = (data) => ({
   })
 })
 
+
+const initialState = {
+  players: [
+    {
+      gameScores: [0, 0, 0, 0, 0]
+    },
+    {
+      gameScores: [0, 0, 0, 0, 0]
+    }
+  ]
+}
+
 export default handleActions({
   [FETCH_REFEREE]: (state, action) => ({
     ...state
   }),
   [FETCH_REFEREE_SUCCESS]: (state, action) => ({
     ...state,
-    groups: action.payload.groups
-  }),
-})
+    ...action.payload
+  })
+}, initialState)

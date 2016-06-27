@@ -21,8 +21,8 @@ class Referee extends React.Component {
       <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
         <div className={classes.container}>
           <RefereeTopNav></RefereeTopNav>
-          <EventPlayerScore></EventPlayerScore>
-          <EventOperationRegion></EventOperationRegion>
+          <EventPlayerScore {...this.props}></EventPlayerScore>
+          <EventOperationRegion {...this.props}></EventOperationRegion>
         </div>
       </MuiThemeProvider>
     )
