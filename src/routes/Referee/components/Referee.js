@@ -28,6 +28,10 @@ class Referee extends React.Component {
     )
   }
 
+  componentDidMount() {
+    this.props.fetchReferee()
+  }
+
   componentWillUnmount() {
     document.querySelector('body').classList.remove('u-backgroundColorBlack')
   }

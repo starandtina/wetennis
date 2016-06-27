@@ -1,22 +1,28 @@
+.event-operation-region
+{
+    font-size: 10px;
+}
+
 .highlight
 {
     color: white;
 }
 
-.chunk
-{
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    margin: 30px;
-}
-
 .chunk-container
 {
+    padding-top: 20px;
+    padding-bottom: 30px;
+
+    text-align: center;
+
     border-right: 1px solid #333;
     border-bottom: 1px solid #333;
+}
+
+.chunk
+{
+    -ms-flex: 1;
+        flex: 1;
 }
 
 .chunk-label
