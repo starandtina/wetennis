@@ -16,3 +16,4 @@ export const fetchEventComments = `${ROOT_URL}/eventComments`
 
 // Referee
 export const fetchReferee = `${ROOT_URL}/referee`
+export const operateReferee = `${ROOT_URL}/operateReferee`

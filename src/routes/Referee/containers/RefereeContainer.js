@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Referee from '../components/Referee'
-import { fetchReferee } from '../modules/referee'
+import { fetchReferee, forehandReferee, operateReferee } from '../modules/referee'
 
 const mapStateToProps = (state) => ({
   referee: state.referee
@@ -11,6 +11,8 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   {
-    fetchReferee
-  }
+    fetchReferee,
+    forehandReferee,
+    operateReferee
+  },
 )(Referee)
