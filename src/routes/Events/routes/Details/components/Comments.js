@@ -3,21 +3,15 @@ import CommentsComponent from "components/Comments";
 import ccs from "./common.scss";
 
 
-const Comments = ({data, likeAction, sendAction}) => {
-  const like = (groupId, itemId) => {
-    likeAction(groupId, itemId);
-  };
-
-  const send = (groupId, text) => {
-    sendAction(groupId, text);
-  };
+const Comments = ({data, groupId, likeAction, sendAction}) => {
   return (
     <div>
       <h3 className={ccs.boxTitle}>{`评论 (${data.total})`}</h3>
       <CommentsComponent
         data={data.comments}
-        likeAction={like.bind(this, data.groupId)}
-        sendAction={send.bind(this, data.groupId)}
+        groupId={groupId}
+        likeAction={likeAction}
+        sendAction={sendAction}
       />
     </div>
   );

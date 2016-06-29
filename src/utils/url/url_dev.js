@@ -10,3 +10,7 @@ export const fetchEventDetails = `${ROOT_URL}/eventDetails`
 export const fetchEventNotices = `${ROOT_URL}/eventNotices`
 export const fetchEventSponsors = `${ROOT_URL}/eventSponsors`
 export const fetchEventComments = `${ROOT_URL}/eventComments`
+export const likeComment = `${ROOT_URL}/likeComment`
+export const sendComment = `${ROOT_URL}/sendComment`
+export const fetchEventDrawTable = `${ROOT_URL}/eventDrawTable_qualify`
+// export const fetchEventDrawTable = `${ROOT_URL}/eventDrawTable`

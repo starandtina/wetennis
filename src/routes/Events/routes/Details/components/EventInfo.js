@@ -36,10 +36,19 @@ export default class EventInfo extends React.Component {
       endDate,
       banner,
       location,
+      drawTable,
+      score,
+      schedule,
     } = this.props.data;
     const {countdown} = this.state;
 
-    const fc = this.formatCountdown(countdown);
+    let fc = {};
+    if (!(drawTable || score || schedule)) {
+      fc = this.formatCountdown(countdown);
+    } else if (this.__timer) {
+      clearInterval(this.__timer);
+      this.__timer = false;
+    }
     return (
       <div>
         <div className={`${cs.banner}`}>
@@ -51,19 +60,36 @@ export default class EventInfo extends React.Component {
         </div>
         <div className={`${cs.midInfo}`}>
           <div className={`${cs.location}`}>
+            <i className={`material-icons ${cs.icons}`}>place</i>
             <span>
               {location}
             </span>
           </div>
           <div className={`${cs.time}`}>
+            <i className={`material-icons ${cs.icons}`}>access_time</i>
             <span>
               {`${startDate} - ${endDate}`}
             </span>
           </div>
         </div>
-        <div className={`${cs.countdown}`}>
-          {fc.day}<i>天</i>{fc.hour}<i>小时</i>{fc.minute}<i>分</i>{fc.second}<i>秒</i>
-        </div>
+        {drawTable || score || schedule
+        ? <div className={cs.started}>
+            <div className={`${cs.startedCol} ${drawTable ? cs.startedActive : ""}`}>
+              <i className="material-icons">today</i>
+              <div>签表</div>
+            </div>
+            <div className={`${cs.startedCol} ${schedule ? cs.startedActive : ""}`}>
+              <i className="material-icons">today</i>
+              <div>赛程</div>
+            </div>
+            <div className={`${cs.startedCol} ${score ? cs.startedActive : ""}`}>
+              <i className="material-icons">today</i>
+              <div>比分</div>
+            </div>
+          </div>
+        : <div className={`${cs.countdown}`}>
+            {fc.day}<i>天</i>{fc.hour}<i>小时</i>{fc.minute}<i>分</i>{fc.second}<i>秒</i>
+          </div>}
       </div>
     );
   }

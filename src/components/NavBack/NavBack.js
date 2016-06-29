@@ -1,21 +1,24 @@
 import React from 'react'
 import { browserHistory } from 'react-router'
+import TopNav from "../TopNav";
 
-import classes from './NavBack.scss'
+import cs from './NavBack.scss'
 
 const goBack = (e) => {
   e.preventDefault()
   return browserHistory.goBack()
 }
 
-export const NavBack = ( {caption, style} ) => (
-  <div className={`${classes['nav-back']} text-center clearfix`}>
-    <h4>
-      <a style={style} className={`${classes['nav-back-icon']} pull-left`} href='#' onClick={goBack}><i className='material-icons'>keyboard_arrow_left</i></a>
-      <span style={style} className={classes.caption}>{caption || 'wetennis'}</span>
-    </h4>
-  </div>
-)
-
-export default NavBack
-
+export default class NavBack extends React.Component {
+  render() {
+    const {children, ...props} = this.props;
+    return (
+      <TopNav {...props}>
+        <div ref="left" onClick={goBack}>
+          <i className={`material-icons ${cs.navBackIcon}`}>keyboard_backspace</i>
+        </div>
+        <div ref="right">{children}</div>
+      </TopNav>
+    );
+  }
+}

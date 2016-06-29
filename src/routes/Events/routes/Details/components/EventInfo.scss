@@ -2,6 +2,8 @@
 
 $thumbSize: 48*$px1;
 $thumbPosi: 15*$px1;
+$startedColor: #d8d8d8;
+$startedActiveColor: $mainColor;
 
 .banner {
   position: relative;
@@ -47,12 +49,22 @@ $thumbPosi: 15*$px1;
   background-color: $mainColor;
 }
 
+.icons {
+  font-size: 24*$px1;
+  left: 15*$px1;
+  position: absolute;
+  line-height: 66*$px1;
+  height: 100%;
+}
+
 .location, .time {
   display: inline-block;
-  height: 66px;
-  font-size: 12*$px1;
+  height: 66*$px1;
+  font-size: 10*$px1;
   color: #fff;
   line-height: 1.2;
+  position: relative;
+  padding-left: 45*$px1;
   &:before, span {
     vertical-align: middle;
     display: inline-block;
@@ -65,11 +77,11 @@ $thumbPosi: 15*$px1;
 }
 
 .location {
-  width: 70%;
+  width: 60%;
 }
 
 .time {
-  width: 30%;
+  width: 40%;
 }
 
 .countdown {
@@ -83,5 +95,40 @@ $thumbPosi: 15*$px1;
     font-size: 10*$px1;
     font-style: normal;
     margin-right: 17*$px1;
+  }
+}
+
+.started {
+  height: 100*$px1;
+  text-align: center;
+  padding: 20*$px1 0;
+}
+
+.startedCol {
+  width: 33.33%;
+  display: inline-block;
+  i {
+    border: 2*$px1 solid $startedColor;
+    color: $startedColor;
+    border-radius: 50%;
+    height: 40*$px1;
+    line-height: 36*$px1;
+    width: 40*$px1;
+  }
+  div {
+    color: $startedColor;
+    font-size: 10*$px1;
+    margin-top: 8*$px1;
+  }
+}
+
+.startedActive {
+  i {
+    color: $startedActiveColor;
+    border-color: $startedActiveColor;
+  }
+  
+  div {
+    color: $startedActiveColor;
   }
 }

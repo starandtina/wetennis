@@ -1,0 +1,27 @@
+@import "variables.scss";
+$size: 30*$px1;
+$sizeL: 20*$px1;
+
+.user {
+  display: inline-block;
+}
+
+.userimage {
+  width: $size;
+  height: $size;
+  margin-right: 9*$px1;
+  border-radius: 50%;
+}
+
+.userimageL {
+  width: $sizeL;
+  height: $sizeL;
+  margin-right: 9*$px1;
+  border-radius: 50%;
+}
+
+.username {
+  display: inline-block;
+  font-size: $px12;
+  color: #4a4a4a;
+}

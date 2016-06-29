@@ -1,0 +1,48 @@
+@import "variables.scss";
+.tab {
+  margin-top: $topNavHeight;
+  overflow-y: hidden;
+  height: 40*$px1;
+}
+
+.gameName {
+  color: $secondaryFontColor;
+  background-color: #f5f5f5;
+  font-size: $px12;
+  padding: 15*$px1 0 0 15*$px1;
+}
+
+.tabInnerbox {
+  height: 50*$px1;
+  overflow-y: hidden;
+  overflow-x: auto;
+  ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  li {
+    display: inline-block;
+    list-style: none;
+    padding: 0 15*$px1;
+    white-space: nowrap;
+    line-height: 40*$px1;
+    color: $secondaryFontColor;
+    font-size: 12*$px1;
+    &.active {
+      color: $mainColor;
+      position: relative;
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        height: 3*$px1;
+        left: 0;
+        right: 0;
+        background-color: $mainColor;
+      }
+    }
+  }
+}
+
+

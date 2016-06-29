@@ -1,24 +1,6 @@
-.nav-back
-{
-    font-weight: normal;
-    line-height: 30px;
-
-    margin: 0 3px;
-
-    color: #5cb85c;
-}
-
-.nav-back-icon
-{
-    font-size: 18px;
-
-    width: 32px;
-    height: 32px;
-
-    color: #5cb85c;
-}
-
-.caption
-{
-    margin-left: -32px;
+@import "variables.scss";
+.navBackIcon {
+    line-height: $topNavHeight;
+    margin-left: 5*$px1;
+    color: $mainColor;
 }

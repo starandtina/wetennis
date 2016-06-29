@@ -23,6 +23,16 @@ const GET_COMMENTS = `${PREFIXER}GET_COMMENTS`;
 const GET_COMMENTS_SUCCESS = `${PREFIXER}GET_COMMENTS_SUCCESS`;
 const GET_COMMENTS_FAILTURE = `${PREFIXER}GET_COMMENTS_FAILTURE`;
 
+// like a comment
+const LIKE_COMMENT = `${PREFIXER}LIKE_COMMENT`;
+const LIKE_COMMENT_SUCCESS = `${PREFIXER}LIKE_COMMENT_SUCCESS`;
+const LIKE_COMMENT_FAILTURE = `${PREFIXER}LIKE_COMMENT_FAILTURE`;
+
+// send a comment to event
+const SEND_COMMENT = `${PREFIXER}SEND_COMMENT`;
+const SEND_COMMENT_SUCCESS = `${PREFIXER}SEND_COMMENT_SUCCESS`;
+const SEND_COMMENT_FAILTURE = `${PREFIXER}SEND_COMMENT_FAILTURE`;
+
 // get sponsors
 const GET_SPONSORS = `${PREFIXER}GET_SPONSORS`;
 const GET_SPONSORS_SUCCESS = `${PREFIXER}GET_SPONSORS_SUCCESS`;
@@ -51,6 +61,32 @@ export function getComments(id) {
     types: [GET_COMMENTS, GET_COMMENTS_SUCCESS, GET_COMMENTS_FAILTURE],
     promise: () => API.post(URLConf.fetchEventComments, {id})
   };
+}
+
+export function likeComment(eventId, commentId) {
+  return dispatch => {
+    dispatch({
+      types: [LIKE_COMMENT, LIKE_COMMENT_SUCCESS, LIKE_COMMENT_FAILTURE],
+      promise: () => API.post(URLConf.likeComment, {id: commentId})
+    }).then(({payload}) => {
+      if (payload === "ok") {
+        dispatch(getComments(eventId));
+      }
+    })
+  }
+}
+
+export function sendComment(id, text) {
+  return dispatch => {
+    dispatch({
+      types: [SEND_COMMENT, SEND_COMMENT_SUCCESS, SEND_COMMENT_FAILTURE],
+      promise: () => API.post(URLConf.sendComment, {id, text})
+    }).then(({payload}) => {
+      if (payload === "ok") {
+        dispatch(getComments(id));
+      }
+    })
+  }
 }
 
 export function getSponsors(id) {

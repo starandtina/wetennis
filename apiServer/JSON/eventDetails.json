@@ -11,6 +11,12 @@
     "countdown": 50000,
     "drawTable": false,
     "score": false,
-    "schedule": false
+    "schedule": false,
+    "register": true,
+    "friendRegisterCount": 30,
+    "drawCountdown": 50000,
+    "draw": false,
+    "drawId": "#2017",
+    "registerList": ["青年组 | 精英B | 女子单打", "青年组 | 精英B | 女子双打"]
   }
 }

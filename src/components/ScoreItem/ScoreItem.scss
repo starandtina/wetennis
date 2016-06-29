@@ -1,0 +1,27 @@
+@import "variables.scss";
+
+.scoreItem {
+  background-color: #fff;
+  margin-bottom: $px1;
+  height: 50*$px1;
+  display: flex;
+}
+
+.scoreItemMax {
+  @extend .scoreItem;
+  height: 70*$px1;
+}
+
+.scoreLeft {
+  padding: 10*$px1;
+}
+
+.scoreRight {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.scoreUser:first-child {
+  margin-bottom: 4px;
+}

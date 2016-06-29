@@ -4,6 +4,7 @@
     "total": 500,
     "comments": [
       {
+        "id": 1,
         "username": "用户名1",
         "userimage": "http://hbimg.b0.upaiyun.com/65ad7509d8f8ea45beb7589cca3c557d02f15ac0e9e82-QDUx6P_sq120",
         "time": "1小时前",
@@ -12,6 +13,7 @@
         "likeNumber": 999
       },
       {
+        "id": 2,
         "username": "用户名2",
         "userimage": "http://hbimg.b0.upaiyun.com/65ad7509d8f8ea45beb7589cca3c557d02f15ac0e9e82-QDUx6P_sq120",
         "time": "2小时前",
@@ -20,6 +22,7 @@
         "likeNumber": 999
       },
       {
+        "id": 3,
         "username": "用户名3",
         "userimage": "http://hbimg.b0.upaiyun.com/65ad7509d8f8ea45beb7589cca3c557d02f15ac0e9e82-QDUx6P_sq120",
         "time": "3小时前",

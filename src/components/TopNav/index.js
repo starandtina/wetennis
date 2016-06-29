@@ -3,13 +3,13 @@ import cs from "./TopNav.scss";
 
 export default class TopNav extends React.Component {
   render() {
-    const {title, children} = this.props;
+    const {title, children, className, ...props} = this.props;
     let childRefs = {};
     children.forEach(item => {
       childRefs[item.ref] = item;
     });
     return (
-      <div className={cs.container}>
+      <div className={`${className ? className : ""} ${cs.container}`} {...props}>
         <div className={cs.title}>
           {title || ""}
         </div>

@@ -3,7 +3,14 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { push } from 'react-router-redux'
 
-import {getDetails, getSponsors, getNotices, getComments} from "../modules/eventDetails";
+import {
+  getDetails,
+  getSponsors,
+  getNotices,
+  getComments,
+  likeComment,
+  sendComment,
+} from "../modules/eventDetails";
 import EventDetails from "../components/EventDetails";
 
 const mapStateToProps = (state) => {
@@ -17,6 +24,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   getNotices,
   getComments,
   getSponsors,
+  likeComment,
+  sendComment
 }, dispatch);
 
 export default connect(

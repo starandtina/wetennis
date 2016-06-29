@@ -1,0 +1,166 @@
+{
+    "code": 0,
+    "errorMsg": "",
+    "data": {
+      "qualify": true,
+      "gameName": "青年组 精英B | 女子单打",
+      "matchs": [
+        {"id": 1, "text": "小组资格赛", "current": true},
+        {"id": 2, "text": "第一轮"},
+        {"id": 3, "text": "第二轮"},
+        {"id": 4, "text": "第三轮"},
+        {"id": 5, "text": "半决赛"},
+        {"id": 6, "text": "决赛"}
+      ],
+      "details": [
+        {
+          "complete": true,
+          "games": [
+            {
+              "users": [
+                { "username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+              ],
+              "gameNumber": 3,
+              "criticalSpot": "3:0",
+              "criticalGame": "3:0"
+            },
+            {
+              "users": [
+                { "username": "陈韵1", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+              ],
+              "gameNumber": 3,
+              "criticalSpot": "3:0",
+              "criticalGame": "3:0"
+            },
+            {
+              "users": [
+                { "username": "陈韵2", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+              ],
+              "gameNumber": 3,
+              "criticalSpot": "3:0",
+              "criticalGame": "3:0"
+            },
+            {
+              "users": [
+                { "username": "陈韵竹3", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+              ],
+              "gameNumber": 3,
+              "criticalSpot": "3:0",
+              "criticalGame": "3:0"
+            }
+          ]
+        },
+        {
+          "complete": true,
+          "games": [
+            {
+              "users": [
+                { "username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+              ],
+              "gameNumber": 3,
+              "criticalSpot": "3:0",
+              "criticalGame": "3:0"
+            },
+            {
+              "users": [
+                { "username": "陈韵1", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+              ],
+              "gameNumber": 3,
+              "criticalSpot": "3:0",
+              "criticalGame": "3:0"
+            },
+            {
+              "users": [
+                { "username": "陈韵2", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+              ],
+              "gameNumber": 3,
+              "criticalSpot": "3:0",
+              "criticalGame": "3:0"
+            },
+            {
+              "users": [
+                { "username": "陈韵竹3", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+              ],
+              "gameNumber": 3,
+              "criticalSpot": "3:0",
+              "criticalGame": "3:0"
+            }
+          ]
+        },
+        {
+          "complete": true,
+          "games": [
+            {
+              "users": [
+                { "username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+              ],
+              "gameNumber": 3,
+              "criticalSpot": "3:0",
+              "criticalGame": "3:0"
+            },
+            {
+              "users": [
+                { "username": "陈韵1", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+              ],
+              "gameNumber": 3,
+              "criticalSpot": "3:0",
+              "criticalGame": "3:0"
+            },
+            {
+              "users": [
+                { "username": "陈韵2", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+              ],
+              "gameNumber": 3,
+              "criticalSpot": "3:0",
+              "criticalGame": "3:0"
+            },
+            {
+              "users": [
+                { "username": "陈韵竹3", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+              ],
+              "gameNumber": 3,
+              "criticalSpot": "3:0",
+              "criticalGame": "3:0"
+            }
+          ]
+        },
+        {
+          "complete": false,
+          "games": [
+            {
+              "users": [
+                { "username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+              ],
+              "gameNumber": 3,
+              "criticalSpot": "3:0",
+              "criticalGame": "3:0"
+            },
+            {
+              "users": [
+                { "username": "陈韵1", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+              ],
+              "gameNumber": 3,
+              "criticalSpot": "3:0",
+              "criticalGame": "3:0"
+            },
+            {
+              "users": [
+                { "username": "陈韵2", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+              ],
+              "gameNumber": 3,
+              "criticalSpot": "3:0",
+              "criticalGame": "3:0"
+            },
+            {
+              "users": [
+                { "username": "陈韵竹3", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+              ],
+              "gameNumber": 3,
+              "criticalSpot": "3:0",
+              "criticalGame": "3:0"
+            }
+          ]
+        }
+      ]
+    }
+}

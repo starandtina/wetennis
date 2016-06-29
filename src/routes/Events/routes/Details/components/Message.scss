@@ -1,0 +1,45 @@
+@import "variables.scss";
+
+.messagePosition {
+  height: 50*$px1;
+  > div {
+    border-bottom: 1*$px1 solid rgba(255,255,255, .3);
+  }
+  &:nth-child(1) > div {
+    bottom: 0;
+  }
+  &:nth-child(2) > div {
+    bottom: 50*$px1;
+  }
+  &:nth-child(3) > div {
+    bottom: 2*50*$px1;
+  }
+  &:nth-child(4) > div {
+    bottom: 3*50*$px1;
+  }
+  &:nth-child(5) > div {
+    bottom: 4*50*$px1;
+  }
+}
+
+.messageItem {
+  padding: 9*$px1 15*$px1;
+  height: 50*$px1;
+  line-height: 32*$px1;
+  font-size: 12*$px1;
+  background-color: #2245b4;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #fff;
+}
+
+.rigisterLeft {
+  float: left;
+  width: calc(100% - #{88*$px1});
+}
+.rigisterRight {
+  float: right;
+  width: 88*$px1;
+}
