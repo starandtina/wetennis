@@ -1,6 +1,6 @@
-//
-// Layout classes
-// --------------------------------------------------
+/**/
+/* Layout classes*/
+/* --------------------------------------------------*/
 
 /**
  * 1. Avoid the IE 10-11 `min-height` bug.
@@ -10,107 +10,97 @@
  * 3. Use `%` instead of `vh` since `vh` is buggy in older mobile Safari.
  */
 
-.wetennis {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  height: 100%; /* 1, 3 */
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
+.wetennis
+{
+    display: -ms-flexbox;
+    display: flex;
+        flex-direction: column;
+
+    height: 100%; /* 1, 3 */
+
+    -ms-flex-direction: column;
 }
 
 .wetennis-header,
-.wetennis-footer {
-  -webkit-flex: none;
-      -ms-flex: none;
-          flex: none; /* 2 */
+.wetennis-footer
+{
+    -ms-flex: none;
+        flex: none; /* 2 */
 }
 
-.wetennis-body {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1 0 auto;
-      -ms-flex: 1 0 auto;
-          flex: 1 0 auto; /* 2 */
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
+.wetennis-body
+{
+    display: -ms-flexbox;
+    display: flex;
+        flex-direction: column;
+
+    -ms-flex: 1 0 auto;
+        flex: 1 0 auto; /* 2 */
+    -ms-flex-direction: column;
 }
 
-.wetennis-content {
-  margin-top: var(--space);
+.wetennis-content
+{
+    margin-top: var(--space);
 }
 
-.wetennis-nav {
-  -webkit-order: -1;
-      -ms-flex-order: -1;
-          order: -1;
+.wetennis-nav
+{
+    -ms-flex-order: -1;
+    order: -1;
 }
 
 .wetennis-nav,
-.wetennis-ads {
-  padding: 1em;
-  border-radius: 3px;
-  background: rgba(147, 128, 108, 0.1);
+.wetennis-ads
+{
+    padding: 1em;
+
+    border-radius: 3px;
+    background: rgba(147, 128, 108, .1);
 }
 
-@media (--break-lg) {
-  .wetennis-body {
-    -webkit-flex-direction: row;
-        -ms-flex-direction: row;
+@media (--break-lg)
+{
+    .wetennis-body
+    {
             flex-direction: row;
-  }
-  .wetennis-content {
-    -webkit-flex: 1;
+
+        -ms-flex-direction: row;
+    }
+    .wetennis-content
+    {
+        margin: 0;
+        padding: 0 var(--space-lg);
+
         -ms-flex: 1;
             flex: 1;
-    padding: 0 var(--space-lg);
-    margin: 0;
-  }
-  .wetennis-nav, .wetennis-ads {
-    -webkit-flex: 0 0 12em;
+    }
+    .wetennis-nav,
+    .wetennis-ads
+    {
         -ms-flex: 0 0 12em;
             flex: 0 0 12em;
-  }
+    }
 }
 
 .page-container,
 {
-  height: 100%;
+    height: 100%;
 }
 
 .wetennis-footer
 {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: white;
-  border-top: 1px solid #eee;
-  padding-top: 5px;
-}
+    position: fixed;
+    bottom: 0;
 
-.grid {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+    width: 100%;
+    padding-top: 5px;
 
-.grid-cell {
-  -webkit-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+    border-top: 1px solid #eee;
+    background-color: white;
 }
-
 
 .container
 {
-  width: 100%;
+    width: 100%;
 }

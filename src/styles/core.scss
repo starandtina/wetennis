@@ -1,33 +1,34 @@
 @import 'vendor/bootstrap';
 
-//
-// Base
-// --------------------------------------------------
+/**/
+/* Base*/
+/* --------------------------------------------------*/
 
 @import 'base/font';
 
-//
-// Move all utility and helper classes to the very end of your CSS in order to introduce a spike right at the end,
-// meaning you’re far less likely to have to undo or override high specificity selectors in your subsequent work.
-// But it must not be higher that CSS of pages.
-// --------------------------------------------------
+/**/
+/* Move all utility and helper classes to the very end of your CSS in order to introduce a spike right at the end,*/
+/* meaning you’re far less likely to have to undo or override high specificity selectors in your subsequent work.*/
+/* But it must not be higher that CSS of pages.*/
+/* --------------------------------------------------*/
 @import 'base/utility';
 
 
-//
-// Layout
-// --------------------------------------------------
+/**/
+/* Layout*/
+/* --------------------------------------------------*/
 
 @import "layout";
 
-//
-// Components
-// --------------------------------------------------
+/**/
+/* Components*/
+/* --------------------------------------------------*/
 
 @import "components/form";
+@import "components/grid";
 
-// Some best-practice CSS that's useful for most apps
-// Just remove them if they're not what you want
+/* Some best-practice CSS that's useful for most apps*/
+/* Just remove them if they're not what you want*/
 html {
   box-sizing: border-box;
 }

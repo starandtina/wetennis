@@ -3,10 +3,6 @@ import {
   handleActions
 } from 'redux-actions'
 
-import {
-  post
-} from 'store/utils/ajaxAction'
-
 import API from 'utils/API'
 
 import URLConf from 'utils/url'

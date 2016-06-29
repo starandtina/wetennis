@@ -3,11 +3,11 @@ import { bindActionCreators } from 'redux'
 import { push } from 'react-router-redux'
 import { reduxForm } from 'redux-form'
 
-import { signUpUserThenSetCookie } from 'routes/Dashboard/modules/user'
+import { signUpUserThenSetCookie, verifyPhone } from 'routes/Dashboard/modules/user'
 import SignupForm from 'components/SignupForm'
 
 
-export const fields = ['username', 'phone', 'name', 'gender', 'password', 'confirmPassword']
+export const fields = ['username', 'phone', 'password', 'activationCode']
 
 const validate = (values) => {
   var errors = {};
@@ -21,14 +21,16 @@ const validate = (values) => {
     errors.password = 'Enter password';
     hasErrors = true;
   }
-  if(!values.confirmPassword || values.confirmPassword.trim() === '') {
-    errors.confirmPassword = 'Enter Confirm Password';
+  if(!values.phone || values.phone.trim() === '') {
+    errors.phone = 'Enter phone';
     hasErrors = true;
   }
-
-  if(values.confirmPassword  && values.confirmPassword.trim() !== '' && values.password  && values.password.trim() !== '' && values.password !== values.confirmPassword) {
-    errors.password = 'Password And Confirm Password don\'t match';
-    errors.password = 'Password And Confirm Password don\'t match';
+  if (values.phone && !/\b\d{3}[-.]?\d{4}[-.]?\d{4}\b/i.test(values.phone)) {
+    errors.phone = '请输入正确的手机号'
+    hasErrors = true
+  }
+  if(!values.activationCode || values.activationCode.trim() === '') {
+    errors.activationCode = 'Enter Code';
     hasErrors = true;
   }
    return hasErrors && errors;
@@ -40,7 +42,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  actions : bindActionCreators({ signUpUser, push }, dispatch)
+  ...bindActionCreators({ signUpUserThenSetCookie, verifyPhone, push }, dispatch)
 })
 
 // connect: first argument is mapStateToProps, 2nd is mapDispatchToProps
@@ -49,4 +51,4 @@ export default reduxForm({
   form: 'SignupForm',
   fields,
   validate
-}, mapStateToProps, { signUpUserThenSetCookie, push })(SignupForm)
+}, mapStateToProps, mapDispatchToProps)(SignupForm)

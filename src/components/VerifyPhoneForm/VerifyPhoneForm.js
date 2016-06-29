@@ -10,6 +10,7 @@ export class VerifyPhoneForm extends React.Component {
 
   }
 
+
   render () {
     const {
       fields: { phone, code },
@@ -20,7 +21,12 @@ export class VerifyPhoneForm extends React.Component {
 
     const style = {
       width: '100%'
-    }
+    };
+
+    const ABC = () => {
+      this.props.actions.verifyPhone.bind(this)()
+    };
+
     return (
       <form className={classes['form']} onSubmit={handleSubmit(this.props.actions.verifyPhone.bind(this))}>
         <Grid>
@@ -36,8 +42,9 @@ export class VerifyPhoneForm extends React.Component {
             </Col>
             <Col xs={4}>
               <RaisedButton
-                style={{'margin-top': '28px'}}
+                style={{'marginTop': '28px'}}
                 label='验证'
+                onTouchEnd={ABC}
               />
             </Col>
           </Row>
