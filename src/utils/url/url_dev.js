@@ -24,3 +24,4 @@ export const fetchEventDrawTable = `${ROOT_URL}/eventDrawTable_qualify`
 
 // Referee
 export const fetchReferee = `${ROOT_URL}/referee`
+export const operateReferee = `${ROOT_URL}/operateReferee`
