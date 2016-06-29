@@ -26,8 +26,7 @@ export default class DrawTable extends Component {
     const {qualify, gameName} = data;
     return (
       <div>
-        <NavBack title="签表">
-        </NavBack>
+        <NavBack caption="签表"></NavBack>
         <div className={cs.tab}>
           <div className={cs.tabInnerbox}>
             <ul>
