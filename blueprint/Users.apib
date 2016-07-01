@@ -70,6 +70,12 @@ User is a simple API allowing consumers to signin and signup.
                 "code": 0,
                 "errorMsg": "",
                 "data": {
+                    "id": "user id",
+                    "name": "real name",
+                    "username": "user name",
+                    "password": "user password",
+                    "phone": "user phone",
+                    "gender": "male/female"
                 }
             }
 
@@ -114,6 +120,61 @@ User is a simple API allowing consumers to signin and signup.
         {
             "method": "sendActivationCode",
             "phone": "18629032103"
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+                "code": 0,
+                "errorMsg": "",
+                "data": {
+                }
+            }
+
+
+## 校验用户名是否重复 [/api/checkUserNameDuplicated]
+
+### 校验用户名是否重复 [POST]
+
++ method (string) - The calling method
++ userName (string) - 用户名
+
++ Request (application/json)
+
+  + Body
+
+        {
+            "method": "checkUserNameDuplicated",
+            "userName": "whereyougoing"
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+                "code": 0,
+                "errorMsg": "",
+                "data": {
+                }
+            }
+
+## 校验手机号是否重复 [/api/checkPhoneDuplicated]
+
+### 校验手机号是否重复 [POST]
+
++ method (string) - The calling method
++ phone (string) - 手机号
+
++ Request (application/json)
+
+  + Body
+
+        {
+            "method": "checkPhoneDuplicated",
+            "phone": "12345678901"
         }
 
 + Response 200 (application/json)
