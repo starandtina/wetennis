@@ -53,7 +53,6 @@ export class SignupForm extends React.Component {
       phoneDuplicated
       } = this.props;
 
-    //checkPhoneDuplicated();
     const style = {
       width: '100%'
     };
@@ -64,7 +63,6 @@ export class SignupForm extends React.Component {
     if(!phone.error && phoneDuplicated){
       phone.error = 'phoneDuplicated';
     }
-    console.log(username);
 
     const sendactivationCode = () => {
       const { verifyPhone, fields: { phone } } = this.props;
