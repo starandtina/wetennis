@@ -10,7 +10,8 @@ import classes from './Register.scss'
 export class Register extends React.Component {
   state = {
     group: this.props.group,
-    item: this.props.item
+    item: this.props.item,
+    partners: this.props.partners
   }
 
   constructor(props) {
@@ -40,7 +41,9 @@ export class Register extends React.Component {
   }
 
   _renderEventGroupItems() {
-    const { items } = this.state.group
+    const { items } = this.state.group;
+    console.log('render Item');
+    console.log(items);
 
     return (
       <ul className='list-unstyled'>
@@ -57,18 +60,30 @@ export class Register extends React.Component {
   }
 
   renderCategories() {
-
-
-
+    console.log(this.state.item);
+    console.log(this.props);
+    const { partners } = this.props;
+    console.log(partners);
+    const partner = this.state.item.needPartner ? (
+      <Panel header='搭档' eventKey="2">
+        {partners.map(item => {
+        console.log(item);
+        return (
+        <div>{item.id} {item.name}</div>
+        )
+      })}
+      </Panel>
+    ) : null;
 
     return (
       <Accordion defaultActiveKey="1">
         <Panel header={this.state.group.name} eventKey="1">
           {this._renderEventGroups()}
         </Panel>
-        <Panel header={this.state.item.name} eventKey="2">
+        <Panel header={this.state.item.name || '项目'} eventKey="2">
           {this._renderEventGroupItems()}
         </Panel>
+        {partner}
       </Accordion>
     )
   }
@@ -92,7 +107,7 @@ export class Register extends React.Component {
       }
 
       content = (
-        <div>
+        <div className={classes.MarginTop}>
           {categories}
           {registerView}
           {registeredUsers}
@@ -110,13 +125,20 @@ export class Register extends React.Component {
 
   handleGroupHeaderClick(group) {
     this.setState({
-      group: group
+      group: group,
+      item: {}
     })
   }
 
   handleItemHeaderClick(item) {
+    const { params } = this.props;
     this.setState({
       item: item
+    })
+    this.props.fetchPartners({
+      eventId: params.eventId,
+      groupId: this.state.group.id,
+      itemId: this.state.item.id
     })
   }
 }

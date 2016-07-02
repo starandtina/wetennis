@@ -4,11 +4,13 @@ import { bindActionCreators } from 'redux'
 
 import RegisterConfirmation from '../components/RegisterConfirmation'
 
-const mapStateToProps = (state) => ({
-  user: state.user,
+const mapStateToProps = (state) => {
+  console.log(state);
+  return ({
+  user: state.register.user,
   group: state.register.group,
   item: state.register.item
-})
+})}
 
 const mapDispatchToProps = (dispatch) => ({
   actions : bindActionCreators({ }, dispatch)

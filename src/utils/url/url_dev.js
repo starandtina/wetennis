@@ -9,6 +9,7 @@ export const events = `${ROOT_URL}/events`
 export const fetchEventGroups = `${ROOT_URL}/eventGroups`
 export const eventFilter = `${ROOT_URL}/eventFilter`
 export const fetchRegisteredUsers = `${ROOT_URL}/registeredUsers`
+export const fetchPartners = `${ROOT_URL}/fetchPartners`
 
 // event details
 export const fetchEventDetails = `${ROOT_URL}/eventDetails`
