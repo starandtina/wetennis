@@ -26,16 +26,45 @@ export class SignupForm extends React.Component {
     Tip: '验证',
   };
 
+  checkPhone = () => {
+    const { checkPhoneDuplicated, fields: { phone } } = this.props;
+    phone && phone.onBlur();
+    checkPhoneDuplicated({
+      "method": "checkPhoneDuplicated",
+      "phone": phone.value
+    })
+  }
+
+  checkUserName = () => {
+    const { checkUserNameDuplicated, fields: { username } } = this.props;
+    username && username.onBlur();
+    checkUserNameDuplicated({
+      "method": "checkUserNameDuplicated",
+      "userName": name
+    })
+  }
+
   render () {
     const {
       fields: { username, password, phone, activationCode },
       handleSubmit,
-      submitting
-      } = this.props
+      submitting,
+      usernameDuplicated,
+      phoneDuplicated
+      } = this.props;
 
+    //checkPhoneDuplicated();
     const style = {
       width: '100%'
     };
+
+    if(!username.error && usernameDuplicated){
+      username.error = 'usernameDuplicated';
+    }
+    if(!phone.error && phoneDuplicated){
+      phone.error = 'phoneDuplicated';
+    }
+    console.log(username);
 
     const sendactivationCode = () => {
       const { verifyPhone, fields: { phone } } = this.props;
@@ -59,7 +88,6 @@ export class SignupForm extends React.Component {
       }
       window.thisEvent = setInterval("startTiming()", 1000);
     };
-
     return (
       <form className='registration-form' onSubmit={handleSubmit(this.props.signUpUserThenSetCookie.bind(this))}>
         <Grid>
@@ -71,6 +99,7 @@ export class SignupForm extends React.Component {
                 errorText={phone.touched ? phone.error : ''}
                 floatingLabelText="手机号"
                 {...phone}
+                onBlur={this.checkPhone}
               />
             </Col>
             <Col xs={4}>
@@ -90,6 +119,7 @@ export class SignupForm extends React.Component {
                 errorText={username.touched ? username.error : ''}
                 floatingLabelText="用户名"
                 {...username}
+                onBlur={this.checkUserName}
               />
             </Col>
           </Row>
@@ -118,7 +148,7 @@ export class SignupForm extends React.Component {
         </Grid>
         <div className='button-groups clearfix'>
           {this.props.user.error ? <p className='u-errorText'>{this.props.user.error.message}</p> : ''}
-          <button type="submit" className="btn btn-default btn-lg btn-block" disabled={submitting}>注册</button>
+          <button type="submit" className="btn btn-default btn-lg btn-block" disabled={usernameDuplicated||usernameDuplicated||submitting}>注册</button>
         </div>
       </form>
     )

@@ -37,12 +37,32 @@ export const VERIFY_PHONE = 'VERIFY_PHONE'
 export const VERIFY_PHONE_SUCCESS = 'VERIFY_PHONE_SUCCESS'
 export const VERIFY_PHONE_FAILURE = 'VERIFY_PHONE_FAILTURE'
 
+export const CHECK_USERNAME_DUPLICATED = 'CHECK_USERNAME_DUPLICATED'
+export const CHECK_USERNAME_DUPLICATED_SUCCESS = 'CHECK_USERNAME_DUPLICATED_SUCCESS'
+export const CHECK_USERNAME_DUPLICATED_FAILURE = 'CHECK_USERNAME_DUPLICATED_FAILTURE'
+
+export const CHECK_PHONE_DUPLICATED = 'CHECK_PHONE_DUPLICATED'
+export const CHECK_PHONE_DUPLICATED_SUCCESS = 'CHECK_PHONE_DUPLICATED_SUCCESS'
+export const CHECK_PHONE_DUPLICATED_FAILURE = 'CHECK_PHONE_DUPLICATED_FAILTURE'
+
 // Logout User
 export const LOGOUT_USER = 'LOGOUT_USER'
 
 // ------------------------------------
 // Actions
 // ------------------------------------
+
+export const checkUserNameDuplicated = data => ({
+  types: [CHECK_USERNAME_DUPLICATED, CHECK_USERNAME_DUPLICATED_SUCCESS, CHECK_USERNAME_DUPLICATED_FAILURE],
+  promise: () => API.post(URLConf.checkUserNameDuplicated, data)
+  })
+
+export const checkPhoneDuplicated = data => (
+  {
+    types: [CHECK_PHONE_DUPLICATED, CHECK_PHONE_DUPLICATED_SUCCESS, CHECK_PHONE_DUPLICATED_FAILURE],
+    promise: () => API.post(URLConf.checkPhoneDuplicated, data)
+  }
+);
 
 function signUpUser(data) {
   return {
@@ -117,7 +137,9 @@ const INITIAL_STATE = {
   },
   status: null,
   error: null,
-  loading: false
+  loading: false,
+  usernameDuplicated: false,
+  phoneDuplicated: false
 }
 
 export default handleActions({
@@ -160,5 +182,21 @@ export default handleActions({
       message: action.payload
     },
     user: null
+  }),
+  [CHECK_USERNAME_DUPLICATED_SUCCESS]: (state, action) => ({
+    ...state,
+    usernameDuplicated: action.payload.usernameDuplicated
+  }),
+  [CHECK_USERNAME_DUPLICATED_FAILURE]: (state, action) => ({
+    ...state,
+    usernameDuplicated: true
+  }),
+  [CHECK_PHONE_DUPLICATED_SUCCESS]: (state, action) => ({
+    ...state,
+    phoneDuplicated: action.payload.phoneDuplicated
+  }),
+  [CHECK_PHONE_DUPLICATED_FAILURE]: (state, action) => ({
+    ...state,
+    phoneDuplicated: true
   })
 }, INITIAL_STATE)

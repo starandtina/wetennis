@@ -22,7 +22,7 @@ export class Dashboard extends React.Component {
       footer = <Footer activeNavTab='DASHBOARD' />
     }
     return (
-      <div style={{ height: '100%' }}>
+      <div style={{ height: '100%', marginTop: '55px' }}>
         {content}
         {footer}
       </div>

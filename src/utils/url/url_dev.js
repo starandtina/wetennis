@@ -3,6 +3,8 @@ const ROOT_URL = '/api'
 // Dashbaord
 export const signUp = `${ROOT_URL}/signup`
 export const signIn = `${ROOT_URL}/signin`
+export const checkPhoneDuplicated = `${ROOT_URL}/checkPhoneDuplicated`
+export const checkUserNameDuplicated = `${ROOT_URL}/checkUserNameDuplicated`
 
 // Event
 export const events = `${ROOT_URL}/events`
