@@ -21,6 +21,10 @@ export const fetchEventComments = `${ROOT_URL}/eventComments`
 export const likeComment = `${ROOT_URL}/likeComment`
 export const sendComment = `${ROOT_URL}/sendComment`
 
+// event score
+export const fetchEventScore = `${ROOT_URL}/eventScore`
+export const fetchEventScoreFilter = `${ROOT_URL}/eventScoreFilter`
+
 // draw table
 export const fetchEventDrawTable = `${ROOT_URL}/eventDrawTable_qualify`
 // export const fetchEventDrawTable = `${ROOT_URL}/eventDrawTable`

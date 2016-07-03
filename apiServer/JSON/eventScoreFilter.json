@@ -1,0 +1,21 @@
+{
+  "code": 0,
+  "data": {
+    "status": [
+      {"text": "全部", "value": 0},
+      {"text": "正在进行", "value": 1},
+      {"text": "已完成", "value": 2}
+    ],
+    "type": [
+      {"text": "所有", "value": 0},
+      {"text": "青少年", "value": 1},
+      {"text": "青年", "value": 2},
+      {"text": "男子双打", "value": 3},
+      {"text": "男子单打", "value": 4},
+      {"text": "女子双打", "value": 5},
+      {"text": "女子单打", "value": 6},
+      {"text": "中年", "value": 7},
+      {"text": "老年", "value": 8}
+    ]
+  }
+}

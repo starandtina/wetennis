@@ -5,6 +5,7 @@ import Notice from "./Notice";
 import Sponsors from "./Sponsors";
 import Comments from "./Comments";
 import Message from "./Message";
+import NavBack from "components/NavBack";
 
 export default class EventDetails extends React.Component {
   componentDidMount() {
@@ -25,6 +26,12 @@ export default class EventDetails extends React.Component {
     } = this.props;
     return (
       <div>
+        <NavBack title=" ">
+          <i className="material-icons">info</i>
+          {true
+          ? <i className="material-icons">favorite</i>
+          : <i className="material-icons">favorite_border</i>}
+        </NavBack>
         <EventInfo data={details} />
         <Notice data={notices} />
         <Sponsors data={sponsors} />

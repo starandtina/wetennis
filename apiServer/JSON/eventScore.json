@@ -1,0 +1,65 @@
+{
+  "code": 0,
+  "data": [
+    {
+      "type": 0,
+      "group": "青年组 精英B | 女子双打",
+      "list": [
+        {
+          "matches": "精英B | 女子双打 | 小组资格赛 | 第1组",
+          "completed": true,
+          "gameTime": "01:11:06",
+          "team": [
+            {
+              "users": [
+                {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+              ],
+              "win": true,
+              "score": 3,
+              "winGameNumber": 3,
+              "currentScore": "40",
+              "currentScoreWin": true,
+              "first": true
+            },
+            {
+              "users": [
+                {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+              ],
+              "win": false,
+              "score": 2,
+              "winGameNumber": 2,
+              "currentScore": "40",
+              "currentScoreWin": false,
+              "first": false
+            }
+          ]
+        },
+        {
+          "matches": "精英B | 女子双打 | 小组资格赛 | 第1组",
+          "completed": true,
+          "gameTime": "01:11:06",
+          "team": [
+            {
+              "users": [
+                {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+              ],
+              "win": true,
+              "score": 3
+            },
+            {
+              "users": [
+                {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+              ],
+              "win": false,
+              "score": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
