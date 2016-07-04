@@ -9,7 +9,9 @@ const router = Router({
 });
 
 app.use(body());
-app.use(cors());
+app.use(cors({
+  credentials: true
+}));
 
 
 router.post('/:method', function (rep, res) {
