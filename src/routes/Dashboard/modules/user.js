@@ -92,7 +92,7 @@ export const verifyPhone = createAction(
       dispatch(
         post(
           VERIFY_PHONE, {
-            url: '/verifyPhone',
+            url: URLConf.verifyPhone,
             data: {
               ...args,
               method: 'verifyPhone'
@@ -101,7 +101,7 @@ export const verifyPhone = createAction(
               if (resp.code !== 0) {
                 dispatch(verifyPhoneFailure(resp.errorMsg));
               } else {
-                setCookie(resp.id)
+                //setCookie(resp.id)
                 dispatch(verifyPhoneSuccess(resp))
               }
             }
@@ -150,7 +150,8 @@ export default handleActions({
   [SIGNUP_USER_SUCCESS]: (state, action) => ({
     ...state,
     user: action.payload,
-    status: 'authenticated'
+    status: 'authenticated',
+    error: null
   }),
   [SIGNIN_USER_FAILTURE]: (state, action) => ({
     ...state,

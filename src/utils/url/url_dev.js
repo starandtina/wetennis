@@ -8,6 +8,7 @@ export const checkUserNameDuplicated = `${ROOT_URL}/checkUserNameDuplicated`
 
 // Event
 export const events = `${ROOT_URL}/events`
+export const verifyPhone = `${ROOT_URL}/verifyPhone`
 export const fetchEventGroups = `${ROOT_URL}/eventGroups`
 export const eventFilter = `${ROOT_URL}/eventFilter`
 export const fetchRegisteredUsers = `${ROOT_URL}/registeredUsers`
