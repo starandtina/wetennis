@@ -30,20 +30,20 @@ export const SIGNUP_USER_FAILTURE = 'SIGNUP_USER_FAILTURE'
 // Sign In User
 export const SIGNIN_USER = 'SIGNIN_USER'
 export const SIGNIN_USER_SUCCESS = 'SIGNIN_USER_SUCCESS'
-export const SIGNIN_USER_FAILURE = 'SIGNIN_USER_FAILURE'
+export const SIGNIN_USER_FAILTURE = 'SIGNIN_USER_FAILTURE'
 
 // Verify Code
 export const VERIFY_PHONE = 'VERIFY_PHONE'
 export const VERIFY_PHONE_SUCCESS = 'VERIFY_PHONE_SUCCESS'
-export const VERIFY_PHONE_FAILURE = 'VERIFY_PHONE_FAILTURE'
+export const VERIFY_PHONE_FAILTURE = 'VERIFY_PHONE_FAILTURE'
 
 export const CHECK_USERNAME_DUPLICATED = 'CHECK_USERNAME_DUPLICATED'
 export const CHECK_USERNAME_DUPLICATED_SUCCESS = 'CHECK_USERNAME_DUPLICATED_SUCCESS'
-export const CHECK_USERNAME_DUPLICATED_FAILURE = 'CHECK_USERNAME_DUPLICATED_FAILTURE'
+export const CHECK_USERNAME_DUPLICATED_FAILTURE = 'CHECK_USERNAME_DUPLICATED_FAILTURE'
 
 export const CHECK_PHONE_DUPLICATED = 'CHECK_PHONE_DUPLICATED'
 export const CHECK_PHONE_DUPLICATED_SUCCESS = 'CHECK_PHONE_DUPLICATED_SUCCESS'
-export const CHECK_PHONE_DUPLICATED_FAILURE = 'CHECK_PHONE_DUPLICATED_FAILTURE'
+export const CHECK_PHONE_DUPLICATED_FAILTURE = 'CHECK_PHONE_DUPLICATED_FAILTURE'
 
 // Logout User
 export const LOGOUT_USER = 'LOGOUT_USER'
@@ -53,13 +53,13 @@ export const LOGOUT_USER = 'LOGOUT_USER'
 // ------------------------------------
 
 export const checkUserNameDuplicated = data => ({
-  types: [CHECK_USERNAME_DUPLICATED, CHECK_USERNAME_DUPLICATED_SUCCESS, CHECK_USERNAME_DUPLICATED_FAILURE],
+  types: [CHECK_USERNAME_DUPLICATED, CHECK_USERNAME_DUPLICATED_SUCCESS, CHECK_USERNAME_DUPLICATED_FAILTURE],
   promise: () => API.post(URLConf.checkUserNameDuplicated, data)
   })
 
 export const checkPhoneDuplicated = data => (
   {
-    types: [CHECK_PHONE_DUPLICATED, CHECK_PHONE_DUPLICATED_SUCCESS, CHECK_PHONE_DUPLICATED_FAILURE],
+    types: [CHECK_PHONE_DUPLICATED, CHECK_PHONE_DUPLICATED_SUCCESS, CHECK_PHONE_DUPLICATED_FAILTURE],
     promise: () => API.post(URLConf.checkPhoneDuplicated, data)
   }
 );
@@ -80,7 +80,7 @@ export function signUpUserThenSetCookie(data) {
 }
 
 export const signInUser = (data) => ({
-  types: [SIGNIN_USER, SIGNIN_USER_SUCCESS, SIGNIN_USER_FAILURE],
+  types: [SIGNIN_USER, SIGNIN_USER_SUCCESS, SIGNIN_USER_FAILTURE],
   promise: () => API.post(URLConf.signIn, data)
 })
 
@@ -113,7 +113,7 @@ export const verifyPhone = createAction(
 )
 
 export const verifyPhoneSuccess = createAction(VERIFY_PHONE_SUCCESS)
-export const verifyPhoneFailure = createAction(VERIFY_PHONE_FAILURE)
+export const verifyPhoneFailure = createAction(VERIFY_PHONE_FAILTURE)
 
 export const logoutUser = createAction(
   LOGOUT_USER,
@@ -152,7 +152,7 @@ export default handleActions({
     user: action.payload,
     status: 'authenticated'
   }),
-  [SIGNIN_USER_FAILURE]: (state, action) => ({
+  [SIGNIN_USER_FAILTURE]: (state, action) => ({
     ...state,
     status: 'signin',
     error: {
@@ -175,7 +175,7 @@ export default handleActions({
     user: action.payload,
     status: 'authenticated'
   }),
-  [SIGNIN_USER_FAILURE]: (state, action) => ({
+  [SIGNUP_USER_FAILTURE]: (state, action) => ({
     ...state,
     status: 'signin',
     error: {
@@ -187,7 +187,7 @@ export default handleActions({
     ...state,
     usernameDuplicated: action.payload.usernameDuplicated
   }),
-  [CHECK_USERNAME_DUPLICATED_FAILURE]: (state, action) => ({
+  [CHECK_USERNAME_DUPLICATED_FAILTURE]: (state, action) => ({
     ...state,
     usernameDuplicated: true
   }),
@@ -195,7 +195,7 @@ export default handleActions({
     ...state,
     phoneDuplicated: action.payload.phoneDuplicated
   }),
-  [CHECK_PHONE_DUPLICATED_FAILURE]: (state, action) => ({
+  [CHECK_PHONE_DUPLICATED_FAILTURE]: (state, action) => ({
     ...state,
     phoneDuplicated: true
   })

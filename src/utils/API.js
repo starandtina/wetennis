@@ -22,8 +22,7 @@ class API {
               if (ok) {
                 response.json().then(( payload ) => {
                   resolve({
-                    payload: payload.data,
-                    error: false
+                    payload: payload
                   })
                 })
               } else {

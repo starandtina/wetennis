@@ -10,8 +10,15 @@ export default function promiseMiddleware({ dispatch, getState }) {
 
     const actionPromise = promise(dispatch, getState)
     actionPromise.then(
-      ({payload, error}) => {
-        return next({...rest, payload, error, type: SUCCESS})
+      ({ payload, error = false }) => {
+        const { code, errorMsg, data } = payload
+
+        if (Number(code) === 0) {
+          return next({...rest, payload: data, error, type: SUCCESS})
+        } else {
+          error = true
+          return next({...rest, payload: errorMsg, error, type: FAILURE})
+        }
       },
       (error) => {
         return next({...rest, error, type: FAILURE})
