@@ -18,13 +18,17 @@ export class RegisterView extends React.Component {
   handleClick(e) {
     e.preventDefault()
 
-    const { group, item } = this.props
+    const { group, item, partnerId } = this.props
     const eventId = this.props.params.eventId
     this.props.selectCategory({
       group,
       item
     })
-    this.props.push(`/events/${eventId}/register/confirmation`)
+    if(item.needPartner && !partnerId) {
+      alert('双打尚未选择搭档');
+    } else {
+      this.props.push(`/events/${eventId}/register/confirmation`)
+    }
   }
 }
 

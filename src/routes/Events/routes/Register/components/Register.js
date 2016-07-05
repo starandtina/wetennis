@@ -68,8 +68,14 @@ export class Register extends React.Component {
       <Panel header='搭档' eventKey="2">
         {partners.map(item => {
         console.log(item);
+          console.log(this.state.partnerId, item.id);
         return (
-        <div>{item.id} {item.name}</div>
+        <li className={this.state.partnerId == item.id ? `${classes.li} ${classes.selected}` : classes.li } key={item.id} onClick={this.handlePartnerHeaderClick.bind(this, item)}>
+          <div className='clearfix'>
+            <div className='pull-left'>{item.name}</div>
+            <div className='pull-right'></div>
+          </div>
+        </li>
         )
       })}
       </Panel>
@@ -140,6 +146,15 @@ export class Register extends React.Component {
       groupId: this.state.group.id,
       itemId: this.state.item.id
     })
+  }
+
+  handlePartnerHeaderClick(item) {
+    const { setPartnerId } = this.props;
+    this.setState({
+      partnerId: item.id
+    });
+    console.log(item.id);
+    setPartnerId(item.id)
   }
 }
 

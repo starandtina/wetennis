@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { push } from 'react-router-redux'
 
-import { fetchEventGroups, fetchRegisteredUsers, fetchPartners, selectCategory } from '../modules/register'
+import { fetchEventGroups, fetchRegisteredUsers, fetchPartners, selectCategory, setPartnerId } from '../modules/register'
 import Register from '../components/Register'
 
 const mapStateToProps = (state) => ({
@@ -20,6 +20,7 @@ export default connect(
     fetchEventGroups,
     fetchRegisteredUsers,
     fetchPartners,
+    setPartnerId,
     selectCategory,
     push
   }

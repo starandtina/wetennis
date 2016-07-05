@@ -19,6 +19,8 @@ export const FETCH_REGISTERED_USERS = 'FETCH_REGISTERED_USERS'
 export const FETCH_REGISTERED_USERS_SUCCESS = 'FETCH_REGISTERED_USERS_SUCCESS'
 export const FETCH_REGISTERED_USERS_FAILTURE = 'FETCH_REGISTERED_USERS_FAILTURE'
 
+export const SET_PARTNERID = 'SET_PARTNERID';
+
 export const FETCH_PARTNERS = 'FETCH_PARTNERS';
 export const FETCH_PARTNERS_SUCCESS = 'FETCH_PARTNERS_SUCCESS';
 export const FETCH_PARTNERS_FAILTURE = 'FETCH_PARTNERS_FAILTURE';
@@ -46,6 +48,7 @@ export const fetchPartners = (data) => ({
 })
 
 export const selectCategory = createAction(SELECT_CATEGORY)
+export const setPartnerId = createAction(SET_PARTNERID)
 
 // ------------------------------------
 // Reducer
@@ -68,10 +71,23 @@ export default handleActions({
   }),
   [FETCH_PARTNERS]: (state, action) => ({
     ...state,
-    partners: []
+    partners: [],
+    partnerId: ''
   }),
   [FETCH_PARTNERS_SUCCESS]: (state, action) => ({
     ...state,
-    partners: action.payload
+    partners: action.payload,
   }),
-}, { groups: [], registeredUsers: [], group: { name: '级别', items: []  }, item: { name: '项目' }, user: { name: 'ashley', level: '高'}, partners: [] })
+  [SET_PARTNERID]: (state, action) => ({
+    ...state,
+    partnerId: action.payload
+  })
+}, {
+  groups: [],
+  registeredUsers: [],
+  group: { name: '级别', items: []  },
+  item: { name: '项目' },
+  user: { name: 'ashley', level: '高'},
+  partners: [],
+  partnerId: ''
+})

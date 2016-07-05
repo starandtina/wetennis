@@ -9,7 +9,8 @@ const mapStateToProps = (state) => {
   return ({
   user: state.register.user,
   group: state.register.group,
-  item: state.register.item
+  item: state.register.item,
+  parnterId: state.register.parnterId
 })}
 
 const mapDispatchToProps = (dispatch) => ({
