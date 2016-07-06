@@ -6,7 +6,9 @@ export default (store) => ({
   getChildRoutes (location, cb) {
     require.ensure([], (require) => {
       cb(null, [
-        require('./routes/Confirmation')
+        require('./routes/Confirmation'),
+        require('./routes/Announcement'),
+        require('./routes/Purchase')
       ])
     })
   },

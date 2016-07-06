@@ -1,5 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router'
+import {
+  setCookie,
+  logout
+} from 'utils/auth'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 
@@ -15,6 +19,16 @@ export class SigninForm extends React.Component {
     }
   }
 
+  signIn = () => {
+    this.props.actions.signInUser().then(
+      action => {
+        console.log(action);
+        setCookie(action.payload.data.id)
+        this.props.actions.push('/dashboard');
+      }
+    );
+  }
+
   render () {
     const {
       fields: { username, password },
@@ -27,7 +41,7 @@ export class SigninForm extends React.Component {
       width: '100%'
     }
     return (
-      <form className={classes['form']} onSubmit={handleSubmit(this.props.actions.signInUser.bind(this))}>
+      <form className={classes['form']} onSubmit={handleSubmit(this.signIn)}>
         <TextField
           style={style}
           hintText="用户名"
@@ -55,7 +69,7 @@ export class SigninForm extends React.Component {
   handleSigninButtonClick(e) {
     e.preventDefault()
 
-    this.props.actions.push('/dashboard/signup/verifyPhone')
+    this.props.actions.push('/dashboard/signup')
   }
 }
 
