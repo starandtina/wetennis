@@ -25,7 +25,8 @@ export const FETCH_PARTNERS = 'FETCH_PARTNERS';
 export const FETCH_PARTNERS_SUCCESS = 'FETCH_PARTNERS_SUCCESS';
 export const FETCH_PARTNERS_FAILTURE = 'FETCH_PARTNERS_FAILTURE';
 
-export const SELECT_CATEGORY = 'SELECT_CATEGORY'
+export const SELECT_CATEGORY = 'SELECT_CATEGORY';
+export const UPLOAD_USER_INFO = 'UPLOAD_USER_INFO';
 
 
 // ------------------------------------
@@ -49,6 +50,7 @@ export const fetchPartners = (data) => ({
 
 export const selectCategory = createAction(SELECT_CATEGORY)
 export const setPartnerId = createAction(SET_PARTNERID)
+export const uploadUserInfo = createAction(UPLOAD_USER_INFO)
 
 // ------------------------------------
 // Reducer
@@ -81,13 +83,17 @@ export default handleActions({
   [SET_PARTNERID]: (state, action) => ({
     ...state,
     partnerId: action.payload
+  }),
+  [UPLOAD_USER_INFO]: (state, action) => ({
+    ...state,
+    user: action.payload,
   })
 }, {
   groups: [],
   registeredUsers: [],
   group: { name: '级别', items: []  },
   item: { name: '项目' },
-  user: { name: 'ashley', level: '高'},
+  user: { name: 'ashley', gender:'male', userName: '陈云珠', phone: '13345674567', cardId: '232323198712311231'},
   partners: [],
   partnerId: ''
 })
