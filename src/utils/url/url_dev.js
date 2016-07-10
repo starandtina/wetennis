@@ -26,6 +26,10 @@ export const sendComment = `${ROOT_URL}/sendComment`
 export const fetchEventScore = `${ROOT_URL}/eventScore`
 export const fetchEventScoreFilter = `${ROOT_URL}/eventScoreFilter`
 
+// event schedule
+export const fetchEventSchedule = `${ROOT_URL}/eventSchedule`
+export const fetchEventScheduleFilter = `${ROOT_URL}/eventScheduleFilter`
+
 // draw table
 export const fetchEventDrawTable = `${ROOT_URL}/eventDrawTable_qualify`
 // export const fetchEventDrawTable = `${ROOT_URL}/eventDrawTable`

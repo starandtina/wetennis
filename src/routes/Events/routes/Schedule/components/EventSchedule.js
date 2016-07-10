@@ -2,16 +2,16 @@ import React, {Component} from "react";
 import NavBack from "components/NavBack";
 import ScoreItem from "components/ScoreItem";
 
-import cs from "./EventScore.scss";
+import cs from "./EventSchedule.scss";
 
 export default class EventScore extends Component {
   componentDidMount() {
     const {
-      getFilter, getScore,
+      getFilter, getSchedule,
       params: {eventId}
     } = this.props;
     getFilter(eventId);
-    getScore(eventId);
+    getSchedule(eventId);
     document.body.classList.add(cs.bodyBg);
   }
   componentWillUnmount() {
@@ -24,52 +24,45 @@ export default class EventScore extends Component {
     setCurrentFilter(__obj);
   }
   render() {
-    const {score, currentFilter, filters} = this.props;
-    const currentType = filters.type.filter(item => item.value === currentFilter.type)[0];
-    const currentStatus = filters.status.filter(item => item.value === currentFilter.status)[0];
-    const title = currentType ? currentType.text : "";
-    const status = currentStatus ? currentStatus.text : "";
+    const {schedule, currentFilter, filters} = this.props;
+    const currentDate = filters.date.filter(item => item.value === currentFilter.date)[0];
+    const currentLocation = filters.location.filter(item => item.value === currentFilter.location)[0];
+    const date = currentDate ? currentDate.text : "";
+    const location = currentLocation ? currentLocation.text : "";
     return (
       <div className={cs.box}>
-        <NavBack title="比分">
-          <div className={cs.typeFilter}>
-            <i className="material-icons">more_vert</i>
-            <select
-              className="dropdown"
-              defaultValue={currentFilter.type}
-              onChange={this.setCurrentFilter.bind(this, "type")}
-            >
-            {filters.type.map((item, index) => {
-              return <option
-                      key={index}
-                      value={item.value}
-                    >{item.text}</option>
-            })}
-            </select>
-          </div>
-        </NavBack>
-        <div className={cs.pageTitle}>
-          <h3 className={cs.title}>{title}</h3>
-          <div className={cs.statusFilter}>
-            {status}
+        <NavBack title="赛程" />
+        <div className={cs.filter}>
+          <div className={cs.timeFilter}>
+            <i className="material-icons">alarm</i>
+            <div className={cs.filterText}>{date}</div>
             <i className="material-icons">keyboard_arrow_down</i>
             <select
               className="dropdown"
-              defaultValue={currentFilter.status}
-              onChange={this.setCurrentFilter.bind(this, "status")}
+              defaultValue={currentFilter.date}
+              onChange={this.setCurrentFilter.bind(this, "date")}
             >
-            {filters.status.map((item, index) => {
-              return (
-              <option
-                key={index}
-                value={item.value}
-              >{item.text}</option>
-              );
+            {filters.date.map((item, index) => {
+              return <option key={index} value={item.value}>{item.text}</option>
+            })}
+            </select>
+          </div>
+          <div className={cs.locationFilter}>
+            <i className="material-icons">place</i>
+            <div className={cs.filterText}>{location}</div>
+            <i className="material-icons">keyboard_arrow_down</i>
+            <select
+              className="dropdown"
+              defaultValue={currentFilter.location}
+              onChange={this.setCurrentFilter.bind(this, "location")}
+            >
+            {filters.location.map((item, index) => {
+              return <option key={index} value={item.value}>{item.text}</option>
             })}
             </select>
           </div>
         </div>
-        {score.map(this.groupItem)}
+        {schedule.map(this.groupItem)}
       </div>
     );
   }
@@ -102,9 +95,9 @@ export default class EventScore extends Component {
     );
   }
   groupItem = (item, index) => {
-    const {currentFilter: {type, status}} = this.props;
-    if (!(item.type === type || type === 0)) return;
-    if (!(item.status === status || status === 0)) return;
+    const {date, location} = this.props.currentFilter;
+    if (!(item.date === date || date === 0)) return;
+    if (!(item.location === location || location === 0)) return;
     return (
       <div key={index} className={cs.groupItem}>
         <div className={cs.groupNumber}>{item.matches}</div>

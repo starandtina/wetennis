@@ -6,8 +6,8 @@
       "group": "精英B | 女子双打 | 小组资格赛 | 第1组",
       "completed": true,
       "gameTime": "01:11:06",
-      "type": 1,
-      "status": 1,
+      "date": 1,
+      "location": 1,
       "team": [
         {
           "users": [
@@ -36,38 +36,12 @@
       ]
     },
     {
-      "matches": "第二场",
+      "matches": "第一场",
       "group": "精英B | 女子双打 | 小组资格赛 | 第1组",
       "completed": true,
       "gameTime": "01:11:06",
-      "type": 2,
-      "status": 2,
-      "team": [
-        {
-          "users": [
-            {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
-            {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
-          ],
-          "win": true,
-          "score": 3
-        },
-        {
-          "users": [
-            {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
-            {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
-          ],
-          "win": false,
-          "score": 2
-        }
-      ]
-    },
-    {
-      "matches": "第三场",
-      "group": "精英B | 女子双打 | 小组资格赛 | 第1组",
-      "completed": true,
-      "gameTime": "01:11:06",
-      "type": 3,
-      "status": 3,
+      "date": 2,
+      "location": 2,
       "team": [
         {
           "users": [

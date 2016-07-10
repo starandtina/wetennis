@@ -13,6 +13,7 @@ export default (store) => ({
         require('./routes/Details')(store),
         require('./routes/DrawTable')(store),
         require('./routes/Score')(store),
+        require('./routes/Schedule')(store),
       ])
     })
   },

@@ -68,39 +68,36 @@
   color: #d7ed15;
 }
 
-.typeFilter {
-  color: $mainColor;
-  text-align: center;
-  width: 40*$px1;
-  height: $topNavHeight;
+.timeFilter, .locationFilter {
   position: relative;
-  > i {
-    line-height: $topNavHeight;
-  }
 }
 
+.filter {
+  display: flex;
+  margin-top: 10*$px1;
+}
 
-.pageTitle {
+.timeFilter, .locationFilter{
+  width: 50%;
+  height: 40*$px1;
+  position: relative;
+  font-size: 12*$px1;
+  line-height: 0.9rem;
+  color: $mainFontColor;
+  background-color: #fff;
   display: flex;
   align-items: center;
-  margin-top: 10*$px1;
-  height: 30*$px1;
-}
-
-.title {
-  flex-grow: 1;
-  font-size: 12*$px1;
-  color: $mainFontColor;
-  margin: 0;
-}
-
-.statusFilter {
-  position: relative;
-  font-size: 12*$px1;
-  color: $secondaryFontColor;
   > i {
-    font-size: 18*$px1;
-    color: $secondaryFontColor;
     vertical-align: bottom;
+    color: #ddd;
+    margin: 0 10*$px1;
   }
+}
+
+.timeFilter {
+  margin-right: 1*$px1;
+}
+
+.filterText {
+  flex-grow: 1;
 }

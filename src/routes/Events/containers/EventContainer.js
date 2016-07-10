@@ -12,12 +12,11 @@ import EventStatus from "../components/EventStatus";
 import cs from "./EventContainer.scss";
 
 class EventContainer extends React.Component {
-  constructor(props) {
-    super(props);
+  componentDidMount() {
     const {action: {getFilter, getEventList}, currentFilter} = this.props;
     // get initial list data from server
     getFilter().then(data => {
-      const {status, location} = data.payload;
+      const {status, location} = data.payload.data;
       const __obj = Object.assign({}, currentFilter, {
         status: status[0].value,
         location: location[0].value,
