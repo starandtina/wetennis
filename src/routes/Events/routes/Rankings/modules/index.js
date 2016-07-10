@@ -16,6 +16,8 @@ export const FETCH_RANKINGS_FILTER = 'FETCH_RANKINGS_FILTER'
 export const FETCH_RANKINGS_FILTER_SUCCESS = 'FETCH_RANKINGS_FILTER_SUCCESS'
 export const FETCH_RANKINGS_FILTER_FAILTURE = 'FETCH_RANKINGS_FILTER_FAILTURE'
 
+export const SET_RANKINGS_CURRENT_FILTER = "SET_RANKINGS_CURRENT_FILTER"
+
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -61,6 +63,9 @@ function currentFilter(state = 0, {type, payload}) {
     if (Array.isArray(payload) && payload.length > 0) {
       s = payload[0].value;
     }
+  }
+  if (type === SET_RANKINGS_CURRENT_FILTER) {
+    s = payload;
   }
   return s;
 }

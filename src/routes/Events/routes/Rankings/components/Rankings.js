@@ -16,19 +16,47 @@ export default class Rankings extends Component {
   componentWillUnmount() {
     document.body.classList.remove(cs.bodyBg);
   }
+  setCurrentFilter = e => {
+    const value = e.target.value;
+    const {setCurrentFilter} = this.props;
+    setCurrentFilter(Number(value));
+  }
   render() {
     const {currentFilter, filters, rankings} = this.props;
     const currentFilterItem = filters.filter(item => item.value === currentFilter)[0];
     const title = currentFilterItem ? currentFilterItem.text : "";
     return (
       <div className={cs.box}>
-        <NavBack title="排行"></NavBack>
+        <NavBack title="排行">
+          <div className={cs.titleFilter}>
+            <i className="material-icons">more_vert</i>
+            <select
+              className="dropdown"
+              defaultValue={currentFilter.type}
+              onChange={this.setCurrentFilter}
+            >
+            {filters.map((item, index) => {
+              return <option
+                      key={index}
+                      value={item.value}
+                    >{item.text}</option>
+            })}
+            </select>
+          </div>
+        </NavBack>
         <div className={cs.pageTitle}>
           {title}
         </div>
         {rankings.map((item, index) => {
+          if (!(item.type === currentFilter || currentFilter === 0)) {
+            return;
+          }
           return (
-            <Link to={`rankings/${item.userid}`} className={cs.rankingItem}>
+            <Link
+              key={index}
+              to={`rankings/${item.userid}`}
+              className={cs.rankingItem}
+            >
               <div className={cs.ranking}>{item.ranking}</div>
               <div className={cs.rankingInfo}>
                 <User data={item} className={cs.user} />

@@ -60,3 +60,14 @@ $rankingItemHeight: 60*$px1;
     color: $secondaryFontColor;
   }
 }
+
+.titleFilter {
+  color: $mainColor;
+  text-align: center;
+  width: 40*$px1;
+  height: $topNavHeight;
+  position: relative;
+  > i {
+    line-height: $topNavHeight;
+  }
+}
