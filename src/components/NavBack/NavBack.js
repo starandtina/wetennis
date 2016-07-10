@@ -14,7 +14,7 @@ export default class NavBack extends React.Component {
     const {children, title, caption, ...props} = this.props;
     return (
       <TopNav title={caption || title || "wetennis"} {...props}>
-        <div ref="left" onClick={goBack}>
+        <div ref="left" onClick={goBack} className={cs.left}>
           <i className={`material-icons ${cs.navBackIcon}`}>keyboard_backspace</i>
         </div>
         <div ref="right">{children}</div>

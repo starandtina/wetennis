@@ -1,0 +1,62 @@
+@import "variables.scss";
+
+$rankingItemHeight: 60*$px1;
+
+.bodyBg {
+  background-color: #f5f5f5;
+}
+
+.box {
+  padding-top: $topNavHeight;
+}
+
+.pageTitle {
+  height: 30*$px1;
+  display: flex;
+  align-items: center;
+  font-size: $px12;
+  padding: 0 15*$px1;
+  color: $secondaryFontColor;
+}
+
+.rankingItem {
+  margin-bottom: 1px;
+  display: flex;
+  height: $rankingItemHeight;
+}
+
+.ranking {
+  text-align: center;
+  background-color: $mainColor;
+  color: #fff;
+  width: 60*$px1;
+  text-align: center;
+  font-size: 20*$px1;
+  line-height: $rankingItemHeight;
+}
+
+.rankingInfo {
+  background-color: #fff;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  padding-left: 15*$px1;
+}
+
+.user {
+  flex-grow: 1;
+}
+
+.more {
+  color: $secondaryFontColor;
+  margin: 0 10*$px1;
+}
+
+.pts {
+  font-size: $px12;
+  color: $mainFontColor;
+  > div {
+    font-size: $px10;
+    color: $secondaryFontColor;
+  }
+}
