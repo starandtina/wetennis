@@ -5,10 +5,11 @@ export const signUp = `${ROOT_URL}/signup`
 export const signIn = `${ROOT_URL}/signin`
 export const checkPhoneDuplicated = `${ROOT_URL}/checkPhoneDuplicated`
 export const checkUserNameDuplicated = `${ROOT_URL}/checkUserNameDuplicated`
-
+export const verifyPhone = `${ROOT_URL}/verifyPhone`
+export const checkActivationCode = `${ROOT_URL}/checkActivationCode`
+export const resetPassword = `${ROOT_URL}/resetPassword`
 // Event
 export const events = `${ROOT_URL}/events`
-export const verifyPhone = `${ROOT_URL}/verifyPhone`
 export const fetchEventGroups = `${ROOT_URL}/eventGroups`
 export const eventFilter = `${ROOT_URL}/eventFilter`
 export const fetchRegisteredUsers = `${ROOT_URL}/registeredUsers`

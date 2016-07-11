@@ -32,6 +32,11 @@ export const SIGNIN_USER = 'SIGNIN_USER'
 export const SIGNIN_USER_SUCCESS = 'SIGNIN_USER_SUCCESS'
 export const SIGNIN_USER_FAILTURE = 'SIGNIN_USER_FAILTURE'
 
+export const RESET_PASSWORD = 'RESET_PASSWORD'
+export const CHECK_ACTIVATION_CODE = 'CHECK_ACTIVATION_CODE'
+export const CHECK_ACTIVATION_CODE_SUCCESS = 'CHECK_ACTIVATION_CODE_SUCCESS'
+export const CHECK_ACTIVATION_CODE_FAILTURE = 'CHECK_ACTIVATION_CODE_FAILTURE'
+
 // Verify Code
 export const VERIFY_PHONE = 'VERIFY_PHONE'
 export const VERIFY_PHONE_SUCCESS = 'VERIFY_PHONE_SUCCESS'
@@ -111,6 +116,22 @@ export const verifyPhone = createAction(
     }
   }
 )
+
+//export const checkActivationCode = (data) => ({
+//  types: [CHECK_ACTIVATION_CODE, CHECK_ACTIVATION_CODE_SUCCESS, CHECK_ACTIVATION_CODE_FAILTURE],
+//  promise: () => API.post(URLConf.checkActivationCode, data)
+//})
+
+export const checkActivationCode = data => ({
+  types: [CHECK_ACTIVATION_CODE, CHECK_ACTIVATION_CODE, CHECK_ACTIVATION_CODE],
+  promise: data => API.post(URLConf.checkActivationCode, data)
+})
+
+export const resetPassword = data => (
+{
+  types: [RESET_PASSWORD, RESET_PASSWORD, RESET_PASSWORD],
+  promise: () => API.post(URLConf.resetPassword, data)
+});
 
 export const verifyPhoneSuccess = createAction(VERIFY_PHONE_SUCCESS)
 export const verifyPhoneFailure = createAction(VERIFY_PHONE_FAILTURE)

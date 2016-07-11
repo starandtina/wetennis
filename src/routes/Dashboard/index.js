@@ -12,7 +12,8 @@ export default (store) => ({
     require.ensure([], (require) => {
       cb(null, [
         require('./routes/Signup')(store),
-        require('./routes/Signin')(store)
+        require('./routes/Signin')(store),
+        require('./routes/Resetpassword')(store)
       ])
     })
   },
