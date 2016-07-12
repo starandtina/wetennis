@@ -1,0 +1,67 @@
+FORMAT: 1A
+
+# 我
+
+Dashboard
+
+# Group 我
+
+## 我的主页 [/api/getMyData]
+
+### 我的主页 [POST]
+
++ method (string) - 调用方法名
++ userId (string) - 用户ID
+#### 返回格式
++ name (string) - 用户真实姓名
++ gender (string) - 性别
++ birthday (string) - 用户出生日期(1980-11-11)
++ Constellation (string) - 星座
++ friendsNum (number) - 朋友数
++ attentionsNum (number) - 关注数
++ score (number) - 积分
++ gamesNum (number) - 比赛数
++ guessNum (number) - 竞猜数
++ equipment (array) - 装备信息
+
++ Request (application/json)
+
+  + Body
+
+        {
+          "method": "getMyData",
+          "userId": "2312ssadsadads"
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+        {
+            "name": "bill kang",
+            "gender": "male",
+            "birthday": "1984-11-13",
+            "Constellation": "处女座",
+            "friendsNum": 12,
+            "attentionsNum": 44,
+            "score": 45,
+            "gamesNum": 88,
+            "guessNum": 222,
+            "equipment": [
+            {
+              id:1,
+              imgUrl: "http://img5.imgtn.bdimg.com/it/u=4008202820,2892448099&fm=21&gp=0.jpg"
+              logo:"阿迪王",
+              size: 34,
+              price: 123
+            },
+            {
+              id:2,
+              imgUrl: "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"
+              logo:"阿迪王",
+              size: 12,
+              price: 321
+            }
+            ]
+        }
+
