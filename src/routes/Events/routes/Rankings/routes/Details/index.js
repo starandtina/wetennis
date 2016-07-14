@@ -1,24 +1,21 @@
 import { injectReducer } from 'store/reducers'
 
+
 export default (store) => ({
-  path: ':eventId/Rankings',
+  path: ':userId',
 
   getChildRoutes (location, cb) {
-    console.log("rankings getChildRoutes");
     require.ensure([], (require) => {
-      cb(null, [
-        require("./routes/Details")(store)
-      ])
+      cb(null, [])
     })
   },
 
   getComponent (nextState, next) {
-    console.log("rankings getComponent");
     require.ensure([], (require) => {
       const Container = require('./containers')
       const reducer = require('./modules').default
 
-      injectReducer(store, { key: 'eventRankings', reducer })
+      injectReducer(store, { key: 'rankingDetails', reducer })
 
       next(null, Container)
     })

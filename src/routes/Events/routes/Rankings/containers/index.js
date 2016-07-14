@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { push } from 'react-router-redux'
@@ -9,6 +9,22 @@ import {
   getRankingsFilter,
   setCurrentFilter
 } from "../modules";
+
+class Container extends Component {
+  render() {
+    const {children, ...props} = this.props;
+    let content;
+    console.log("Container: ", children);
+    if (children) {
+      content = children;
+    } else {
+      content = <Root {...props} />;
+    }
+    return (
+      <div>{content}</div>
+    );
+  }
+}
 
 const mapStateToProps = ({eventRankings: {
   currentFilter, rankings, filters
@@ -23,4 +39,4 @@ export default connect(
     getRankingsFilter,
     setCurrentFilter
   }
-)(Root)
+)(Container)

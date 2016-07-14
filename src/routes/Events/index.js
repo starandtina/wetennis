@@ -7,6 +7,7 @@ export default (store) => ({
     // requireAuth.apply(this, arguments)
   },
   getChildRoutes (location, cb) {
+    console.log("getChildRoutes ");
     require.ensure([], (require) => {
       cb(null, [
         require('./routes/Register')(store),
