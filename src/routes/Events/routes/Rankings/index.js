@@ -14,7 +14,10 @@ export default (store) => ({
 
   getComponent (nextState, next) {
     console.log("rankings getComponent");
-    require.ensure([], (require) => {
+    require.ensure([
+      "./containers",
+      "./modules"
+    ], (require) => {
       const Container = require('./containers')
       const reducer = require('./modules').default
 
