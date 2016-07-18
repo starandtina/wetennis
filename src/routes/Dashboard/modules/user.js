@@ -53,6 +53,11 @@ export const CHECK_PHONE_DUPLICATED_FAILTURE = 'CHECK_PHONE_DUPLICATED_FAILTURE'
 // Logout User
 export const LOGOUT_USER = 'LOGOUT_USER'
 
+//FetchMyData
+export const FETCH_MY_DATA = 'FETCH_MY_DATA'
+export const FETCH_MY_DATA_SUCCESS = 'FETCH_MY_DATA_SUCCESS'
+export const FETCH_MY_DATA_FAILTURE = 'FETCH_MY_DATA_FAILTURE'
+
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -131,6 +136,12 @@ export const resetPassword = data => (
 {
   types: [RESET_PASSWORD, RESET_PASSWORD, RESET_PASSWORD],
   promise: () => API.post(URLConf.resetPassword, data)
+});
+
+export const fetchMyData = data => (
+{
+  types: [FETCH_MY_DATA, FETCH_MY_DATA_SUCCESS, VERIFY_PHONE_FAILTURE],
+  promise: () => API.post(URLConf.fetchMyData, data)
 });
 
 export const verifyPhoneSuccess = createAction(VERIFY_PHONE_SUCCESS)
@@ -212,6 +223,10 @@ export default handleActions({
   [CHECK_USERNAME_DUPLICATED_FAILTURE]: (state, action) => ({
     ...state,
     usernameDuplicated: true
+  }),
+  [FETCH_MY_DATA_SUCCESS]: (state, action) => ({
+    ...state,
+    userInfo: action.payload
   }),
   [CHECK_PHONE_DUPLICATED_SUCCESS]: (state, action) => ({
     ...state,

@@ -13,9 +13,8 @@ export class SigninForm extends React.Component {
   componentWillReceiveProps(nextProps) {
     // If `authenticated` then redirect to
     if(nextProps.user.status === 'authenticated' && nextProps.user.user) {
-      const locationState = this.props.location.state
-
-      this.props.actions.push(locationState && locationState.nextPathname || '/');
+      const locationState = this.props.location.state;
+      //this.props.actions.push(locationState && locationState.nextPathname || '/');
     }
   }
 

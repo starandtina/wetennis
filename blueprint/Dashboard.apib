@@ -6,7 +6,7 @@ Dashboard
 
 # Group 我
 
-## 我的主页 [/api/getMyData]
+## 我的主页 [/api/fetchMyData]
 
 ### 我的主页 [POST]
 
@@ -22,6 +22,7 @@ Dashboard
 + score (number) - 积分
 + gamesNum (number) - 比赛数
 + guessNum (number) - 竞猜数
++ backGroundImageUrl (string) - 背景图片
 + equipment (array) - 装备信息
 
 + Request (application/json)
@@ -29,7 +30,7 @@ Dashboard
   + Body
 
         {
-          "method": "getMyData",
+          "method": "fetchMyData",
           "userId": "2312ssadsadads"
         }
 
@@ -47,6 +48,7 @@ Dashboard
             "score": 45,
             "gamesNum": 88,
             "guessNum": 222,
+            "backGroundImageUrl": "http://img.pclady.com.cn/images/autovideo/autovideo/20131/8/13576226503256330.jpg",
             "equipment": [
             {
               id:1,

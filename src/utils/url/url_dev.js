@@ -8,6 +8,7 @@ export const checkUserNameDuplicated = `${ROOT_URL}/checkUserNameDuplicated`
 export const verifyPhone = `${ROOT_URL}/verifyPhone`
 export const checkActivationCode = `${ROOT_URL}/checkActivationCode`
 export const resetPassword = `${ROOT_URL}/resetPassword`
+export const fetchMyData = `${ROOT_URL}/fetchMyData`
 // Event
 export const events = `${ROOT_URL}/events`
 export const fetchEventGroups = `${ROOT_URL}/eventGroups`
