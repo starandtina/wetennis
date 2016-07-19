@@ -22,7 +22,7 @@ export default class Rankings extends Component {
     setCurrentFilter(Number(value));
   }
   render() {
-    const {currentFilter, filters, rankings} = this.props;
+    const {currentFilter, filters, rankings, params: {eventId}} = this.props;
     const currentFilterItem = filters.filter(item => item.value === currentFilter)[0];
     const title = currentFilterItem ? currentFilterItem.text : "";
     return (
@@ -54,7 +54,7 @@ export default class Rankings extends Component {
           return (
             <Link
               key={index}
-              to={`rankings/${item.userid}`}
+              to={`/rankings/${item.userid}`}
               className={cs.rankingItem}
             >
               <div className={cs.ranking}>{item.ranking}</div>

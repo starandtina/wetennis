@@ -1,0 +1,24 @@
+{
+  "code": 0,
+  "data": {
+    "usersex": 1,
+    "username": "陈韵竹",
+    "userimage": "http://hbimg.b0.upaiyun.com/02d7023e92a7227116fad577b50fbcdf0aab4e4ead0bb-lryBLC_fw658",
+    "borthday": "1988.08.29",
+    "constellation": "处女座",
+    "singleNumber": 1000,
+    "doubleNumber": 100,
+    "like": true,
+    "singleAccumulatePoints": 2000,
+    "doubleAccumulatePoints": 2000,
+    "account": "temachen",
+    "year": "2006",
+    "city": "中国 成都 锦江区",
+    "stature": "170cm",
+    "weight": "50kg",
+    "front": "右手",
+    "back": "双手",
+    "singleTabInfo": true,
+    "doubleTabInfo": true
+  }
+}

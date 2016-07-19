@@ -1,7 +1,7 @@
 import { injectReducer } from 'store/reducers'
 
 export default (store) => ({
-  path: ':eventId/Rankings',
+  path: 'rankings',
 
   getChildRoutes (location, cb) {
     console.log("rankings getChildRoutes");

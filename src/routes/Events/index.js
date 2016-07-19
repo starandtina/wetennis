@@ -15,7 +15,6 @@ export default (store) => ({
         require('./routes/DrawTable')(store),
         require('./routes/Score')(store),
         require('./routes/Schedule')(store),
-        require('./routes/Rankings')(store),
       ])
     })
   },

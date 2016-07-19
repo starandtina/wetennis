@@ -1,0 +1,71 @@
+@import "variables.scss";
+.box {
+}
+
+.banner {
+  height: 300*$px1;
+  overflow: hidden;
+  position: relative;
+}
+
+.infoBox {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  padding: 15*$px1 20*$px1;
+}
+
+.userimage {
+  width: 100%;
+}
+
+.username {
+  font-size: 36*$px1;
+}
+
+.left {
+  flex-grow: 1;
+  color: #fff;
+  font-size: $px12;
+}
+
+.right {
+  display: flex;
+  width: $px12 * 10;
+  > div {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.2;
+    font-size: 20*$px1;
+  }
+  .numberType {
+    font-size: $px10;
+  }
+  .sNum {
+    background-color: #fff;
+    color: $secondaryFontColor;
+  }
+  .dNum {
+    background-color: $mainColor;
+    color: #fff;
+  }
+}
+
+.detailInfo {
+  overflow: hidden;
+  padding: 15px 20px;
+  > li {
+    width: 50%;
+    float: left;
+    margin: 0;
+    list-style: none;
+    font-size: $px12;
+    color: $secondaryFontColor;
+    line-height: 1.5;
+  }
+}

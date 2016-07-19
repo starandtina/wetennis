@@ -14,6 +14,7 @@ export const createRoutes = (store) => {
           require('./Dashboard')(store),
           require('./Events')(store),
           require('./Referee')(store),
+          require('./Rankings')(store),
           require('./NotFound')
         ])
       })

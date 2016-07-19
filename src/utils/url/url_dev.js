@@ -16,7 +16,8 @@ export const fetchRegisteredUsers = `${ROOT_URL}/registeredUsers`
 export const fetchPartners = `${ROOT_URL}/fetchPartners`
 
 // event details
-export const fetchEventDetails = `${ROOT_URL}/eventDetails`
+// export const fetchEventDetails = `${ROOT_URL}/eventDetails`
+export const fetchEventDetails = `${ROOT_URL}/?method=getEventDetail`
 export const fetchEventNotices = `${ROOT_URL}/eventNotices`
 export const fetchEventSponsors = `${ROOT_URL}/eventSponsors`
 export const fetchEventComments = `${ROOT_URL}/eventComments`
@@ -39,6 +40,10 @@ export const fetchEventDrawTable = `${ROOT_URL}/eventDrawTable_qualify`
 // rankings
 export const fetchRankings = `${ROOT_URL}/rankings`;
 export const fetchRankingsFilter = `${ROOT_URL}/rankingsFilter`;
+
+// ranking details info
+export const fetchRankingDetailsInfo = `${ROOT_URL}/rankingDetailsInfo`;
+export const fetchRankingDetailsTab = `${ROOT_URL}/rankingDetailsTab`;
 
 // Referee
 export const fetchReferee = `${ROOT_URL}/referee`

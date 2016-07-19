@@ -45,7 +45,7 @@ const GET_SPONSORS_FAILTURE = `${PREFIXER}GET_SPONSORS_FAILTURE`;
 export function getDetails(id) {
   return {
     types: [GET_DETAILS, GET_DETAILS_SUCCESS, GET_DETAILS_FAILTURE],
-    promise: () => API.post(URLConf.fetchEventDetails, {id})
+    promise: () => API.post(URLConf.fetchEventDetails, {id: "B3F4D8BA-88DA-48D9-8FD6-24736349CBB0"})
   };
 }
 
