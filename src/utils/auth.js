@@ -9,7 +9,7 @@ const USER_ID = 'USER_ID'
 function requireAuth(nextState, replace) {
   if (!loggedIn()) {
     replace({
-      pathname: '/dashboard/signup',
+      pathname: '/dashboard/signin',
       state: {
         nextPathname: nextState.location.pathname
       }
