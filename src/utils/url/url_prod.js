@@ -1,4 +1,5 @@
-const ROOT_URL = 'http://wetennis.cn:83/API/FEservice.ashx?method=';
+// const ROOT_URL = 'http://wetennis.cn:8883/API/FEservice.ashx?method=';
+const ROOT_URL = "http://localhost:8000/api?method=";
 
 
 // Dashbaord
@@ -15,7 +16,7 @@ export const fetchRegisteredUsers = `${ROOT_URL}registeredUsers`
 export const fetchPartners = `${ROOT_URL}fetchPartners`
 
 // event details
-export const fetchEventDetails = `${ROOT_URL}eventDetails`
+export const fetchEventDetails = `${ROOT_URL}getEventDetails`
 export const fetchEventNotices = `${ROOT_URL}eventNotices`
 export const fetchEventSponsors = `${ROOT_URL}eventSponsors`
 export const fetchEventComments = `${ROOT_URL}eventComments`

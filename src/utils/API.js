@@ -12,7 +12,8 @@ class API {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(data),
-          credentials: 'include'
+          // if use this attribute, fetch cann't support cors.
+          // credentials: 'include'
         }
 
         return new Promise((resolve, reject) => {
