@@ -59,6 +59,8 @@
 .detailInfo {
   overflow: hidden;
   padding: 15px 20px;
+  margin: 0;
+  background-color: #fff;
   > li {
     width: 50%;
     float: left;
@@ -68,4 +70,12 @@
     color: $secondaryFontColor;
     line-height: 1.5;
   }
+}
+
+.favoriteIcon {
+  color: $mainColor;
+  height: $topNavHeight;
+  display: flex;
+  align-items: center;
+  padding: 10*$px1;
 }

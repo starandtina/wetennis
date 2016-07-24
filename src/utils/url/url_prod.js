@@ -16,7 +16,7 @@ export const fetchRegisteredUsers = `${ROOT_URL}registeredUsers`
 export const fetchPartners = `${ROOT_URL}fetchPartners`
 
 // event details
-export const fetchEventDetails = `${ROOT_URL}getEventDetails`
+export const fetchEventDetails = `${ROOT_URL}eventDetails`
 export const fetchEventNotices = `${ROOT_URL}eventNotices`
 export const fetchEventSponsors = `${ROOT_URL}eventSponsors`
 export const fetchEventComments = `${ROOT_URL}eventComments`

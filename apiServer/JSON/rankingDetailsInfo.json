@@ -8,7 +8,7 @@
     "constellation": "处女座",
     "singleNumber": 1000,
     "doubleNumber": 100,
-    "like": true,
+    "like": false,
     "singleAccumulatePoints": 2000,
     "doubleAccumulatePoints": 2000,
     "account": "temachen",

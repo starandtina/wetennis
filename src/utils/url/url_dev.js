@@ -41,6 +41,7 @@ export const fetchEventDrawTable = `${ROOT_URL}/eventDrawTable_qualify`
 // rankings
 export const fetchRankings = `${ROOT_URL}/rankings`;
 export const fetchRankingsFilter = `${ROOT_URL}/rankingsFilter`;
+export const like = `${ROOT_URL}/like`;
 
 // ranking details info
 export const fetchRankingDetailsInfo = `${ROOT_URL}/rankingDetailsInfo`;

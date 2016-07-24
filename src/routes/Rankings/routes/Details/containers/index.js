@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { push } from 'react-router-redux'
 
-import {getInfo, getDoubleTab, getSingleTab} from "../modules";
+import {getInfo, getDoubleTab, getSingleTab, likeUser} from "../modules";
 import Root from "../components/RankingDetails";
 
 const mapStateToProps = (state) => {
@@ -19,5 +19,6 @@ export default connect(
     getInfo,
     getDoubleTab,
     getSingleTab,
+    likeUser,
   }
 )(Root)

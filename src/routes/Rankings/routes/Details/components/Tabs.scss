@@ -1,0 +1,121 @@
+@import "variables.scss";
+.bodyBg {
+  background-color: $thirdColor;
+}
+.box {
+  padding: 0 15*$px1;
+}
+.sectionTitle {
+  text-align: center;
+  color: $secondaryFontColor;
+  font-size: $px12;
+  height: 40*$px1;
+  line-height: 40*$px1;
+  margin: 20*$px1 0;
+}
+
+.wlInfo {
+  display: flex;
+  > div {
+    width: 50%;
+    height: 80*$px1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    font-size: 30*$px1;
+    span {
+      display: block;
+      font-size: $px10;
+    }
+  }
+}
+
+.wlYtd {
+  background-color: $mainColor;
+}
+.wlTotal {
+  background-color: darken($mainColor, 10);
+}
+
+.matchTitle {
+  font-size: $px12;
+}
+
+.matchSubTitle {
+  font-size: $px10;
+  color: $secondaryFontColor;
+}
+
+.groupInfo {
+  display: flex;
+  font-size: 11*$px1;
+  color: $secondaryFontColor;
+  margin: 5*$px1 0 10*$px1;
+}
+
+.groupItem {
+  margin-top: 20*$px1;
+}
+
+.matches {
+  flex-grow: 1;
+  color: $mainFontColor;
+}
+
+.teamItem {
+  margin-right: 3*$px1;
+  text-align: center;
+  min-width: 20*$px1;
+  font-size: 20*$px1;
+  color: $secondaryFontColor;
+}
+
+.win {
+  width: 24*$px1;
+  margin-right: 10*$px1;
+  color: $mainColor;
+}
+
+.lose {
+  @extend .win;
+  visibility: hidden;
+}
+
+.gameResultBox {
+  margin-top: 15*$px1;
+  padding-bottom: 15*$px1;
+  border-bottom: 1px solid #ddd;
+  .groupItem {
+    display: none;
+  }
+  &.open .groupItem {
+    display: block;
+  }
+}
+
+.gameResultTopBar {
+  display: flex;
+}
+
+.titleGroup {
+  flex-grow: 1;
+}
+
+.ptsGroup {
+  font-size: $px10;
+  color: $secondaryFontColor;
+  text-align: right;
+}
+
+.pts {
+  font-size: $px12;
+  color: $mainFontColor;
+}
+
+.openIcon {
+  color: $secondaryFontColor;
+  display: flex;
+  align-items: center;
+}

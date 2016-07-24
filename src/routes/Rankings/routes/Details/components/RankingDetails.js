@@ -5,25 +5,37 @@ import cs from "./RankingDetails.scss";
 
 export default class RankingDetails extends Component {
   state = {
-
+    singleTab: false,
+    doubleTab: false
   }
   componentDidMount() {
-    const {getInfo, getSingleTab, getDoubleTab} = this.props;
-    getInfo().then(({payload: {
+    const {
+      getInfo, getSingleTab, getDoubleTab,
+      params: {userId}
+    } = this.props;
+    getInfo(userId).then(({payload: {
       code, data
     }}) => {
       if (Number(code) === 0) {
+        let __obj = {};
         if (data["singleTabInfo"]) {
-          
+          __obj["singleTab"] = true;
+          getSingleTab(userId);
         }
         if (data["doubleTabInfo"]) {
-          
+          __obj["doubleTab"] = true;
+          getDoubleTab(userId);
         }
+        this.setState(__obj);
       }
     });
   }
+  like = (like) => {
+    const { likeUser, params: {userId} } = this.props;
+    likeUser(userId, !like);
+  }
   render() {
-    const {info} = this.props;
+    const {info, singleTab, doubleTab} = this.props;
     let usersex;
     if (info.usersex === 1) {
       usersex = "男";
@@ -33,17 +45,20 @@ export default class RankingDetails extends Component {
     return (
       <div className={cs.box}>
         <NavBack title=" ">
-          {info.like
-          ? <i className="material-icons">favorite</i>
-          : <i className="material-icons">favorite_border</i>}
+          <div
+            className={cs.favoriteIcon}
+            onClick={this.like.bind(this, info.like)}
+          >
+            {info.like
+            ? <i className="material-icons">favorite</i>
+            : <i className="material-icons">favorite_border</i>}
+          </div>
         </NavBack>
         <div className={cs.banner}>
           <img src={info.userimage} className={cs.userimage} />
           <div className={cs.infoBox}>
             <div className={cs.left}>
-              <div className={cs.username}>
-                {info.username}
-              </div>
+              <div className={cs.username}>{info.username}</div>
               {`${usersex} | ${info.borthday} | ${info.constellation}`}
             </div>
             <div className={cs.right}>
@@ -74,7 +89,7 @@ export default class RankingDetails extends Component {
           <li>{`城市：${info.city}`}</li>
           <li>{`反拍：${info.back}`}</li>
         </ul>
-        <RankingTabs />
+        <RankingTabs data={{singleTab, doubleTab}} config={{...this.state}} />
       </div>
     );
   }
