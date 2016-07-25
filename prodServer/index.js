@@ -6,10 +6,11 @@ const compression = require('compression')
 const httpProxyMiddleware = require('http-proxy-middleware')
 const historyApiFallback = require('connect-history-api-fallback')
 
+var targetUrl = "http://wetennis.cn:8883/API/FEservice.ashx";
 
 // Proxy API request
 app.use('/api', httpProxyMiddleware({
-  target: 'http://localhost:8000',
+  target: targetUrl,
   changeOrigin: true
 }))
 

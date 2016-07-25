@@ -5,13 +5,20 @@ class API {
     ['get', 'post', 'put', 'patch', 'delete', 'head'].forEach((method) =>
       this[method] = (path, data = {} ) => {
 
+        let str="";
+        for (var k in data) {
+          str += `${encodeURIComponent(k)}=${encodeURIComponent(data[k])}&`;
+        }
+
         let fetchConfig = {
           method,
           headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded'
           },
-          body: JSON.stringify(data),
+          body: str,
+          // body: JSON.stringify(data),
           // if use this attribute, fetch cann't support cors.
           // credentials: 'include'
         }
