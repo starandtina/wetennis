@@ -25,6 +25,17 @@ router.post('/:method', function (rep, res) {
   rep.body = JSON.parse(data)
 });
 
+router.post('/', function (rep, res) {
+  var fs = require('fs')
+  var path = require('path')
+  var file = path.resolve(__dirname, 'JSON', rep.query.method + '.json')
+
+  var data = fs.readFileSync(file, 'utf8')
+
+  console.log('Reading JSON file from ' + file + ' for ' + rep.path);
+  rep.body = JSON.parse(data)
+});
+
 
 app.use(router.routes())
   .use(router.allowedMethods())

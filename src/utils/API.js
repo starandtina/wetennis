@@ -23,8 +23,7 @@ class API {
               if (ok) {
                 response.json().then(( payload ) => {
                   resolve({
-                    payload: payload,
-                    xxx:11
+                    payload: payload
                   })
                 })
               } else {
