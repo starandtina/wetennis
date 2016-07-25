@@ -19,11 +19,12 @@ export class SigninForm extends React.Component {
   }
 
   signIn = () => {
-    this.props.actions.signInUser().then(
+    const { values } = this.props;
+    this.props.actions.signInUser(values).then(
       action => {
         console.log(action);
         setCookie(action.payload.data.id)
-        this.props.actions.push('/dashboard');
+        this.props.actions.push('/dashboard/Mine');
       }
     );
   }

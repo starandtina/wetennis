@@ -1,0 +1,17 @@
+{
+  "code": 0,
+  "errorMsg": "",
+  "data": {
+    "name": "billkang",
+    "email": "team@qq.com",
+    "gender": "male",
+    "birthday": "1984-11-13",
+    "Rank": "优秀",
+    "TechRank": 4.5,
+    "startYear": 2008,
+    "hand": 1,
+    "habit": "双手反拍",
+    "height": 160,
+    "weight": 50
+  }
+}

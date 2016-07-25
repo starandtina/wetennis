@@ -31,7 +31,7 @@ export class SignupForm extends React.Component {
     phone && phone.onBlur();
     checkPhoneDuplicated({
       "method": "checkPhoneDuplicated",
-      "phone": phone.value
+      "phone": +phone.value
     })
   }
 
@@ -40,7 +40,7 @@ export class SignupForm extends React.Component {
     username && username.onBlur();
     checkUserNameDuplicated({
       "method": "checkUserNameDuplicated",
-      "userName": name
+      "userName": username.value
     })
   }
 
@@ -49,7 +49,7 @@ export class SignupForm extends React.Component {
       fields: { username, password, phone, activationCode },
       handleSubmit,
       submitting,
-      usernameDuplicated,
+      userNameDuplicated,
       phoneDuplicated
       } = this.props;
 
@@ -57,16 +57,16 @@ export class SignupForm extends React.Component {
       width: '100%'
     };
 
-    if(!username.error && usernameDuplicated){
-      username.error = 'usernameDuplicated';
+    if(!username.error && userNameDuplicated){
+      username.error = 'userNameDuplicated';
     }
     if(!phone.error && phoneDuplicated){
       phone.error = 'phoneDuplicated';
     }
 
     const sendactivationCode = () => {
-      const { verifyPhone, fields: { phone } } = this.props;
-      verifyPhone({phone: phone.value});
+      const { checkActivationCode, fields: { phone } } = this.props;
+      checkActivationCode({phone: phone.value});
       this.setState({
         buttonSuspending: true,
         Tip: 60,
@@ -146,7 +146,7 @@ export class SignupForm extends React.Component {
         </Grid>
         <div className='button-groups clearfix'>
           {this.props.user.error ? <p className='u-errorText'>{this.props.user.error.message}</p> : ''}
-          <button type="submit" className="btn btn-default btn-lg btn-block" disabled={usernameDuplicated||usernameDuplicated||submitting}>注册</button>
+          <button type="submit" className="btn btn-default btn-lg btn-block" disabled={userNameDuplicated||userNameDuplicated||submitting}>注册</button>
         </div>
       </form>
     )

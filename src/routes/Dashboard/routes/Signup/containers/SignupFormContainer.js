@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { push } from 'react-router-redux'
 import { reduxForm } from 'redux-form'
 
-import { signUpUserThenSetCookie, verifyPhone, checkPhoneDuplicated, checkUserNameDuplicated } from 'routes/Dashboard/modules/user'
+import { signUpUserThenSetCookie, verifyPhone, checkPhoneDuplicated, checkUserNameDuplicated, checkActivationCode } from 'routes/Dashboard/modules/user'
 import SignupForm from 'components/SignupForm'
 
 
@@ -39,7 +39,7 @@ const validate = (values) => {
 const mapStateToProps = (state) => ({
   user: state.user,
   initialValues: state.user.initialValues,
-  usernameDuplicated: state.user.usernameDuplicated,
+  userNameDuplicated: state.user.userNameDuplicated,
   phoneDuplicated: state.user.phoneDuplicated
 })
 
@@ -47,6 +47,7 @@ const mapDispatchToProps = (dispatch) => ({
   ...bindActionCreators({
     signUpUserThenSetCookie,
     verifyPhone,
+    checkActivationCode,
     push,
     checkUserNameDuplicated,
     checkPhoneDuplicated

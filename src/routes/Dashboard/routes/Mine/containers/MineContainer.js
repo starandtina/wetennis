@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 
-import { logoutUser, fetchMyData } from '../modules/user'
-import Dashboard from '../components/Dashboard'
+import { logoutUser, fetchMyData } from '../../../modules/user'
+import Dashboard from '../components/Mine'
 
 const mapStateToProps = (state) => ({
   user: state.user
@@ -14,9 +14,9 @@ const mapStateToProps = (state) => ({
 //  actions : bindActionCreators({ fetchMyData, logoutUser, push }, dispatch)
 //})
 
-const mapDispatchToProps = ({
+const mapDispatchToProps = {
   fetchMyData, logoutUser, push
-})
+}
 
 // Wrap the component to inject dispatch and state into it
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
