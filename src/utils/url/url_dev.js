@@ -1,14 +1,15 @@
-const ROOT_URL = '/api'
+const ROOT_URL = 'http://localhost:8000/api'
 
 // Dashbaord
 export const signUp = `${ROOT_URL}/signup`
 export const signIn = `${ROOT_URL}/signin`
 export const checkPhoneDuplicated = `${ROOT_URL}/checkPhoneDuplicated`
 export const checkUserNameDuplicated = `${ROOT_URL}/checkUserNameDuplicated`
-export const verifyPhone = `${ROOT_URL}/verifyPhone`
-export const checkActivationCode = `${ROOT_URL}/checkActivationCode`
+export const sendActivationCode = `${ROOT_URL}/sendActivationCode`
 export const resetPassword = `${ROOT_URL}/resetPassword`
 export const fetchMyData = `${ROOT_URL}/fetchMyData`
+export const fetchMySettings = `${ROOT_URL}/fetchMySettings`
+export const updateMySettings = `${ROOT_URL}/updateMySettings`
 // Event
 export const events = `${ROOT_URL}/events`
 export const fetchEventGroups = `${ROOT_URL}/eventGroups`

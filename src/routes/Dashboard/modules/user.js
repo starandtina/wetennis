@@ -82,11 +82,11 @@ function signUpUser(data) {
 }
 
 export function signUpUserThenSetCookie(data) {
-  return (dispatch, getState) => {
+  return (dispatch, getState) =>
     dispatch(signUpUser(data)).then(resp => {
-      setCookie(resp.payload.id)
+      console.log(resp);
+      setCookie(resp.payload.data.id);
     })
-  }
 }
 
 export const signInUser = (data) => ({
@@ -95,32 +95,10 @@ export const signInUser = (data) => ({
 })
 
 
-export const verifyPhone = createAction(
-  VERIFY_PHONE,
-  args => {
-    return dispatch => {
-      dispatch(
-        post(
-          VERIFY_PHONE, {
-            url: URLConf.verifyPhone,
-            data: {
-              ...args,
-              method: 'verifyPhone'
-            },
-            callback(resp) {
-              if (resp.code !== 0) {
-                dispatch(verifyPhoneFailure(resp.errorMsg));
-              } else {
-                //setCookie(resp.id)
-                dispatch(verifyPhoneSuccess(resp))
-              }
-            }
-          }
-        )
-      )
-    }
-  }
-)
+//export const verifyPhone = (data) => ({
+//  types: [VERIFY_PHONE, VERIFY_PHONE_SUCCESS, VERIFY_PHONE_FAILTURE],
+//  promise: () => API.post(URLConf.verifyPhone, data)
+//})
 
 //export const checkActivationCode = (data) => ({
 //  types: [CHECK_ACTIVATION_CODE, CHECK_ACTIVATION_CODE_SUCCESS, CHECK_ACTIVATION_CODE_FAILTURE],
@@ -129,7 +107,7 @@ export const verifyPhone = createAction(
 
 export const checkActivationCode = data => ({
   types: [CHECK_ACTIVATION_CODE, CHECK_ACTIVATION_CODE, CHECK_ACTIVATION_CODE],
-  promise: data => API.post(URLConf.checkActivationCode, data)
+  promise: () => API.post(URLConf.sendActivationCode, data)
 })
 
 export const resetPassword = data => (
@@ -170,7 +148,7 @@ const INITIAL_STATE = {
   status: null,
   error: null,
   loading: false,
-  usernameDuplicated: false,
+  userNameDuplicated: false,
   phoneDuplicated: false
 }
 
@@ -218,11 +196,11 @@ export default handleActions({
   }),
   [CHECK_USERNAME_DUPLICATED_SUCCESS]: (state, action) => ({
     ...state,
-    usernameDuplicated: action.payload.usernameDuplicated
+    userNameDuplicated: action.payload.userNameDuplicated
   }),
   [CHECK_USERNAME_DUPLICATED_FAILTURE]: (state, action) => ({
     ...state,
-    usernameDuplicated: true
+    userNameDuplicated: true
   }),
   [FETCH_MY_DATA_SUCCESS]: (state, action) => ({
     ...state,
