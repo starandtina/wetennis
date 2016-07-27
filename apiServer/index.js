@@ -15,6 +15,7 @@ app.use(cors({
 
 
 router.post('/:method', function (rep, res) {
+  console.log("body:", this.request.body);
   var fs = require('fs')
   var path = require('path')
   var file = path.resolve(__dirname, 'JSON', rep.params.method + '.json')
