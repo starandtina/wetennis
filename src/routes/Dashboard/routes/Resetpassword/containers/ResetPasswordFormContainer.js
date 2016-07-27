@@ -36,7 +36,7 @@ const validate = (values) => {
 const mapStateToProps = (state) => ({
   user: state.user,
   initialValues: state.user.initialValues,
-  usernameDuplicated: state.user.usernameDuplicated,
+  userNameDuplicated: state.user.userNameDuplicated,
   phoneDuplicated: state.user.phoneDuplicated
 })
 

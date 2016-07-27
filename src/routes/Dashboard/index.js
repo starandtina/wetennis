@@ -13,7 +13,9 @@ export default (store) => ({
       cb(null, [
         require('./routes/Signup')(store),
         require('./routes/Signin')(store),
-        require('./routes/Resetpassword')(store)
+        require('./routes/Resetpassword')(store),
+        require('./routes/Settings')(store),
+        require('./routes/Mine')(store)
       ])
     })
   },
@@ -21,12 +23,15 @@ export default (store) => ({
     require.ensure([
       './containers/DashboardContainer',
       './components/Dashboard',
-      './modules/user'
+      './modules/user',
+      './modules/settings'
     ], (require) => {
       const Dashboard = require('./containers/DashboardContainer')
       const reducer = require('./modules/user').default
+      const settingReducer = require('./modules/settings').default
 
-      injectReducer(store, { key: 'user', reducer })
+      injectReducer(store, { key: 'user', reducer });
+      injectReducer(store, { key: 'settings', reducer:settingReducer });
 
       next(null, Dashboard)
     })
