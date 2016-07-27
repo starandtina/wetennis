@@ -14,15 +14,15 @@ const validate = (values) => {
   var hasErrors = false;
 
   if (!values.username || values.username.trim() === '') {
-    errors.username = 'Enter username';
+    errors.username = '请输入用户名';
     hasErrors = true;
   }
   if(!values.password || values.password.trim() === '') {
-    errors.password = 'Enter password';
+    errors.password = '请输入密码';
     hasErrors = true;
   }
   if(!values.phone || values.phone.trim() === '') {
-    errors.phone = 'Enter phone';
+    errors.phone = '请输入手机号码';
     hasErrors = true;
   }
   if (values.phone && !/\b\d{3}[-.]?\d{4}[-.]?\d{4}\b/i.test(values.phone)) {
@@ -30,7 +30,7 @@ const validate = (values) => {
     hasErrors = true
   }
   if(!values.activationCode || values.activationCode.trim() === '') {
-    errors.activationCode = 'Enter Code';
+    errors.activationCode = '请输入验证码';
     hasErrors = true;
   }
    return hasErrors && errors;

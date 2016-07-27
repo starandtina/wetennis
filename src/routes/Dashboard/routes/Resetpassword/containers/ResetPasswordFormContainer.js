@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import { Grid, Row, Col } from 'react-bootstrap'
 import classes from './ResetPasswordContainer.scss'
 
-import { resetPassword, verifyPhone } from 'routes/Dashboard/modules/user'
+import { resetPassword, checkActivationCode } from 'routes/Dashboard/modules/user'
 
 export const fields = ['phone', 'password', 'activationCode']
 
@@ -15,11 +15,11 @@ const validate = (values) => {
   var errors = {};
   var hasErrors = false;
   if(!values.password || values.password.trim() === '') {
-    errors.password = 'Enter password';
+    errors.password = '请输入新密码';
     hasErrors = true;
   }
   if(!values.phone || values.phone.trim() === '') {
-    errors.phone = 'Enter phone';
+    errors.phone = '请输入手机号';
     hasErrors = true;
   }
   if (values.phone && !/\b\d{3}[-.]?\d{4}[-.]?\d{4}\b/i.test(values.phone)) {
@@ -27,7 +27,7 @@ const validate = (values) => {
     hasErrors = true
   }
   if(!values.activationCode || values.activationCode.trim() === '') {
-    errors.activationCode = 'Enter Code';
+    errors.activationCode = '请输入验证码';
     hasErrors = true;
   }
    return hasErrors && errors;
@@ -43,7 +43,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   ...bindActionCreators({
     resetPassword,
-    verifyPhone,
+    checkActivationCode,
     push,
   }, dispatch)
 })
@@ -83,8 +83,8 @@ export class ResetPasswordForm extends React.Component {
     };
 
     const sendactivationCode = () => {
-      const { verifyPhone, fields: { phone } } = this.props;
-      verifyPhone({phone: phone.value});
+      const { checkActivationCode, fields: { phone } } = this.props;
+      checkActivationCode({phone: +phone.value});
       this.setState({
         buttonSuspending: true,
         Tip: 60,
@@ -164,6 +164,6 @@ export default reduxForm({
   validate
 }, mapStateToProps, {
   resetPassword,
-  verifyPhone,
+  checkActivationCode,
   push,
 })(ResetPasswordForm)

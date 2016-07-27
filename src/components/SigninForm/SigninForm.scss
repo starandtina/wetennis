@@ -1,3 +1,5 @@
+@import "variables";
+
 .form
 {
     width: 256px;
@@ -11,4 +13,5 @@
 .forget-password-link
 {
     color: white;
+    padding-top: 20 * $px1
 }

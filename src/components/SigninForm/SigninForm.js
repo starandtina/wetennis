@@ -57,7 +57,7 @@ export class SigninForm extends React.Component {
           floatingLabelText="密码"
           {...password}
         />
-        <Link to='/forgetPassword' className={`pull-right ${classes['forget-password-link']} `}>忘记密码？</Link>
+        <Link to='/dashboard/resetPassword' className={`pull-right ${classes['forget-password-link']} `}>忘记密码？</Link>
         <div className={`clearfix ${classes['button-groups']}`}>
           {this.props.user.error ? <p className='u-errorText'>{this.props.user.error.message}</p> : ''}
           <button type="submit" className="btn btn-default btn-lg btn-block" disabled={submitting}>登录</button>
