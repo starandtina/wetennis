@@ -7,7 +7,6 @@ import cs from "./EventStatus.scss";
 export default class EventStatus extends React.Component {
   render() {
     const {currentStatus, status} = this.props;
-    console.log("currentStatus: ", currentStatus);
     return (
       <div className={cs.container}>
         <SelectField

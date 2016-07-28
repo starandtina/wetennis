@@ -1,4 +1,4 @@
-const ROOT_URL = 'http://localhost:8000/api'
+const ROOT_URL = 'http://localhost:3000/api'
 
 // Dashbaord
 export const signUp = `${ROOT_URL}/signup`

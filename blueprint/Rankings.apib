@@ -1,0 +1,441 @@
+# Group 排名相关的API
+
+## 排名过滤条件 [/rankingsFilter]
+
+需要返回一个Array 包含以下字段
+
++ text: 过滤条件名
++ value: 过滤条件值
++ title: 过滤条件对应的标题
+
+
+### 获取过滤选项 [POST]
+
++ Response 200 (application/json)
+
+  + Body
+
+      {
+          "code": 0,
+          "data": [
+              {
+                  "text": "所有",
+                  "value": 0,
+                  "title": "全部比赛"
+              },
+              {
+                  "text": "青少年",
+                  "value": 1,
+                  "title": "青少年组 比赛"
+              },
+              {
+                  "text": "青年",
+                  "value": 2,
+                  "title": "青年组 比赛"
+              },
+              {
+                  "text": "男子双打",
+                  "value": 3,
+                  "title": "精英组 男子双打"
+              },
+              {
+                  "text": "男子单打",
+                  "value": 4,
+                  "title": "精英组 男子单打"
+              },
+              {
+                  "text": "女子双打",
+                  "value": 5,
+                  "title": "精英组 女子双打"
+              },
+              {
+                  "text": "女子单打",
+                  "value": 6,
+                  "title": "精英组 女子单打"
+              },
+              {
+                  "text": "中年",
+                  "value": 7,
+                  "title": "中年组 比赛"
+              },
+              {
+                  "text": "老年",
+                  "value": 8,
+                  "title": "老年组 比赛"
+              }
+          ]
+      }
+
+## 排名列表 [/rankings]
+
+需要返回一个Array 包含以下字段
+
++ pts: pts值
++ ranking: 排名
++ type: 过滤条件对应的值
++ user: 用户ID
++ userimage: 用户头像
++ username: 用户名
+
+### 获取过滤选项 [POST]
+
++ Response 200 (application/json)
+
+  + Body
+
+    {
+        "code": 0,
+        "data": [
+            {
+                "type": 1,
+                "ranking": 1,
+                "username": "陈韵竹",
+                "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120",
+                "userid": 1,
+                "pts": 17600
+            },
+            {
+                "type": 2,
+                "ranking": 2,
+                "username": "陈韵竹",
+                "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120",
+                "userid": 2,
+                "pts": 17600
+            },
+            {
+                "type": 3,
+                "ranking": 3,
+                "username": "陈韵竹",
+                "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120",
+                "userid": 3,
+                "pts": 17600
+            },
+            {
+                "type": 4,
+                "ranking": 4,
+                "username": "陈韵竹",
+                "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120",
+                "userid": 4,
+                "pts": 17600
+            },
+            {
+                "type": 5,
+                "ranking": 5,
+                "username": "陈韵竹",
+                "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120",
+                "userid": 5,
+                "pts": 17600
+            },
+            {
+                "type": 6,
+                "ranking": 6,
+                "username": "陈韵竹",
+                "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120",
+                "userid": 6,
+                "pts": 17600
+            },
+            {
+                "type": 7,
+                "ranking": 10,
+                "username": "陈韵竹",
+                "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120",
+                "userid": 7,
+                "pts": 17600
+            },
+            {
+                "type": 8,
+                "ranking": 100,
+                "username": "陈韵竹",
+                "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120",
+                "userid": 8,
+                "pts": 17600
+            }
+        ]
+    }
+
+## 排名详细信息 [/rankingDetailsInfo]
+
+需要返回一个Array 包含以下字段
+
++ account: 用户名
++ back: 反拍
++ borthday: 生日
++ city: 城市
++ constellation: 星座
++ doubleAccumulatePoints: 双打积分
++ doubleNumber: 双打
++ doubleTabInfo: 是否有双打排名信息
++ front: 正拍
++ like: 是否关注这个用户
++ singleAccumulatePoints: 单打积分
++ singleNumber: 单打
++ singleTabInfo: 是否有单打排名信息
++ stature: 身高
++ userimage: 用户大图
++ username: 用户名
++ usersex: 用户性别
++ weight: 体重
++ year: 网球元年
+
+### 获取过滤选项 [POST]
+
++ Response 200 (application/json)
+
+  + Body
+
+      {
+          "code": 0,
+          "data": {
+              "usersex": 1,
+              "username": "陈韵竹",
+              "userimage": "http://hbimg.b0.upaiyun.com/02d7023e92a7227116fad577b50fbcdf0aab4e4ead0bb-lryBLC_fw658",
+              "borthday": "1988.08.29",
+              "constellation": "处女座",
+              "singleNumber": 1000,
+              "doubleNumber": 100,
+              "like": false,
+              "singleAccumulatePoints": 2000,
+              "doubleAccumulatePoints": 2000,
+              "account": "temachen",
+              "year": "2006",
+              "city": "中国 成都 锦江区",
+              "stature": "170cm",
+              "weight": "50kg",
+              "front": "右手",
+              "back": "双手",
+              "singleTabInfo": true,
+              "doubleTabInfo": true
+          }
+      }
+
+## 排名详细单打or双打排名tab [/rankingDetailsInfo]
+
+需要返回一个Object 包含以下字段
+
++ totalwl: 总计比分
++ ytdwl: 今年比分
++ latestMatch (Array): 最新比赛
+  + gameTime: 比赛用时
+  + matches: 比赛标题
+  + teams (Array): 比赛队伍信息
+    + win (Boolean): 是否取胜
+    + score (Number): 得分
+    + user (Array): 队员
+      + username: 队员名
+      + userimage: 队员头像
++ gameResult: 比赛成绩
+  + gameTime: 比赛用时
+  + matches: 比赛标题
+  + teams (Array): 比赛队伍信息
+    + win (Boolean): 是否取胜
+    + score (Number): 得分
+    + user (Array): 队员
+      + username: 队员名
+      + userimage: 队员头像
+
+
+### 获取过滤选项 [POST]
+
++ Response 200 (application/json)
+
+  + Body
+
+      {
+          "code": 0,
+          "data": {
+              "ytdwl": "12 : 1",
+              "totalwl": "22 : 1",
+              "latestMatch": {
+                  "title": "华侨城*东岸2016成都业余网球精英赛 成都站",
+                  "subtitle": "2017.2.16 - 3.16 | 青年组 | 男子单打",
+                  "games": [
+                      {
+                          "gameTime": "02:00:00",
+                          "matches": "第一场",
+                          "teams": [
+                              {
+                                  "users": [
+                                      {
+                                          "username": "陈韵竹",
+                                          "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                                      },
+                                      {
+                                          "username": "张珊",
+                                          "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                                      }
+                                  ],
+                                  "win": true,
+                                  "score": 3
+                              },
+                              {
+                                  "users": [
+                                      {
+                                          "username": "陈韵竹",
+                                          "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                                      },
+                                      {
+                                          "username": "张珊",
+                                          "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                                      }
+                                  ],
+                                  "win": false,
+                                  "score": 2
+                              }
+                          ]
+                      }
+                  ]
+              },
+              "gameResult": [
+                  {
+                      "title": "华侨城*东岸2016成都业余网球精英赛 成都站",
+                      "subtitle": "2017.2.16 - 3.16 | 青年组 | 男子单打",
+                      "pts": 1500,
+                      "games": [
+                          {
+                              "gameTime": "02:00:00",
+                              "matches": "第一场",
+                              "teams": [
+                                  {
+                                      "users": [
+                                          {
+                                              "username": "陈韵竹",
+                                              "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                                          },
+                                          {
+                                              "username": "张珊",
+                                              "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                                          }
+                                      ],
+                                      "win": true,
+                                      "score": 3
+                                  },
+                                  {
+                                      "users": [
+                                          {
+                                              "username": "陈韵竹",
+                                              "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                                          },
+                                          {
+                                              "username": "张珊",
+                                              "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                                          }
+                                      ],
+                                      "win": false,
+                                      "score": 2
+                                  }
+                              ]
+                          },
+                          {
+                              "gameTime": "02:00:00",
+                              "matches": "小组资格赛",
+                              "teams": [
+                                  {
+                                      "users": [
+                                          {
+                                              "username": "陈韵竹",
+                                              "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                                          },
+                                          {
+                                              "username": "张珊",
+                                              "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                                          }
+                                      ],
+                                      "win": true,
+                                      "score": 3
+                                  },
+                                  {
+                                      "users": [
+                                          {
+                                              "username": "陈韵竹",
+                                              "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                                          },
+                                          {
+                                              "username": "张珊",
+                                              "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                                          }
+                                      ],
+                                      "win": false,
+                                      "score": 2
+                                  }
+                              ]
+                          }
+                      ]
+                  },
+                  {
+                      "title": "华侨城*东岸2016成都业余网球精英赛 成都站",
+                      "subtitle": "2017.2.16 - 3.16 | 青年组 | 男子单打",
+                      "pts": 1500,
+                      "games": [
+                          {
+                              "gameTime": "02:00:00",
+                              "matches": "第一场",
+                              "teams": [
+                                  {
+                                      "users": [
+                                          {
+                                              "username": "陈韵竹",
+                                              "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                                          },
+                                          {
+                                              "username": "张珊",
+                                              "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                                          }
+                                      ],
+                                      "win": true,
+                                      "score": 3
+                                  },
+                                  {
+                                      "users": [
+                                          {
+                                              "username": "陈韵竹",
+                                              "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                                          },
+                                          {
+                                              "username": "张珊",
+                                              "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                                          }
+                                      ],
+                                      "win": false,
+                                      "score": 2
+                                  }
+                              ]
+                          },
+                          {
+                              "gameTime": "02:00:00",
+                              "matches": "小组资格赛",
+                              "teams": [
+                                  {
+                                      "users": [
+                                          {
+                                              "username": "陈韵竹",
+                                              "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                                          },
+                                          {
+                                              "username": "张珊",
+                                              "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                                          }
+                                      ],
+                                      "win": true,
+                                      "score": 3
+                                  },
+                                  {
+                                      "users": [
+                                          {
+                                              "username": "陈韵竹",
+                                              "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                                          },
+                                          {
+                                              "username": "张珊",
+                                              "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                                          }
+                                      ],
+                                      "win": false,
+                                      "score": 2
+                                  }
+                              ]
+                          }
+                      ]
+                  }
+              ]
+          }
+      }

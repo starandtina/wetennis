@@ -286,7 +286,7 @@
           "data": "ok"
       }
 
-## 发表评论 [/eventCommentLike]
+## 发表评论 [/sendComment]
 
 返回code为0, data值为ok 时，表示评论成功，其他值失败
 
@@ -526,52 +526,27 @@
             }
 
 
-# Group 未确定API，暂时不做
+## 赛事得分 [/api/eventScore]
 
-## Event [/api/events/{event_id}/score]
+按比赛分组返回一个数组
 
-得分
-按比赛分组返回一个数组 如：女子单打，青年精英赛等 每个分组中需要包含以下字段
++ completed (boolean): 比赛是否已完成
++ gameTime (String): 比赛用时
++ group (String): 比赛分组
++ matches (String): 比赛场次
++ status (String): 比赛状态
++ team (Array): 比赛队伍
+  + currentScore (Number): 当前得分分数
+  + currentScoreWin (Boolean): 当前得分是否胜利
+  + first (Boolean): 是否发球
+  + score (Number): 得分
+  + win (Boolean): 是否胜利
+  + winGameNumber (Number): 胜利场次
+  + user (Array): 队员(双打传一组数据，双打两组)
+    + username (String): 用户名
+    + Userimage (String): 用户头像
 
-+ name: (String, required) - event name
-+ groupMatch: (Array, required) - group match of this event
-  + memberName: (String, required) - member name
-  + memberThumb: (String, required) - member thumb image
-  + menberEnglishName: (String, required) - member english name
-  + numberOfPlay: (Number, required) - member have already played a few game
-  + outcome: (Number, required) - outcome of games
-  + outcomeGame: (Number, required) - outcome of score
-+ firstRound: (Array, required) - first round of this event
-  + memberName: (String, required) - member name
-  + memberThumb: (String, required) - member thumb image
-  + menberEnglishName: (String, required) - member english name
-  + numberOfPlay: (Number, required) - member have already played a few game
-  + outcome: (Number, required) - outcome of games
-  + outcomeGame: (Number, required) - outcome of score
-+ secondRound: (Array, required) - second round of this event
-  + memberName: (String, required) - member name
-  + memberThumb: (String, required) - member thumb image
-  + menberEnglishName: (String, required) - member english name
-  + numberOfPlay: (Number, required) - member have already played a few game
-  + outcome: (Number, required) - outcome of games
-  + outcomeGame: (Number, required) - outcome of score
-+ semifinal: (Array, required) - semifinal of this event
-  + memberName: (String, required) - member name
-  + memberThumb: (String, required) - member thumb image
-  + menberEnglishName: (String, required) - member english name
-  + numberOfPlay: (Number, required) - member have already played a few game
-  + outcome: (Number, required) - outcome of games
-  + outcomeGame: (Number, required) - outcome of score
-+ final: (Array, required) - final of this event
-  + memberName: (String, required) - member name
-  + memberThumb: (String, required) - member thumb image
-  + menberEnglishName: (String, required) - member english name
-  + numberOfPlay: (Number, required) - member have already played a few game
-  + outcome: (Number, required) - outcome of games
-  + outcomeGame: (Number, required) - outcome of score
-
-
-### Event Score [POST]
+### 获取赛事得分列表 [POST]
 
 + method (string) - The calling method
 
@@ -581,916 +556,154 @@
 
         {
             "method": "eventScore",
-            "eventId": 1,
+            "id": 1,
         }
 
 + Response 200 (application/json)
 
   + Body
 
-            {
-                "code": 0,
-                "errorMsg": "",
-                "data": [
-                  {
-                    name: "青年组 精英B",
-                    groupMatch: [
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                    ],
-                    firstRound: [
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                    ],
-                    secondRound: [
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                    ],
-                    semifinal: [
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                    ],
-                    final: [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                    ],
-                  },
-                  {
-                    name: "女子单打",
-                    groupMatch: [
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                    ],
-                    firstRound: [
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                    ],
-                    secondRound: [
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                    ],
-                    semifinal: [
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                      [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                      ],
-                    ],
-                    final: [
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                        {
-                          memberName:"李韵竹",
-                          memberThumb: "",
-                          menberEnglishName: "teamchen",
-                          numberOfPlay: 3,
-                          outcome: "3:0",
-                          outcomeGame: "14:1"
-                        },
-                    ],
-                  },
-                ]
-            }
+      {
+          "code": 0,
+          "data": [
+              {
+                  "matches": "第一场",
+                  "group": "精英B | 女子双打 | 小组资格赛 | 第1组",
+                  "completed": true,
+                  "gameTime": "01:11:06",
+                  "type": 1,
+                  "status": 1,
+                  "team": [
+                      {
+                          "users": [
+                              {
+                                  "username": "陈韵竹",
+                                  "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                              },
+                              {
+                                  "username": "张珊",
+                                  "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                              }
+                          ],
+                          "win": true,
+                          "score": 3,
+                          "winGameNumber": 3,
+                          "currentScore": "40",
+                          "currentScoreWin": true,
+                          "first": true
+                      },
+                      {
+                          "users": [
+                              {
+                                  "username": "陈韵竹",
+                                  "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                              },
+                              {
+                                  "username": "张珊",
+                                  "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                              }
+                          ],
+                          "win": false,
+                          "score": 2,
+                          "winGameNumber": 2,
+                          "currentScore": "40",
+                          "currentScoreWin": false,
+                          "first": false
+                      }
+                  ]
+              },
+              {
+                  "matches": "第二场",
+                  "group": "精英B | 女子双打 | 小组资格赛 | 第1组",
+                  "completed": true,
+                  "gameTime": "01:11:06",
+                  "type": 2,
+                  "status": 2,
+                  "team": [
+                      {
+                          "users": [
+                              {
+                                  "username": "陈韵竹",
+                                  "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                              },
+                              {
+                                  "username": "张珊",
+                                  "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                              }
+                          ],
+                          "win": true,
+                          "score": 3
+                      },
+                      {
+                          "users": [
+                              {
+                                  "username": "陈韵竹",
+                                  "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                              },
+                              {
+                                  "username": "张珊",
+                                  "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                              }
+                          ],
+                          "win": false,
+                          "score": 2
+                      }
+                  ]
+              },
+              {
+                  "matches": "第三场",
+                  "group": "精英B | 女子双打 | 小组资格赛 | 第1组",
+                  "completed": true,
+                  "gameTime": "01:11:06",
+                  "type": 3,
+                  "status": 3,
+                  "team": [
+                      {
+                          "users": [
+                              {
+                                  "username": "陈韵竹",
+                                  "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                              },
+                              {
+                                  "username": "张珊",
+                                  "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                              }
+                          ],
+                          "win": true,
+                          "score": 3
+                      },
+                      {
+                          "users": [
+                              {
+                                  "username": "陈韵竹",
+                                  "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                              },
+                              {
+                                  "username": "张珊",
+                                  "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                              }
+                          ],
+                          "win": false,
+                          "score": 2
+                      }
+                  ]
+              }
+          ]
+      }
 
-## Event [/api/events/{event_id}/schedule]
+## 赛程过滤条件 [/api/eventScheduleFilter]
 
-赛程
-有三种filter，时间，地点，不同的比赛
-场次为一个数组，包含numberOfPlay下所有的字段
+返回一个Object
 
-+ dateFilter: (Array, required) - date list of this schedule
-  + text: (String, required) - text of this filter
-  + value: (String, required) - value of this filter
-+ placeFilter: (Array, required) - place list of this schedule
-  + text: (String, required) - text of this filter
-  + value: (String, required) - value of this filter
-+ groupFilter: (Array, required) - group list of this schedule
-  + text: (String, required) - text of this filter
-  + value: (String, required) - value of this filter
-+ numberOfPlay: (Array, required) - number of showing of this schedule
-  + memberName: (String, required) - member name
-  + memberThumb: (String, required) - member thumb image
-  + menberEnglishName: (String, required) - member english name
++ date (Array): 日期过滤器
+  + text (String): 日期显示
+  + value (String): 日期值与赛程中date 过滤条件对应
++ location (Array): 地址过滤器
+  + text (String): 地址显示
+  + value (String): 地址值与赛程中location 过滤条件对应
 
 
-### Event Schedule [POST]
+### 获取赛程过滤条件 [POST]
 
 + method (string) - The calling method
 
@@ -1499,70 +712,202 @@
   + Body
 
         {
-            "method": "eventSchedule",
-            "eventId": 1,
-            "dateFilter": "auto",
-            "placeFilter": "auto",
-            "groupFilter": "auto",
+            "id": 1
         }
 
 + Response 200 (application/json)
 
   + Body
 
-            {
-                "code": 0,
-                "errorMsg": "",
-                "data": {
-                  "dateFilter": [
-                    {"text": "2017.2.16", "value": "2017.2.16"},
-                    {"text": "2017.2.16", "value": "2017.2.16"},
-                    {"text": "2017.2.16", "value": "2017.2.16"},
-                  ],
-                  "placeFilter": [
-                    {"text": "一号球场", "value": "1"},
-                    {"text": "二号球场", "value": "2"},
-                  ],
-                  "groupFilter": [
-                    {"text": "精英B", "value": "1"},
-                    {"text": "女子双打", "value": "2"},
-                    {"text": "小组资格赛", "value": "3"},
-                    {"text": "第一组", "value": "4"},
-                  ],
-                  "numberOfPlay": [
-                    [
-                      [
-                        {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                        {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                      ],
-                      [
-                        {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                        {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                      ],
-                    ],
-                    [
-                      [
-                        {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                      ],
-                      [
-                        {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                      ],
-                    ],
-                    [
-                      [
-                        {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                        {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                      ],
-                      [
-                        {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                        {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                      ],
-                    ],
+      {
+          "code": 0,
+          "data": {
+              "location": [
+                  {
+                      "text": "全部",
+                      "value": 0
+                  },
+                  {
+                      "text": "电子科技大学体育场一号球馆",
+                      "value": 1
+                  },
+                  {
+                      "text": "电子科技大学体育场二号球馆",
+                      "value": 2
+                  }
+              ],
+              "date": [
+                  {
+                      "text": "所有",
+                      "value": 0
+                  },
+                  {
+                      "text": "2017.1.12",
+                      "value": 1
+                  },
+                  {
+                      "text": "2017.2.12",
+                      "value": 2
+                  },
+                  {
+                      "text": "2017.3.12",
+                      "value": 2
+                  },
+                  {
+                      "text": "2017.4.12",
+                      "value": 3
+                  },
+                  {
+                      "text": "2017.5.12",
+                      "value": 4
+                  },
+                  {
+                      "text": "2017.6.12",
+                      "value": 5
+                  },
+                  {
+                      "text": "2017.7.12",
+                      "value": 6
+                  },
+                  {
+                      "text": "2017.8.12",
+                      "value": 7
+                  },
+                  {
+                      "text": "2017.9.12",
+                      "value": 8
+                  }
+              ]
+          }
+      }
+
+
+## 赛程 [/api/eventSchedule]
+
+返回一个Array
+
++ completed (boolean): 比赛是否已完成
++ gameTime (String): 比赛用时
++ group (String): 比赛分组
++ matches (String): 比赛场次
++ location (String): 与location filter的value对应 
++ date (String): 与date filter的value对应 
++ team (Array): 比赛队伍
+  + currentScore (Number): 当前得分分数
+  + currentScoreWin (Boolean): 当前得分是否胜利
+  + first (Boolean): 是否发球
+  + score (Number): 得分
+  + win (Boolean): 是否胜利
+  + winGameNumber (Number): 胜利场次
+  + user (Array): 队员(双打传一组数据，双打两组)
+    + username (String): 用户名
+    + Userimage (String): 用户头像
+
+### 获取赛程列表 [POST]
+
++ method (string) - The calling method
+
++ Request (application/json)
+
+  + Body
+
+        {
+            "id": 1
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+      {
+          "code": 0,
+          "data": [
+              {
+                  "matches": "第一场",
+                  "group": "精英B | 女子双打 | 小组资格赛 | 第1组",
+                  "completed": true,
+                  "gameTime": "01:11:06",
+                  "date": 1,
+                  "location": 1,
+                  "team": [
+                      {
+                          "users": [
+                              {
+                                  "username": "陈韵竹",
+                                  "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                              },
+                              {
+                                  "username": "张珊",
+                                  "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                              }
+                          ],
+                          "win": true,
+                          "score": 3,
+                          "winGameNumber": 3,
+                          "currentScore": "40",
+                          "currentScoreWin": true,
+                          "first": true
+                      },
+                      {
+                          "users": [
+                              {
+                                  "username": "陈韵竹",
+                                  "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                              },
+                              {
+                                  "username": "张珊",
+                                  "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                              }
+                          ],
+                          "win": false,
+                          "score": 2,
+                          "winGameNumber": 2,
+                          "currentScore": "40",
+                          "currentScoreWin": false,
+                          "first": false
+                      }
                   ]
-                }
-            }
-
-
+              },
+              {
+                  "matches": "第一场",
+                  "group": "精英B | 女子双打 | 小组资格赛 | 第1组",
+                  "completed": true,
+                  "gameTime": "01:11:06",
+                  "date": 2,
+                  "location": 2,
+                  "team": [
+                      {
+                          "users": [
+                              {
+                                  "username": "陈韵竹",
+                                  "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                              },
+                              {
+                                  "username": "张珊",
+                                  "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                              }
+                          ],
+                          "win": true,
+                          "score": 3
+                      },
+                      {
+                          "users": [
+                              {
+                                  "username": "陈韵竹",
+                                  "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                              },
+                              {
+                                  "username": "张珊",
+                                  "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"
+                              }
+                          ],
+                          "win": false,
+                          "score": 2
+                      }
+                  ]
+              }
+          ]
+      }
 
 ## Event [/api/events/{event_id}/drawResult]
 

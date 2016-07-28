@@ -13,7 +13,7 @@ import cs from "./EventContainer.scss";
 
 class EventContainer extends React.Component {
   componentDidMount() {
-    const {action: {getFilter, getEventList}, currentFilter} = this.props;
+    const {action: {getFilter, getEventList, setCurrentFilter}, currentFilter} = this.props;
     // get initial list data from server
     getFilter().then(data => {
       const {status, location} = data.payload.data;
@@ -28,6 +28,7 @@ class EventContainer extends React.Component {
   render() {
     const {eventList, location, status, action, children, currentFilter} = this.props;
     const s = currentFilter;
+    console.log("currentFilter:", s);
 
     let content = (
       <div className={cs.container}>

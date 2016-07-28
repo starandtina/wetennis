@@ -8,14 +8,13 @@ const router = Router({
   prefix: "/api"
 });
 
-app.use(body());
-app.use(cors({
-  credentials: true
-}));
+// app.use(body());
+// app.use(cors({
+//   credentials: true
+// }));
 
 
 router.post('/:method', function (rep, res) {
-  console.log("body:", this.request.body);
   var fs = require('fs')
   var path = require('path')
   var file = path.resolve(__dirname, 'JSON', rep.params.method + '.json')

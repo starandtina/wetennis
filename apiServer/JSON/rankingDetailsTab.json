@@ -47,11 +47,7 @@
                   {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
                 ],
                 "win": true,
-                "score": 3,
-                "winGameNumber": 3,
-                "currentScore": "40",
-                "currentScoreWin": true,
-                "first": true
+                "score": 3
               },
               {
                 "users": [
@@ -59,11 +55,7 @@
                   {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
                 ],
                 "win": false,
-                "score": 2,
-                "winGameNumber": 2,
-                "currentScore": "40",
-                "currentScoreWin": false,
-                "first": false
+                "score": 2
               }
             ]
           },
@@ -106,11 +98,7 @@
                   {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
                 ],
                 "win": true,
-                "score": 3,
-                "winGameNumber": 3,
-                "currentScore": "40",
-                "currentScoreWin": true,
-                "first": true
+                "score": 3
               },
               {
                 "users": [
@@ -118,11 +106,7 @@
                   {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
                 ],
                 "win": false,
-                "score": 2,
-                "winGameNumber": 2,
-                "currentScore": "40",
-                "currentScoreWin": false,
-                "first": false
+                "score": 2
               }
             ]
           },
