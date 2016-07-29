@@ -33,7 +33,8 @@ const validate = (values) => {
     errors.activationCode = '请输入验证码';
     hasErrors = true;
   }
-   return hasErrors && errors;
+  
+  return hasErrors && errors;
 }
 
 const mapStateToProps = (state) => ({

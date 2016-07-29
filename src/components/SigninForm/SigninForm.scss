@@ -1,4 +1,4 @@
-@import "variables";
+@import 'variables';
 
 .form
 {
@@ -12,6 +12,9 @@
 
 .forget-password-link
 {
+    padding-top: 20 * $px1;
+
+    cursor: pointer;
+
     color: white;
-    padding-top: 20 * $px1
 }

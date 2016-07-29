@@ -22,7 +22,6 @@ export class SignupForm extends React.Component {
 
   state = {
     buttonSuspending: false,
-    leftTime: 60,
     Tip: '验证',
   };
 
@@ -44,6 +43,38 @@ export class SignupForm extends React.Component {
     })
   }
 
+  startTiming = () => {
+    let time = this.state.Tip - 1;
+    this.setState({
+      Tip: time,
+    })
+    if(time < 1){
+      window.clearInterval(this.thisEvent);
+      this.setState({
+        buttonSuspending: false,
+        Tip: '验证',
+      })
+    }
+  }
+
+  sendactivationCode = () => {
+    const { checkActivationCode, fields: { phone } } = this.props;
+
+    if (phone.error) {
+      return
+    }
+
+    checkActivationCode({
+      phone: phone.value
+    })
+
+    this.setState({
+      buttonSuspending: true,
+      Tip: 180,
+    })
+    this.thisEvent = setInterval(this.startTiming.bind(this), 1000)
+  }
+
   render () {
     const {
       fields: { username, password, phone, activationCode },
@@ -58,34 +89,12 @@ export class SignupForm extends React.Component {
     };
 
     if(!username.error && userNameDuplicated){
-      username.error = 'userNameDuplicated';
+      username.error = '用户名重复';
     }
     if(!phone.error && phoneDuplicated){
-      phone.error = 'phoneDuplicated';
+      phone.error = '电话号码重复';
     }
 
-    const sendactivationCode = () => {
-      const { checkActivationCode, fields: { phone } } = this.props;
-      checkActivationCode({phone: phone.value});
-      this.setState({
-        buttonSuspending: true,
-        Tip: 60,
-      })
-      window.startTiming = () => {
-        let time = this.state.Tip - 1;
-        this.setState({
-          Tip: time,
-        })
-        if(time < 1){
-          clearInterval(window.thisEvent);
-          this.setState({
-            buttonSuspending: false,
-            Tip: '验证',
-          })
-        }
-      }
-      window.thisEvent = setInterval("startTiming()", 1000);
-    };
     return (
       <form className='registration-form' onSubmit={handleSubmit(this.props.signUpUserThenSetCookie.bind(this))}>
         <Grid>
@@ -105,7 +114,7 @@ export class SignupForm extends React.Component {
                 style={{'marginTop': '28px'}}
                 label={this.state.Tip}
                 disabled={this.state.buttonSuspending}
-                onClick={sendactivationCode}
+                onClick={this.sendactivationCode}
               />
             </Col>
           </Row>

@@ -61,7 +61,7 @@ class SettingsForm extends React.Component {
 
   state = {
     buttonSuspending: false,
-    leftTime: 60,
+    leftTime: 180,
     Tip: '验证',
   };
 
