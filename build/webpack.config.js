@@ -1,4 +1,5 @@
 import webpack from 'webpack'
+import path from 'path'
 import cssnano from 'cssnano'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
@@ -159,8 +160,8 @@ const PATHS_TO_TREAT_AS_CSS_MODULES = [
 if (config.compiler_css_modules) {
   PATHS_TO_TREAT_AS_CSS_MODULES.push(
     // We only treat `src/routes` and `src/components` styles as CSS modules
-    (paths.client() + '/routes').replace(/[\^\$\.\*\+\-\?\=\!\:\|\\\/\(\)\[\]\{\}\,]/g, '\\$&'),
-    (paths.client() + '/components').replace(/[\^\$\.\*\+\-\?\=\!\:\|\\\/\(\)\[\]\{\}\,]/g, '\\$&')
+    (paths.client() + path.normalize('/routes')).replace(/[\^\$\.\*\+\-\?\=\!\:\|\\\/\(\)\[\]\{\}\,]/g, '\\$&'),
+    (paths.client() + path.normalize('/components')).replace(/[\^\$\.\*\+\-\?\=\!\:\|\\\/\(\)\[\]\{\}\,]/g, '\\$&')
   )
 }
 
@@ -271,6 +272,7 @@ if (!__DEV__) {
     loader.loaders && loader.loaders.find((name) => /css/.test(name.split('?')[0]))
   ).forEach((loader) => {
     const [first, ...rest] = loader.loaders
+
     loader.loader = ExtractTextPlugin.extract(first, rest.join('!'))
     Reflect.deleteProperty(loader, 'loaders')
   })

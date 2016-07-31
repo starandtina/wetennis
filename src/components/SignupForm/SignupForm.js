@@ -15,9 +15,12 @@ export class SignupForm extends React.Component {
     if(nextProps.user.status === 'authenticated' && nextProps.user.user) {
       const locationState = this.props.location.state
 
-      document.querySelector('body').classList.remove('u-backgroundColorGreen')
       this.props.push('/');
     }
+  }
+
+  componentWillUnmount() {
+    document.querySelector('body').classList.remove('u-backgroundColorGreen')
   }
 
   state = {
