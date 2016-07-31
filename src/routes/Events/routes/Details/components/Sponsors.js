@@ -4,6 +4,9 @@ import ccs from "./common.scss";
 import cs from "./Sponsor.scss";
 
 const Notice = ({data}) => {
+  if (!data || data.length === 0) {
+    return <div></div>;
+  }
   return (
     <div>
       <h3 className={`${ccs.boxTitle}`}>赞助商</h3>

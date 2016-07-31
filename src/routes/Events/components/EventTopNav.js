@@ -4,6 +4,8 @@ import FullSelector from "components/FullSelector";
 import Drawer from "material-ui/Drawer";
 import MenuItem from 'material-ui/MenuItem';
 
+import cs from "./EventTopNav.scss";
+
 export default class EventTopNav extends React.Component {
   state = {
     locationDisplay: false
@@ -16,7 +18,7 @@ export default class EventTopNav extends React.Component {
     if (location.length > 0) {
       for (let i = 0, l = location.length; i < l; i++) {
         let v = location[i];
-        if (v.value === currentLocation) {
+        if (v.value === Number(currentLocation)) {
           currentFilterText = v.text;
           break;
         }
@@ -25,49 +27,29 @@ export default class EventTopNav extends React.Component {
     return (
       <TopNav title="赛事列表">
         <div ref="left">
-          <div onClick={this.showLocationSelector}>{currentFilterText}</div>
-          <Drawer
-            open={locationDisplay}
-            docked={false}
-            onRequestChange={this.hideLocationSelector}
-          >
-            {location.map((item, index) => {
-              let active = false;
-              if (item.value === currentLocation) {
-                active = true;
-              }
-              return (
-                <MenuItem
-                  onClick={this.selectLocation.bind(this, item.value)}
-                  key={index}
-                  checked={active}
-                >{item.text}</MenuItem>
-              );
-            })}
-          </Drawer>
+          <div className={cs.leftButton}>
+            <i className="material-icons">place</i>
+            {currentFilterText}
+            <select
+              className="dropdown"
+              onChange={this.selectLocation.bind(this)}
+            >
+              {location.map((item, index) => {
+                return (
+                  <option key={index} value={item.value}>{item.text}</option>
+                );
+              })}
+            </select>
+          </div>
         </div>
         <div ref="right"></div>
       </TopNav>
     );
   }
 
-  showLocationSelector = () => {
-    this.setState({
-      locationDisplay: true
-    });
-  }
-
-  hideLocationSelector = () => {
-    this.setState({
-      locationDisplay: false
-    });
-  }
-
-  selectLocation(v) {
+  selectLocation(e) {
+    const v = e.target.value;
     const {selectLocation} = this.props;
     selectLocation(v);
-    this.setState({
-      locationDisplay: false 
-    });
   }
 }

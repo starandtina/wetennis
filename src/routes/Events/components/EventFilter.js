@@ -3,18 +3,19 @@ import cs from "./EventFilter.scss";
 
 export default class EventFilter extends React.Component {
   render() {
+    const {current} = this.props;
     return (
       <div className={cs.container}>
         <div
-          className={cs["item-active"]}
+          className={`${current === "ALL" ? cs["item-active"] : cs.item}`}
           onClick={this.eventFilter.bind(this, "ALL")}
         >所有赛事</div>
         <div
-          className={cs.item}
+          className={`${current === "RECOMMENDATION" ? cs["item-active"] : cs.item}`}
           onClick={this.eventFilter.bind(this, "RECOMMENDATION")}
         >推荐赛事</div>
         <div
-          className={cs.item}
+          className={`${current === "ME" ? cs["item-active"] : cs.item}`}
           onClick={this.eventFilter.bind(this, "ME")}
         >我的赛事</div>
       </div>

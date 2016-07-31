@@ -8,6 +8,7 @@ import EventFilter from "../components/EventFilter";
 import EventList from "../components/EventList";
 import EventTopNav from "../components/EventTopNav";
 import EventStatus from "../components/EventStatus";
+import Footer from "components/Footer";
 
 import cs from "./EventContainer.scss";
 
@@ -28,7 +29,6 @@ class EventContainer extends React.Component {
   render() {
     const {eventList, location, status, action, children, currentFilter} = this.props;
     const s = currentFilter;
-    console.log("currentFilter:", s);
 
     let content = (
       <div className={cs.container}>
@@ -47,6 +47,7 @@ class EventContainer extends React.Component {
           currentStatus={s.status}
         />
         <EventList data={eventList} />
+        <Footer activeNavTab='EVENTS' />
       </div>
     )
 

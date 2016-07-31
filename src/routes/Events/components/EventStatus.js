@@ -1,31 +1,41 @@
 import React from "react";
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
 
 import cs from "./EventStatus.scss";
 
 export default class EventStatus extends React.Component {
   render() {
     const {currentStatus, status} = this.props;
+    let text = "";
+    for (let i = 0, l = status.length; i < l; i++) {
+      let v = status[i];
+      if (v.value === Number(currentStatus)) {
+        text = v.text;
+        break;
+      }
+    }
     return (
       <div className={cs.container}>
-        <SelectField
-          value={currentStatus || 0}
-          onChange={this.selectStatus}
-          underlineStyle={{display: "none"}}
-        >
-          {status.map((item, index) => {
-            return (
-              <MenuItem key={index} value={item.value} primaryText={item.text} />
-            );
-          })}
-        </SelectField>
+        <span>
+          {text}
+          <i className="material-icons">keyboard_arrow_down</i>
+          <select
+            className="dropdown"
+            value={currentStatus || 0}
+            onChange={this.selectStatus}
+          >
+            {status.map((item, index) => {
+              return (
+                <option key={index} value={item.value}>{item.text}</option>
+              );
+            })}
+          </select>
+        </span>
       </div>
     );
   }
 
-  selectStatus = (e, index, value) => {
+  selectStatus = (e) => {
     const {selectStatus} = this.props;
-    selectStatus(value);
+    selectStatus(e.target.value);
   }
 }

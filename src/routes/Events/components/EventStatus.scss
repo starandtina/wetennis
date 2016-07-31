@@ -1,5 +1,16 @@
 @import "variables";
 
 .container {
-  text-align: right;
+  font-size: $px12;
+  display: flex;
+  justify-content: flex-end;
+  i {
+    font-size: 15*$px1;
+  }
+  > span {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-right: 15*$px1;
+  }
 }

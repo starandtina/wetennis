@@ -1,0 +1,12 @@
+@import "variables.scss";
+
+.leftButton {
+  position: relative;
+  color: $mainColor;
+  display: flex;
+  align-items: center;
+  padding-left: 5*$px1;
+  i {
+    font-size: 18*$px1;
+  }
+}

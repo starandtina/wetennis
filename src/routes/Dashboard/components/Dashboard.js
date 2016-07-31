@@ -6,7 +6,7 @@ import style from './Dashboard.scss';
 
 export class Dashboard extends React.Component {
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
      //if (!this.props.user.user || (this.props.user.user && !nextProps.user.user)) {
      //  this.props.push('/dashboard/signup')
      //}

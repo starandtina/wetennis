@@ -1,0 +1,25 @@
+@import "variables.scss";
+
+.navTransiton {
+  transition: all .5s;
+}
+
+.nav {
+  background-color: transparent;
+  border-bottom: none;
+  i {
+    color: #fff;
+  }
+}
+
+.topRightButton {
+  display: flex;
+  height: $topNavHeight;
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5*$px1;
+    color: $mainColor;
+  }
+}

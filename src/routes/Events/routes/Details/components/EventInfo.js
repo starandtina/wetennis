@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from "react-router";
 import cs from "./EventInfo.scss";
 
 export default class EventInfo extends React.Component {
@@ -40,15 +40,17 @@ export default class EventInfo extends React.Component {
       score,
       schedule,
     } = this.props.data;
+    const eventId = this.props.eventId;
     const {countdown} = this.state;
 
-    let fc = {};
+    let fc = {}
     if (!(drawTable || score || schedule)) {
-      fc = this.formatCountdown(countdown);
+      fc = this.formatCoundown(countdown)
     } else if (this.__timer) {
-      clearInterval(this.__timer);
-      this.__timer = false;
+      clearInterval(this.__timer)
+      this.__timer = false
     }
+
     return (
       <div>
         <div className={`${cs.banner}`}>
@@ -67,25 +69,32 @@ export default class EventInfo extends React.Component {
           </div>
           <div className={`${cs.time}`}>
             <i className={`material-icons ${cs.icons}`}>access_time</i>
-            <span>
-              {`${startDate} - ${endDate}`}
-            </span>
+            <span>{`${startDate} -`}<br />{`${endDate}`}</span>
           </div>
         </div>
         {drawTable || score || schedule
         ? <div className={cs.started}>
-            <div className={`${cs.startedCol} ${drawTable ? cs.startedActive : ""}`}>
+            <Link
+              to={`/events/${eventId}/drawTable`}
+              className={`${cs.startedCol} ${drawTable ? cs.startedActive : ""}`}
+            >
               <i className="material-icons">today</i>
               <div>签表</div>
-            </div>
-            <div className={`${cs.startedCol} ${schedule ? cs.startedActive : ""}`}>
+            </Link>
+            <Link
+              to={`/events/${eventId}/schedule`}
+              className={`${cs.startedCol} ${schedule ? cs.startedActive : ""}`}
+            >
               <i className="material-icons">today</i>
               <div>赛程</div>
-            </div>
-            <div className={`${cs.startedCol} ${score ? cs.startedActive : ""}`}>
+            </Link>
+            <Link
+              to={`/events/${eventId}/score`}
+              className={`${cs.startedCol} ${score ? cs.startedActive : ""}`}
+            >
               <i className="material-icons">today</i>
               <div>比分</div>
-            </div>
+            </Link>
           </div>
         : <div className={`${cs.countdown}`}>
             {fc.day}<i>天</i>{fc.hour}<i>小时</i>{fc.minute}<i>分</i>{fc.second}<i>秒</i>
