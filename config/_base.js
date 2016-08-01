@@ -27,7 +27,7 @@ const config = {
   // ----------------------------------
   compiler_css_modules     : true,
   compiler_devtool         : 'source-map',
-  compiler_hash_type       : 'hash',
+  compiler_hash_type       : 'hash:5',
   compiler_fail_on_warning : false,
   compiler_quiet           : false,
   compiler_public_path     : '/',

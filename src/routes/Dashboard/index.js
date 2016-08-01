@@ -17,7 +17,7 @@ export default (store) => ({
         require('./routes/Settings')(store),
         require('./routes/Mine')(store)
       ])
-    })
+    }, 'dashboard')
   },
   getComponent (nextState, next) {
     require.ensure([

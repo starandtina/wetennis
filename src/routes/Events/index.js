@@ -4,10 +4,8 @@ import { requireAuth } from 'utils/auth'
 export default (store) => ({
   path: 'events',
   onEnter() {
-    // requireAuth.apply(this, arguments)
   },
   getChildRoutes (location, cb) {
-    console.log("getChildRoutes ");
     require.ensure([], (require) => {
       cb(null, [
         require('./routes/Register')(store),
@@ -16,7 +14,7 @@ export default (store) => ({
         require('./routes/Score')(store),
         require('./routes/Schedule')(store),
       ])
-    })
+    }, 'events')
   },
   getComponent (nextState, next) {
     require.ensure([
@@ -24,9 +22,6 @@ export default (store) => ({
       './components/EventList',
       './modules'
     ], (require) => {
-  /*  These modules are lazily evaluated using require hook, and
-      will not loaded until the router invokes this callback. */
-
       const Container = require('./containers/EventContainer')
       const reducer = require('./modules')
 

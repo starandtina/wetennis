@@ -9,6 +9,6 @@ export default (store) => ({
       injectReducer(store, { key: 'referee', reducer })
 
       next(null, require('./containers/RefereeContainer'))
-    }, 'Referee')
+    }, 'referee')
   }
 })
