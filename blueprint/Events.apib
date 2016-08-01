@@ -416,50 +416,218 @@
   + text: (String) - 比赛轮次名
   + current: (Boolean) - 初次加载时是否显示为当前轮次
 + details: (Array) - 当前显示的比赛轮次详细信息
-  + username: (String) - 比赛人名称
-  + userimage: (Url) - 比赛人头像
-  + gameNumber: (Number) - 场次
-  + criticalSpot: (String) - 胜负场得分
-  + criticalGame: (String) - 胜负局得分
+  + completed: (Boolean) - 比赛是否已经完成
+  + groupName: (String) - 小组名
+  + games: (Array) - 分组列表
+    + qualified: (Boolean) - 是否出线
+    + gameNumber: (Number) - 总局数 
+    + criticalSpot: (String) - 场得分
+    + criticalGame: (String) - 局得分
+    + users (Array): - 队员列表单打传一个，双打传两个
+      + username: (String) - 比赛人称
+      + userimage: (Url) - 比赛人头像
 
 + Request (application/json)
 
   + Body
 
         {
-            "eventId": 1
+            "eventId": 1, // 赛事ID
+            "matchId": 2, // 比赛条件ID 资格赛，第一轮，第二轮
+            "typeId": 3 // 过滤条件ID
         }
 
 + Response 200 (application/json)
 
   + Body
 
+      {
+          "code": 0,
+          "errorMsg": "",
+          "data": {
+            "qualify": true,
+            "gameName": "青年组 精英B | 女子单打",
+            "matchs": [
+              {"id": 1, "text": "小组资格赛", "current": true},
+              {"id": 2, "text": "第一轮"},
+              {"id": 3, "text": "第二轮"},
+              {"id": 4, "text": "第三轮"},
+              {"id": 5, "text": "半决赛"},
+              {"id": 6, "text": "决赛"}
+            ],
+            "details": [
             {
-                "code": 0,
-                "errorMsg": "",
-                "data": {
-                  "qualify": true,
-                  "matchs": [
-                    {"id": 1, "text": "小组资格赛", "current": true},
-                    {"id": 2, "text": "第一轮"},
-                    {"id": 3, "text": "第二轮"},
-                    {"id": 4, "text": "第三轮"},
-                    {"id": 5, "text": "半决赛"},
-                    {"id": 6, "text": "决赛"}
-                  ],
-                  "details": [
-                    [
-                      {
-                        "username": "陈韵竹",
-                        "userimage": "http://userimage.jpg",
-                        "gameNumber": 3,
-                        "criticalSpot": "3:0",
-                        "criticalGame": "3:0"
-                      },
-                    ]
-                  ]
-                }
-            }
+                "complete": true,
+                "groupName": "第一组",
+                "games": [
+                  {
+                    "users": [
+                      { "username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+                    ],
+                    "qualified": true,
+                    "gameNumber": 3,
+                    "criticalSpot": "3:0",
+                    "criticalGame": "3:0"
+                  },
+                  {
+                    "users": [
+                      { "username": "陈韵1", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+                    ],
+                    "qualified": true,
+                    "gameNumber": 3,
+                    "criticalSpot": "3:0",
+                    "criticalGame": "3:0"
+                  },
+                  {
+                    "users": [
+                      { "username": "陈韵2", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+                    ],
+                    "qualified": false,
+                    "gameNumber": 3,
+                    "criticalSpot": "3:0",
+                    "criticalGame": "3:0"
+                  },
+                  {
+                    "users": [
+                      { "username": "陈韵竹3", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+                    ],
+                    "qualified": false,
+                    "gameNumber": 3,
+                    "criticalSpot": "3:0",
+                    "criticalGame": "3:0"
+                  }
+                ]
+              },
+              {
+                "complete": true,
+                "groupName": "第一组",
+                "games": [
+                  {
+                    "users": [
+                      { "username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+                    ],
+                    "qualified": true,
+                    "gameNumber": 3,
+                    "criticalSpot": "3:0",
+                    "criticalGame": "3:0"
+                  },
+                  {
+                    "users": [
+                      { "username": "陈韵1", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+                    ],
+                    "qualified": true,
+                    "gameNumber": 3,
+                    "criticalSpot": "3:0",
+                    "criticalGame": "3:0"
+                  },
+                  {
+                    "users": [
+                      { "username": "陈韵2", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+                    ],
+                    "qualified": false,
+                    "gameNumber": 3,
+                    "criticalSpot": "3:0",
+                    "criticalGame": "3:0"
+                  },
+                  {
+                    "users": [
+                      { "username": "陈韵竹3", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+                    ],
+                    "qualified": false,
+                    "gameNumber": 3,
+                    "criticalSpot": "3:0",
+                    "criticalGame": "3:0"
+                  }
+                ]
+              },
+              {
+                "complete": true,
+                "groupName": "第一组",
+                "games": [
+                  {
+                    "users": [
+                      { "username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+                    ],
+                    "qualified": true,
+                    "gameNumber": 3,
+                    "criticalSpot": "3:0",
+                    "criticalGame": "3:0"
+                  },
+                  {
+                    "users": [
+                      { "username": "陈韵1", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+                    ],
+                    "qualified": false,
+                    "gameNumber": 3,
+                    "criticalSpot": "3:0",
+                    "criticalGame": "3:0"
+                  },
+                  {
+                    "users": [
+                      { "username": "陈韵2", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+                    ],
+                    "qualified": false,
+                    "gameNumber": 3,
+                    "criticalSpot": "3:0",
+                    "criticalGame": "3:0"
+                  },
+                  {
+                    "users": [
+                      { "username": "陈韵竹3", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+                    ],
+                    "qualified": false,
+                    "gameNumber": 3,
+                    "criticalSpot": "3:0",
+                    "criticalGame": "3:0"
+                  }
+                ]
+              },
+              {
+                "complete": false,
+                "groupName": "第一组",
+                "games": [
+                  {
+                    "users": [
+                      { "username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+                    ],
+                    "qualified": true,
+                    "gameNumber": 3,
+                    "criticalSpot": "3:0",
+                    "criticalGame": "3:0"
+                  },
+                  {
+                    "users": [
+                      { "username": "陈韵1", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+                    ],
+                    "qualified": false,
+                    "gameNumber": 3,
+                    "criticalSpot": "3:0",
+                    "criticalGame": "3:0"
+                  },
+                  {
+                    "users": [
+                      { "username": "陈韵2", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+                    ],
+                    "qualified": false,
+                    "gameNumber": 3,
+                    "criticalSpot": "3:0",
+                    "criticalGame": "3:0"
+                  },
+                  {
+                    "users": [
+                      { "username": "陈韵竹3", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+                    ],
+                    "qualified": false,
+                    "gameNumber": 3,
+                    "criticalSpot": "3:0",
+                    "criticalGame": "3:0"
+                  }
+                ]
+              }
+            ]
+          }
+      }
+
 
 ### 获取签表信息-非小组资格赛 [POST]
 
@@ -469,9 +637,10 @@
   + id: (Number) - 比赛轮次Id
   + text: (String) - 比赛轮次名
   + current: (Boolean) - 初次加载时是否显示为当前轮次
-+ details: (Array) - 当前显示的比赛轮次详细信息
-  + username: (String) - 比赛人名称
-  + userimage: (Url) - 比赛人头像
++ details: (Array) - 当前显示的比赛轮次详细信息 3 层数组嵌套 第一层为列表本身 第二层为晋级group 第三层对两个对打的队伍 最终包含的是以下字段
+  + users: (Array) - 队员列表
+    + username: (String) - 比赛人名称
+    + userimage: (Url) - 比赛人头像
   + win: (Boolean) - 比赛人是否胜利
   + score: (Number) - 比赛人得分
 
@@ -480,50 +649,147 @@
   + Body
 
         {
-            "eventId": 1
+            "eventId": 1, // 赛事ID
+            "matchId": 2, // 比赛条件ID 资格赛，第一轮，第二轮
+            "typeId": 3 // 过滤条件ID
         }
 
 + Response 200 (application/json)
 
   + Body
 
-            {
-                "code": 0,
-                "errorMsg": "",
-                "data": {
-                  "qualify": false,
-                  "matchs": [
-                    {"id": 1, "text": "小组资格赛"},
-                    {"id": 2, "text": "第一轮"},
-                    {"id": 3, "text": "第二轮"},
-                    {"id": 4, "text": "第三轮", "current": true},
-                    {"id": 5, "text": "半决赛"},
-                    {"id": 6, "text": "决赛"}
-                  ],
-                  "details": [
-                    [
-                      {"username": "陈韵竹", "userimage": "http://userimage.jpg", "win": ture, "score": 3},
-                      {"username": "张珊", "userimage": "http://userimage.jpg", "win": false, "score": 0}
-                    ],
-                    [
-                      {"username": "陈韵竹", "userimage": "http://userimage.jpg", "win": ture, "score": 3},
-                      {"username": "张珊", "userimage": "http://userimage.jpg", "win": false, "score": 0}
-                    ],
-                    [
-                      {"username": "陈韵竹", "userimage": "http://userimage.jpg", "win": ture, "score": 3},
-                      {"username": "张珊", "userimage": "http://userimage.jpg", "win": false, "score": 0}
-                    ],
-                    [
-                      {"username": "陈韵竹", "userimage": "http://userimage.jpg", "win": ture, "score": 3},
-                      {"username": "张珊", "userimage": "http://userimage.jpg", "win": false, "score": 0}
-                    ],
-                    [
-                      {"username": "陈韵竹", "userimage": "http://userimage.jpg", "win": ture, "score": 3},
-                      {"username": "张珊", "userimage": "http://userimage.jpg", "win": false, "score": 0}
-                    ],
-                  ]
-                }
-            }
+      {
+        "code": 0,
+          "errorMsg": "",
+          "data": {
+            "qualify": false,
+            "gameName": "青年组 精英B | 女子双打",
+            "matchs": [
+              {"id": 1, "text": "小组资格赛"},
+              {"id": 2, "text": "第一轮"},
+              {"id": 3, "text": "第二轮"},
+              {"id": 4, "text": "第三轮", "current": true},
+              {"id": 5, "text": "半决赛"},
+              {"id": 6, "text": "决赛"}
+            ],
+            "details": [
+              [
+                [
+                  {
+                    "score": 3,
+                    "win": false,
+                    "users": [
+                      {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                      {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                    ]
+                  },
+                  {
+                    "score": 0,
+                    "win": false,
+                    "users": [
+                      {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                      {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "score": 3,
+                    "win": true,
+                    "users": [
+                      {"username": "陈韵竹1", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                      {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                    ]
+                  },
+                  {
+                    "score": 0,
+                    "win": false,
+                    "users": [
+                      {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                      {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                    ]
+                  }
+                ]
+              ],
+              [
+                [
+                  {
+                    "score": 3,
+                    "win": true,
+                    "users": [
+                      {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                      {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                    ]
+                  },
+                  {
+                    "score": 0,
+                    "win": false,
+                    "users": [
+                      {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                      {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "score": 3,
+                    "win": true,
+                    "users": [
+                      {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                      {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                    ]
+                  },
+                  {
+                    "score": 0,
+                    "win": false,
+                    "users": [
+                      {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                      {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                    ]
+                  }
+                ]
+              ],
+              [
+                [
+                  {
+                    "score": 3,
+                    "win": true,
+                    "users": [
+                      {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                      {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                    ]
+                  },
+                  {
+                    "score": 0,
+                    "win": false,
+                    "users": [
+                      {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                      {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "score": 3,
+                    "win": true,
+                    "users": [
+                      {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                      {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                    ]
+                  },
+                  {
+                    "score": 0,
+                    "win": false,
+                    "users": [
+                      {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                      {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                    ]
+                  }
+                ]
+              ]
+            ]
+          }
+      }
 
 
 ## 赛事得分 [/api/eventScore]

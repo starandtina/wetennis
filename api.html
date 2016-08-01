@@ -345,41 +345,281 @@
 <li>
 <p>details: (Array) - 当前显示的比赛轮次详细信息</p>
 <ul>
-<li>username: (String) - 比赛人名称</li>
+<li>completed: (Boolean) - 比赛是否已经完成</li>
+<li>groupName: (String) - 小组名</li>
+<li>games: (Array) - 分组列表
+<ul>
+<li>qualified: (Boolean) - 是否出线</li>
+<li>gameNumber: (Number) - 总局数</li>
+<li>criticalSpot: (String) - 场得分</li>
+<li>criticalGame: (String) - 局得分</li>
+<li>users (Array): - 队员列表单打传一个，双打传两个
+<ul>
+<li>username: (String) - 比赛人称</li>
 <li>userimage: (Url) - 比赛人头像</li>
-<li>gameNumber: (Number) - 场次</li>
-<li>criticalSpot: (String) - 胜负场得分</li>
-<li>criticalGame: (String) - 胜负局得分</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 <h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname"></span>/eventDrawTable</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-  "<span class="hljs-attribute">eventId</span>": <span class="hljs-value"><span class="hljs-number">1</span>
-</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-    "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-    "<span class="hljs-attribute">errorMsg</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
-    "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">qualify</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-      "<span class="hljs-attribute">matchs</span>": <span class="hljs-value">[
-        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>, "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"小组资格赛"</span></span>, "<span class="hljs-attribute">current</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>},
-        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>, "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"第一轮"</span></span>},
-        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>, "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"第二轮"</span></span>},
-        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">4</span></span>, "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"第三轮"</span></span>},
-        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>, "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"半决赛"</span></span>},
-        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">6</span></span>, "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"决赛"</span></span>}
-      ]</span>,
-      "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
-        [
+    <span class="hljs-string">"eventId"</span>: <span class="hljs-number">1</span>, <span class="hljs-comment">// 赛事ID</span>
+    <span class="hljs-string">"matchId"</span>: <span class="hljs-number">2</span>, <span class="hljs-comment">// 比赛条件ID 资格赛，第一轮，第二轮</span>
+    <span class="hljs-string">"typeId"</span>: <span class="hljs-number">3</span> <span class="hljs-comment">// 过滤条件ID</span>
+}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">errorMsg</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">qualify</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">gameName</span>": <span class="hljs-value"><span class="hljs-string">"青年组 精英B | 女子单打"</span></span>,
+    "<span class="hljs-attribute">matchs</span>": <span class="hljs-value">[
+      {
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+        "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"小组资格赛"</span></span>,
+        "<span class="hljs-attribute">current</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+        "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"第一轮"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+        "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"第二轮"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">4</span></span>,
+        "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"第三轮"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
+        "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"半决赛"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">6</span></span>,
+        "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"决赛"</span>
+      </span>}
+    ]</span>,
+    "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+      {
+        "<span class="hljs-attribute">complete</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">groupName</span>": <span class="hljs-value"><span class="hljs-string">"第一组"</span></span>,
+        "<span class="hljs-attribute">games</span>": <span class="hljs-value">[
           {
-            "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹"</span></span>,
-            "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://userimage.jpg"</span></span>,
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]</span>,
+            "<span class="hljs-attribute">qualified</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
             "<span class="hljs-attribute">gameNumber</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
             "<span class="hljs-attribute">criticalSpot</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span></span>,
             "<span class="hljs-attribute">criticalGame</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span>
           </span>},
+          {
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵1"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]</span>,
+            "<span class="hljs-attribute">qualified</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+            "<span class="hljs-attribute">gameNumber</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">criticalSpot</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span></span>,
+            "<span class="hljs-attribute">criticalGame</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span>
+          </span>},
+          {
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵2"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]</span>,
+            "<span class="hljs-attribute">qualified</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+            "<span class="hljs-attribute">gameNumber</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">criticalSpot</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span></span>,
+            "<span class="hljs-attribute">criticalGame</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span>
+          </span>},
+          {
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹3"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]</span>,
+            "<span class="hljs-attribute">qualified</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+            "<span class="hljs-attribute">gameNumber</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">criticalSpot</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span></span>,
+            "<span class="hljs-attribute">criticalGame</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span>
+          </span>}
         ]
-      ]
-    </span>}
+      </span>},
+      {
+        "<span class="hljs-attribute">complete</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">groupName</span>": <span class="hljs-value"><span class="hljs-string">"第一组"</span></span>,
+        "<span class="hljs-attribute">games</span>": <span class="hljs-value">[
+          {
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]</span>,
+            "<span class="hljs-attribute">qualified</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+            "<span class="hljs-attribute">gameNumber</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">criticalSpot</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span></span>,
+            "<span class="hljs-attribute">criticalGame</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span>
+          </span>},
+          {
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵1"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]</span>,
+            "<span class="hljs-attribute">qualified</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+            "<span class="hljs-attribute">gameNumber</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">criticalSpot</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span></span>,
+            "<span class="hljs-attribute">criticalGame</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span>
+          </span>},
+          {
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵2"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]</span>,
+            "<span class="hljs-attribute">qualified</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+            "<span class="hljs-attribute">gameNumber</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">criticalSpot</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span></span>,
+            "<span class="hljs-attribute">criticalGame</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span>
+          </span>},
+          {
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹3"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]</span>,
+            "<span class="hljs-attribute">qualified</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+            "<span class="hljs-attribute">gameNumber</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">criticalSpot</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span></span>,
+            "<span class="hljs-attribute">criticalGame</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span>
+          </span>}
+        ]
+      </span>},
+      {
+        "<span class="hljs-attribute">complete</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">groupName</span>": <span class="hljs-value"><span class="hljs-string">"第一组"</span></span>,
+        "<span class="hljs-attribute">games</span>": <span class="hljs-value">[
+          {
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]</span>,
+            "<span class="hljs-attribute">qualified</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+            "<span class="hljs-attribute">gameNumber</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">criticalSpot</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span></span>,
+            "<span class="hljs-attribute">criticalGame</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span>
+          </span>},
+          {
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵1"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]</span>,
+            "<span class="hljs-attribute">qualified</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+            "<span class="hljs-attribute">gameNumber</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">criticalSpot</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span></span>,
+            "<span class="hljs-attribute">criticalGame</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span>
+          </span>},
+          {
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵2"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]</span>,
+            "<span class="hljs-attribute">qualified</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+            "<span class="hljs-attribute">gameNumber</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">criticalSpot</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span></span>,
+            "<span class="hljs-attribute">criticalGame</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span>
+          </span>},
+          {
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹3"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]</span>,
+            "<span class="hljs-attribute">qualified</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+            "<span class="hljs-attribute">gameNumber</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">criticalSpot</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span></span>,
+            "<span class="hljs-attribute">criticalGame</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span>
+          </span>}
+        ]
+      </span>},
+      {
+        "<span class="hljs-attribute">complete</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+        "<span class="hljs-attribute">groupName</span>": <span class="hljs-value"><span class="hljs-string">"第一组"</span></span>,
+        "<span class="hljs-attribute">games</span>": <span class="hljs-value">[
+          {
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]</span>,
+            "<span class="hljs-attribute">qualified</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+            "<span class="hljs-attribute">gameNumber</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">criticalSpot</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span></span>,
+            "<span class="hljs-attribute">criticalGame</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span>
+          </span>},
+          {
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵1"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]</span>,
+            "<span class="hljs-attribute">qualified</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+            "<span class="hljs-attribute">gameNumber</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">criticalSpot</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span></span>,
+            "<span class="hljs-attribute">criticalGame</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span>
+          </span>},
+          {
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵2"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]</span>,
+            "<span class="hljs-attribute">qualified</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+            "<span class="hljs-attribute">gameNumber</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">criticalSpot</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span></span>,
+            "<span class="hljs-attribute">criticalGame</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span>
+          </span>},
+          {
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹3"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]</span>,
+            "<span class="hljs-attribute">qualified</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+            "<span class="hljs-attribute">gameNumber</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">criticalSpot</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span></span>,
+            "<span class="hljs-attribute">criticalGame</span>": <span class="hljs-value"><span class="hljs-string">"3:0"</span>
+          </span>}
+        ]
+      </span>}
+    ]
+  </span>}
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div><div id="赛事相关的api-签表-post-1" class="action post"><h4 class="action-heading"><div class="name">获取签表信息-非小组资格赛</div><a href="#赛事相关的api-签表-post-1" class="method post">POST</a><code class="uri">/eventDrawTable</code></h4><p>返回的data字段为Object，需要包含以下字段</p>
 <ul>
 <li>
@@ -394,53 +634,245 @@
 </ul>
 </li>
 <li>
-<p>details: (Array) - 当前显示的比赛轮次详细信息</p>
+<p>details: (Array) - 当前显示的比赛轮次详细信息 3 层数组嵌套 第一层为列表本身 第二层为晋级group 第三层对两个对打的队伍 最终包含的是以下字段</p>
+<ul>
+<li>users: (Array) - 队员列表
 <ul>
 <li>username: (String) - 比赛人名称</li>
 <li>userimage: (Url) - 比赛人头像</li>
+</ul>
+</li>
 <li>win: (Boolean) - 比赛人是否胜利</li>
 <li>score: (Number) - 比赛人得分</li>
 </ul>
 </li>
 </ul>
 <h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname"></span>/eventDrawTable</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-  "<span class="hljs-attribute">eventId</span>": <span class="hljs-value"><span class="hljs-number">1</span>
-</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-    "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-    "<span class="hljs-attribute">errorMsg</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
-    "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">qualify</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
-      "<span class="hljs-attribute">matchs</span>": <span class="hljs-value">[
-        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>, "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"小组资格赛"</span></span>},
-        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>, "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"第一轮"</span></span>},
-        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>, "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"第二轮"</span></span>},
-        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">4</span></span>, "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"第三轮"</span></span>, "<span class="hljs-attribute">current</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>},
-        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>, "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"半决赛"</span></span>},
-        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">6</span></span>, "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"决赛"</span></span>}
-      ]</span>,
-      "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+    <span class="hljs-string">"eventId"</span>: <span class="hljs-number">1</span>, <span class="hljs-comment">// 赛事ID</span>
+    <span class="hljs-string">"matchId"</span>: <span class="hljs-number">2</span>, <span class="hljs-comment">// 比赛条件ID 资格赛，第一轮，第二轮</span>
+    <span class="hljs-string">"typeId"</span>: <span class="hljs-number">3</span> <span class="hljs-comment">// 过滤条件ID</span>
+}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">errorMsg</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">qualify</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+    "<span class="hljs-attribute">gameName</span>": <span class="hljs-value"><span class="hljs-string">"青年组 精英B | 女子双打"</span></span>,
+    "<span class="hljs-attribute">matchs</span>": <span class="hljs-value">[
+      {
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+        "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"小组资格赛"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+        "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"第一轮"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+        "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"第二轮"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">4</span></span>,
+        "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"第三轮"</span></span>,
+        "<span class="hljs-attribute">current</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
+        "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"半决赛"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">6</span></span>,
+        "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"决赛"</span>
+      </span>}
+    ]</span>,
+    "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+      [
         [
-          {"<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹"</span></span>, "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://userimage.jpg"</span></span>, "<span class="hljs-attribute">win</span>": <span class="hljs-value">ture</span>, "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>},
-          {"<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"张珊"</span></span>, "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://userimage.jpg"</span></span>, "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>, "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>}
+          {
+            "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>},
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"张珊"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]
+          </span>},
+          {
+            "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+            "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>},
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"张珊"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]
+          </span>}
         ],
         [
-          {"<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹"</span></span>, "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://userimage.jpg"</span></span>, "<span class="hljs-attribute">win</span>": <span class="hljs-value">ture</span>, "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>},
-          {"<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"张珊"</span></span>, "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://userimage.jpg"</span></span>, "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>, "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>}
+          {
+            "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹1"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>},
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"张珊"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]
+          </span>},
+          {
+            "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+            "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>},
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"张珊"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]
+          </span>}
+        ]
+      ],
+      [
+        [
+          {
+            "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>},
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"张珊"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]
+          </span>},
+          {
+            "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+            "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>},
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"张珊"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]
+          </span>}
         ],
         [
-          {"<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹"</span></span>, "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://userimage.jpg"</span></span>, "<span class="hljs-attribute">win</span>": <span class="hljs-value">ture</span>, "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>},
-          {"<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"张珊"</span></span>, "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://userimage.jpg"</span></span>, "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>, "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>}
+          {
+            "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>},
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"张珊"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]
+          </span>},
+          {
+            "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+            "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>},
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"张珊"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]
+          </span>}
+        ]
+      ],
+      [
+        [
+          {
+            "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>},
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"张珊"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]
+          </span>},
+          {
+            "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+            "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>},
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"张珊"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]
+          </span>}
         ],
         [
-          {"<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹"</span></span>, "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://userimage.jpg"</span></span>, "<span class="hljs-attribute">win</span>": <span class="hljs-value">ture</span>, "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>},
-          {"<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"张珊"</span></span>, "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://userimage.jpg"</span></span>, "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>, "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>}
-        ],
-        [
-          {"<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹"</span></span>, "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://userimage.jpg"</span></span>, "<span class="hljs-attribute">win</span>": <span class="hljs-value">ture</span>, "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>},
-          {"<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"张珊"</span></span>, "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://userimage.jpg"</span></span>, "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>, "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>}
-        ],
+          {
+            "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>},
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"张珊"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]
+          </span>},
+          {
+            "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+            "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+            "<span class="hljs-attribute">users</span>": <span class="hljs-value">[
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"陈韵竹"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>},
+              {
+                "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"张珊"</span></span>,
+                "<span class="hljs-attribute">userimage</span>": <span class="hljs-value"><span class="hljs-string">"http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"</span>
+              </span>}
+            ]
+          </span>}
+        ]
       ]
-    </span>}
+    ]
+  </span>}
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="赛事相关的api-赛事得分" class="resource"><h3 class="resource-heading">赛事得分 <a href="#赛事相关的api-赛事得分" class="permalink">&nbsp;&para;</a></h3><p>按比赛分组返回一个数组</p>
 <ul>
 <li>
@@ -2328,7 +2760,7 @@ FORMAT: <span class="hljs-number">1</span>A</code></pre><div style="height: 1px;
       </span>}
     ]
   </span>}
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 28 Jul 2016</p><script>/* eslint-env browser */
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 01 Aug 2016</p><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
 'use strict';
 

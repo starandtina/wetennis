@@ -35,8 +35,8 @@ export const fetchEventSchedule = `${ROOT_URL}/eventSchedule`
 export const fetchEventScheduleFilter = `${ROOT_URL}/eventScheduleFilter`
 
 // draw table
-export const fetchEventDrawTable = `${ROOT_URL}/eventDrawTable_qualify`
-// export const fetchEventDrawTable = `${ROOT_URL}/eventDrawTable`
+// export const fetchEventDrawTable = `${ROOT_URL}/eventDrawTable_qualify`
+export const fetchEventDrawTable = `${ROOT_URL}/eventDrawTable`
 
 
 // rankings
