@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
-
 import Footer from 'components/Footer'
+
+import NewsTopNav from '../components/NewsTopNav'
 
 class NewsContainer extends Component {
   render() {
@@ -10,7 +10,7 @@ class NewsContainer extends Component {
 
     let content = (
       <div>
-        最新新闻
+        <NewsTopNav />
         <Footer activeNavTab='LATEST' />
       </div>
     )
