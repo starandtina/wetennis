@@ -4,7 +4,6 @@ export default (store) => ({
   path: 'rankings',
 
   getChildRoutes (location, cb) {
-    console.log("rankings getChildRoutes");
     require.ensure([], (require) => {
       cb(null, [
         require("./routes/Details")(store)
@@ -13,7 +12,6 @@ export default (store) => ({
   },
 
   getComponent (nextState, next) {
-    console.log("rankings getComponent");
     require.ensure([
       "./containers",
       "./modules"
@@ -24,6 +22,6 @@ export default (store) => ({
       injectReducer(store, { key: 'eventRankings', reducer })
 
       next(null, Container)
-    })
+    }, 'rankings')
   }
 })

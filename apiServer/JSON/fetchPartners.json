@@ -4,15 +4,17 @@
   "data": [
     {
       "id": 1,
-      "name": "真实姓名",
-      "username": "用户名",
-      "phone": "1422133221"
+      "name": "陈龙",
+      "username": "pacific0437",
+      "phone": "1422133221",
+      "gender": "male"
     },
     {
       "id": 2,
-      "name": "用户名",
-      "username": "用户名",
-      "phone": "1422133221"
+      "name": "陈翔",
+      "username": "pacific0437",
+      "phone": "1422133221",
+      "gender": "male"
     }
   ]
 }

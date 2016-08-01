@@ -1,6 +1,4 @@
-// const ROOT_URL = 'http://wetennis.cn:8883/API/FEservice.ashx?method=';
 const ROOT_URL = "/api?method=";
-
 
 
 // Dashbaord

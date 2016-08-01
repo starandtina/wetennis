@@ -1,12 +1,10 @@
-// We only need to import the modules necessary for initial render
+import { injectReducer } from '../store/reducers'
 import CoreLayout from '../layouts/CoreLayout/CoreLayout'
-import Home from './Home'
 
 export const createRoutes = (store) => {
   const routes = {
     path: '/',
     component: CoreLayout,
-    indexRoute: Home,
     getChildRoutes (location, next) {
       require.ensure([], (require) => {
         next(null, [
@@ -17,6 +15,13 @@ export const createRoutes = (store) => {
           require('./Rankings')(store),
           require('./NotFound')
         ])
+      })
+    }, 
+    getIndexRoute (nextState, next) {
+      require.ensure([], (require) => {
+        injectReducer(store, { key: 'news', reducer: require('./News/modules') })
+
+        next(null, { component: require('./News/containers/NewsContainer') })
       })
     }
   }

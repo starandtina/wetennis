@@ -16,7 +16,6 @@
 
 .PriceTip {
   height: 22px;
-  font-family: PingFangSC;
   font-size: 16px;
   font-weight: normal;
   color: #1cca5a;
@@ -25,7 +24,6 @@
 
 .Price {
   height: 100px;
-  font-family: PingFangSC;
   font-size: 36px;
   font-weight: normal;
   color: #1cca5a;
@@ -44,3 +42,11 @@
   text-align: center;
   padding: 2rem;
 };
+
+.Pay {
+  padding: 0 15px;
+}
+
+.Green {
+  color: #1cca5a;
+}

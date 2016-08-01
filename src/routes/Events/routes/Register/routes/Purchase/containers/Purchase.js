@@ -26,13 +26,13 @@ class Purchase extends Component {
       <div className={style.Root}>
         <div className={style.PriceInfo}>
           <p className={style.PriceTip}>报名费用</p>
-          <p className={style.Price}>{item.price}</p>
+          <p className={style.Price}>¥{item.price}</p>
         </div>
         <Accordion defaultActiveKey="1">
           <Panel header="支付方式" eventKey="1">
-            <div className='clearfix'>
+            <div className={'clearfix ' + style.Pay}>
               <div className='pull-left'>微信支付</div>
-              <div className='pull-right'></div>
+              <div className={'pull-right ' + style.Green}><i className="material-icons">check_circle</i></div>
             </div>
           </Panel>
         </Accordion>

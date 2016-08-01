@@ -7,23 +7,23 @@ import { push as pushAction } from 'react-router-redux';
 
 class Announcement extends Component {
   state = {
-    buttonStatus: true,
+    buttonStatus: false,
   }
 
   onCheck = (event, isInputChecked) => {
     this.setState({
-      buttonStatus: !isInputChecked,
+      buttonStatus: isInputChecked,
     })
   }
 
   confirm = () => {
     const { push, params } = this.props;
-    console.log(1231);
     push(`/events/${params.eventId}/register/Purchase`)
   };
 
   render() {
 
+      console.log(12321321);
     return (
       <div className={style.Root}>
         <h2 className={style.H2}>参赛责任书</h2>
@@ -34,13 +34,14 @@ class Announcement extends Component {
           <p>5、我同意接受主办方在比赛期间提供的现场急救性质的医务治疗，但在医院救治等发生的相关费用由本人负担。</p>
         <p>本人已认真阅读全面理解以上内容，且对上述所有内容予以确认并承担相应的法律责任，本人签署此责任书纯属自愿。</p>
         <Checkbox
+          checked={this.state.buttonStatus}
           label="我同意签署参赛责任书"
           onCheck={this.onCheck}
         />
         <div className={style.ButtonGroup}>
           <button
             primary={true}
-            disabled={this.state.buttonStatus}
+            disabled={!this.state.buttonStatus}
             onClick={this.confirm}
             className={`btn btn-primary btn-lg btn-block ${style.Button}`}
             >
