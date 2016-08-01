@@ -8,8 +8,14 @@ export class Dashboard extends React.Component {
 
   componentWillReceiveProps(nextProps) {
      if (!this.props.user.user || (this.props.user.user && !nextProps.user.user)) {
-       this.props.actions.push('/dashboard/signup')
+       //this.props.push('/dashboard/signin')
      }
+  }
+
+  componentWillMount() {
+    if (!this.props.user.user) {
+      //this.props.push('/dashboard/signin')
+    }
   }
 
   componentDidMount () {
@@ -18,26 +24,27 @@ export class Dashboard extends React.Component {
   }
 
   render () {
-    const { children, user } = this.props
+    const { children, user } = this.props;
     const userInfo = user.userInfo;
     const equipments = userInfo && userInfo.equipment ?
     userInfo.equipment.map(equip => (<div className={style.equip} key={equip.id}><img src={equip.imgUrl} alt=""/></div>))
       : null;
-    console.log(userInfo);
     const bgstyle = {
+      backgroundColor: 'lightgray',
       backgroundImage:  `url(${userInfo && userInfo.backGroundImageUrl})`,
       backgroundSize: 'contain',
       backgroundRepeat: 'round',
+      color: 'white',
     };
     //let content = (<div>Dashboard<button onClick={this.props.logoutUser.bind(this)}>LOGOUT</button></div>);
     let content = userInfo ? (<div>
       <NavBack caption='个人中心'>
-        <Link to="/dashboard/message"><i className="material-icons">&#xE0D8;</i></Link>
-        <Link to="/dashboard/settings"><i className="material-icons">settings</i></Link>
+        <Link className={style.Icon} to="/dashboard/message"><i className="material-icons">&#xE0D8;</i></Link>
+        <Link className={style.Icon} to="/dashboard/settings"><i className="material-icons">settings</i></Link>
       </NavBack>
       <div className={style.BackGroundImage} style={bgstyle}>
         <div className={style.Name}>{userInfo.name}</div>
-        <div className={style.UserInfo}>{userInfo.gender}|{userInfo.birthday}|{userInfo.Constellation}</div>
+        <div className={style.UserInfo}>{userInfo.gender} | {userInfo.birthday} | {userInfo.Constellation}</div>
       </div>
       <div>
         <div className={style.Item}>
@@ -66,20 +73,13 @@ export class Dashboard extends React.Component {
       </div>
     </div>) : null;
 
-    let footer = (<div></div>)
 
     if (children) {
       content = children
     }
-    else {
-      footer = <Footer activeNavTab='DASHBOARD' />
-    }
-    console.log('DASHBOARD render;');
-    console.log(children);
     return (
-      <div style={{ height: '100%', marginTop: '55px', paddingBottom: '55px' }}>
+      <div>
         {content}
-        {footer}
       </div>
     )
   }
