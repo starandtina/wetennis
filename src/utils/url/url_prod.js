@@ -1,5 +1,7 @@
 const ROOT_URL = "/api?method=";
 
+// News
+export const fetchNews = `${ROOT_URL}fetchNews`
 
 // Dashbaord
 export const signUp = `${ROOT_URL}signup`

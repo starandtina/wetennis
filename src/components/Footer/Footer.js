@@ -24,7 +24,7 @@ export class Footer extends React.Component {
     return (
       <div className='wetennis-footer'>
         <div className='grid'>
-          {this.renderItem('LATEST', '最新', '/news')}
+          {this.renderItem('LATEST', '最新', '/')}
           {this.renderItem('EVENT', '赛事', '/events')}
           {this.renderItem('TIME', '时光', '/time')}
           {this.renderItem('GUESS', '竟猜', '/guess')}

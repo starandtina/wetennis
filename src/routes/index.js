@@ -19,7 +19,7 @@ export const createRoutes = (store) => {
     }, 
     getIndexRoute (nextState, next) {
       require.ensure([], (require) => {
-        injectReducer(store, { key: 'news', reducer: require('./News/modules') })
+        injectReducer(store, { key: 'news', reducer: require('./News/modules').default })
 
         next(null, { component: require('./News/containers/NewsContainer') })
       })

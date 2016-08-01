@@ -26,7 +26,7 @@ class EventContainer extends React.Component {
       getEventList(__obj);
     });
   }
-  render() {
+  render() {debugger
     const {eventList, location, status, action, children, currentFilter} = this.props;
     const s = currentFilter;
 
