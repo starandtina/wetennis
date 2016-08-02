@@ -1,6 +1,6 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
-import { push } from 'react-router-redux'
+import { push, goBack } from 'react-router-redux'
 import { reduxForm } from 'redux-form'
 
 import { signInUser } from 'routes/Dashboard/modules/user'
@@ -30,7 +30,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  actions : bindActionCreators({ signInUser, push }, dispatch)
+  actions : bindActionCreators({ signInUser, push, goBack }, dispatch)
 })
 
 export default reduxForm({
