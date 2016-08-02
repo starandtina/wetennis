@@ -68,10 +68,10 @@ export class RegisterConfirmation extends React.Component {
             <Col xs={8}>
               <TextField
                 inputStyle={{
-                    textAlign: 'left'
+                    textAlign: 'left',
+                    width: '220px'
                   }}
                 name="phone"
-                fullWidth
                 disabled
                 value={myPartner.gender === "female" ? "女" : "男"}
               />
@@ -100,7 +100,8 @@ export class RegisterConfirmation extends React.Component {
             <Col xs={8}>
               <TextField
                 inputStyle={{
-                    textAlign: 'left'
+                    textAlign: 'left',
+                     width: '220px'
                   }}
                 name="phone"
                 fullWidth
@@ -141,7 +142,11 @@ export class RegisterConfirmation extends React.Component {
                 <label className={classes.label}>性别</label>
               </Col>
               <Col xs={8}>
-                <SelectField value={this.state.gender} onChange={this.handleChangeGender}>
+                <SelectField
+                    value={this.state.gender}
+                    onChange={this.handleChangeGender}
+                    fullWidth
+                >
                   <MenuItem value='male' primaryText="男" />
                   <MenuItem value='female' primaryText="女" />
                 </SelectField>

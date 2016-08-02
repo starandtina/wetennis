@@ -139,7 +139,7 @@ export class Register extends React.Component {
       })
     }
     this.props.fetchRegisteredUsers({
-      itemId: this.state.item.id
+      itemId: item.id
     });
   }
 
