@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import NavBack from 'components/NavBack'
 import Footer from 'components/Footer'
-import style from './Mine.scss';
+import style from './Me.scss';
 
 export class Dashboard extends React.Component {
 

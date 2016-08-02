@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { push } from 'react-router-redux'
 import { reduxForm } from 'redux-form'
+import NavBack from 'components/NavBack'
 import TextField from 'material-ui/TextField'
 import SelectField from 'material-ui/SelectField';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -98,89 +99,94 @@ class SettingsForm extends React.Component {
     console.log(settings);
 
     return (
-      <form className='setting-form'>
-        <Grid>
-          <Row>
-            <Col xs={4}>
-              <label className={classes.label}>用户名</label>
-            </Col>
-            <Col xs={8}>
-              <TextField
-                inputStyle={{
-                    textAlign: 'left'
-                  }}
-                name="name"
-                fullWidth
-                onChange={this.handleChange('name')}
-                defaultValue={this.state.name}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={4}>
-              <label className={classes.label}>性别</label>
-            </Col>
-            <Col xs={8}>
-              <SelectField value={this.state.gender} onChange={this.handleChangeGender}>
-                <MenuItem value='male' primaryText="男" />
-                <MenuItem value='female' primaryText="女" />
-              </SelectField>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={4}>
-              <label className={classes.label}>真实姓名</label>
-            </Col>
-            <Col xs={8}>
-              <TextField
-                inputStyle={{
-                    textAlign: 'left'
-                  }}
-                name="userName"
-                fullWidth
-                onChange={this.handleChange('userName')}
-                defaultValue={this.state.userName}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={4}>
-              <label className={classes.label}>电话</label>
-            </Col>
-            <Col xs={8}>
-              <TextField
-                inputStyle={{
-                    textAlign: 'left'
-                  }}
-                name="phone"
-                fullWidth
-                onChange={this.handleChange('phone')}
-                defaultValue={this.state.phone}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={4}>
-              <label className={classes.label}>身份证号</label>
-            </Col>
-            <Col xs={8}>
-              <TextField
-                inputStyle={{
-                    textAlign: 'left'
-                  }}
-                name="cardId"
-                fullWidth
-                onChange={this.handleChange('cardId')}
-                defaultValue={this.state.cardId}
-              />
-            </Col>
-          </Row>
-        </Grid>
-        <div className='button-groups clearfix'>
-          {this.props.user.error ? <p className='u-errorText'>{this.props.user.error.message}</p> : ''}
-          <button type="submit" className="btn btn-default btn-lg btn-block" disabled={submitting}>确认修改</button>
+        <div>
+          <NavBack caption='个人中心'>
+          </NavBack>
+
+          <form className='setting-form'>
+            <Grid>
+              <Row>
+                <Col xs={4}>
+                  <label className={classes.label}>用户名</label>
+                </Col>
+                <Col xs={8}>
+                  <TextField
+                      inputStyle={{
+                        textAlign: 'left'
+                      }}
+                      name="name"
+                      fullWidth
+                      onChange={this.handleChange('name')}
+                      defaultValue={this.state.name}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={4}>
+                  <label className={classes.label}>性别</label>
+                </Col>
+                <Col xs={8}>
+                  <SelectField value={this.state.gender} onChange={this.handleChangeGender}>
+                    <MenuItem value='male' primaryText="男" />
+                    <MenuItem value='female' primaryText="女" />
+                  </SelectField>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={4}>
+                  <label className={classes.label}>真实姓名</label>
+                </Col>
+                <Col xs={8}>
+                  <TextField
+                      inputStyle={{
+                        textAlign: 'left'
+                      }}
+                      name="userName"
+                      fullWidth
+                      onChange={this.handleChange('userName')}
+                      defaultValue={this.state.userName}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={4}>
+                  <label className={classes.label}>电话</label>
+                </Col>
+                <Col xs={8}>
+                  <TextField
+                      inputStyle={{
+                        textAlign: 'left'
+                      }}
+                      name="phone"
+                      fullWidth
+                      onChange={this.handleChange('phone')}
+                      defaultValue={this.state.phone}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={4}>
+                  <label className={classes.label}>身份证号</label>
+                </Col>
+                <Col xs={8}>
+                  <TextField
+                      inputStyle={{
+                        textAlign: 'left'
+                      }}
+                      name="cardId"
+                      fullWidth
+                      onChange={this.handleChange('cardId')}
+                      defaultValue={this.state.cardId}
+                  />
+                </Col>
+              </Row>
+            </Grid>
+            <div className='button-groups clearfix'>
+              {this.props.user.error ? <p className='u-errorText'>{this.props.user.error.message}</p> : ''}
+              <button type="submit" className="primary btn btn-default btn-lg btn-block" disabled={submitting}>确认修改</button>
+            </div>
+          </form>
         </div>
-      </form>
     )
   }
 }

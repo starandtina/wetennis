@@ -24,7 +24,7 @@ export class SigninForm extends React.Component {
       action => {
         if(action.payload.code != 1){
           setCookie(action.payload.data.id)
-          this.props.actions.push('/dashboard/Mine');
+          this.props.actions.push('/events/C0F4E6E1DC724C7EB500961C15931703/register');
         }
       }
     );

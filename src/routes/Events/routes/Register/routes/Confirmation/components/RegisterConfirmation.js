@@ -1,6 +1,7 @@
 import React from 'react'
 import TextField from 'material-ui/TextField'
 import SelectField from 'material-ui/SelectField';
+import Dialog from 'material-ui/Dialog';
 import MenuItem from 'material-ui/MenuItem';
 import { Grid, Row, Col } from 'react-bootstrap'
 
@@ -25,16 +26,21 @@ export class RegisterConfirmation extends React.Component {
 
   uploadUserInfo = () => {
     const { uploadUserInfo, push, params } = this.props;
-    console.log(params);
-    const eventId = params.eventId
-    uploadUserInfo(this.state);
-    push(`/events/${eventId}/register/announcement`)
+    const eventId = params.eventId;
+    const { name, username, gender, cardId, phone } = this.state;
+    console.log(name, username, gender, cardId, phone);
+    if (name && username && gender && cardId && phone) {
+      uploadUserInfo(this.state);
+      push(`/events/${eventId}/register/announcement`)
+    } else {
+      alert('请完整填写信息')
+    }
   }
 
   render() {
-    const { group, item, partnerId, partners } = this.props;
+    const { group, item, partnerId, partners, user } = this.props;
     const myPartner = partners.find(item => item.id == partnerId);
-    console.log(myPartner);
+    console.log(user);
     const partnerContent = item.needPartner ? (
       <div>
         <div className={`${classes.header} text-muted`}>
@@ -50,10 +56,10 @@ export class RegisterConfirmation extends React.Component {
                 inputStyle={{
                     textAlign: 'left'
                   }}
-                name="name"
+                name="username"
                 fullWidth
                 disabled
-                value={myPartner.name}
+                value={myPartner.username}
               />
             </Col>
           </Row>
@@ -69,7 +75,7 @@ export class RegisterConfirmation extends React.Component {
                 name="phone"
                 fullWidth
                 disabled
-                value={myPartner.gender}
+                value={myPartner.gender === "female" ? "女" : "男"}
               />
             </Col>
           </Row>
@@ -82,10 +88,10 @@ export class RegisterConfirmation extends React.Component {
                 inputStyle={{
                     textAlign: 'left'
                   }}
-                name="userName"
+                name="name"
                 fullWidth
                 disabled
-                value={myPartner.userName}
+                value={myPartner.name}
               />
             </Col>
           </Row>
@@ -127,8 +133,8 @@ export class RegisterConfirmation extends React.Component {
                   }}
                   name="name"
                   fullWidth
-                  onChange={this.handleChange('name')}
-                  defaultValue={this.state.name}
+                  onChange={this.handleChange('username')}
+                  defaultValue={this.state.username}
                 />
               </Col>
             </Row>
@@ -152,10 +158,10 @@ export class RegisterConfirmation extends React.Component {
                   inputStyle={{
                     textAlign: 'left'
                   }}
-                  name="userName"
+                  name="name"
                   fullWidth
-                  onChange={this.handleChange('userName')}
-                  defaultValue={this.state.userName}
+                  onChange={this.handleChange('name')}
+                  defaultValue={this.state.name}
                 />
               </Col>
             </Row>

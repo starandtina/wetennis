@@ -23,7 +23,6 @@ export class Register extends React.Component {
     const requestPayload = { eventId: params.eventId }
 
     this.props.fetchEventGroups(requestPayload)
-    this.props.fetchRegisteredUsers(requestPayload)
   }
 
   _renderEventGroups() {
@@ -137,15 +136,18 @@ export class Register extends React.Component {
   }
 
   handleItemHeaderClick(item) {
-    const { params } = this.props;
+    const { userId } = this.props;
     this.setState({
       item: item
-    })
-    this.props.fetchPartners({
-      eventId: params.eventId,
-      groupId: this.state.group.id,
+    });
+    if (item.needPartner) {
+      this.props.fetchPartners({
+        userid: userId
+      })
+    }
+    this.props.fetchRegisteredUsers({
       itemId: this.state.item.id
-    })
+    });
   }
 
   handlePartnerHeaderClick(item) {

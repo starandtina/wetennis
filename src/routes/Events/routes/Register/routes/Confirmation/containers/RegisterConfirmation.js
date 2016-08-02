@@ -9,7 +9,7 @@ import RegisterConfirmation from '../components/RegisterConfirmation'
 const mapStateToProps = (state) => {
   console.log(state);
   return ({
-  user: state.register.user,
+  user: state.user.user,
   group: state.register.group,
   item: state.register.item,
   partnerId: state.register.partnerId,
