@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import cs from "./Message.scss";
@@ -10,7 +11,7 @@ const buttonStyle = {
   fontSize: `${variables.px1 * 12}rem`,
 }
 
-const Message = ({data}) => {
+const Message = ({data, path}) => {
   const {
     friendRegisterCount,
     register,
@@ -31,7 +32,9 @@ const Message = ({data}) => {
             </div>
           : undefined}
           <div className={cs.rigisterRight}>
-            <RaisedButton label="立即报名" style={buttonStyle} />       
+            <Link to={`${path}/register`}>
+              <RaisedButton label="立即报名" style={buttonStyle} />
+            </Link>       
           </div>
         </MessageItem>
       : undefined}

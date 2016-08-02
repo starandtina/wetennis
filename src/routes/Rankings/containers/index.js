@@ -14,7 +14,6 @@ class Container extends Component {
   render() {
     const {children, ...props} = this.props;
     let content;
-    console.log("Container: ", children);
     if (children) {
       content = children;
     } else {

@@ -28,6 +28,11 @@ export default class EventInfo extends React.Component {
       }, 1000);
     }
   }
+
+  componentWillUnmount() {
+    clearInterval(this.__timer);
+  }
+  
   render() {
     const {
       thumb,

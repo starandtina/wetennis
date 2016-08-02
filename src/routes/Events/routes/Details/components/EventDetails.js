@@ -33,7 +33,8 @@ export default class EventDetails extends React.Component {
     const {
       likeComment, sendComment, getComments,
       details, notices, comments, sponsors,
-      params: {eventId}
+      params: {eventId},
+      location: {pathname}
     } = this.props;
     return (
       <div className={cs.box}>
@@ -58,7 +59,7 @@ export default class EventDetails extends React.Component {
           likeAction={likeComment}
           sendAction={sendComment}
         />
-        <Message data={details}></Message>
+        <Message data={details} path={pathname}></Message>
       </div>
     );
   }

@@ -17,7 +17,6 @@ export class Dashboard extends React.Component {
     const { children, push, routes} = this.props
     let content = null;
     let footer =  null;
-    console.log(this.props);
     if (children) {
       content = children;
       if(routes && routes[2].path != 'signin' && routes[2].path != 'signup'&& routes[2].path != 'resetPassword' ) {

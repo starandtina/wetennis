@@ -84,7 +84,6 @@ function signUpUser(data) {
 export function signUpUserThenSetCookie(data) {
   return (dispatch, getState) =>
     dispatch(signUpUser(data)).then(resp => {
-      console.log(resp);
       setCookie(resp.payload.data.id);
     })
 }
