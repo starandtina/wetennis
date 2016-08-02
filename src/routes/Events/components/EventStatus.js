@@ -5,10 +5,10 @@ import cs from "./EventStatus.scss";
 export default class EventStatus extends React.Component {
   render() {
     const {currentStatus, status} = this.props;
-    let text = "";
+    let text = "全部";
     for (let i = 0, l = status.length; i < l; i++) {
       let v = status[i];
-      if (v.value === Number(currentStatus)) {
+      if (v.value === currentStatus) {
         text = v.text;
         break;
       }

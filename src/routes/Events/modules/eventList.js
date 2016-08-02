@@ -54,7 +54,7 @@ export function list(state = [], {type, payload}) {
   return s;
 }
 
-export function location(state = [], {type, payload}) {
+export function location (state = [], {type, payload}) {
   let s = state;
   switch (type) {
     case GET_EVENT_FILTER_SUCCESS:
@@ -64,7 +64,7 @@ export function location(state = [], {type, payload}) {
   return s;
 }
 
-export function status(state = [], {type, payload}) {
+export function status (state = [], {type, payload}) {
   let s = state;
   switch (type) {
     case GET_EVENT_FILTER_SUCCESS:
@@ -74,10 +74,10 @@ export function status(state = [], {type, payload}) {
   return s;
 }
 
-export function currentFilter(state = {
-  status: 1,
+export function currentFilter (state = {
+  status: "1",
   eventFilter: "ALL",
-  location: 1,
+  location: "1",
   currentPage: 1,
   limit: 30
 }, {type, payload}) {

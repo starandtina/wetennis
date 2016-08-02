@@ -14,11 +14,11 @@ export default class EventTopNav extends React.Component {
     let {location, currentLocation} = this.props;
     const {locationDisplay} = this.state;
     currentLocation = currentLocation || {};
-    let currentFilterText = "";
+    let currentFilterText = "全部";
     if (location.length > 0) {
       for (let i = 0, l = location.length; i < l; i++) {
         let v = location[i];
-        if (v.value === Number(currentLocation)) {
+        if (v.value === currentLocation) {
           currentFilterText = v.text;
           break;
         }

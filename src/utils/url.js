@@ -22,8 +22,8 @@ export const fetchEventDetails = `${ROOT_URL}eventDetails`
 export const fetchEventNotices = `${ROOT_URL}eventNotices`
 export const fetchEventSponsors = `${ROOT_URL}eventSponsors`
 export const fetchEventComments = `${ROOT_URL}eventComments`
-export const likeComment = `${ROOT_URL}likeComment`
-export const sendComment = `${ROOT_URL}sendComment`
+export const likeComment = `${ROOT_URL}eventLikeComment`
+export const sendComment = `${ROOT_URL}eventSendComment`
 
 // event score
 export const fetchEventScore = `${ROOT_URL}eventScore`
@@ -36,7 +36,6 @@ export const fetchEventScheduleFilter = `${ROOT_URL}eventScheduleFilter`
 // draw table
 export const fetchEventDrawTable = `${ROOT_URL}eventDrawTable_qualify`
 // export const fetchEventDrawTable = `${ROOT_URL}eventDrawTable`
-
 
 // rankings
 export const fetchRankings = `${ROOT_URL}rankings`
