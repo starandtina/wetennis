@@ -22,7 +22,7 @@ export default class EventList extends React.Component {
               <div className={classes["eventList-right"]}>
                 <div className={classes["eventList-name"]}>{item.name}</div>
                 <div className={classes["eventList-date"]}>
-                  {`${item.startDate} - ${item.endDate.split('.')[2]}`}
+                  {`${item.startDate} - ${item.endDate.split('.')[2] || ""}`}
                 </div>
                 <div className={classes["eventList-location"]}>{item.location}</div>
               </div>

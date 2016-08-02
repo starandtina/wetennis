@@ -1,51 +1,53 @@
 const ROOT_URL = '/api?method='
+export default {
+  // Dashbaord
+  signUp: `${ROOT_URL}signup`,
+  signIn: `${ROOT_URL}signin`,
+  checkPhoneDuplicated: `${ROOT_URL}checkPhoneDuplicated`,
+  checkUserNameDuplicated: `${ROOT_URL}checkUserNameDuplicated`,
+  sendActivationCode: `${ROOT_URL}sendActivationCode`,
+  resetPassword: `${ROOT_URL}resetPassword`,
+  fetchMyData: `${ROOT_URL}fetchMyData`,
+  fetchMySettings: `${ROOT_URL}fetchMySettings`,
+  updateMySettings: `${ROOT_URL}updateMySettings`,
+  // Event
+  events: `${ROOT_URL}events`,
+  fetchEventGroups: `${ROOT_URL}eventGroups`,
+  eventFilter: `${ROOT_URL}eventFilter`,
+  fetchRegisteredUsers: `${ROOT_URL}registeredUsers`,
+  fetchPartners: `${ROOT_URL}fetchPartners`,
 
-// Dashbaord
-export const signUp = `${ROOT_URL}signup`
-export const signIn = `${ROOT_URL}signin`
-export const checkPhoneDuplicated = `${ROOT_URL}checkPhoneDuplicated`
-export const checkUserNameDuplicated = `${ROOT_URL}checkUserNameDuplicated`
-export const sendActivationCode = `${ROOT_URL}sendActivationCode`
-export const resetPassword = `${ROOT_URL}resetPassword`
-export const fetchMyData = `${ROOT_URL}fetchMyData`
-export const fetchMySettings = `${ROOT_URL}fetchMySettings`
-export const updateMySettings = `${ROOT_URL}updateMySettings`
-// Event
-export const events = `${ROOT_URL}events`
-export const fetchEventGroups = `${ROOT_URL}eventGroups`
-export const eventFilter = `${ROOT_URL}eventFilter`
-export const fetchRegisteredUsers = `${ROOT_URL}registeredUsers`
-export const fetchPartners = `${ROOT_URL}fetchPartners`
+  // event details
+  fetchEventDetails: `${ROOT_URL}eventDetails`,
+  fetchEventNotices: `${ROOT_URL}eventNotices`,
+  fetchEventSponsors: `${ROOT_URL}eventSponsors`,
+  fetchEventComments: `${ROOT_URL}eventComments`,
+  likeComment: `${ROOT_URL}eventLikeComment`,
+  sendComment: `${ROOT_URL}eventSendComment`,
+  registerEvent: `${ROOT_URL}registerEvent`,
 
-// event details
-export const fetchEventDetails = `${ROOT_URL}eventDetails`
-export const fetchEventNotices = `${ROOT_URL}eventNotices`
-export const fetchEventSponsors = `${ROOT_URL}eventSponsors`
-export const fetchEventComments = `${ROOT_URL}eventComments`
-export const likeComment = `${ROOT_URL}eventLikeComment`
-export const sendComment = `${ROOT_URL}eventSendComment`
+  // event score
+  fetchEventScore: `${ROOT_URL}eventScore`,
+  fetchEventScoreFilter: `${ROOT_URL}eventScoreFilter`,
 
-// event score
-export const fetchEventScore = `${ROOT_URL}eventScore`
-export const fetchEventScoreFilter = `${ROOT_URL}eventScoreFilter`
+  // event schedule
+  fetchEventSchedule: `${ROOT_URL}eventSchedule`,
+  fetchEventScheduleFilter: `${ROOT_URL}eventScheduleFilter`,
 
-// event schedule
-export const fetchEventSchedule = `${ROOT_URL}eventSchedule`
-export const fetchEventScheduleFilter = `${ROOT_URL}eventScheduleFilter`
+  // draw table
+  fetchEventDrawTable: `${ROOT_URL}eventDrawTable_qualify`,
+  // fetchEventDrawTable: `${ROOT_URL}eventDrawTable`,
 
-// draw table
-export const fetchEventDrawTable = `${ROOT_URL}eventDrawTable_qualify`
-// export const fetchEventDrawTable = `${ROOT_URL}eventDrawTable`
+  // rankings
+  fetchRankings: `${ROOT_URL}rankings`,
+  fetchRankingsFilter: `${ROOT_URL}rankingsFilter`,
+  like: `${ROOT_URL}like`,
 
-// rankings
-export const fetchRankings = `${ROOT_URL}rankings`
-export const fetchRankingsFilter = `${ROOT_URL}rankingsFilter`
-export const like = `${ROOT_URL}like`
+  // ranking details info
+  fetchRankingDetailsInfo: `${ROOT_URL}rankingDetailsInfo`,
+  fetchRankingDetailsTab: `${ROOT_URL}rankingDetailsTab`,
 
-// ranking details info
-export const fetchRankingDetailsInfo = `${ROOT_URL}rankingDetailsInfo`
-export const fetchRankingDetailsTab = `${ROOT_URL}rankingDetailsTab`
-
-// Referee
-export const fetchReferee = `${ROOT_URL}referee`
-export const operateReferee = `${ROOT_URL}operateReferee`
+  // Referee
+  fetchReferee: `${ROOT_URL}referee`,
+  operateReferee: `${ROOT_URL}operateReferee`
+}
