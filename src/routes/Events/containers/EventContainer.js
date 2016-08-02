@@ -13,7 +13,7 @@ import Footer from "components/Footer";
 import cs from "./EventContainer.scss";
 
 class EventContainer extends React.Component {
-  componentDidMount() {
+  componentDidMount () {
     const {action: {getFilter, getEventList, setCurrentFilter}, currentFilter} = this.props;
     // get initial list data from server
     getFilter().then(data => {
@@ -26,8 +26,8 @@ class EventContainer extends React.Component {
       getEventList(__obj);
     });
   }
-  render() {debugger
-    const {eventList, location, status, action, children, currentFilter} = this.props;
+  render () {
+    const { eventList, location, status, action, children, currentFilter } = this.props;
     const s = currentFilter;
 
     let content = (

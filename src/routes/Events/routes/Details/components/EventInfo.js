@@ -40,12 +40,12 @@ export default class EventInfo extends React.Component {
       score,
       schedule,
     } = this.props.data;
-    const eventId = this.props.eventId;
-    const {countdown} = this.state;
+    const eventId = this.props.eventId
+    const {countdown} = this.state
 
     let fc = {}
     if (!(drawTable || score || schedule)) {
-      fc = this.formatCoundown(countdown)
+      fc = this.formatCountdown(countdown)
     } else if (this.__timer) {
       clearInterval(this.__timer)
       this.__timer = false
