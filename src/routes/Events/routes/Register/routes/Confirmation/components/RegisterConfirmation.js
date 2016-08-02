@@ -28,7 +28,6 @@ export class RegisterConfirmation extends React.Component {
     const { uploadUserInfo, push, params } = this.props;
     const eventId = params.eventId;
     const { name, username, gender, cardId, phone } = this.state;
-    console.log(name, username, gender, cardId, phone);
     if (name && username && gender && cardId && phone) {
       uploadUserInfo(this.state);
       push(`/events/${eventId}/register/announcement`)
@@ -40,7 +39,6 @@ export class RegisterConfirmation extends React.Component {
   render() {
     const { group, item, partnerId, partners, user } = this.props;
     const myPartner = partners.find(item => item.id == partnerId);
-    console.log(user);
     const partnerContent = item.needPartner ? (
       <div>
         <div className={`${classes.header} text-muted`}>

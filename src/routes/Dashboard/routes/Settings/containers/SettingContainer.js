@@ -96,8 +96,6 @@ class SettingsForm extends React.Component {
       width: '100%'
     };
 
-    console.log(settings);
-
     return (
         <div>
           <NavBack caption='个人中心'>

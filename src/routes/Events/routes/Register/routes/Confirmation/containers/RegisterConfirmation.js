@@ -7,7 +7,6 @@ import { uploadUserInfo } from '../../../modules/register';
 import RegisterConfirmation from '../components/RegisterConfirmation'
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return ({
   user: state.user.user,
   group: state.register.group,

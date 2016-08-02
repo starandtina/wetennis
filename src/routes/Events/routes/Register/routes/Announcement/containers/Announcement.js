@@ -23,7 +23,6 @@ class Announcement extends Component {
 
   render() {
 
-      console.log(12321321);
     return (
       <div className={style.Root}>
         <h2 className={style.H2}>参赛责任书</h2>

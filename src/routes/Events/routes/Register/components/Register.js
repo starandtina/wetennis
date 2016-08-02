@@ -41,8 +41,6 @@ export class Register extends React.Component {
 
   _renderEventGroupItems() {
     const { items } = this.state.group;
-    console.log('render Item');
-    console.log(items);
 
     return (
       <ul className='list-unstyled'>
@@ -59,15 +57,10 @@ export class Register extends React.Component {
   }
 
   renderCategories() {
-    console.log(this.state.item);
-    console.log(this.props);
     const { partners } = this.props;
-    console.log(partners);
     const partner = this.state.item.needPartner ? (
       <Panel header='搭档' eventKey="2">
         {partners.map(item => {
-        console.log(item);
-          console.log(this.state.partnerId, item.id);
         return (
         <li className={this.state.partnerId == item.id ? `${classes.li} ${classes.selected}` : classes.li } key={item.id} onClick={this.handlePartnerHeaderClick.bind(this, item)}>
           <div className='clearfix'>
@@ -155,7 +148,6 @@ export class Register extends React.Component {
     this.setState({
       partnerId: item.id
     });
-    console.log(item.id);
     setPartnerId(item.id)
   }
 }

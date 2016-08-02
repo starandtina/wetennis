@@ -62,9 +62,7 @@ export class ResetPasswordForm extends React.Component {
 
   resetPassword = () => {
     const { resetPassword, values, push } = this.props;
-    console.log(values);
     resetPassword(values).then(action => {
-      console.log(action);
       if(action.payload.data.resetPassword){
         alert('修改成功');
       }

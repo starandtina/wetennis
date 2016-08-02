@@ -8,7 +8,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import style from './Purchase.scss';
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return ({
   user: state.user.user,
   group: state.register.group,
@@ -31,16 +30,12 @@ class Purchase extends Component {
       personCard: user.cardId,
       partnerId
     }).then(action => {
-      console.log(action);
       location.replace(action.payload.data.payUrl);
     })
   };
 
   render() {
     const { item, user, registerEvent } = this.props;
-    console.log(item);
-    console.log(user);
-    console.log(registerEvent);
 
     return (
       <div className={style.Root}>
