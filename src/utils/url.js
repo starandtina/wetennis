@@ -10,6 +10,7 @@ export const resetPassword = `${ROOT_URL}resetPassword`
 export const fetchMyData = `${ROOT_URL}fetchMyData`
 export const fetchMySettings = `${ROOT_URL}fetchMySettings`
 export const updateMySettings = `${ROOT_URL}updateMySettings`
+export const registerEvent = `${ROOT_URL}registerEvent`
 // Event
 export const events = `${ROOT_URL}events`
 export const fetchEventGroups = `${ROOT_URL}eventGroups`
