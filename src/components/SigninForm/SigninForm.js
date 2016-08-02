@@ -13,6 +13,7 @@ export class SigninForm extends React.Component {
   componentWillReceiveProps(nextProps) {
     // If `authenticated` then redirect to
     if(nextProps.user.status === 'authenticated' && nextProps.user.user) {
+      setCookie(nextProps.user.user.id);
       const locationState = this.props.location.state;
       this.props.actions.push(locationState && locationState.nextPathname || '/');
     }
@@ -20,14 +21,7 @@ export class SigninForm extends React.Component {
 
   signIn = () => {
     const { values } = this.props;
-    this.props.actions.signInUser(values).then(
-      action => {
-        if(action.payload.code != 1){
-          setCookie(action.payload.data.id);
-          this.props.actions.goBack();
-        }
-      }
-    );
+    this.props.actions.signInUser(values);
   }
 
   render () {
