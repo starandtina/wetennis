@@ -14,19 +14,22 @@ export class Dashboard extends React.Component {
 
 
   render () {
-    const { children, push } = this.props
+    const { children, push, routes} = this.props
     let content = null;
-
+    let footer =  null;
+    console.log(this.props);
     if (children) {
-      content = children
+      content = children;
+      if(routes && routes[2].path != 'signin' && routes[2].path != 'signup'&& routes[2].path != 'resetPassword' ) {
+        footer = <Footer activeNavTab='DASHBOARD' />
+      }
     } else {
-      console.log(push);
-      push('/dashboard/Mine')
+      push('/dashboard/Me')
     }
     return (
-      <div style={{ height: '100%', marginTop: '55px', paddingBottom: '55px' }}>
+      <div style={{ height: '100%', marginTop: '55px', paddingBottom: '56px', marginBottom: '56px' }}>
         {content}
-        <Footer activeNavTab='DASHBOARD' />
+        {footer}
       </div>
     )
   }

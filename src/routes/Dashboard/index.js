@@ -15,7 +15,7 @@ export default (store) => ({
         require('./routes/Signin')(store),
         require('./routes/Resetpassword')(store),
         require('./routes/Settings')(store),
-        require('./routes/Mine')(store)
+        require('./routes/Me')(store)
       ])
     }, 'dashboard')
   },

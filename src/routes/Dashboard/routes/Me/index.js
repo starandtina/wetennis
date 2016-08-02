@@ -1,12 +1,12 @@
 import { injectReducer } from 'store/reducers'
 
 export default (store) => ({
-  path: 'Mine',
+  path: 'Me',
   getComponent (nextState, next) {
     require.ensure([
-      './containers/MineContainer'
+      './containers/MeContainer'
     ], (require) => {
-      const SettingContainer = require('./containers/MineContainer')
+      const SettingContainer = require('./containers/MeContainer')
 
       next(null, SettingContainer)
     })

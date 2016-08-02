@@ -14,6 +14,10 @@ export const FETCH_EVENT_GROUPS = 'FETCH_EVENT_GROUPS'
 export const FETCH_EVENT_GROUPS_SUCCESS = 'FETCH_EVENT_GROUPS_SUCCESS'
 export const FETCH_EVENT_GROUPS_FAILTURE = 'FETCH_EVENT_GROUPS_FAILTURE'
 
+export const REGISTER_EVENT = 'REGISTER_EVENT'
+export const REGISTER_EVENT_SUCCESS = 'REGISTER_EVENT_SUCCESS'
+export const REGISTER_EVENT_FAILTURE = 'REGISTER_EVENT_FAILTURE'
+
 
 export const FETCH_REGISTERED_USERS = 'FETCH_REGISTERED_USERS'
 export const FETCH_REGISTERED_USERS_SUCCESS = 'FETCH_REGISTERED_USERS_SUCCESS'
@@ -46,6 +50,11 @@ export const fetchRegisteredUsers = (data) => ({
 export const fetchPartners = (data) => ({
   types: [FETCH_PARTNERS, FETCH_PARTNERS_SUCCESS, FETCH_PARTNERS_FAILTURE],
   promise: () => API.post(URLConf.fetchPartners, data)
+})
+
+export const registerEvent = (data) => ({
+  types: [REGISTER_EVENT, REGISTER_EVENT_SUCCESS, REGISTER_EVENT_FAILTURE],
+  promise: () => API.post(URLConf.registerEvent, data)
 })
 
 export const selectCategory = createAction(SELECT_CATEGORY)
@@ -93,7 +102,6 @@ export default handleActions({
   registeredUsers: [],
   group: { name: '级别', items: []  },
   item: { name: '项目' },
-  user: { name: 'ashley', gender:'male', userName: '陈云珠', phone: '13345674567', cardId: '232323198712311231'},
   partners: [],
   partnerId: ''
 })
