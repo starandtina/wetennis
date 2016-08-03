@@ -1,10 +1,10 @@
-//
-// Utility classes
-// Syntax: u-<utilityName>
-// --------------------------------------------------
+/**/
+/* Utility classes*/
+/* Syntax: u-<utilityName>*/
+/* --------------------------------------------------*/
 
-// Margins, Padding, Width, etc...
-// -------------------------
+/* Margins, Padding, Width, etc...*/
+/* -------------------------*/
 
 .u-textAlignCenter
 {
@@ -44,5 +44,15 @@
 .u-verticalAlignMiddle
 {
     vertical-align: middle;
+}
+
+.u-verticalCenterWithFlex
+{
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+        align-items: center;
+    -ms-flex-pack: center;
+        justify-content: center;
 }
 
