@@ -4,17 +4,17 @@
   "data": [
     {
       "id": 1,
-      "title": "习近平再提 头等大事 干货全在这儿",
+      "title": "我来自新浪",
       "date": "2016 年04月15日 23: 42: 18",
       "thumbImgUrl": "http://img4.imgtn.bdimg.com/it/u=4083832298,2703504222&fm=21&gp=0.jpg",
       "likeCount": 999,
       "commentCount": 999,
-      "provider": "Sina",
+      "provider": "SINA",
       "providerIconUrl": "http://www.sina.com.cn/favicon.ico"
       },
     {
       "id": 2,
-      "title": "习近平再提 头等大事 干货全在这儿",
+      "title": "我来自ATP官网",
       "date": "2016 年04月15日 23: 42: 18",
       "thumbImgUrl": "https://placeholdit.imgix.net/~text?txtsize=12&txt=128%C3%97256&w=128&h=256",
       "likeCount": 999,
@@ -24,12 +24,12 @@
       },
     {
       "id": 3,
-      "title": "习近平再提 头等大事 干货全在这儿",
+      "title": "我来自新浪",
       "date": "2016 年04月15日 23: 42: 18",
       "thumbImgUrl": "https://placeholdit.imgix.net/~text?txtsize=12&txt=1280%C3%97256&w=1280&h=256",
       "likeCount": 999,
       "commentCount": 999,
-      "provider": "Sina",
+      "provider": "SINA",
       "providerIconUrl": "http://www.sina.com.cn/favicon.ico"
       }
     ]

@@ -22,8 +22,10 @@ export default class News extends Component {
               </div>
             </Col>
             <Col xs={5}>
-              <span className={cs['icon-container']}><i className={cls`material-icons highlight ${cs.marginRight5} ${cs.icon}`}>comment</i>{item.commentCount}</span>
-              <span className={cs['icon-container']}><i className={cls`material-icons highlight ${cs.marginRight5} ${cs.icon}`}>favorite</i>{item.likeCount}</span>
+              <div className='pull-right'>
+                <span className={cs['icon-container']}><i className={cls`material-icons highlight ${cs.marginRight5} ${cs.icon}`}>comment</i>{item.commentCount}</span>
+                <span className={cs['icon-container']}><i className={cls`material-icons highlight${cs.marginRight5} ${cs.icon}`}>favorite</i>{item.likeCount}</span>
+              </div>
             </Col>
           </Row>
         </Grid>

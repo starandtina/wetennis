@@ -10,6 +10,7 @@ export const FETCH_NEWS = 'FETCH_NEWS'
 export const FETCH_NEWS_SUCCESS = 'FETCH_NEWS_SUCCESS'
 export const FETCH_NEWS_FAILTURE = 'FETCH_NEWS_FAILTURE'
 
+export const SET_PROVIDER_FILTER = 'SET_PROVIDER_FILTER'
 
 // ------------------------------------
 // Actions
@@ -19,10 +20,19 @@ export const fetchNews = (data) => ({
   promise: () => API.post(URLConf.fetchNews, { ...data })
 })
 
+export const setProviderFilter = (filter) => ({
+  type: SET_PROVIDER_FILTER,
+  payload: filter
+})
+
 // -----------------------------
 // Reducer
 // -----------------------------
 export default handleActions({
+  [SET_PROVIDER_FILTER]: (state, action) => ({
+    ...state,
+    providerFilter: action.payload
+  }),
   [FETCH_NEWS]: (state, action) => ({
     ...state
   }),
@@ -33,4 +43,4 @@ export default handleActions({
   [FETCH_NEWS_FAILTURE]: (state, action) => ({
     ...state
   })
-}, { list: [] })
+}, { list: [], providerFilter: '' })

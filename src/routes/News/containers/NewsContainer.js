@@ -16,12 +16,12 @@ class NewsContainer extends Component {
   }
 
   render() {
-    const { children, news } = this.props;
+    const { children, newsList } = this.props;
 
     let content = (
       <div className={cs.container}>
-        <NewsTopNav />
-        <NewsList news={news} />
+        <NewsTopNav {...this.props} />
+        <NewsList newsList={newsList} />
         <Footer activeNavTab='LATEST' />
       </div>
     )
@@ -38,9 +38,20 @@ class NewsContainer extends Component {
   }
 }
 
+const getProviderFilterList = (newsList = []) => ([ '全部', ...new Set(newsList.map(n => n.provider)) ])
+
+const getVisibleNewsList = (newsList, providerFilter) => {
+  if (providerFilter === '全部') {
+    return newsList
+  } else {
+    return newsList.filter(n => n.provider === providerFilter)
+  }
+}
 
 const mapStateToProps = (state) => ({
-  news: state.news
+  providerList: getProviderFilterList(state.news.list),
+  newsList: getVisibleNewsList(state.news.list, state.news.providerFilter),
+  providerFilter: state.news.providerFilter
 })
 
 export default connect(
