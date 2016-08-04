@@ -1,8 +1,11 @@
 import { injectReducer } from 'store/reducers'
+import { requireAuth } from 'utils/auth'
 
 export default (store) => ({
   path: ':eventId/register',
-
+  onEnter (nextState) {
+      requireAuth.apply(this, arguments)
+  },
   getChildRoutes (location, cb) {
     require.ensure([], (require) => {
       cb(null, [

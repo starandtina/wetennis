@@ -1,5 +1,7 @@
 const ROOT_URL = '/api?method='
 export default {
+  // Latest
+  fetchNews: `${ROOT_URL}fetchNews`,
   // Dashbaord
   signUp: `${ROOT_URL}signup`,
   signIn: `${ROOT_URL}signin`,

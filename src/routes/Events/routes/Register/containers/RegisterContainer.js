@@ -12,6 +12,7 @@ const mapStateToProps = (state) => ({
   item: state.register.item,
   registeredUsers: state.register.registeredUsers,
   partners: state.register.partners,
+  userId: state.user.user.id
 })
 
 export default connect(

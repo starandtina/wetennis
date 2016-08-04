@@ -93,7 +93,6 @@ export const signInUser = (data) => ({
   promise: () => API.post(URLConf.signIn, data)
 })
 
-
 //export const verifyPhone = (data) => ({
 //  types: [VERIFY_PHONE, VERIFY_PHONE_SUCCESS, VERIFY_PHONE_FAILTURE],
 //  promise: () => API.post(URLConf.verifyPhone, data)

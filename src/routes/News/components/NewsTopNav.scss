@@ -1,0 +1,37 @@
+@import 'variables';
+
+.container {
+  padding-right: 5*$px1;
+
+  color: #1cca5a;
+
+  font-size: $px12;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  i {
+    font-size: 15*$px1;
+  }
+  > span {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+        align-items: center;
+    margin-right: 15*$px1;
+  }
+}
+
+
+.news-top-nav
+{
+
+}
+
+.selector
+{
+    line-height: 3.5rem;
+
+    padding-right: 5*$px1;
+}

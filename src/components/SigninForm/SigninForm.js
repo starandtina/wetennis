@@ -1,33 +1,27 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { brower } from 'react-router-redux';
 import {
   setCookie,
   logout
 } from 'utils/auth'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
-
 import classes from './SigninForm.scss'
 
 export class SigninForm extends React.Component {
   componentWillReceiveProps(nextProps) {
     // If `authenticated` then redirect to
     if(nextProps.user.status === 'authenticated' && nextProps.user.user) {
+      setCookie(nextProps.user.user.id);
       const locationState = this.props.location.state;
-      //this.props.actions.push(locationState && locationState.nextPathname || '/');
+      this.props.actions.push(locationState && locationState.nextPathname || '/');
     }
   }
 
   signIn = () => {
     const { values } = this.props;
-    this.props.actions.signInUser(values).then(
-      action => {
-        if(action.payload.code != 1){
-          setCookie(action.payload.data.id)
-          this.props.actions.push('/events/C0F4E6E1DC724C7EB500961C15931703/register');
-        }
-      }
-    );
+    this.props.actions.signInUser(values);
   }
 
   render () {

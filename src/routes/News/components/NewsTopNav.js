@@ -1,16 +1,52 @@
 import React, { Component } from 'react'
-import TopNav from 'components/TopNav'
+import { connect } from 'react-redux'
 
-export default class NewsList extends Component {
+import TopNav from 'components/TopNav'
+import { cls } from 'utils'
+import { setProviderFilter } from '../modules'
+
+import cs from './NewsTopNav.scss'
+
+class NewsTopNav extends Component {
   render() {
+    const { newsList, providerFilter, providerList } = this.props
+
     return (
-      <div>
+      <div className={cs.container}>
         <TopNav title='最新新闻'>
           <div ref='left'></div>
-          <div ref='right'></div>
+          <div ref='right'>
+            <div className={cs.container}>
+              <span>
+                {providerFilter || providerList[0]}
+                <i className='material-icons'>keyboard_arrow_down</i>
+                <select
+                  className='dropdown'
+                  onChange={this.setProviderFilter}
+                >
+                  {providerList.map((item, index) => {
+                    return (
+                      <option key={index} value={item}>{item}</option>
+                    );
+                  })}
+                </select>
+              </span>
+            </div>
+          </div>
         </TopNav>
       </div>
     )
   }
+
+  setProviderFilter = (e) => {
+    const { setProviderFilter } = this.props
+    setProviderFilter(e.target.value)
+  }
 }
 
+export default connect(
+  null,
+  {
+    setProviderFilter
+  },
+)(NewsTopNav)
