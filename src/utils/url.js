@@ -37,6 +37,7 @@ export default {
   // draw table
   fetchEventDrawTable: `${ROOT_URL}eventDrawTable_qualify`,
   // fetchEventDrawTable: `${ROOT_URL}eventDrawTable`,
+  fetchEventDrawTableFilter: `${ROOT_URL}eventDrawTableFilter`,
 
   // rankings
   fetchRankings: `${ROOT_URL}rankings`,

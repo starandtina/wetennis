@@ -12,6 +12,18 @@
   padding: 15*$px1 0 0 15*$px1;
 }
 
+.typeFilter {
+  color: $mainColor;
+  text-align: center;
+  width: 40*$px1;
+  height: $topNavHeight;
+  position: relative;
+  > i {
+    line-height: $topNavHeight;
+  }
+}
+
+
 .tabInnerbox {
   height: 50*$px1;
   overflow-y: hidden;

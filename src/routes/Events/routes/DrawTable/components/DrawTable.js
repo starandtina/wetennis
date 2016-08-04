@@ -8,25 +8,56 @@ import cs from "./DrawTable.scss";
 
 export default class DrawTable extends Component {
   componentDidMount() {
-    this.getDrawTable();
+    const {
+      getFilter,
+      params: {eventId}
+    } = this.props;
+    getFilter(eventId).then((data) => {
+      this.getDrawTable()
+    });
   }
   getDrawTable(matchId) {
     const {
       getDrawTable,
       setCurrentMatch,
+      currentFilter,
       params: {eventId}
-    } = this.props;
+    } = this.props
     if (matchId) {
-      setCurrentMatch(matchId);
+      setCurrentMatch(matchId)
     }
-    getDrawTable({eventId, matchId});
+    getDrawTable({eventId, matchId, type: currentFilter})
   }
+
+  setCurrentFilter = (e) => {
+    const value = e.target.value;
+    const {setCurrentFilter, currentMatch, getDrawTable, params: {eventId}} = this.props;
+    setCurrentFilter(value)
+    getDrawTable({eventId, currentMatch, type: value})
+  }
+
   render() {
-    const {data, currentMatch} = this.props;
+    const {data, currentMatch, filters, currentFilter} = this.props;
     const {qualify, gameName} = data;
     return (
       <div>
-        <NavBack caption="签表"></NavBack>
+        <NavBack caption="签表">
+          <div className={cs.typeFilter}>
+            <i className="material-icons">more_vert</i>
+            <select
+              className="dropdown"
+              defaultValue={currentFilter}
+              onChange={this.setCurrentFilter}
+            >
+            {filters.map((item, index) => {
+              return <option
+                      key={index}
+                      value={item.value}
+                    >{item.text}</option>
+            })}
+            </select>
+          </div>
+        </NavBack>
         <div className={cs.tab}>
           <div className={cs.tabInnerbox}>
             <ul>
@@ -50,7 +81,6 @@ export default class DrawTable extends Component {
         {qualify
         ? <QualifyTableDetails data={data.details} />
         : <TableDetails data={data.details} />}
-        
       </div>
     );
   }
