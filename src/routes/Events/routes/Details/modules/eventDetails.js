@@ -38,6 +38,16 @@ const GET_SPONSORS = `${PREFIXER}GET_SPONSORS`;
 const GET_SPONSORS_SUCCESS = `${PREFIXER}GET_SPONSORS_SUCCESS`;
 const GET_SPONSORS_FAILTURE = `${PREFIXER}GET_SPONSORS_FAILTURE`;
 
+// event draw
+const EVENT_DRAW = `${PREFIXER}EVENT_DRAW`;
+const EVENT_DRAW_SUCCESS = `${PREFIXER}EVENT_DRAW_SUCCESS`;
+const EVENT_DRAW_FAILTURE = `${PREFIXER}EVENT_DRAW_FAILTURE`;
+
+// event follow
+const EVENT_FOLLOW = `${PREFIXER}EVENT_FOLLOW`;
+const EVENT_FOLLOW_SUCCESS = `${PREFIXER}EVENT_FOLLOW_SUCCESS`;
+const EVENT_FOLLOW_FAILTURE = `${PREFIXER}EVENT_FOLLOW_FAILTURE`;
+
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -56,21 +66,48 @@ export function getNotices(id) {
   };
 }
 
-export function getComments(id) {
+export function getComments (id) {
   return {
     types: [GET_COMMENTS, GET_COMMENTS_SUCCESS, GET_COMMENTS_FAILTURE],
     promise: () => API.post(URLConf.fetchEventComments, {id})
   };
 }
 
-export function likeComment(eventId, commentId) {
+export function likeComment (eventId, commentId) {
   return dispatch => {
     dispatch({
       types: [LIKE_COMMENT, LIKE_COMMENT_SUCCESS, LIKE_COMMENT_FAILTURE],
       promise: () => API.post(URLConf.likeComment, {id: commentId})
-    }).then(({payload}) => {
-      if (payload === "ok") {
+    }).then(({payload: {code, data}}) => {
+      if (Number(code) === 0 && data === "ok") {
         dispatch(getComments(eventId));
+      }
+    })
+  }
+}
+
+
+export function follow (eventId) {
+  return dispatch => {
+    dispatch({
+      types: [EVENT_FOLLOW, EVENT_FOLLOW_SUCCESS, EVENT_FOLLOW_FAILTURE],
+      promise: () => API.post(URLConf.eventFollow, {eventId})
+    }).then(({payload: {code, data}}) => {
+      if (Number(code) === 0 && data === "ok") {
+        dispatch(getDetails(eventId));
+      }
+    })
+  }
+}
+
+export function draw (eventId) {
+  return dispatch => {
+    dispatch({
+      types: [EVENT_DRAW, EVENT_DRAW_SUCCESS, EVENT_DRAW_FAILTURE],
+      promise: () => API.post(URLConf.eventDraw, {eventId})
+    }).then(({payload: {code, data}}) => {
+      if (Number(code) === 0 && data === "ok") {
+        dispatch(getDetails(eventId));
       }
     })
   }
@@ -81,8 +118,8 @@ export function sendComment(id, text) {
     dispatch({
       types: [SEND_COMMENT, SEND_COMMENT_SUCCESS, SEND_COMMENT_FAILTURE],
       promise: () => API.post(URLConf.sendComment, {id, text})
-    }).then(({payload}) => {
-      if (payload === "ok") {
+    }).then(({payload: {code, data}}) => {
+      if (Number(code) === 0 && data === "ok") {
         dispatch(getComments(id));
       }
     })

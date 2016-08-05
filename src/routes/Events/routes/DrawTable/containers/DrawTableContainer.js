@@ -4,7 +4,12 @@ import { bindActionCreators } from 'redux'
 import { push } from 'react-router-redux'
 
 import DrawTable from "../components/DrawTable";
-import {getFilter, getDrawTable, setCurrentMatch, setCurrentFilter} from "../modules/drawTable";
+import {
+  getFilter,
+  getDrawTable,
+  setCurrentMatch,
+  setCurrentFilter
+} from "../modules/drawTable";
 
 const mapStateToProps = (state) => {
   const {

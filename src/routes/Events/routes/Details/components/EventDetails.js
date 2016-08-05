@@ -31,7 +31,7 @@ export default class EventDetails extends React.Component {
   }
   render() {
     const {
-      likeComment, sendComment, getComments,
+      likeComment, sendComment, getComments, draw, follow,
       details, notices, comments, sponsors,
       params: {eventId},
       location: {pathname}
@@ -43,7 +43,7 @@ export default class EventDetails extends React.Component {
             <div className={cs.info}>
               <i className="material-icons">info</i>
             </div>
-            <div className={cs.favorite}>
+            <div className={cs.favorite} onClick={follow.bind(this, eventId)}>
               {true
               ? <i className="material-icons">favorite</i>
               : <i className="material-icons">favorite_border</i>}
@@ -59,7 +59,11 @@ export default class EventDetails extends React.Component {
           likeAction={likeComment}
           sendAction={sendComment}
         />
-        <Message data={details} path={pathname}></Message>
+        <Message
+          data={details}
+          path={pathname}
+          drawTableAction={draw}
+        ></Message>
       </div>
     );
   }

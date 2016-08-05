@@ -11,7 +11,7 @@ const buttonStyle = {
   fontSize: `${variables.px1 * 12}rem`,
 }
 
-const Message = ({data, path}) => {
+const Message = ({data, path, drawTableAction}) => {
   const {
     friendRegisterCount,
     register,
@@ -19,7 +19,8 @@ const Message = ({data, path}) => {
     draw,
     drawId,
     drawTable,
-    drawCountdown
+    drawCountdown,
+    id
   } = data;
   return (
     <div>
@@ -60,7 +61,7 @@ const Message = ({data, path}) => {
             </div>
           : undefined}
           <div className={cs.rigisterRight}>
-            <RaisedButton label="签表抽签" style={buttonStyle} />       
+            <RaisedButton onClick={drawTableAction.bind(this, id)} label="签表抽签" style={buttonStyle} />       
           </div>
         </MessageItem>
       : undefined}

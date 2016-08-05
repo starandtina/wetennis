@@ -27,6 +27,8 @@ export default {
   likeComment: `${ROOT_URL}eventLikeComment`,
   sendComment: `${ROOT_URL}eventSendComment`,
   registerEvent: `${ROOT_URL}registerEvent`,
+  eventDraw: `${ROOT_URL}eventDraw`,
+  eventFollow: `${ROOT_URL}eventFollow`,
 
   // event score
   fetchEventScore: `${ROOT_URL}eventScore`,
@@ -37,7 +39,7 @@ export default {
   fetchEventScheduleFilter: `${ROOT_URL}eventScheduleFilter`,
 
   // draw table
-  fetchEventDrawTable: `${ROOT_URL}eventDrawTable_qualify`,
+  fetchEventDrawTable: `${ROOT_URL}eventDrawTable`,
   // fetchEventDrawTable: `${ROOT_URL}eventDrawTable`,
   fetchEventDrawTableFilter: `${ROOT_URL}eventDrawTableFilter`,
 

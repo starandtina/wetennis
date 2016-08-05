@@ -10,6 +10,8 @@ import {
   getComments,
   likeComment,
   sendComment,
+  draw,
+  follow
 } from "../modules/eventDetails";
 import EventDetails from "../components/EventDetails";
 
@@ -25,7 +27,9 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   getComments,
   getSponsors,
   likeComment,
-  sendComment
+  sendComment,
+  draw,
+  follow
 }, dispatch);
 
 export default connect(
