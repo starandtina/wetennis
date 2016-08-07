@@ -19,7 +19,7 @@ class NewsTopNav extends Component {
             <div className={cs.container}>
               <span>
                 {providerFilter || providerList[0]}
-                <i className='material-icons'>keyboard_arrow_down</i>
+                <i className='material-icons'>more_vert</i>
                 <select
                   className='dropdown'
                   onChange={this.setProviderFilter}

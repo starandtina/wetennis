@@ -43,4 +43,4 @@ export default handleActions({
   [FETCH_NEWS_FAILTURE]: (state, action) => ({
     ...state
   })
-}, { list: [], providerFilter: '' })
+}, { list: [], providerFilter: '全部' })
