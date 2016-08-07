@@ -58,6 +58,9 @@ export const FETCH_MY_DATA = 'FETCH_MY_DATA'
 export const FETCH_MY_DATA_SUCCESS = 'FETCH_MY_DATA_SUCCESS'
 export const FETCH_MY_DATA_FAILTURE = 'FETCH_MY_DATA_FAILTURE'
 
+//updateUserInfo
+export const UPDATE_USERINFO = 'UPDATE_USERINFO'
+
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -130,11 +133,21 @@ export const logoutUser = createAction(
   }
 )
 
+export const updateUserInfo = createAction(UPDATE_USERINFO)
+
 // ------------------------------------
 // Reducer
 // ------------------------------------
 const INITIAL_STATE = {
-  user: null,
+  user: {
+    "id": "sha32dsjk23",
+    "name": "my real name",
+    "username": "pacific0437",
+    "password": "88888888",
+    "phone": "18629032103",
+    "gender": "male",
+    "card": "232323198611111111"
+  },
   initialValues: {
     // username: '1',
     // phone: '1',
@@ -178,6 +191,13 @@ export default handleActions({
     ...state,
     user: action.payload,
     status: 'signin'
+  }),
+  [UPDATE_USERINFO]: (state, action) => ({
+    ...state,
+    user: {
+      ...state.user,
+      ...action.payload
+    }
   }),
   [SIGNIN_USER_SUCCESS]: (state, action) => ({
     ...state,

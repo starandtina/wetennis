@@ -8,10 +8,31 @@
     "birthday": "1984-11-13",
     "Rank": "优秀",
     "TechRank": 4.5,
+    "SelfTechRank": 4,
+    "OtherTechRank": 5,
     "startYear": 2008,
     "hand": 1,
-    "habit": "双手反拍",
+    "habit": 1,
     "height": 160,
-    "weight": 50
+    "weight": 50,
+    "address": [{
+      "name": "A",
+      "phone": "12312341231",
+      "district": "四川省 成都市 锦江区",
+      "detailAddress": "我不告诉你",
+      "post": "110026"
+    }, {
+      "name": "B",
+      "phone": "12312341232",
+      "district": "四川省 成都市 锦江区",
+      "detailAddress": "我不告诉你",
+      "post": "110026"
+    }, {
+      "name": "C",
+      "phone": 333333333,
+      "district": "四川省 成都市 锦江区",
+      "detailAddress": "我不告诉你",
+      "post": "110026"
+    }]
   }
 }

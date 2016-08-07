@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
+import { Link } from 'react-router';
 import { push } from 'react-router-redux'
 import { reduxForm } from 'redux-form'
+import prop from 'lodash/fp/prop';
 import NavBack from 'components/NavBack'
 import TextField from 'material-ui/TextField'
 import SelectField from 'material-ui/SelectField';
 import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
-import { Grid, Row, Col } from 'react-bootstrap'
+import { Grid, Row, Col } from 'react-bootstrap';
+import DatePicker from 'material-ui/DatePicker';
+import Divider from 'material-ui/Divider';
 
-import { fetchMySettings, updateMySettings } from 'routes/Dashboard/modules/settings'
+import { fetchMySettings, updateSettings } from 'routes/Dashboard/modules/settings'
 
 import classes from './SettingContainer.scss';
 
@@ -45,13 +49,13 @@ const mapStateToProps = (state) => ({
 //const mapDispatchToProps = (dispatch) => ({
 //  ...bindActionCreators({
 //    fetchMySettings,
-//    updateMySettings,
+//    updateSettings,
 //    push,
 //  }, dispatch)
 //})
 const mapDispatchToProps = {
     fetchMySettings,
-    updateMySettings,
+    updateSettings,
     push
 };
 
@@ -67,19 +71,44 @@ class SettingsForm extends React.Component {
   };
 
   componentDidMount () {
-    const { fetchMySettings , dispatch} = this.props;
-    fetchMySettings();
+    const { fetchMySettings , user} = this.props;
+    fetchMySettings({
+      userId: prop('user.id')(user),
+    });
   }
 
   handleChange = field => ({ target: { value } }) => {
-    this.setState({
+    const { updateSettings } = this.props;
+    updateSettings({
       [field]: value,
     });
   };
 
+  handleChangeDate = (empty, date) => {
+    const { updateSettings } = this.props;
+    updateSettings({
+      birthday: date.toISOString().substring(0, 10),
+    });
+  };
+
   handleChangeGender = (event, key, payload) => {
-    this.setState({
+    const { updateSettings } = this.props;
+    updateSettings({
       gender: payload,
+    });
+  }
+
+  handleChangeHand = (event, key, payload) => {
+    const { updateSettings } = this.props;
+    updateSettings({
+      hand: payload,
+    });
+  }
+
+  handleChangeHabit = (event, key, payload) => {
+    const { updateSettings } = this.props;
+    updateSettings({
+      habit: payload,
     });
   }
 
@@ -90,12 +119,24 @@ class SettingsForm extends React.Component {
       submitting,
       user,
       settings,
+      children,
       } = this.props;
 
+    if(children){
+      return children;
+    }
     const style = {
       width: '100%'
     };
+    console.log(settings, user);
+    const underlineStyle = {
+      display: 'none'
+    }
+    const FinalRank = settings.SelfTechRank ?
+    (Number(settings.SelfTechRank) + Number(settings.OtherTechRank)) / 2 : settings.OtherTechRank;
 
+    const myBirth = settings.birthday ? new Date(settings.birthday) : new Date();
+    console.log(settings.birthday, myBirth);
     return (
         <div>
           <NavBack caption='个人中心'>
@@ -103,81 +144,207 @@ class SettingsForm extends React.Component {
 
           <form className='setting-form'>
             <Grid>
+              <div className={classes.Head}>基本信息</div>
               <Row>
                 <Col xs={4}>
                   <label className={classes.label}>用户名</label>
                 </Col>
                 <Col xs={8}>
+                  <div className={classes.Text}>{prop('user.username')(user)}</div>
+                </Col>
+                <Divider />
+              </Row>
+              <Row>
+                <Col xs={4}>
+                  <label className={classes.label}>邮箱</label>
+                </Col>
+                <Col xs={8}>
                   <TextField
-                      inputStyle={{
-                        textAlign: 'left'
+                    inputStyle={{
+                        textAlign: 'left',
+                        color: '#929292',
                       }}
-                      name="name"
-                      fullWidth
-                      onChange={this.handleChange('name')}
-                      defaultValue={this.state.name}
+                    name="email"
+                    fullWidth
+                    onChange={this.handleChange('email')}
+                    value={settings.email}
+                    underlineShow={false}
                   />
                 </Col>
+                <Divider />
               </Row>
               <Row>
                 <Col xs={4}>
                   <label className={classes.label}>性别</label>
                 </Col>
                 <Col xs={8}>
-                  <SelectField value={this.state.gender} onChange={this.handleChangeGender}>
+                  <SelectField
+                    value={settings.gender}
+                    onChange={this.handleChangeGender}
+                    underlineStyle={underlineStyle}
+                    name="gender"
+                    style={{
+                        color: '#929292',
+                      }}
+                  >
                     <MenuItem value='male' primaryText="男" />
                     <MenuItem value='female' primaryText="女" />
                   </SelectField>
                 </Col>
+                <Divider />
               </Row>
               <Row>
                 <Col xs={4}>
-                  <label className={classes.label}>真实姓名</label>
+                  <label className={classes.label}>生日</label>
                 </Col>
                 <Col xs={8}>
-                  <TextField
-                      inputStyle={{
-                        textAlign: 'left'
-                      }}
-                      name="userName"
-                      fullWidth
-                      onChange={this.handleChange('userName')}
-                      defaultValue={this.state.userName}
+                  <DatePicker
+                    onChange={this.handleChangeDate}
+                    autoOk
+                    value={myBirth}
+                    name="birth"
                   />
                 </Col>
+                <Divider />
               </Row>
               <Row>
                 <Col xs={4}>
-                  <label className={classes.label}>电话</label>
+                  <label className={classes.label}>信用等级</label>
                 </Col>
                 <Col xs={8}>
-                  <TextField
-                      inputStyle={{
-                        textAlign: 'left'
-                      }}
-                      name="phone"
-                      fullWidth
-                      onChange={this.handleChange('phone')}
-                      defaultValue={this.state.phone}
-                  />
+                  <div className={classes.Text}>{settings.Rank}</div>
                 </Col>
+                <Divider />
+              </Row>
+              <div className={classes.Head}>技术设置</div>
+              <Row>
+                <Col xs={4}>
+                  <label className={classes.label}>网球等级</label>
+                </Col>
+                <Col xs={8}>
+                  <div className={`${classes.Text} ${classes.TechRank}`}>
+                    <Link to="/dashboard/settings/techRank">
+                      {FinalRank}
+                      <i className="material-icons">chevron_right</i>
+                    </Link>
+                  </div>
+                </Col>
+                <Divider />
               </Row>
               <Row>
                 <Col xs={4}>
-                  <label className={classes.label}>身份证号</label>
+                  <label className={classes.label}>网球元年</label>
                 </Col>
                 <Col xs={8}>
                   <TextField
-                      inputStyle={{
-                        textAlign: 'left'
+                    inputStyle={{
+                        textAlign: 'left',
+                        color: '#929292',
                       }}
-                      name="cardId"
-                      fullWidth
-                      onChange={this.handleChange('cardId')}
-                      defaultValue={this.state.cardId}
+                    name="startYear"
+                    fullWidth
+                    onChange={this.handleChange('startYear')}
+                    value={settings.startYear || new Date().getFullYear()}
+                    underlineShow={false}
                   />
                 </Col>
+                <Divider />
               </Row>
+              <Row>
+                <Col xs={4}>
+                  <label className={classes.label}>持拍</label>
+                </Col>
+                <Col xs={8}>
+                  <SelectField
+                    value={settings.hand}
+                    onChange={this.handleChangeHand}
+                    underlineStyle={underlineStyle}
+                    name="hand"
+                    style={{
+                        color: '#929292',
+                      }}
+                  >
+                    <MenuItem value={0} primaryText="右手" />
+                    <MenuItem value={1} primaryText="左手" />
+                  </SelectField>
+                </Col>
+                <Divider />
+              </Row>
+              <Row>
+                <Col xs={4}>
+                  <label className={classes.label}>持拍方式</label>
+                </Col>
+                <Col xs={8}>
+                  <SelectField
+                    value={settings.habit}
+                    onChange={this.handleChangeHabit}
+                    underlineStyle={underlineStyle}
+                    name="habit"
+                    style={{
+                        color: '#929292',
+                      }}
+                  >
+                    <MenuItem value={0} primaryText="单手正拍" />
+                    <MenuItem value={1} primaryText="双手正拍" />
+                    <MenuItem value={2} primaryText="单手反拍" />
+                    <MenuItem value={3} primaryText="双手反拍" />
+                  </SelectField>
+                </Col>
+                <Divider />
+              </Row>
+              <Row>
+                <Col xs={4}>
+                  <label className={classes.label}>身高(CM)</label>
+                </Col>
+                <Col xs={8}>
+                  <TextField
+                    inputStyle={{
+                        textAlign: 'left',
+                        color: '#929292',
+                      }}
+                    type="number"
+                    name="height"
+                    fullWidth
+                    onChange={this.handleChange('height')}
+                    value={settings.height}
+                    underlineShow={false}
+                  />
+                </Col>
+                <Divider />
+              </Row>
+              <Row>
+                <Col xs={4}>
+                  <label className={classes.label}>体重(KG)</label>
+                </Col>
+                <Col xs={8}>
+                  <TextField
+                    inputStyle={{
+                        textAlign: 'left',
+                        color: '#929292',
+                      }}
+                    type="number"
+                    name="weight"
+                    fullWidth
+                    onChange={this.handleChange('weight')}
+                    value={settings.weight}
+                    underlineShow={false}
+                  />
+                </Col>
+                <Divider />
+              </Row>
+              <Row>
+                <Col xs={12}>
+                  <div className={classes.Link}><Link to="/dashboard/settings/security">隐私<i className="material-icons">chevron_right</i></Link></div>
+                </Col>
+                <Divider />
+              </Row>
+              <Row>
+                <Col xs={12}>
+                  <div className={classes.Link}><Link to="/dashboard/settings/address">地址<i className="material-icons">chevron_right</i></Link></div>
+                </Col>
+                <Divider />
+              </Row>
+
             </Grid>
             <div className='button-groups clearfix'>
               {this.props.user.error ? <p className='u-errorText'>{this.props.user.error.message}</p> : ''}

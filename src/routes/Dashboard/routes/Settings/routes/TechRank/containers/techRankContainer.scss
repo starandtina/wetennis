@@ -67,15 +67,17 @@
 }
 
 .TechRank {
-  position: relative;
-  a {
-    display: block;
-    color: #4a4a4a;
-    font-weight: 700;
-  }
-  i {
-    position: absolute;
-    top: 10*$px1;
-    right: 10*$px1;
+  margin: 40*$px1 auto;
+  width: 240*$px1;
+  height: 240*$px1;
+  border-radius: 50%;
+  border: 10px solid #1cca5a;
+  text-align: center;
+  line-height: 240*$px1;
+  font-size: 48*$px1;
+  font-weight: 400;
+  color: #4a4a4a;
+  > * {
+    vertical-align: middle;
   }
 }

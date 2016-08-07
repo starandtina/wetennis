@@ -1,0 +1,28 @@
+@import "variables.scss";
+
+.Link {
+  position: relative;
+  padding-bottom: 0;
+  line-height: 46*$px1;
+  font-size: 14*$px1;
+  color: #4a4a4a;
+  & > a {
+    padding-left: 20*$px1;
+    display: block;
+    line-height: 46*$px1;
+    height: 92*$px1;
+    color: #4a4a4a;
+    font-weight: 700;
+    padding-left: 20*$px1;
+  }
+  i {
+    position: absolute;
+    top: 30*$px1;
+    right: 10*$px1;
+  }
+}
+
+.Icon {
+  margin-right: 10px;
+  color: #1cca5a;
+}
