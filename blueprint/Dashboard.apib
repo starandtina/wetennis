@@ -67,3 +67,151 @@ Dashboard
             ]
         }
 
+## 我的主页 [/api/updateMySettings]
+
+### 更新个人信息 [POST]
+
++ method (string) - 调用方法名
++ userId (string) - 用户ID
++ name (string) - 用户真实姓名
++ gender (string) - 性别
++ birthday (string) - 用户出生日期(1980-11-11)
++ email (string) - 邮箱
++ Rank (number) -信用等级
++ TechRank (number) - 网球等级
++ SelfTechRank (number) - 自我评价
++ OtherTechRank (number) - 队友评价
++ startYear (number) - 网球元年
++ hand (number) - 持拍 1左手 2 右手
++ habit (number) - 持拍方式 0 单手正拍 1 双手正拍 2 单手反拍 3 双手反拍
++ height (number) - 身高
++ weight (number) - 体重
++ address (array) - 地址List
+
++ Request (application/json)
+
+  + Body
+
+        {
+          "method": "fetchMySettings",
+          "userId": "2312ssadsadads",
+           "name": "billkang",
+              "email": "team@qq.com",
+              "gender": "male",
+              "birthday": "1984-11-13",
+              "Rank": "优秀",
+              "TechRank": 4.5,
+              "SelfTechRank": 4,
+              "OtherTechRank": 5,
+              "startYear": 2008,
+              "hand": 1,
+              "habit": 1,
+              "height": 160,
+              "weight": 50,
+              "address": [{
+                "name": "A",
+                "phone": "12312341231",
+                "district": "四川省 成都市 锦江区",
+                "detailAddress": "我不告诉你",
+                "post": "110026"
+              }, {
+                "name": "B",
+                "phone": "12312341232",
+                "district": "四川省 成都市 锦江区",
+                "detailAddress": "我不告诉你",
+                "post": "110026"
+              }, {
+                "name": "C",
+                "phone": 333333333,
+                "district": "四川省 成都市 锦江区",
+                "detailAddress": "我不告诉你",
+                "post": "110026"
+              }]
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+{
+  "code": 0,
+  "errorMsg": "",
+  "data": {
+      result: true
+  }
+}
+
+## 拉取个人设置信息 [/api/fetchMySettings]
+
+### 拉取个人设置信息 [POST]
+
++ method (string) - 调用方法名
++ userId (string) - 用户ID
+#### 返回格式
++ name (string) - 用户真实姓名
++ gender (string) - 性别
++ birthday (string) - 用户出生日期(1980-11-11)
++ email (string) - 邮箱
++ Rank (number) -信用等级
++ TechRank (number) - 网球等级
++ SelfTechRank (number) - 自我评价
++ OtherTechRank (number) - 队友评价
++ startYear (number) - 网球元年
++ hand (number) - 持拍 1左手 2 右手
++ habit (number) - 持拍方式 0 单手正拍 1 双手正拍 2 单手反拍 3 双手反拍
++ height (number) - 身高
++ weight (number) - 体重
++ address (array) - 地址List
+
++ Request (application/json)
+
+  + Body
+
+        {
+          "method": "fetchMySettings",
+          "userId": "2312ssadsadads"
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+{
+  "code": 0,
+  "errorMsg": "",
+  "data": {
+    "name": "billkang",
+    "email": "team@qq.com",
+    "gender": "male",
+    "birthday": "1984-11-13",
+    "Rank": "优秀",
+    "TechRank": 4.5,
+    "SelfTechRank": 4,
+    "OtherTechRank": 5,
+    "startYear": 2008,
+    "hand": 1,
+    "habit": 1,
+    "height": 160,
+    "weight": 50,
+    "address": [{
+      "name": "A",
+      "phone": "12312341231",
+      "district": "四川省 成都市 锦江区",
+      "detailAddress": "我不告诉你",
+      "post": "110026"
+    }, {
+      "name": "B",
+      "phone": "12312341232",
+      "district": "四川省 成都市 锦江区",
+      "detailAddress": "我不告诉你",
+      "post": "110026"
+    }, {
+      "name": "C",
+      "phone": 333333333,
+      "district": "四川省 成都市 锦江区",
+      "detailAddress": "我不告诉你",
+      "post": "110026"
+    }]
+  }
+}
+

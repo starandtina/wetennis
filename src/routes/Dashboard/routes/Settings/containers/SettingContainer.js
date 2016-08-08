@@ -13,7 +13,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import DatePicker from 'material-ui/DatePicker';
 import Divider from 'material-ui/Divider';
 
-import { fetchMySettings, updateSettings } from 'routes/Dashboard/modules/settings'
+import { fetchMySettings, updateSettings, updateMySettings } from 'routes/Dashboard/modules/settings'
 
 import classes from './SettingContainer.scss';
 
@@ -56,6 +56,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     fetchMySettings,
     updateSettings,
+    updateMySettings,
     push
 };
 
@@ -110,6 +111,27 @@ class SettingsForm extends React.Component {
     updateSettings({
       habit: payload,
     });
+  }
+
+  updateMySettings = () => {
+    const {
+      updateMySettings,
+      user: { user },
+      settings,
+      push
+      } = this.props;
+    console.log(settings, user);
+    updateMySettings({
+      ...settings,
+      name: user.name,
+      phone: user.phone,
+      card: user.card,
+      id: user.id
+    }).then(action => {
+      console.log(action);
+      alert('更新成功');
+    })
+
   }
 
   render () {
@@ -348,7 +370,14 @@ class SettingsForm extends React.Component {
             </Grid>
             <div className='button-groups clearfix'>
               {this.props.user.error ? <p className='u-errorText'>{this.props.user.error.message}</p> : ''}
-              <button type="submit" className="primary btn btn-default btn-lg btn-block" disabled={submitting}>确认修改</button>
+              <button
+                type="button"
+                className="primary btn btn-default btn-lg btn-block"
+                disabled={submitting}
+                onClick={this.updateMySettings}
+              >
+                确认修改
+              </button>
             </div>
           </form>
         </div>
