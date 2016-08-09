@@ -1,7 +1,9 @@
 const ROOT_URL = '/api?method='
 export default {
   // Latest
+  fetchNewsList: `${ROOT_URL}fetchNewsList`,
   fetchNews: `${ROOT_URL}fetchNews`,
+  fetchNewsComments: `${ROOT_URL}fetchNewsComments`,
   // Dashbaord
   signUp: `${ROOT_URL}signup`,
   signIn: `${ROOT_URL}signin`,

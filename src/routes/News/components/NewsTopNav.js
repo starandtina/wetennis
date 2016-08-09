@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import TopNav from 'components/TopNav'
 import { cls } from 'utils'
-import { setProviderFilter } from '../modules'
+import { setProviderFilter } from '../modules/newsList'
 
 import cs from './NewsTopNav.scss'
 

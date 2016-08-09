@@ -1,0 +1,36 @@
+{
+  "code": 0,
+  "errorMsg": "",
+  "data": [
+    {
+      "id": 1,
+      "title": "我来自新浪",
+      "date": "2016 年04月15日 23: 42: 18",
+      "thumbImgUrl": "http://img4.imgtn.bdimg.com/it/u=4083832298,2703504222&fm=21&gp=0.jpg",
+      "likeCount": 999,
+      "commentCount": 999,
+      "provider": "SINA",
+      "providerIconUrl": "http://www.sina.com.cn/favicon.ico"
+      },
+    {
+      "id": 2,
+      "title": "我来自ATP官网",
+      "date": "2016 年04月15日 23: 42: 18",
+      "thumbImgUrl": "https://placeholdit.imgix.net/~text?txtsize=12&txt=128%C3%97256&w=128&h=256",
+      "likeCount": 999,
+      "commentCount": 999,
+      "provider": "ATP官网",
+      "providerIconUrl": "http://www.sina.com.cn/favicon.ico"
+      },
+    {
+      "id": 3,
+      "title": "我来自新浪",
+      "date": "2016 年04月15日 23: 42: 18",
+      "thumbImgUrl": "https://placeholdit.imgix.net/~text?txtsize=12&txt=1280%C3%97256&w=1280&h=256",
+      "likeCount": 999,
+      "commentCount": 999,
+      "provider": "SINA",
+      "providerIconUrl": "http://www.sina.com.cn/favicon.ico"
+      }
+    ]
+}

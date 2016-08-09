@@ -8,7 +8,7 @@ export const createRoutes = (store) => {
     getChildRoutes (location, next) {
       require.ensure([], (require) => {
         next(null, [
-          // Provide store for async reducers and middleware
+          require('./News')(store),
           require('./Dashboard')(store),
           require('./Events')(store),
           require('./Referee')(store),
@@ -19,9 +19,9 @@ export const createRoutes = (store) => {
     }, 
     getIndexRoute (nextState, next) {
       require.ensure([], (require) => {
-        injectReducer(store, { key: 'news', reducer: require('./News/modules').default })
+        injectReducer(store, { key: 'news', reducer: require('./News/modules/newsList').default })
 
-        next(null, { component: require('./News/containers/NewsContainer') })
+        next(null, { component: require('./News/containers/NewsListContainer') })
       })
     }
   }
