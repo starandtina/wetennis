@@ -15,7 +15,8 @@ export default (store) => ({
         require('./routes/Signin')(store),
         require('./routes/Resetpassword')(store),
         require('./routes/Settings')(store),
-        require('./routes/Me')(store)
+        require('./routes/Me')(store),
+        require('./routes/MyMatch')(store)
       ])
     }, 'dashboard')
   },
@@ -31,6 +32,7 @@ export default (store) => ({
       const settingReducer = require('./modules/settings').default
 
       injectReducer(store, { key: 'user', reducer });
+      injectReducer(store, { key: 'settings', reducer:settingReducer });
       injectReducer(store, { key: 'settings', reducer:settingReducer });
 
       next(null, Dashboard)

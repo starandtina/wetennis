@@ -14,6 +14,7 @@ export default {
   fetchMyData: `${ROOT_URL}fetchMyData`,
   fetchMySettings: `${ROOT_URL}fetchMySettings`,
   updateMySettings: `${ROOT_URL}updateMySettings`,
+  fetchMyMatch: `${ROOT_URL}fetchMyMatch`,
   // Event
   events: `${ROOT_URL}events`,
   fetchEventGroups: `${ROOT_URL}eventGroups`,
