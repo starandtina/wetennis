@@ -8,7 +8,7 @@ export default class EventStatus extends React.Component {
     let text = "全部";
     for (let i = 0, l = status.length; i < l; i++) {
       let v = status[i];
-      if (v.value === currentStatus) {
+      if (v.value == currentStatus) {
         text = v.text;
         break;
       }

@@ -41,6 +41,9 @@ export default {
   fetchEventSchedule: `${ROOT_URL}eventSchedule`,
   fetchEventScheduleFilter: `${ROOT_URL}eventScheduleFilter`,
 
+  // event match
+  fetchEventMatchInfo: `${ROOT_URL}eventMatchInfo`,
+
   // draw table
   fetchEventDrawTable: `${ROOT_URL}eventDrawTable`,
   // fetchEventDrawTable: `${ROOT_URL}eventDrawTable`,

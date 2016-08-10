@@ -18,7 +18,7 @@ export default class EventTopNav extends React.Component {
     if (location.length > 0) {
       for (let i = 0, l = location.length; i < l; i++) {
         let v = location[i];
-        if (v.value === currentLocation) {
+        if (v.value == currentLocation) {
           currentFilterText = v.text;
           break;
         }
