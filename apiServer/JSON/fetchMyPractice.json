@@ -1,0 +1,195 @@
+{
+  "code": 0,
+  "data": {
+    "ytdwl": "12 : 1",
+    "totalwl": "22 : 1",
+    "singlePractice": [
+      {
+        "games": [
+          {
+            "gameTime": "02:00:00",
+            "matches": "第一场",
+            "teams": [
+              {
+                "users": [
+                  {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                ],
+                "win": true,
+                "score": 3
+              },
+              {
+                "users": [
+                  {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                ],
+                "win": false,
+                "score": 2
+              }
+            ]
+          },
+          {
+            "gameTime": "02:00:00",
+            "matches": "小组资格赛",
+            "teams": [
+              {
+                "users": [
+                  {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                ],
+                "win": true,
+                "score": 3
+              },
+              {
+                "users": [
+                  {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                ],
+                "win": false,
+                "score": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "games": [
+          {
+            "gameTime": "02:00:00",
+            "matches": "第一场",
+            "teams": [
+              {
+                "users": [
+                  {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                ],
+                "win": true,
+                "score": 3
+              },
+              {
+                "users": [
+                  {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                ],
+                "win": false,
+                "score": 2
+              }
+            ]
+          },
+          {
+            "gameTime": "02:00:00",
+            "matches": "小组资格赛",
+            "teams": [
+              {
+                "users": [
+                  {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                ],
+                "win": true,
+                "score": 3
+              },
+              {
+                "users": [
+                  {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                ],
+                "win": false,
+                "score": 2
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "couplePractice": [
+      {
+        "games": [
+          {
+            "gameTime": "02:00:00",
+            "matches": "第一场",
+            "teams": [
+              {
+                "users": [
+                  {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                  {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                ],
+                "win": true,
+                "score": 3
+              },
+              {
+                "users": [
+                  {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                  {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                ],
+                "win": false,
+                "score": 2
+              }
+            ]
+          },
+          {
+            "gameTime": "02:00:00",
+            "matches": "小组资格赛",
+            "teams": [
+              {
+                "users": [
+                  {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                  {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                ],
+                "win": true,
+                "score": 3
+              },
+              {
+                "users": [
+                  {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                  {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                ],
+                "win": false,
+                "score": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "games": [
+          {
+            "gameTime": "02:00:00",
+            "matches": "第一场",
+            "teams": [
+              {
+                "users": [
+                  {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                  {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                ],
+                "win": true,
+                "score": 3
+              },
+              {
+                "users": [
+                  {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                  {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                ],
+                "win": false,
+                "score": 2
+              }
+            ]
+          },
+          {
+            "gameTime": "02:00:00",
+            "matches": "小组资格赛",
+            "teams": [
+              {
+                "users": [
+                  {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                  {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                ],
+                "win": true,
+                "score": 3
+              },
+              {
+                "users": [
+                  {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                  {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                ],
+                "win": false,
+                "score": 2
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

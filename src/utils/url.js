@@ -15,6 +15,7 @@ export default {
   fetchMySettings: `${ROOT_URL}fetchMySettings`,
   updateMySettings: `${ROOT_URL}updateMySettings`,
   fetchMyMatch: `${ROOT_URL}fetchMyMatch`,
+  fetchMyPractice: `${ROOT_URL}fetchMyPractice`,
   // Event
   events: `${ROOT_URL}events`,
   fetchEventGroups: `${ROOT_URL}eventGroups`,

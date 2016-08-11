@@ -63,10 +63,10 @@ export class Dashboard extends React.Component {
           <div className={style.Num}>{userInfo.score}</div>
           <div className={style.Des}>社区积分</div>
         </div>
-        <div className={`${style.Item} ${style.Green}`}>
+        <Link to="/dashboard/myMatch" className={`${style.Item} ${style.Green}`}>
           <div className={style.Num}>{userInfo.gamesNum}</div>
           <div className={style.Des}>我的比赛</div>
-        </div>
+        </Link>
         <div className={`${style.Item} ${style.Green}`}>
           <div className={style.Num}>{userInfo.guessNum}</div>
           <div className={style.Des}>我的竞猜</div>
