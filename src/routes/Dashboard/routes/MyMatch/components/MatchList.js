@@ -43,10 +43,10 @@ export default class RankingTabs extends Component {
           </div>
         </div>
         <Tabs inkBarStyle={inkBarStyle} tabItemContainerStyle={tabItemContainerStyle}>
-          <Tab label="单打" value={1} TabStyle={TabStyle}>
+          <Tab label="单打" value={1} style={TabStyle}>
             <RankingTabBody data={data.singleMatch} />
           </Tab>
-          <Tab label="双打" value={2} TabStyle={TabStyle}>
+          <Tab label="双打" value={2} style={TabStyle}>
             <RankingTabBody data={data.coupleMatch} />
           </Tab>
         </Tabs>
