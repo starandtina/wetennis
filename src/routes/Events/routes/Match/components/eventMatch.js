@@ -6,9 +6,13 @@ import cs from './eventMatch.scss';
 
 export default class EventMatch extends Component {
   componentDidMount () {
-    const { getDetails, getComments, params:{matchId} } = this.props
+    const {
+      getDetails, getComments, getTechnicalStatistics,
+      params:{matchId}
+    } = this.props
     getDetails(matchId)
     getComments(matchId)
+    getTechnicalStatistics(matchId)
     document.body.classList.add(cs.bodyBg)
   }
   componentWillUnmount () {
@@ -16,7 +20,7 @@ export default class EventMatch extends Component {
   }
   render () {
     const {
-      details, comments,
+      details, comments, technicalStatistics,
       likeComment, sendComment,
       params: {matchId}} = this.props
     return (
@@ -28,6 +32,7 @@ export default class EventMatch extends Component {
           comments={comments}
           likeComment={likeComment}
           sendComment={sendComment}
+          technicalStatistics={technicalStatistics}
         />
       </div>
     )

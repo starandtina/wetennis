@@ -18,6 +18,21 @@ const GET_COMMENTS = `${PREFIXER}GET_COMMENTS`;
 const GET_COMMENTS_SUCCESS = `${PREFIXER}GET_COMMENTS_SUCCESS`;
 const GET_COMMENTS_FAILTURE = `${PREFIXER}GET_COMMENTS_FAILTURE`;
 
+// like match comment
+const LIKE_COMMENTS = `${PREFIXER}LIKE_COMMENTS`;
+const LIKE_COMMENTS_SUCCESS = `${PREFIXER}LIKE_COMMENTS_SUCCESS`;
+const LIKE_COMMENTS_FAILTURE = `${PREFIXER}LIKE_COMMENTS_FAILTURE`;
+
+// send match comment
+const SEND_COMMENTS = `${PREFIXER}SEND_COMMENTS`;
+const SEND_COMMENTS_SUCCESS = `${PREFIXER}SEND_COMMENTS_SUCCESS`;
+const SEND_COMMENTS_FAILTURE = `${PREFIXER}SEND_COMMENTS_FAILTURE`;
+
+// get match comments
+const GET_TECHNICAL_STATISTICS = `${PREFIXER}GET_TECHNICAL_STATISTICS`;
+const GET_TECHNICAL_STATISTICS_SUCCESS = `${PREFIXER}GET_TECHNICAL_STATISTICS_SUCCESS`;
+const GET_TECHNICAL_STATISTICS_FAILTURE = `${PREFIXER}GET_TECHNICAL_STATISTICS_FAILTURE`;
+
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -40,7 +55,7 @@ export function getComments(matchId) {
 export function likeComment(matchId, commentId) {
   return dispatch => {
     dispatch({
-      types: [GET_COMMENTS, GET_COMMENTS_SUCCESS, GET_COMMENTS_FAILTURE],
+      types: [LIKE_COMMENTS, LIKE_COMMENTS_SUCCESS, LIKE_COMMENTS_FAILTURE],
       promise: () => API.post(URLConf.likeEventMatchComments, {matchId, commentId})
     }).then(({payload: {code, data}}) => {
       if (Number(code) === 0 && data === "ok") {
@@ -53,15 +68,24 @@ export function likeComment(matchId, commentId) {
 export function sendComment(matchId, text) {
   return dispatch => {
     dispatch({
-      types: [GET_COMMENTS, GET_COMMENTS_SUCCESS, GET_COMMENTS_FAILTURE],
+      types: [SEND_COMMENTS, SEND_COMMENTS_SUCCESS, SEND_COMMENTS_FAILTURE],
       promise: () => API.post(URLConf.sendEventMatchComments, {matchId, text})
-    }).then(({payload: {code}}) => {
-      if (Number(code) === 0 && data="ok") {
+    }).then(({payload: {code, data}}) => {
+      if (Number(code) === 0 && data === "ok") {
         dispatch(getComments(matchId));
       }
     })
   }
 }
+
+export function getTechnicalStatistics(matchId) {
+  return {
+    types: [GET_TECHNICAL_STATISTICS, GET_TECHNICAL_STATISTICS_SUCCESS, GET_TECHNICAL_STATISTICS_FAILTURE],
+    promise: () => API.post(URLConf.fetchEventMatchTechnicalStatistics, {matchId})
+  }
+}
+
+
 // ------------------------------------
 // Reducer
 // ------------------------------------
@@ -97,7 +121,17 @@ function details (state = {
   return s
 }
 
+function technicalStatistics(state = [], {type, payload}) {
+  let s = state;
+
+  if (type === GET_TECHNICAL_STATISTICS_SUCCESS) {
+    s = payload;
+  }
+
+  return s;
+}
+
 
 export default combineReducers({
-  details, comments
+  details, comments, technicalStatistics
 })
