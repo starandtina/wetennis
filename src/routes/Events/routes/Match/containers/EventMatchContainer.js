@@ -5,16 +5,20 @@ import { push } from 'react-router-redux'
 import Root from '../components/eventMatch'
 
 import {
-  getDetails
+  getDetails, getComments, sendComment, likeComment
 } from '../modules/eventMatch'
 
 const mapStateToProps = (state) => {
-  const { details } = state.eventMatch
-  return { details }
+  const {
+    details, comments
+  } = state.eventMatch
+  return {
+    details, comments
+  }
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  getDetails
+  getDetails, getComments, sendComment, likeComment
 }, dispatch)
 
 export default connect(

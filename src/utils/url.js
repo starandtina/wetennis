@@ -44,6 +44,9 @@ export default {
 
   // event match
   fetchEventMatchInfo: `${ROOT_URL}eventMatchInfo`,
+  fetchEventMatchComments: `${ROOT_URL}eventMatchComments`,
+  likeEventMatchComments: `${ROOT_URL}eventLikeMatchComment`,
+  sendEventMatchComments: `${ROOT_URL}eventSendMatchComment`,
 
   // draw table
   fetchEventDrawTable: `${ROOT_URL}eventDrawTable`,

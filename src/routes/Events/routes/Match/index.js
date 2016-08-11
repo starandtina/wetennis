@@ -1,7 +1,7 @@
 import { injectReducer } from 'store/reducers'
 
 export default (store) => ({
-  path: ':eventId/match-:matchId',
+  path: 'match/:matchId',
 
   getChildRoutes (location, cb) {
     require.ensure([], (require) => {

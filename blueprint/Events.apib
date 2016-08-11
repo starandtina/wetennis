@@ -1211,6 +1211,41 @@
     + menberEnglishName: (String, required) - member english name
   + score: (Number, required) - match score
 
+## Event [/eventMatchInfo]
+
+比赛详情
+
++ name: (String, required) - event name
++ groupMatch: (Array, required) - group match of this event
+  + member: (Array, required) - member list of this team
+    + memberName: (String, required) - member name
+    + memberThumb: (String, required) - member thumb image
+    + menberEnglishName: (String, required) - member english name
+  + score: (Number, required) - match score
++ firstRound: (Array, required) - first of this event
+  + member: (Array, required) - member list of this team
+    + memberName: (String, required) - member name
+    + memberThumb: (String, required) - member thumb image
+    + menberEnglishName: (String, required) - member english name
+  + score: (Number, required) - match score
++ secondRound: (Array, required) - second round of this event
+  + member: (Array, required) - member list of this team
+    + memberName: (String, required) - member name
+    + memberThumb: (String, required) - member thumb image
+    + menberEnglishName: (String, required) - member english name
+  + score: (Number, required) - match score
++ semifinal: (Array, required) - semifinal of this event
+  + member: (Array, required) - member list of this team
+    + memberName: (String, required) - member name
+    + memberThumb: (String, required) - member thumb image
+    + menberEnglishName: (String, required) - member english name
+  + score: (Number, required) - match score
++ final: (Array, required) - final of this event
+  + member: (Array, required) - member list of this team
+    + memberName: (String, required) - member name
+    + memberThumb: (String, required) - member thumb image
+    + menberEnglishName: (String, required) - member english name
+  + score: (Number, required) - match score
 
 ### Event Draw Result [POST]
 
