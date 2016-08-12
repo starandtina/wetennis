@@ -2,17 +2,17 @@ import React from 'react'
 import TopNav from 'components/TopNav'
 import { browserHistory } from 'react-router'
 
-import classes from './RefereeTopNav.scss'
+import classes from './NewsDetailTopNav.scss'
 
 const goBack = (e) => {
   e.preventDefault()
   return browserHistory.goBack()
 }
 
-class RefereeTopNav extends React.Component {
+class NewsDetailTopNav extends React.Component {
   render() {
     return (
-      <TopNav title='计分板'>
+      <TopNav title='新闻详情'>
         <div ref='left'>
           <a className={`${classes['nav-back-icon']} pull-left`} href='#' onClick={goBack}><i className='u-verticalAlignMiddle material-icons'>keyboard_arrow_left</i></a>
         </div>
@@ -24,4 +24,4 @@ class RefereeTopNav extends React.Component {
   }
 }
 
-export default RefereeTopNav
+export default NewsDetailTopNav

@@ -10,7 +10,7 @@ export default class News extends Component {
 
     return (
       <div className={cs.news}>
-        <p><img src={item.thumbImgUrl} className={cls`img-responsive ${cs.img}`} /></p>
+        <p><img src={item.thumbImgUrl} className='img-responsive center-block' /></p>
         <h4 className='text-center'>{item.title}</h4>
         <Grid className={cs.text}>
           <Row className='u-verticalCenterWithFlex'>
@@ -24,7 +24,7 @@ export default class News extends Component {
             <Col xs={5}>
               <div className='pull-right'>
                 <span className={cs['icon-container']}><i className={cls`material-icons highlight ${cs.marginRight5} ${cs.icon}`}>comment</i>{item.commentCount}</span>
-                <span className={cs['icon-container']}><i className={cls`material-icons highlight${cs.marginRight5} ${cs.icon}`}>favorite</i>{item.likeCount}</span>
+                <span className={cs['icon-container']}><i className={cls`material-icons highlight ${cs.marginRight5} ${cs.icon}`}>favorite</i>{item.likeCount}</span>
               </div>
             </Col>
           </Row>

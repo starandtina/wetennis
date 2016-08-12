@@ -29,6 +29,47 @@ export const fetchNewsComments = (data) => ({
   promise: () => API.post(URLConf.fetchNewsComments, { ...data })
 })
 
+export function likeComment(eventId, commentId) {
+  return dispatch => {
+    dispatch({
+      types: [LIKE_COMMENT, LIKE_COMMENT_SUCCESS, LIKE_COMMENT_FAILTURE],
+      promise: () => API.post(URLConf.likeComment, {
+        id: commentId
+      })
+    }).then(({
+      payload: {
+        code,
+        data
+      }
+    }) => {
+      if (Number(code) === 0 && data === "ok") {
+        dispatch(getComments(eventId));
+      }
+    })
+  }
+}
+
+export function sendComment(id, text) {
+  return dispatch => {
+    dispatch({
+      types: [SEND_COMMENT, SEND_COMMENT_SUCCESS, SEND_COMMENT_FAILTURE],
+      promise: () => API.post(URLConf.sendComment, {
+        id,
+        text
+      })
+    }).then(({
+      payload: {
+        code,
+        data
+      }
+    }) => {
+      if (Number(code) === 0 && data === "ok") {
+        dispatch(getComments(id));
+      }
+    })
+  }
+}
+
 
 
 // -----------------------------

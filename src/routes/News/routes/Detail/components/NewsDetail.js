@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Footer from 'components/Footer'
 
+import NewsDetailTopNav from './NewsDetailTopNav'
+import News from 'routes/News/components/News'
 import NewsComments from './NewsComments'
 
 import cs from './NewsDetail.scss'
@@ -19,8 +21,8 @@ export default class NewsDetail extends Component {
 
     return (
       <div className={cs.container}>
-
-        <h1>hello</h1>
+        <NewsDetailTopNav />
+        <News item={news} />
         <NewsComments
           groupId={newsId}
           data={comments}

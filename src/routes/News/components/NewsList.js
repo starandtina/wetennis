@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Footer from 'components/Footer'
+import { Link } from 'react-router';
 
+import Footer from 'components/Footer'
 import NewsTopNav from './NewsTopNav'
 
 import cs from './NewsList.scss'
@@ -22,7 +23,7 @@ export default class NewsList extends Component {
     let rows = []
 
     {newsList.forEach((item, index) => {
-      rows.push(<News item={item} key={item.id} />)
+      rows.push(<Link to={`/news/${item.id}`}><News item={item} key={item.id} /></Link>)
     })}
 
     return (
