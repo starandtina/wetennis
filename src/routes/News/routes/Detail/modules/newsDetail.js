@@ -15,6 +15,15 @@ export const FETCH_NEWS_COMMENTS = 'FETCH_NEWS_COMMENTS'
 export const FETCH_NEWS_COMMENTS_SUCCESS = 'FETCH_NEWS_COMMENTS_SUCCESS'
 export const FETCH_NEWS_COMMENTS_FAILTURE = 'FETCH_NEWS_COMMENTS_FAILTURE'
 
+export const LIKE_COMMENT = 'LIKE_COMMENT'
+export const LIKE_COMMENT_SUCCESS = 'LIKE_COMMENT_SUCCESS'
+export const LIKE_COMMENT_FAILTURE = 'LIKE_COMMENT_FAILTURE'
+
+
+export const SAVE_COMMENT = 'SAVE_COMMENT'
+export const SAVE_COMMENT_SUCCESS = 'SAVE_COMMENT_SUCCESS'
+export const SAVE_COMMENT_FAILTURE = 'SAVE_COMMENT_FAILTURE'
+
 
 // ------------------------------------
 // Actions
@@ -29,47 +38,15 @@ export const fetchNewsComments = (data) => ({
   promise: () => API.post(URLConf.fetchNewsComments, { ...data })
 })
 
-export function likeComment(eventId, commentId) {
-  return dispatch => {
-    dispatch({
-      types: [LIKE_COMMENT, LIKE_COMMENT_SUCCESS, LIKE_COMMENT_FAILTURE],
-      promise: () => API.post(URLConf.likeComment, {
-        id: commentId
-      })
-    }).then(({
-      payload: {
-        code,
-        data
-      }
-    }) => {
-      if (Number(code) === 0 && data === "ok") {
-        dispatch(getComments(eventId));
-      }
-    })
-  }
-}
+export const likeComment = (data) => ({
+  types: [LIKE_COMMENT, LIKE_COMMENT_SUCCESS, LIKE_COMMENT_FAILTURE],
+  promise: () => API.post(URLConf.likeNewsComment, { ...data })
+})
 
-export function sendComment(id, text) {
-  return dispatch => {
-    dispatch({
-      types: [SEND_COMMENT, SEND_COMMENT_SUCCESS, SEND_COMMENT_FAILTURE],
-      promise: () => API.post(URLConf.sendComment, {
-        id,
-        text
-      })
-    }).then(({
-      payload: {
-        code,
-        data
-      }
-    }) => {
-      if (Number(code) === 0 && data === "ok") {
-        dispatch(getComments(id));
-      }
-    })
-  }
-}
-
+export const saveComment = (data) => ({
+  types: [SAVE_COMMENT, SAVE_COMMENT_SUCCESS, SAVE_COMMENT_FAILTURE],
+  promise: () => API.post(URLConf.saveNewsComment, { ...data })
+})
 
 
 // -----------------------------

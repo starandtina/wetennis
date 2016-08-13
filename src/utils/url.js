@@ -4,6 +4,9 @@ export default {
   fetchNewsList: `${ROOT_URL}fetchNewsList`,
   fetchNews: `${ROOT_URL}fetchNews`,
   fetchNewsComments: `${ROOT_URL}fetchNewsComments`,
+  likeNewsComment: `${ROOT_URL}likeNewsComment`,
+  saveNewsComment: `${ROOT_URL}saveNewsComment`,
+
   // Dashbaord
   signUp: `${ROOT_URL}signup`,
   signIn: `${ROOT_URL}signin`,
