@@ -13,7 +13,7 @@ const CommentItem = ({data, likeAction}) => {
             className={`${data.like ? cs.like : ""} ${cs.likeNumber}`}
             onClick={likeAction}
           >
-            {data.likenumber} <span className={`material-icons ${cs.likeIcon}`}>thumb_up</span>
+            {data.likeNumber} <span className={`material-icons ${cs.likeIcon}`}>thumb_up</span>
           </div>
         </div>
         <div className={cs.context}>{data.context}</div>
