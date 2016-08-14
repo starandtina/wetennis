@@ -1,6 +1,4 @@
-import {
-  handleActions
-} from 'redux-actions'
+import { handleActions } from 'redux-actions'
 
 import API from 'utils/API'
 import URLConf from 'utils/url'

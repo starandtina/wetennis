@@ -10,7 +10,6 @@ export default (store) => ({
         require('./routes/Detail')(store)
       ])
     }, 'news')
-    
   },
   getComponent (nextState, next) {
     require.ensure([], (require) => {
