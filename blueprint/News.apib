@@ -1,34 +1,85 @@
 FORMAT: 1A
 
-# News
+# News API
 
-News is a simple API allowing consumers to view news and vote in them. You can view this documentation over at [Apiary](http://docs.pollsapi.apiary.io).
+News is a simple API allowing consumers to view news and vote or comment in them.
 
-# Group New
+# Group News
 
 Resources related  to new in the API.
 
-## News [/api/news]
-
-A New object has the following attributes:
-
-+ title
-+ date
-+ thumbImgUrl
-
+## News Collection [/fetchNewsList]
 
 ### List All News [POST]
 
-You may create your own question using this action. It takes a JSON object containing a question and a collection of answers in the form of choices.
++ Response 200 (application/json)
 
-+ method (string) - The calling method
+    + Body
+
+        {
+          "code": 0,
+          "errorMsg": "",
+          "data": [
+            {
+              "id": 1,
+              "title": "瓦林卡状态越来越好 力争在迪拜首次问鼎",
+              "date": "2016 年04月15日 23: 42: 18",
+              "thumbImgUrl": "http://img2.3lian.com/2014/f6/173/d/51.jpg",
+              "likeCount": 999,
+              "commentCount": 999,
+              "provider": "SINA",
+              "providerIconUrl": "http://www.sina.com.cn/favicon.ico"
+              },
+            {
+              "id": 2,
+              "title": "我来自ATP官网",
+              "date": "2016 年04月15日 23: 42: 18",
+              "thumbImgUrl": "http://img2.3lian.com/2014/f6/173/d/52.jpg",
+              "likeCount": 999,
+              "commentCount": 999,
+              "provider": "ATP官网",
+              "providerIconUrl": "http://www.sina.com.cn/favicon.ico"
+              },
+            {
+              "id": 3,
+              "title": "我来自新浪",
+              "date": "2016 年04月15日 23: 42: 18",
+              "thumbImgUrl": "http://img2.3lian.com/2014/f6/173/d/53.jpg",
+              "likeCount": 999,
+              "commentCount": 999,
+              "provider": "SINA",
+              "providerIconUrl": "http://www.sina.com.cn/favicon.ico"
+              }
+            ]
+        }
+
+
+## News [/fetchNews]
+
+A News object has the following attributes:
+
++ id: (Number, required) - News id
++ title: (String, required) - News name
++ date: (String, required) - News date
++ thumbImgUrl: (String, required) - News thumb image url
++ content: (String, required) - News content
++ keywordList: (Array, required) - News keyword list
++ likeCount: (Number, required) - News like count number
++ commentCount: (Number, required) - News comment count number
++ provider: (String, required) - News provider name
++ providerIconUrl: (String, required) - News provider icon url
+
+
+### View a News Detail [POST]
+
++ id (string) - The id of news
 
 + Request (application/json)
 
   + Body
 
         {
-            "method": "fetchNews"
+            "id": "id of news"
         }
 
 + Response 200 (application/json)
@@ -36,18 +87,18 @@ You may create your own question using this action. It takes a JSON object conta
   + Body
 
             {
-                "code": 0,
-                "errorMsg": "",
-                "data": [
-                  {
-                    "id": 1,
-                    "title": "习近平再提 头等大事 干货全在这儿",
-                    "date": "2016 年04月15日 23: 42: 18",
-                    "thumbImgUrl": "http://e.hiphotos.baidu.com/news/q%3D100/sign=3abb8c8fbe389b503effe452b534e5f1/fc1f4134970a304e2975366bd6c8a786c8175ccf.jpg",
-                    "likeCount": 999,
-                    "commentCount": 999,
-                    "provider": "Sina",
-                    "providerIconUrl": "http://www.sina.com.cn/favicon.ico"
-                  }
-                ]
+              "code": 0,
+              "data": {
+                "id": 1,
+                "title": "瓦林卡状态越来越好 力争在迪拜首次问鼎",
+                "date": "2016 年04月15日 23: 42: 18",
+                "thumbImgUrl": "http://img2.3lian.com/2014/f6/173/d/51.jpg",
+                "content": "阿联酋当地时间周五，ATP迪拜站展开男单半决赛的争夺，瓦林卡在6-4、3-0的领先的情况下，由于克耶高斯的退赛而率先挺进男单决赛。今天瓦林卡将会向本赛季的第二个巡回赛冠军发起冲击。\"如果你回顾本周的早些时候， 我的发挥可能并不是这么完美。\" 瓦林卡在迪拜首场比赛中仅差两分就遭到斯塔霍夫斯基的淘汰：\" 但此后， 我的状态不断提升， 虽然比赛还有一些挣扎， 但是我总是保持战斗的状态， 并尝试找到致胜的法宝， 所以后面的比赛打得更好一些。这是30岁的瓦林卡， 时隔多年重返迪拜参赛。 他在2006年和2008年为数不多的两次参赛中， 均是在首轮被打道回府。作为两届大满贯的得主， 瓦林卡将会在今天向冠军发起冲击， 如果获胜他将收获生涯第13个巡回赛头衔。 在今年的早些时候， 瑞士人在清奈站中击败了丘里奇获胜了赛季首冠。 目前， 瓦林卡已经取得了巡回赛决赛的八连胜， 生涯巡回赛决赛的总战绩为12胜9负。因伤退赛的克耶高斯， 则在本周延续了自己的强势发挥， 上周他刚刚在马赛站中击败了西里奇， 拿下了生涯的首个冠军。 在谈到自己的退赛原因时， 克耶高斯说：\" 我的今天几乎无法发全力发球， 而且瓦林卡的发挥非常好， 尤其是发球以及第三板的进攻。 ",
+                "keywordList": ["ATP", "男子单打"],
+                "likeCount": 999,
+                "commentCount": 999,
+                "provider": "SINA",
+                "providerIconUrl": "http://www.sina.com.cn/favicon.ico"
+              }
             }
+

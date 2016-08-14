@@ -16,8 +16,8 @@ export default class NewsDetail extends Component {
       fetchNewsComments,
       params: { newsId } } = this.props
 
-    fetchNews({ newsId })
-    fetchNewsComments({ newsId })
+    fetchNews({ id: newsId })
+    fetchNewsComments({ id: newsId })
   }
 
   render() {

@@ -1,9 +1,5 @@
-import {
-  handleActions
-} from 'redux-actions'
-import {
-  combineReducers
-} from 'redux'
+import { handleActions } from 'redux-actions'
+import { combineReducers } from 'redux'
 
 import API from 'utils/API'
 import URLConf from 'utils/url'
@@ -34,39 +30,37 @@ export const SAVE_COMMENT_FAILTURE = 'SAVE_COMMENT_FAILTURE'
 // ------------------------------------
 export const fetchNews = (data) => ({
   types: [FETCH_NEWS, FETCH_NEWS_SUCCESS, FETCH_NEWS_FAILTURE],
-  promise: () => API.post(URLConf.fetchNews, {...data
-  })
+  promise: () => API.post(URLConf.fetchNews, { ...data })
 })
 
 export const fetchNewsComments = (data) => ({
   types: [FETCH_NEWS_COMMENTS, FETCH_NEWS_COMMENTS_SUCCESS, FETCH_NEWS_COMMENTS_FAILTURE],
-  promise: () => API.post(URLConf.fetchNewsComments, {...data
-  })
+  promise: () => API.post(URLConf.fetchNewsComments, { ...data })
 })
 
-export const likeComment = (newsId, commentId) => ({
+export const likeComment = (id, commentId) => ({
   types: [LIKE_COMMENT, LIKE_COMMENT_SUCCESS, LIKE_COMMENT_FAILTURE],
   promise: () => API.post(URLConf.likeNewsComment, {
-    newsId,
+    id,
     commentId
   }),
   commentId
 })
 
-export const saveComment = (newsId, text) => ({
+export const saveComment = (id, text) => ({
   types: [SAVE_COMMENT, SAVE_COMMENT_SUCCESS, SAVE_COMMENT_FAILTURE],
   promise: () => API.post(URLConf.saveNewsComment, {
-    newsId,
+    id,
     context: text
   })
 })
 
-export const saveCommentThenFetchComments = (newsId, text) => {
+export const saveCommentThenFetchComments = (id, text) => {
   return (dispatch) => {
-    dispatch(saveComment(newsId, text))
+    dispatch(saveComment(id, text))
       .then(resp => {
         dispatch(fetchNewsComments({
-          newsId
+          id
         }))
       })
   }
