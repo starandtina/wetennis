@@ -58,10 +58,13 @@ $submitBtnHeight: 32*$px1;
 }
 
 .messageBox {
+  display: -ms-flexbox;
+  display: flex;
   background-color: #e8e8e8;
   padding: 9*$px1 15*$px1;
   input {
-    width: calc(100% - #{$submitBtnWidth + 10*$px1});
+    -ms-flex: 1;
+        flex: 1;
     font-size: 12*$px1;
     height: $submitBtnHeight;
     text-indent: 10*$px1;
@@ -69,7 +72,6 @@ $submitBtnHeight: 32*$px1;
 }
 
 .sendMessage {
-  width: $submitBtnWidth;
   height: $submitBtnHeight;
   font-size: 12*$px1;
   margin-left: 10*$px1;
