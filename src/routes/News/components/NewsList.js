@@ -23,7 +23,7 @@ export default class NewsList extends Component {
     let rows = []
 
     {newsList.forEach((item, index) => {
-      rows.push(<Link to={`/news/${item.id}`}><News item={item} key={item.id} /></Link>)
+      rows.push(<Link to={`/news/${item.id}`} key={item.id}><News item={item} /></Link>)
     })}
 
     return (

@@ -1,6 +1,6 @@
 export default function promiseMiddleware({ dispatch, getState }) {
   return next => action => {
-    const { promise, types, ...rest } = action
+    const { promise, types, payload, ...rest } = action
     if (!promise) {
       return next(action)
     }
@@ -8,7 +8,8 @@ export default function promiseMiddleware({ dispatch, getState }) {
     const [REQUEST, SUCCESS, FAILURE] = types
     next({...rest, type: REQUEST})
 
-    const actionPromise = promise(dispatch, getState)
+    const actionPromise = isPromise(action.promise) ? action.promise : promise(dispatch, getState)
+    
     actionPromise.then(
       ({ payload, error = false }) => {
         const { code, errorMsg, data } = payload
@@ -29,4 +30,8 @@ export default function promiseMiddleware({ dispatch, getState }) {
 
     return actionPromise
   }
+}
+
+function isPromise(val) {
+  return val && typeof val.then === 'function';
 }

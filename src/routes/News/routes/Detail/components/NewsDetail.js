@@ -38,9 +38,9 @@ export default class NewsDetail extends Component {
           <p>{content}</p>
           <div className={cs.keywordListContainer}>
             <p className='text-muted small'>关键词</p>
-            {keywordList ? keywordList.map((item) => {
+            {keywordList ? keywordList.map((item, index) => {
             return (
-              <span className={cls`badge ${cs.badge}`}>{item}</span>
+              <span key={index} className={cls`badge ${cs.badge}`}>{item}</span>
             )
             }) : undefined}
           </div>

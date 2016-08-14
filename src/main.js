@@ -1,5 +1,6 @@
 import 'babel-polyfill'
-import React from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import ReactDOM from 'react-dom'
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 import { Router, useRouterHistory } from 'react-router'
@@ -8,6 +9,10 @@ import createStore from './store/createStore'
 import { Provider } from 'react-redux'
 import createRoutes from './routes'
 import injectTapEventPlugin from 'react-tap-event-plugin'
+import LoadingBar from 'components/LoadingBar'
+
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 //Needed for onTouchTap
 //Can go away when react 1.0 release
@@ -31,17 +36,32 @@ const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: (state) => state.router
 })
 
+class Root extends Component {
+  render() {
+    const { routes, system } = this.props
+
+    return (
+      <MuiThemeProvider muiTheme={getMuiTheme()}>
+        <div style={{ height: '100%' }}>
+          <Router history={history} children={routes} />
+          {system.isLoading ? <LoadingBar /> : undefined }
+        </div>
+      </MuiThemeProvider>
+    )
+  }
+}
+
 let render = (key = null) => {
   const routes = createRoutes(store)
+  const ConnectedRoot = connect((state) => ({ system: state.system }), null)(Root)
   const App = (
     <Provider store={store}>
-      <div style={{ height: '100%' }}>
-        <Router history={history} children={routes} key={key} />
-      </div>
+      <ConnectedRoot routes={routes} />
     </Provider>
   )
   ReactDOM.render(App, MOUNT_ELEMENT)
 }
+
 
 // Enable HMR and catch runtime errors in RedBox
 // This code is excluded from production bundle

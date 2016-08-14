@@ -2,6 +2,9 @@ import { applyMiddleware, compose, createStore } from 'redux'
 
 import { routerMiddleware } from 'react-router-redux'
 import promiseMiddleware from 'store/middlewares/promiseMiddleware'
+
+import 'utils/promise'
+import loadingBarMiddleware from 'store/middlewares/loadingBarMiddleware'
 import thunk from 'store/middlewares/thunk'
 
 import reducers from './reducers'
@@ -9,6 +12,7 @@ import reducers from './reducers'
 export default (initialState = {}, history) => {
   let middleware = applyMiddleware(
     thunk,
+    loadingBarMiddleware,
     promiseMiddleware,
     routerMiddleware(history)
   )
