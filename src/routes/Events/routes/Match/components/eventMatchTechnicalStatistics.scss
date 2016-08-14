@@ -1,0 +1,36 @@
+@import "variables.scss";
+
+.technicalText {
+  display: flex;
+  font-size: $px12;
+  margin-bottom: $px10;
+}
+
+.technicalTitle {
+  flex-grow: 1;
+  text-align: center;
+  font-size: $px10;
+  color: $secondaryFontColor;
+}
+
+.technicalBar {
+  display: flex;
+  > div {
+    height: 3*$px1;
+  }
+}
+
+.technicalList {
+  padding: 0 15*$px1;
+  li {
+    list-style: none;
+    margin-top: 15*$px1;
+  }
+}
+
+.technicalTeam1Bar {
+  background-color: $mainColor;
+}
+.technicalTeam2Bar {
+  background-color: $blue;
+}

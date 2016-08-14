@@ -51,6 +51,7 @@ export default {
   likeEventMatchComments: `${ROOT_URL}eventLikeMatchComment`,
   sendEventMatchComments: `${ROOT_URL}eventSendMatchComment`,
   fetchEventMatchTechnicalStatistics: `${ROOT_URL}eventMatchTechnicalStatistics`,
+  fetchEventMatchGuess: `${ROOT_URL}eventMatchGuess`,
 
   // draw table
   fetchEventDrawTable: `${ROOT_URL}eventDrawTable`,

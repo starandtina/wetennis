@@ -1,0 +1,57 @@
+{
+  "code": 0,
+  "data": {
+    "key": {
+      "team1": {
+        "name": "陈韵1 / 李思1",
+        "percent": "70%",
+        "risk": false,
+        "ratio": "1.2"
+      },
+      "team2": {
+        "name": "陈韵2 / 李思2",
+        "percent": "30%",
+        "risk": true,
+        "ratio": "2.5"
+      }
+    },
+    "score": [
+      {
+        "score": "3 : 0",
+        "risk": false,
+        "ratio": "1.2",
+        "percent": "10%"
+      },
+      {
+        "score": "3 : 1",
+        "risk": true,
+        "ratio": "2.5",
+        "percent": "10%"
+      },
+      {
+        "score": "3 : 2",
+        "risk": false,
+        "ratio": "1.2",
+        "percent": "50%"
+      },
+      {
+        "score": "0 : 3",
+        "risk": false,
+        "ratio": "1.2",
+        "percent": "10%"
+      },
+      {
+        "score": "1 : 3",
+        "risk": true,
+        "ratio": "2.5",
+        "percent": "10%"
+      },
+      {
+        "score": "2 : 3",
+        "risk": false,
+        "ratio": "1.2",
+        "percent": "10%"
+      }
+    ]
+  }
+}

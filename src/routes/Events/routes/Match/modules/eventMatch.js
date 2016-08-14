@@ -33,6 +33,11 @@ const GET_TECHNICAL_STATISTICS = `${PREFIXER}GET_TECHNICAL_STATISTICS`;
 const GET_TECHNICAL_STATISTICS_SUCCESS = `${PREFIXER}GET_TECHNICAL_STATISTICS_SUCCESS`;
 const GET_TECHNICAL_STATISTICS_FAILTURE = `${PREFIXER}GET_TECHNICAL_STATISTICS_FAILTURE`;
 
+// get match comments
+const GET_GUESS = `${PREFIXER}GET_GUESS`;
+const GET_GUESS_SUCCESS = `${PREFIXER}GET_GUESS_SUCCESS`;
+const GET_GUESS_FAILTURE = `${PREFIXER}GET_GUESS_FAILTURE`;
+
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -85,6 +90,13 @@ export function getTechnicalStatistics(matchId) {
   }
 }
 
+export function getGuess(matchId) {
+  return {
+    types: [GET_GUESS, GET_GUESS_SUCCESS, GET_GUESS_FAILTURE],
+    promise: () => API.post(URLConf.fetchEventMatchGuess, {matchId})
+  }
+}
+
 
 // ------------------------------------
 // Reducer
@@ -131,7 +143,22 @@ function technicalStatistics(state = [], {type, payload}) {
   return s;
 }
 
+function guess(state = {
+  key: {
+    team1: {},
+    team2: {},
+  },
+  score: []
+}, {type, payload}) {
+  let s = state;
+
+  if (type === GET_GUESS_SUCCESS) {
+    s = payload;
+  }
+
+  return s;
+}
 
 export default combineReducers({
-  details, comments, technicalStatistics
+  details, comments, technicalStatistics, guess
 })

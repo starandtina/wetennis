@@ -1,0 +1,104 @@
+@import "variables.scss";
+.box {
+  padding: 10*$px1 15*$px1;
+}
+
+.title {
+  text-align: center;
+  margin: 30*$px1 0;
+  font-size: $px12;
+  color: $secondaryFontColor;
+}
+
+.keyTeam {
+  display: flex;
+  font-size: $px14;
+  margin-bottom: 7*$px1;
+}
+
+.keyVs {
+  flex-grow: 1;
+  text-align: center;
+  font-size: $px10;
+  color: $secondaryFontColor;
+}
+
+
+
+.keyInfo {
+  display: flex;
+  font-size: $px10;
+}
+.keyTeam1Info {
+  flex-grow: 1;
+}
+.highRisk, .lowRisk {
+  padding: 0 $px10;
+  > i {
+    font-size: 18*$px1;
+    display: inline-block;
+    line-height: 12*$px1;
+    vertical-align: middle;
+  }
+}
+.highRisk {
+  color: #fe5e46;
+}
+
+.lowRisk {
+  color: $mainColor;
+}
+
+
+.keyBar {
+  display: flex;
+  > div {
+    height: 3*$px1;
+  }
+}
+.keyBarTeam1 {
+  background-color: $mainColor;
+}
+.keyBarTeam2 {
+  background-color: $blue;
+}
+
+
+.scoreItem {
+  display: flex;
+  margin-bottom: 10*$px1;
+}
+
+.scoreInfoBox {
+  flex-grow: 1;
+}
+.scoreInfo {
+  display: flex;
+  font-size: $px10;
+  line-height: 20*$px1;
+}
+
+.scoreNumber {
+  font-size: $px12;
+  flex-grow: 1;
+}
+
+.scoreBar {
+  background-color: #eff2f2;
+  height: 3*$px1;
+  position: relative;
+}
+
+.scoreBarPercent {
+  position: absolute;
+  height: 100%;
+  background-color: $mainColor;
+  left: 0;
+  top: 0;
+}
+
+.moreIcon > i{
+  font-size: 24*$px1;
+  color: $secondaryFontColor;
+  padding-left: 8*$px1;
+}
