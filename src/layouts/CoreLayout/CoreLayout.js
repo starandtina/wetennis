@@ -9,7 +9,6 @@ import 'styles/core.scss'
 export const CoreLayout = ({ children }) => (
   <div className='page-container'>
     <div className='wetennis'>
-      <Header/>
       <div className='wetennis-body'>
         {children}
       </div>

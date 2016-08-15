@@ -1,0 +1,27 @@
+@import "variables.scss";
+
+.box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: $blue;
+  z-index: 9999;
+  min-height: $topNavHeight;
+  color: #fff;
+  line-height: 1.2;
+  padding: $px10 15*$px1;
+  display: flex;
+}
+
+.text {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  padding: 0 5*$px1;
+}
+
+.icon {
+  height: $topNavHeight - 20*$px1;
+  line-height: $topNavHeight - 20*$px1;
+}

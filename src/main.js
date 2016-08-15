@@ -10,6 +10,7 @@ import { Provider } from 'react-redux'
 import createRoutes from './routes'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import LoadingBar from 'components/LoadingBar'
+import ErrorMessage from 'components/ErrorMessage'
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
@@ -45,6 +46,9 @@ class Root extends Component {
         <div style={{ height: '100%' }}>
           <Router history={history} children={routes} />
           {system.isLoading ? <LoadingBar /> : undefined }
+          {system.error
+          ? <ErrorMessage data={system.error} />
+          : undefined}
         </div>
       </MuiThemeProvider>
     )
