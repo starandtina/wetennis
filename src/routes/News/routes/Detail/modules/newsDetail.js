@@ -56,7 +56,7 @@ export const saveComment = (id, text) => ({
 })
 
 export const saveCommentThenFetchComments = (id, text) => {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(saveComment(id, text))
       .then(resp => {
         dispatch(fetchNewsComments({
