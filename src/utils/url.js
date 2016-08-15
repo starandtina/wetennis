@@ -19,6 +19,10 @@ export default {
   updateMySettings: `${ROOT_URL}updateMySettings`,
   fetchMyMatch: `${ROOT_URL}fetchMyMatch`,
   fetchMyPractice: `${ROOT_URL}fetchMyPractice`,
+
+  //Times
+  fetchMyTimes: `${ROOT_URL}fetchMyTimes`,
+
   // Event
   events: `${ROOT_URL}events`,
   fetchEventGroups: `${ROOT_URL}eventGroups`,
@@ -70,4 +74,5 @@ export default {
   // Referee
   fetchReferee: `${ROOT_URL}referee`,
   operateReferee: `${ROOT_URL}operateReferee`
+
 }

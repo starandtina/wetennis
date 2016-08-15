@@ -13,6 +13,7 @@ export const createRoutes = (store) => {
           require('./Events')(store),
           require('./Referee')(store),
           require('./Rankings')(store),
+          require('./Time')(store),
           require('./NotFound')
         ])
       })
