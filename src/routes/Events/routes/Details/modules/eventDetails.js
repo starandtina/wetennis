@@ -113,14 +113,14 @@ export function draw (eventId) {
   }
 }
 
-export function sendComment(id, text) {
+export function sendComment(eventId, context) {
   return dispatch => {
     dispatch({
       types: [SEND_COMMENT, SEND_COMMENT_SUCCESS, SEND_COMMENT_FAILTURE],
-      promise: () => API.post(URLConf.sendComment, {id, text})
+      promise: () => API.post(URLConf.sendComment, {eventId, context, userId: "city02"})
     }).then(({payload: {code, data}}) => {
       if (Number(code) === 0 && data === "ok") {
-        dispatch(getComments(id));
+        dispatch(getComments(eventId));
       }
     })
   }

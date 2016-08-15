@@ -57,7 +57,7 @@ export default class Rankings extends Component {
               to={`/rankings/${item.userid}`}
               className={cs.rankingItem}
             >
-              <div className={cs.ranking}>{item.ranking}</div>
+              <div className={`${cs.ranking} ${index < 3 ? cs.highlight : ""}`}>{index + 1}</div>
               <div className={cs.rankingInfo}>
                 <User data={item} className={cs.user} />
                 <div className={cs.pts}>

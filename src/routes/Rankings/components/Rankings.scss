@@ -27,12 +27,15 @@ $rankingItemHeight: 60*$px1;
 
 .ranking {
   text-align: center;
-  background-color: $mainColor;
-  color: #fff;
   width: 60*$px1;
+  color: #fff;
   text-align: center;
   font-size: 20*$px1;
   line-height: $rankingItemHeight;
+  background-color: $secondaryColor;
+  &.highlight {
+    background-color: $mainColor;
+  }
 }
 
 .rankingInfo {
