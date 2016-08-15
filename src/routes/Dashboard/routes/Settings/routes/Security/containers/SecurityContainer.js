@@ -93,10 +93,10 @@ class Security extends Component {
                         textAlign: 'left',
                         color: '#929292',
                       }}
-                  name="card"
+                  name="cardId"
                   fullWidth
-                  onChange={this.handleChange('card')}
-                  value={user.card}
+                  onChange={this.handleChange('cardId')}
+                  value={user.cardId}
                   underlineShow={false}
                 />
               </Col>

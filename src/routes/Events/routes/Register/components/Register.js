@@ -19,10 +19,18 @@ export class Register extends React.Component {
   }
 
   componentDidMount() {
-    const { params } = this.props
+    const { params, userId } = this.props;
+    if (!userId) {
+      this.props.push('/dashboard/signin')
+      return;
+    }
     const requestPayload = { eventId: params.eventId }
-
+    console.log('didmount');
     this.props.fetchEventGroups(requestPayload)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    console.log('componentWillReceiveProps');
   }
 
   _renderEventGroups() {
