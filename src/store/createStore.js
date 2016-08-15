@@ -5,6 +5,7 @@ import promiseMiddleware from 'store/middlewares/promiseMiddleware'
 
 import 'utils/promise'
 import loadingBarMiddleware from 'store/middlewares/loadingBarMiddleware'
+import errorMiddleware from 'store/middlewares/errorMiddleware'
 import thunk from 'store/middlewares/thunk'
 
 import reducers from './reducers'
@@ -13,6 +14,7 @@ export default (initialState = {}, history) => {
   let middleware = applyMiddleware(
     thunk,
     loadingBarMiddleware,
+    errorMiddleware,
     promiseMiddleware,
     routerMiddleware(history)
   )
