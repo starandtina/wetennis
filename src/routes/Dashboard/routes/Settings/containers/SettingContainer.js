@@ -12,6 +12,8 @@ import MenuItem from 'material-ui/MenuItem';
 import { Grid, Row, Col } from 'react-bootstrap';
 import DatePicker from 'material-ui/DatePicker';
 import Divider from 'material-ui/Divider';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
 
 import { fetchMySettings, updateSettings, updateMySettings } from 'routes/Dashboard/modules/settings'
 
@@ -66,9 +68,15 @@ class SettingsForm extends React.Component {
   }
 
   state = {
-    buttonSuspending: false,
-    leftTime: 180,
-    Tip: '验证',
+    open: false,
+  };
+
+  handleOpen = () => {
+    this.setState({open: true});
+  };
+
+  handleClose = () => {
+    this.setState({open: false});
   };
 
   componentDidMount () {
@@ -128,8 +136,7 @@ class SettingsForm extends React.Component {
       card: user.card,
       id: user.id
     }).then(action => {
-      console.log(action);
-      alert('更新成功');
+      this.handleOpen();
     })
 
   }
@@ -147,6 +154,15 @@ class SettingsForm extends React.Component {
     if(children){
       return children;
     }
+
+    const actions = [
+      <FlatButton
+        label="OK"
+        primary={true}
+        onTouchTap={this.handleClose}
+      />,
+    ];
+
     const style = {
       width: '100%'
     };
@@ -165,7 +181,7 @@ class SettingsForm extends React.Component {
           </NavBack>
 
           <form className='setting-form'>
-            <Grid>
+            <Grid className={classes.Grid}>
               <div className={classes.Head}>基本信息</div>
               <Row>
                 <Col xs={4}>
@@ -364,15 +380,19 @@ class SettingsForm extends React.Component {
                 <Col xs={12}>
                   <div className={classes.Link}><Link to="/dashboard/settings/address">地址<i className="material-icons">chevron_right</i></Link></div>
                 </Col>
-                <Divider />
+                <Divider className="wert"/>
               </Row>
-
+              <Row>
+                <Col xs={12}>
+                </Col>
+                <Divider className="wert"/>
+              </Row>
             </Grid>
-            <div className='button-groups clearfix'>
+            <div className='button-groups clearfix container'>
               {this.props.user.error ? <p className='u-errorText'>{this.props.user.error.message}</p> : ''}
               <button
                 type="button"
-                className="primary btn btn-default btn-lg btn-block"
+                className="btn btn-primary btn-lg btn-block"
                 disabled={submitting}
                 onClick={this.updateMySettings}
               >
@@ -380,6 +400,14 @@ class SettingsForm extends React.Component {
               </button>
             </div>
           </form>
+          <Dialog
+            actions={actions}
+            modal={false}
+            open={this.state.open}
+            onRequestClose={this.handleClose}
+          >
+            保存成功
+          </Dialog>
         </div>
     )
   }
