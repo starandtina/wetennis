@@ -27,8 +27,10 @@ export default function loadingBarMiddlewar({ dispatch, getState }) {
 
     loadingBarCounter.add()
 
-    if(loadingBarCounter.isEmpty) {
-      dispatch(loading())
+    if (loadingBarCounter.isEmpty) {
+      setTimeout(() => {
+        dispatch(loading())
+      }, 0)
     }
 
     const actionPromise = promise(dispatch, getState)
@@ -38,8 +40,9 @@ export default function loadingBarMiddlewar({ dispatch, getState }) {
         loadingBarCounter.dec()
 
         if (loadingBarCounter.isEmpty()) {
-
-          dispatch(loaded())
+          setTimeout(() => {
+            dispatch(loaded())
+          }, 0)
         }
       })
 
