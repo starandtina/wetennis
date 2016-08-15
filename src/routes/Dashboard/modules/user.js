@@ -146,7 +146,7 @@ const INITIAL_STATE = {
     "password": "88888888",
     "phone": "18629032103",
     "gender": "male",
-    "card": "232323198611111111"
+    "cardId": "232323198611111111"
   },
   initialValues: {
     // username: '1',
