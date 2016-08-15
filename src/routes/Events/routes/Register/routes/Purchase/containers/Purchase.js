@@ -9,7 +9,7 @@ import style from './Purchase.scss';
 
 const mapStateToProps = (state) => {
   return ({
-  user: state.user.user,
+  user: state.register.user,
   group: state.register.group,
   item: state.register.item,
   partnerId: state.register.partnerId
