@@ -1,0 +1,11 @@
+{
+  "code": 0,
+  "errorMsg": "",
+  "data": {
+    "name": "bill kang",
+    "gender": "male",
+    "birthday": "1984-11-13",
+    "Constellation": "处女座",
+    "backGroundImageUrl": "http://wetennis.cn/images/Head/89F78FFA-276E-4768-BE49-A953B645D362.jpg"
+  }
+}

@@ -22,6 +22,7 @@ export default {
 
   //Times
   fetchMyTimes: `${ROOT_URL}fetchMyTimes`,
+  fetchTimesInfo: `${ROOT_URL}fetchTimesInfo`,
 
   // Event
   events: `${ROOT_URL}events`,

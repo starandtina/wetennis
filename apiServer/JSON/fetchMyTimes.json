@@ -2,59 +2,100 @@
   "code": 0,
   "errorMsg": "",
   "data": {
-    "name": "bill kang",
-    "gender": "male",
-    "birthday": "1984-11-13",
-    "Constellation": "处女座",
-    "backGroundImageUrl": "http://wetennis.cn/images/Head/89F78FFA-276E-4768-BE49-A953B645D362.jpg",
-    "times": [
-      {
-        "id": 1,
-        "type": "Message",
-        "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg","http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
-        "permission": 0,
-        "message":"还可以吧 打得不错"
-      },
-      {
-        "id": 2,
-        "type": "Message",
-        "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg","http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
-        "permission": 1,
-        "message":"还可以吧 打得不错"
-      },
-      {
-        "id": 3,
-        "type": "Message",
-        "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
-        "permission": 2,
-        "message":"还可以吧 打得不错"
-      },
-      {
-        "id": 4,
-        "type": "Match",
-        "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
-        "date": "2016-04-12",
-        "location": "sdfdsf address",
-        "match": "单打",
-        "us":"我就是我",
-        "myScore":6,
-        "opponent": "不一样的烟火",
-        "opponentScore": 4,
-        "message":"还可以吧 打得不错"
-      },
-      {
-        "id": 5,
-        "type": "Match",
-        "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
-        "date": "2016-05-15",
-        "location": "sdfdsf address",
-        "match": "单打",
-        "us":"我就是我",
-        "myScore":6,
-        "opponent": "不一样的烟火",
-        "opponentScore": 5,
-        "message":"还可以吧 打得不错"
-      }
-    ]
-  }
+  "timeList": [{
+                "id": 1,
+                "type": "Message",
+                "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg","http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
+                "permission": 0,
+                "message":"还可以吧 打得不错"
+              },
+              {
+                "id": 2,
+                "type": "Message",
+                "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg","http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
+                "permission": 1,
+                "message":"还可以吧 打得不错"
+              },
+              {
+                "id": 3,
+                "type": "Message",
+                "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
+                "permission": 2,
+                "message":"还可以吧 打得不错"
+              },
+              {
+                "id": 4,
+                "type": "Match",
+                "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
+                "date": "2016-04-12",
+                "location": "sdfdsf address",
+                "match": "单打",
+                "us":"我就是我",
+                "myScore":6,
+                "opponent": "不一样的烟火",
+                "opponentScore": 4,
+                "message":"还可以吧 打得不错"
+              },
+              {
+                "id": 5,
+                "type": "Match",
+                "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
+                "date": "2016-05-15",
+                "location": "sdfdsf address",
+                "match": "单打",
+                "us":"我就是我",
+                "myScore":6,
+                "opponent": "不一样的烟火",
+                "opponentScore": 5,
+                "message":"还可以吧 打得不错"
+              },
+              {
+                "id": 6,
+                "type": "Message",
+                "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg","http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
+                "permission": 0,
+                "message":"还可以吧 打得不错"
+              },
+              {
+                "id": 7,
+                "type": "Message",
+                "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg","http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
+                "permission": 1,
+                "message":"还可以吧 打得不错"
+              },
+              {
+                "id": 8,
+                "type": "Message",
+                "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
+                "permission": 2,
+                "message":"还可以吧 打得不错"
+              },
+              {
+                "id": 9,
+                "type": "Match",
+                "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
+                "date": "2016-04-12",
+                "location": "sdfdsf address",
+                "match": "单打",
+                "us":"我就是我",
+                "myScore":6,
+                "opponent": "不一样的烟火",
+                "opponentScore": 4,
+                "message":"还可以吧 打得不错"
+              },
+              {
+                "id": 10,
+                "type": "Match",
+                "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
+                "date": "2016-05-15",
+                "location": "sdfdsf address",
+                "match": "单打",
+                "us":"我就是我",
+                "myScore":6,
+                "opponent": "不一样的烟火",
+                "opponentScore": 5,
+                "message":"还可以吧 打得不错"
+              }],
+    "lastPage": false
+}
 }
