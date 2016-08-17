@@ -4,10 +4,12 @@ import InfiniteScroll from 'react-infinite-scroller'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
+import debounce from 'lodash/debounce';
+
 import Footer from 'components/Footer'
 import style from './TimeContainer.scss';
-
-import { fetchMyTimes, fetchTimesInfo } from '../actions';
+import TimeItem from '../components/TimeItem';
+import { fetchTime, fetchTimeInfo } from '../actions';
 const myData = {
   "id": "sha32dsjk23",
     "name": "my real name",
@@ -23,66 +25,54 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = ({
-  fetchMyTimes, fetchTimesInfo, push
+  fetchTime, fetchTimeInfo, push
 })
 
 class Times extends Component {
   componentDidMount(){
-    const { fetchMyTimes, fetchTimesInfo, user } = this.props;
-    fetchTimesInfo({
+    const { fetchTime, fetchTimeInfo, user } = this.props;
+    fetchTimeInfo({
       id: user.id
     });
-    fetchMyTimes({
+    fetchTime({
       id: user.id,
       currentPage: 1
+    }).then(action => {
+      console.log(action);
+      this.setState({
+        pageStart:0,
+        hasMore: !action.payload.data.lastPage
+      })
     });
     console.log('componentDidMount');
   }
-
-  handleRefresh = (downOrUp, callback) => {
-    console.log('handleRefresh');
-    let { time: { lastPage } } = this.props;
-    if (downOrUp === 'up' && !lastPage) { // 加载更多
-      this.loadData(downOrUp, callback);
-    }
+  state = {
+    pageStart: -1
   }
+  //
+  //handleRefresh = (downOrUp, callback) => {
+  //  console.log('handleRefresh');
+  //  let { time: { lastPage } } = this.props;
+  //  if (downOrUp === 'up' && !lastPage) { // 加载更多
+  //    this.loadData(downOrUp, callback);
+  //  }
+  //}
 
   loadData = (downOrUp, callback) => {
-    const { fetchMyTimes, time: { currentPage } } = this.props;
-    fetchMyTimes();
-    //callApi({url}).then(
-    //  ({json, response}) => {
-    //    //这里为了展示效果，延长1秒
-    //    setTimeout(() => {
-    //      const {list} = this.state;
-    //      this.setState({
-    //        list: downOrUp === 'up' ? union(list, json.data.list) : json.data.list
-    //      });
-    //      if (callback && typeof callback === 'function') {
-    //        callback();
-    //      }
-    //    }, 1000);
-    //  },
-    //  (error) => {
-    //    if (callback && typeof callback === 'function') {
-    //      callback();
-    //    }
-    //  });
+    const { fetchTime, time: { currentPage }, user } = this.props;
+    fetchTime({
+      currentPage: currentPage + 1,
+      userId: user.id
+    });
+    console.log('loadData '+(currentPage+1));
   }
+
+  debounceFuc = debounce(this.loadData, 200);
 
   render() {
     const { time, children } = this.props;
     let content = null;
     let footer =  null;
-    const myprops = {
-      maxAmplitude: 80,
-      debounceTime: 30,
-      throttleTime: 100,
-      deceleration: 0.001,
-      refreshCallback: this.handleRefresh,
-      loadMoreCallback: this.loadData,
-      hasMore: time.lastPage
-    };
     if (children) {
       content = children;
       footer =  null;
@@ -96,32 +86,35 @@ class Times extends Component {
       };
       const footer = <Footer activeNavTab='TIME' />;
       const timeList = time.timeList;
-      const height = window.innerHeight - 50 -280;
+      const height = window.innerHeight - 55;
       content = (
         <div>
-          <div className={style.BackGroundImage} style={bgstyle}>
-            <div className={style.Name}>{time.name}</div>
-            <div className={style.UserInfo}>{time.gender} | {time.birthday} | {time.Constellation}</div>
-          </div>
-          <div className={style.Timelist} style={({height:height})}>
+          <div className={style.Timelist} style={({height:height, overflow: 'auto', clear: 'both'})}>
             <InfiniteScroll
-              pageStart={0}
-              loadMore={this.loadData}
-              hasMore={true}
-              loader={<div className="loader">Loading ...</div>}
+              className={style.loader}
+              pageStart={this.state.pageStart}
+              loadMore={this.debounceFuc}
+              hasMore={this.state.hasMore}
+              useWindow={false}
+              threshold={200}
+              loader={<div className={style.loader}>Loading ...</div>}
             >
+              <div className={style.BackGroundImage} style={bgstyle}>
+                <div className={style.Name}>{time.name}</div>
+                <div className={style.UserInfo}>{time.gender} | {time.birthday} | {time.Constellation}</div>
+              </div>
               {timeList.map((item, index) => {
-                  return  <li key={index}>{item.id}</li>
+                  return  <TimeItem key={index} Item={item} />
                 }
               )}
             </InfiniteScroll>
+            {footer}
           </div>
-          {footer}
         </div>
       )
     }
     return (
-      <div style={{ height: '100%', paddingBottom: '56px', marginBottom: '56px' }}>
+      <div style={{ height: '100%' }}>
         {content}
       </div>
     )

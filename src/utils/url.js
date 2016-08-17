@@ -21,8 +21,8 @@ export default {
   fetchMyPractice: `${ROOT_URL}fetchMyPractice`,
 
   //Times
-  fetchMyTimes: `${ROOT_URL}fetchMyTimes`,
-  fetchTimesInfo: `${ROOT_URL}fetchTimesInfo`,
+  fetchTime: `${ROOT_URL}fetchTime`,
+  fetchTimeInfo: `${ROOT_URL}fetchTimeInfo`,
 
   // Event
   events: `${ROOT_URL}events`,
