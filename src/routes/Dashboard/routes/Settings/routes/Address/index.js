@@ -11,6 +11,6 @@ export default ({
       cb(null, [
         require('./routes/edit'),
       ])
-    })
+    }, 'dashboard')
   },
 })

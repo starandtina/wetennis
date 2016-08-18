@@ -17,6 +17,6 @@ export default (store) => ({
       injectReducer(store, { key: 'eventScore', reducer })
 
       next(null, Container)
-    })
+    }, 'events')
   }
 })

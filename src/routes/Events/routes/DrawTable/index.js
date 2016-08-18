@@ -17,6 +17,6 @@ export default (store) => ({
       injectReducer(store, { key: 'drawTable', reducer })
 
       next(null, Container)
-    })
+    }, 'events')
   }
 })

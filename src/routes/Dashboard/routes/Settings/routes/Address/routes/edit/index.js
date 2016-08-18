@@ -4,6 +4,6 @@ export default ({
     require.ensure([], (require) => {
       const AddressEditContainer = require('./containers/AddressEdit');
       next(null, AddressEditContainer)
-    })
+    }, 'dashboard')
   }
 })

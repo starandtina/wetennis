@@ -16,14 +16,14 @@ export const createRoutes = (store) => {
           require('./Time')(store),
           require('./NotFound')
         ])
-      })
+      }, 'index')
     }, 
     getIndexRoute (nextState, next) {
       require.ensure([], (require) => {
         injectReducer(store, { key: 'newsList', reducer: require('./News/modules/newsList').default })
 
         next(null, { component: require('./News/containers/NewsListContainer') })
-      })
+      }, 'index')
     }
   }
 

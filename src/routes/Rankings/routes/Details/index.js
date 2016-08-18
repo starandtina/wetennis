@@ -18,6 +18,6 @@ export default (store) => ({
       injectReducer(store, { key: 'rankingDetails', reducer })
 
       next(null, Container)
-    })
+    }, 'rankings')
   }
 })

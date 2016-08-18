@@ -11,6 +11,6 @@ export default (store) => ({
       injectReducer(store, { key: 'MyMatch', reducer: MyMatchreducer });
       console.log(MyMatchreducer);
       next(null, MyMatch)
-    })
+    }, 'dashboard')
   }
 })

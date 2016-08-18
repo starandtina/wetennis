@@ -18,6 +18,6 @@ export default (store) => ({
       injectReducer(store, { key: 'eventMatch', reducer })
 
       next(null, EventMatch)
-    })
+    }, 'events')
   }
 })

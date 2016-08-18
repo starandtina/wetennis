@@ -24,6 +24,6 @@ export default (store) => ({
       injectReducer(store, { key: 'register', reducer })
 
       next(null, Register)
-    })
+    }, 'events')
   }
 })

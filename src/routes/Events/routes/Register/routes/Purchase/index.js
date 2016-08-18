@@ -6,6 +6,6 @@ export default {
       const Purchase = require('./containers/Purchase')
 
       next(null, Purchase)
-    })
+    }, 'events')
   }
 }

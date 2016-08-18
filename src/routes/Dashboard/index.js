@@ -36,6 +36,6 @@ export default (store) => ({
       injectReducer(store, { key: 'settings', reducer:settingReducer });
 
       next(null, Dashboard)
-    })
+    }, 'dashboard')
   }
 })

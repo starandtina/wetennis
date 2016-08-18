@@ -6,6 +6,6 @@ export default {
       const Announcement = require('./containers/Announcement')
 
       next(null, Announcement)
-    })
+    }, 'events')
   }
 }

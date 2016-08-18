@@ -6,6 +6,6 @@ export default {
       const RegisterConfirmation = require('./containers/RegisterConfirmation')
 
       next(null, RegisterConfirmation)
-    })
+    }, 'events')
   }
 }

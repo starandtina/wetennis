@@ -19,6 +19,6 @@ export default (store) => ({
       injectReducer(store, { key: 'eventDetails', reducer })
 
       next(null, EventDetails)
-    })
+    }, 'events')
   }
 })

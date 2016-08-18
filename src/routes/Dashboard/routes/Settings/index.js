@@ -18,6 +18,6 @@ export default (store) => ({
       const SettingContainer = require('./containers/SettingContainer')
 
       next(null, SettingContainer)
-    })
+    }, 'dashboard')
   }
 })

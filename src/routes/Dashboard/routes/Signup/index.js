@@ -16,6 +16,6 @@ export default (store) => ({
       const Signup = require('./containers/SignupContainer')
 
       next(null, Signup)
-    })
+    }, 'dashboard')
   }
 })

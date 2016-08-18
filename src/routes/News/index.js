@@ -16,6 +16,6 @@ export default (store) => ({
       injectReducer(store, { key: 'newsList', reducer: require('./modules/newsList').default })
 
       next(null, require('./containers/NewsListContainer'))
-    })
+    }, 'news')
   }
 })
