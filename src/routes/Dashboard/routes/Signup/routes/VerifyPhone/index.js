@@ -7,6 +7,6 @@ export default {
       const Signin = require('./containers/VerifyPhoneContainer')
 
       next(null, Signin)
-    })
+    }, 'dashboard')
   }
 }

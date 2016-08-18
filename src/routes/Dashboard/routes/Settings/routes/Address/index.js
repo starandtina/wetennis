@@ -4,7 +4,7 @@ export default ({
     require.ensure([], (require) => {
       const addressContainer = require('./containers/addressContainer');
       next(null, addressContainer)
-    })
+    }, 'dashboard')
   },
   getChildRoutes (location, cb) {
     require.ensure([], (require) => {

@@ -8,7 +8,7 @@ export default (store) => ({
       cb(null, [
         // require('./routes/Confirmation')
       ])
-    })
+    }, 'events')
   },
 
   getComponent (nextState, next) {

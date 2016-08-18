@@ -13,7 +13,7 @@ export default (store) => ({
         require('./routes/Announcement'),
         require('./routes/Purchase')
       ])
-    })
+    }, 'events')
   },
 
   getComponent (nextState, next) {

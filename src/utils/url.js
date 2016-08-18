@@ -1,4 +1,7 @@
 const ROOT_URL = '/api?method='
+
+export const WETENNIS_URL = 'http://wetennis.cn:3000'
+
 export default {
   // Latest
   fetchNewsList: `${ROOT_URL}fetchNewsList`,

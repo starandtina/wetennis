@@ -8,7 +8,7 @@ export default (store) => ({
       cb(null, [
         require("./routes/Details")(store)
       ])
-    })
+    }, 'rankings')
   },
 
   getComponent (nextState, next) {

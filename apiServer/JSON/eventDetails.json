@@ -12,7 +12,7 @@
         "drawTable": true,
         "score": true,
         "schedule": true,
-        "register": true,
+        "register": false,
         "friendRegisterCount": 30,
         "drawCountdown": 50000,
         "draw": false,

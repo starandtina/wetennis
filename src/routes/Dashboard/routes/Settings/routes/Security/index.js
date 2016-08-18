@@ -4,6 +4,6 @@ export default ({
     require.ensure([], (require) => {
       const securityContainer = require('./containers/securityContainer');
       next(null, securityContainer)
-    })
+    }, 'dashboard')
   }
 })

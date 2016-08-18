@@ -9,6 +9,6 @@ export default (store) => ({
       const Signin = require('./containers/SigninContainer')
 
       next(null, Signin)
-    })
+    }, 'dashboard')
   }
 })

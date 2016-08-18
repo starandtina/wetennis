@@ -7,7 +7,7 @@ export default (store) => ({
       cb(null, [
         require('./routes/VerifyPhone')
       ])
-    })
+    }, 'dashboard')
   },
   getComponent (nextState, next) {
     require.ensure([

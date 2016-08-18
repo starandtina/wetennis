@@ -9,6 +9,6 @@ export default (store) => ({
       const SettingContainer = require('./containers/MeContainer')
 
       next(null, SettingContainer)
-    })
+    }, 'dashboard')
   }
 })

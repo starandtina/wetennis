@@ -7,6 +7,9 @@ import { Accordion, Panel } from 'react-bootstrap';
 import RaisedButton from 'material-ui/RaisedButton';
 import style from './Purchase.scss';
 
+import { buildUrl } from 'utils'
+import { WETENNIS_URL } from 'utils/url'
+
 const mapStateToProps = (state) => {
   return ({
   user: state.register.user,
@@ -20,7 +23,8 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({ push, registerEven
 class Purchase extends Component {
 
   register = () => {
-    const { item, user, registerEvent, partnerId } = this.props;
+    const { item, user, registerEvent, partnerId, params: { eventId } } = this.props;
+
     registerEvent({
       itemId: item.id,
       id: user.id,
@@ -30,9 +34,11 @@ class Purchase extends Component {
       personCard: user.cardId,
       partnerId
     }).then(action => {
-      location.replace(action.payload.data.payUrl);
+      location.replace(
+        buildUrl(action.payload.data.payUrl, { redirectUrl: `${WETENNIS_URL}/events/${eventId}`})
+      )
     })
-  };
+  }
 
   render() {
     const { item, user, registerEvent } = this.props;

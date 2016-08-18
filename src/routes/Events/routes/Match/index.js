@@ -7,7 +7,7 @@ export default (store) => ({
     require.ensure([], (require) => {
       cb(null, [
       ])
-    })
+    }, 'events')
   },
 
   getComponent (nextState, next) {

@@ -9,6 +9,6 @@ export default (store) => ({
       const ResetPassword = require('./containers/ResetPasswordContainer')
 
       next(null, ResetPassword)
-    })
+    }, 'dashboard')
   }
 })

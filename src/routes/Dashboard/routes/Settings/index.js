@@ -9,7 +9,7 @@ export default (store) => ({
         require('./routes/Security'),
         require('./routes/Address'),
       ])
-    })
+    }, 'dashboard')
   },
   getComponent (nextState, next) {
     require.ensure([
