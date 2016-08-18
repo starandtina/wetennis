@@ -8,14 +8,14 @@ export default (store) => ({
       //requireAuth.apply(this, arguments)
     }
   },
-  //getChildRoutes (location, cb) {
-  //  require.ensure([], (require) => {
-  //    cb(null, [
-  //      require('./routes/addMatch')(store),
-  //      require('./routes/addTime')(store)
-  //    ])
-  //  }, 'time')
-  //},
+  getChildRoutes (location, cb) {
+    require.ensure([], (require) => {
+      cb(null, [
+        require('./routes/AddMatch')(store),
+        require('./routes/AddTime')(store)
+      ])
+    }, 'time')
+  },
   getComponent (nextState, next) {
     require.ensure([
       './containers/TimeContainer'
