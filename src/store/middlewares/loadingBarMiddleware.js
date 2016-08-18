@@ -25,13 +25,13 @@ export default function loadingBarMiddlewar({ dispatch, getState }) {
       return next(action)
     }
 
-    loadingBarCounter.add()
-
-    if (loadingBarCounter.isEmpty) {
+    if (loadingBarCounter.isEmpty()) {
       setTimeout(() => {
         dispatch(loading())
       }, 0)
     }
+
+    loadingBarCounter.add()
 
     const actionPromise = promise(dispatch, getState)
 
