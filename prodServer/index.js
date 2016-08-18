@@ -8,6 +8,9 @@ const historyApiFallback = require('connect-history-api-fallback')
 
 var targetUrl = "http://wetennis.cn:8883/API/FEservice.ashx";
 
+// Enable compression
+app.use(compression())
+
 // Proxy API request
 app.use('/api', httpProxyMiddleware({
   target: targetUrl,
@@ -22,8 +25,7 @@ app.use(historyApiFallback({
 // Serving static files in Express
 app.use(express.static(path.join(__dirname, '..', 'dist')))
 
-// Enable compression
-app.use(compression())
+
 
 
 app.listen(3000, function () {
