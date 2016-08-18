@@ -20,29 +20,33 @@ const loadingBarCounter = new LoadingBarCounter()
 
 export default function loadingBarMiddlewar({ dispatch, getState }) {
   return next => action => {
-    const { promise, types, ...rest } = action
+    const { promise, types, meta = { isHideLoadingBar: false }, ...rest } = action
     if (!promise) {
       return next(action)
     }
 
-    if (loadingBarCounter.isEmpty()) {
-      setTimeout(() => {
-        dispatch(loading())
-      }, 0)
-    }
+    if (!meta.isHideLoadingBar) {
+      if (loadingBarCounter.isEmpty()) {
+        setTimeout(() => {
+          dispatch(loading())
+        }, 0)
+      }
 
-    loadingBarCounter.add()
+      loadingBarCounter.add()
+    }
 
     const actionPromise = promise(dispatch, getState)
 
     actionPromise
       .finally(() => {
-        loadingBarCounter.dec()
+        if (!meta.isHideLoadingBar) {
+          loadingBarCounter.dec()
 
-        if (loadingBarCounter.isEmpty()) {
-          setTimeout(() => {
-            dispatch(loaded())
-          }, 0)
+          if (loadingBarCounter.isEmpty()) {
+            setTimeout(() => {
+              dispatch(loaded())
+            }, 0)
+          }
         }
       })
 

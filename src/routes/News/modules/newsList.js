@@ -22,8 +22,8 @@ export const SET_PROVIDER_FILTER = 'SET_PROVIDER_FILTER'
 // ------------------------------------
 export const fetchNewsList = (data) => ({
   types: [FETCH_NEWS_LIST, FETCH_NEWS_LIST_SUCCESS, FETCH_NEWS_LIST_FAILTURE],
-  promise: () => API.post(URLConf.fetchNewsList, {...data
-  })
+  promise: () => API.post(URLConf.fetchNewsList, { ...data }),
+  meta: { isHideLoadingBar: true }
 })
 
 export const setProviderFilter = (filter) => ({
