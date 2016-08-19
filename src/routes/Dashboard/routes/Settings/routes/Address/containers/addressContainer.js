@@ -10,7 +10,6 @@ import { bindActionCreators } from 'redux'
 import { Grid, Row, Col } from 'react-bootstrap';
 import Divider from 'material-ui/Divider';
 import { updateSettings } from 'routes/Dashboard/modules/settings'
-import map from 'lodash/map';
 
 import classes from './addressContainer.scss';
 
@@ -67,12 +66,12 @@ class Security extends Component {
       display: 'none'
     }
     let content = null;
-    const address = map(originAddress, (item, index) => ({
+    const address = originAddress.map((item, index) => ({
       ...item,
       id: index
-    }));
+    }))
     if (address && address.length > 0) {
-      content = map(address, (item, index) => (
+      content = address.map((item, index) => (
         <div key={index} className={classes.Link}>
           <Link to={`/dashboard/settings/address/${item.id}`}>
             <div>{item.name}</div>

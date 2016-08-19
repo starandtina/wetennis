@@ -7,8 +7,6 @@ import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import { Grid, Row, Col } from 'react-bootstrap'
 import classes from './AddressEdit.scss'
-import filter from 'lodash/filter'
-import map from 'lodash/map'
 
 import { updateSettings } from 'routes/Dashboard/modules/settings'
 
@@ -30,7 +28,7 @@ class AddressEdit extends React.Component {
       params: { id },
       goBack
       } = this.props;
-    const newAddr = filter(address, (item, index) => index != id);
+    const newAddr = address.filter((item, index) => index != id);
     updateSettings({
       address: newAddr
     })
@@ -43,7 +41,7 @@ class AddressEdit extends React.Component {
       settings: { address },
       params: { id },
       } = this.props;
-    const newAddr = map(address, (item, index) => {
+    const newAddr = address.map((item, index) => {
       if (index != id) {
         return item;
       } else {

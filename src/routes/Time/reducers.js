@@ -1,6 +1,5 @@
 import { handleActions } from 'redux-actions';
 import { FETCH_TIME_SUCCESS, FETCH_TIME_INFO_SUCCESS } from './actions';
-import concat from 'lodash/concat';
 
 export default handleActions({
   [FETCH_TIME_SUCCESS]: (state, { payload }) => {
@@ -8,7 +7,7 @@ export default handleActions({
     //console.log(payload);
     return ({
       ...state,
-      timeList: concat(payload.timeList, state.timeList),
+      timeList: payload.timeList.concat(state.timeList),
       currentPage: state.currentPage + 1,
       lastPage: payload.lastPage || false
     });

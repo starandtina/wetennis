@@ -123,7 +123,6 @@
     "koa-convert": "^1.2.0",
     "koa-proxy": "^0.6.0",
     "koa-static": "^3.0.0",
-    "lodash": "4.11.1",
     "material-ui": "^0.15.0-beta.2",
     "node-sass": "^3.3.3",
     "postcss-loader": "^0.8.0",

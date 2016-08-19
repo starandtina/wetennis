@@ -20,11 +20,9 @@ export default class NewsList extends Component {
   renderList() {
     const { newsList } = this.props
 
-    let rows = []
-
-    {newsList.forEach((item, index) => {
-      rows.push(<Link to={`/news/${item.id}`} key={item.id}><News item={item} /></Link>)
-    })}
+    const rows = newsList.map((item, index) => (
+      <Link to={`/news/${item.id}`} key={item.id}><News item={item} /></Link>
+    ))
 
     return (
       <div>

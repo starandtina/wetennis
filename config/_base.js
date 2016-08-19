@@ -42,8 +42,7 @@ const config = {
     'react-redux',
     'react-router',
     'react-router-redux',
-    'redux',
-    'lodash'
+    'redux'
   ],
 
   // ----------------------------------

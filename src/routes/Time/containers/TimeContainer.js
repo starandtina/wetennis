@@ -7,7 +7,6 @@ import { Link } from 'react-router'
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton/IconButton';
-import debounce from 'lodash/debounce';
 
 import Footer from 'components/Footer'
 import style from './TimeContainer.scss';
@@ -70,7 +69,7 @@ class Times extends Component {
     console.log('loadData '+(currentPage+1));
   }
 
-  debounceFuc = debounce(this.loadData, 200);
+  debounceFuc = this.loadData
 
   render() {
     const { time, children } = this.props;
