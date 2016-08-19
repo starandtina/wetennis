@@ -1,0 +1,11 @@
+@import "variables.scss";
+.Root {
+  background-color: $mainColor;
+  height: 100%;
+  margin-top: 55px;
+  margin-bottom: 55px;
+  color: $whiteTranBgc;
+}
+.Fields {
+  padding: 0 40px;
+}

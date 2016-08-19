@@ -3,7 +3,10 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import InfiniteScroll from 'react-infinite-scroller'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
-import { bindActionCreators } from 'redux'
+import { Link } from 'react-router'
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import IconButton from 'material-ui/IconButton/IconButton';
 import debounce from 'lodash/debounce';
 
 import Footer from 'components/Footer'
@@ -100,6 +103,16 @@ class Times extends Component {
               loader={<div className={style.loader}>Loading ...</div>}
             >
               <div className={style.BackGroundImage} style={bgstyle}>
+                <div className={style.add}>
+                  <IconMenu
+                    iconButtonElement={<IconButton><i className="material-icons">add</i></IconButton>}
+                    anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+                    targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                  >
+                    <Link to="/time/addMatch" ><MenuItem primaryText="addMatch" /></Link>
+                    <Link to="/time/addTime"><MenuItem primaryText="addTime" /></Link>
+                  </IconMenu>
+                </div>
                 <div className={style.Name}>{time.name}</div>
                 <div className={style.UserInfo}>{time.gender} | {time.birthday} | {time.Constellation}</div>
               </div>
@@ -114,7 +127,7 @@ class Times extends Component {
       )
     }
     return (
-      <div style={{ height: '100%' }}>
+      <div style={{ height: '100%', backgroundColor:'#1cca5a' }}>
         {content}
       </div>
     )
