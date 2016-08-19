@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import prop from 'lodash/fp/prop';
 import NavBack from 'components/NavBack'
 import Footer from 'components/Footer'
 import style from './Me.scss';
@@ -20,10 +19,10 @@ export class Dashboard extends React.Component {
   }
 
   componentDidMount () {
-    const { fetchMyData, user } = this.props;
-    console.log(user);
+    const { fetchMyData, user: { user: { id } } } = this.props;
+
     fetchMyData({
-      userId: prop('user.id')(user),
+      userId: id,
     });
   }
 

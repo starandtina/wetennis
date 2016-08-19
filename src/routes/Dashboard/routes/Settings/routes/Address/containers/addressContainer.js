@@ -10,7 +10,6 @@ import { bindActionCreators } from 'redux'
 import { Grid, Row, Col } from 'react-bootstrap';
 import Divider from 'material-ui/Divider';
 import { updateSettings } from 'routes/Dashboard/modules/settings'
-import prop from 'lodash/fp/prop';
 import map from 'lodash/map';
 
 import classes from './addressContainer.scss';
@@ -77,7 +76,7 @@ class Security extends Component {
         <div key={index} className={classes.Link}>
           <Link to={`/dashboard/settings/address/${item.id}`}>
             <div>{item.name}</div>
-            <div>{prop('district')(item) + prop('detailAddress')(item)}</div>
+            <div>{item.district + item.detailAddress}</div>
             <i className="material-icons">chevron_right</i>
           </Link>
           <Divider />

@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux'
 import { Link } from 'react-router';
 import { push } from 'react-router-redux'
 import { reduxForm } from 'redux-form'
-import prop from 'lodash/fp/prop';
 import NavBack from 'components/NavBack'
 import TextField from 'material-ui/TextField'
 import SelectField from 'material-ui/SelectField';
@@ -80,9 +79,9 @@ class SettingsForm extends React.Component {
   };
 
   componentDidMount () {
-    const { fetchMySettings , user} = this.props;
+    const { fetchMySettings , user: { user: { id } } } = this.props;
     fetchMySettings({
-      userId: prop('user.id')(user),
+      userId: id,
     });
   }
 
@@ -188,7 +187,7 @@ class SettingsForm extends React.Component {
                   <label className={classes.label}>用户名</label>
                 </Col>
                 <Col xs={8}>
-                  <div className={classes.Text}>{prop('user.username')(user)}</div>
+                  <div className={classes.Text}>{user.user.username}</div>
                 </Col>
                 <Divider />
               </Row>
