@@ -16,6 +16,7 @@ export const createRoutes = (store) => {
           require('./Referee')(store),
           require('./Rankings')(store),
           require('./Time')(store),
+          require('./Guess')(store),
           require('./NotFound')
         ])
       }, 'index')

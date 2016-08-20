@@ -84,6 +84,9 @@ export default {
 
   // Referee
   fetchReferee: `${ROOT_URL}referee`,
-  operateReferee: `${ROOT_URL}operateReferee`
+  operateReferee: `${ROOT_URL}operateReferee`,
 
+  // Guess
+  fetchGuessEvents: `${ROOT_URL}guessEvents`,
+  fetchGuessEventInfo: `${ROOT_URL}guessEventInfo`,
 }
