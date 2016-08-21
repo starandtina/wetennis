@@ -4,10 +4,6 @@ import {
 } from 'redux-actions'
 
 import {
-  post
-} from 'store/utils/ajaxAction'
-
-import {
   setCookie,
   logout
 } from 'utils/auth'
