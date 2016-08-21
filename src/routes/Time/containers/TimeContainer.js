@@ -126,7 +126,7 @@ class Times extends Component {
       )
     }
     return (
-      <div style={{ height: '100%', backgroundColor:'#1cca5a' }}>
+      <div style={{ height: '100%'}}>
         {content}
       </div>
     )

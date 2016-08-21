@@ -1,6 +1,7 @@
 import { createAction } from 'redux-actions';
 import API from 'utils/API';
 import URL from 'utils/url';
+
 export const FETCH_TIME = 'FETCH_TIME';
 export const FETCH_TIME_SUCCESS = 'FETCH_TIME_SUCCESS';
 export const FETCH_TIME_FAILED = 'FETCH_TIME_FAILED';
@@ -15,4 +16,23 @@ export const FETCH_TIME_INFO_FAILED = 'FETCH_TIME_INFO_FAILED';
 export const fetchTimeInfo = data => ({
   types: [FETCH_TIME_INFO, FETCH_TIME_INFO_SUCCESS, FETCH_TIME_INFO_FAILED],
   promise: () => API.post(URL.fetchTimeInfo, data)
+})
+
+export const UPLOAD_TIME_IMAGE = 'UPLOAD_TIME_IMAGE';
+export const UPLOAD_TIME_IMAGE_SUCCESS = 'UPLOAD_TIME_IMAGE_SUCCESS';
+export const UPLOAD_TIME_IMAGE_FAILED = 'UPLOAD_TIME_IMAGE_FAILED';
+export const uploadTimeImage = data => ({
+  types: [UPLOAD_TIME_IMAGE, UPLOAD_TIME_IMAGE_SUCCESS, UPLOAD_TIME_IMAGE_FAILED],
+  promise: () => API.post(URL.uploadImage, data)
+})
+
+export const CLEAR_TIME_IMAGE = 'CLEAR_TIME_IMAGE';
+export const clearTimeImage = createAction(CLEAR_TIME_IMAGE)
+
+export const ADD_TIME_MESSAGE = 'ADD_TIME_MESSAGE';
+export const ADD_TIME_MESSAGE_SUCCESS = 'ADD_TIME_MESSAGE_SUCCESS';
+export const ADD_TIME_MESSAGE_FAILED = 'ADD_TIME_MESSAGE_FAILED';
+export const addTimeMessage = data => ({
+  types: [ADD_TIME_MESSAGE, ADD_TIME_MESSAGE_SUCCESS, ADD_TIME_MESSAGE_FAILED],
+  promise: () => API.post(URL.addTimeMessage, data)
 })

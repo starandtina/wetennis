@@ -1,5 +1,11 @@
 import { handleActions } from 'redux-actions';
-import { FETCH_TIME_SUCCESS, FETCH_TIME_INFO_SUCCESS } from './actions';
+import {
+  FETCH_TIME_SUCCESS,
+  FETCH_TIME_INFO_SUCCESS,
+  UPLOAD_TIME_IMAGE_SUCCESS,
+  CLEAR_TIME_IMAGE,
+  ADD_TIME_MESSAGE_SUCCESS
+} from './actions';
 
 export default handleActions({
   [FETCH_TIME_SUCCESS]: (state, { payload }) => {
@@ -19,9 +25,31 @@ export default handleActions({
       ...state,
       ...payload
     });
+  },
+  [UPLOAD_TIME_IMAGE_SUCCESS]:(state, { payload }) => {
+    //console.log(state);
+    console.log(payload);
+    const imageList = state.imageList.concat(payload.ImageUrl);
+    return ({
+      ...state,
+      imageList
+    });
+  },
+  [CLEAR_TIME_IMAGE]:(state, { payload }) => {
+    return ({
+      ...state,
+      imageList: []
+    });
+  },
+  [ADD_TIME_MESSAGE_SUCCESS]:(state, { payload }) => {
+    return ({
+      ...state,
+      imageList: []
+    });
   }
 }, {
   currentPage: 0,
   lastPage: false,
-  timeList: []
+  timeList: [],
+  imageList: []
 })

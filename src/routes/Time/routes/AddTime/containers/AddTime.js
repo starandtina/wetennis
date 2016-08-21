@@ -5,7 +5,9 @@ import { reduxForm } from 'redux-form'
 import TextField from 'material-ui/TextField'
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 
+import { uploadTimeImage, clearTimeImage, addTimeMessage } from '../../../actions';
 import NavBack from '../../../components/Nav';
+import AddImage from '../../../components/addImage';
 import style from './AddTime.scss';
 
 const fields = ['message', 'permission']
@@ -23,11 +25,17 @@ const validate = (values) => {
 }
 
 const mapStateToProps = (state) => ({
-  time: state.time
+  time: state.time,
+  initialValues: {
+    permission: "1"
+  }
 });
 
 const mapDispatchToProps = ({
-  push
+  push,
+  uploadTimeImage,
+  clearTimeImage,
+  addTimeMessage
 });
 
 class AddTime extends Component {
@@ -41,8 +49,16 @@ class AddTime extends Component {
     document.querySelector('body').classList.remove('u-backgroundColorGreen')
   }
 
-  signIn = () => {
-
+  addTime = () => {
+    const { values, time, addTimeMessage, push } = this.props;
+    console.log(values, time);
+    addTimeMessage({
+      ...values,
+      imgs: time.imageList,
+      type: "Message"
+    }).then(action => {
+      push('/time');
+    })
   };
 
   render() {
@@ -50,6 +66,8 @@ class AddTime extends Component {
       fields: { message, permission },
       handleSubmit,
       submitting,
+      time,
+      uploadTimeImage
       } = this.props;
     const fieldStyle = {
       radioButton: {
@@ -57,8 +75,10 @@ class AddTime extends Component {
         color: 'white',
       }
     };
+    console.log(permission);
+
     return (
-    <form className={style.Root} onSubmit={handleSubmit(this.signIn)}>
+    <form className={style.Root} onSubmit={handleSubmit(this.addTime)}>
       <NavBack caption="添加我的时光">
         <button type="submit" disabled={submitting}>
           <i className="material-icons">done</i>
@@ -73,6 +93,10 @@ class AddTime extends Component {
           errorText={message.touched ? message.error : ''}
           floatingLabelText="添加这一刻的心情..."
           {...message}
+        />
+        <AddImage
+          uploadedImages={time.imageList}
+          addImage={uploadTimeImage}
         />
         <RadioButtonGroup
           name="shipSpeed"
