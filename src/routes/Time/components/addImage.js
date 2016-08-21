@@ -14,7 +14,7 @@ class AddImage extends Component {
 
   render() {
     const { uploadedImages } = this.props;
-    console.log(uploadedImages);
+    //console.log(uploadedImages);
     return (
       <div className={style.Root}>
         {uploadedImages.map((img, index) => (

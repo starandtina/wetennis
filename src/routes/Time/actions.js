@@ -36,3 +36,11 @@ export const addTimeMessage = data => ({
   types: [ADD_TIME_MESSAGE, ADD_TIME_MESSAGE_SUCCESS, ADD_TIME_MESSAGE_FAILED],
   promise: () => API.post(URL.addTimeMessage, data)
 })
+
+export const ADD_TIME_MATCH = 'ADD_TIME_MATCH';
+export const ADD_TIME_MATCH_SUCCESS = 'ADD_TIME_MATCH_SUCCESS';
+export const ADD_TIME_MATCH_FAILED = 'ADD_TIME_MATCH_FAILED';
+export const addTimeMatch = data => ({
+  types: [ADD_TIME_MATCH, ADD_TIME_MATCH_SUCCESS, ADD_TIME_MATCH_FAILED],
+  promise: () => API.post(URL.addTimeMatch, data)
+})
