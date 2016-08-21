@@ -28,6 +28,6 @@ export default (store) => ({
       injectReducer(store, { key: 'time', reducer:timeReducer });
 
       next(null, Time)
-    })
+    }, 'time')
   }
 })
