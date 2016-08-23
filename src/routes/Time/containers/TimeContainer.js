@@ -99,7 +99,7 @@ class Times extends Component {
               hasMore={this.state.hasMore}
               useWindow={false}
               threshold={200}
-              loader={<div className={style.loader}>Loading ...</div>}
+              loader={<div className={style.loader}>正在加载...</div>}
             >
               <div className={style.BackGroundImage} style={bgstyle}>
                 <div className={style.add}>

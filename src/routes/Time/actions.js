@@ -7,7 +7,8 @@ export const FETCH_TIME_SUCCESS = 'FETCH_TIME_SUCCESS';
 export const FETCH_TIME_FAILED = 'FETCH_TIME_FAILED';
 export const fetchTime = data => ({
   types: [FETCH_TIME, FETCH_TIME_SUCCESS, FETCH_TIME_FAILED],
-  promise: () => API.post(URL.fetchTime, data)
+  promise: () => API.post(URL.fetchTime, data),
+  meta: { isHideLoadingBar: true }
 })
 
 export const FETCH_TIME_INFO = 'FETCH_TIME_INFO';

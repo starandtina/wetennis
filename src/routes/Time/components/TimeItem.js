@@ -32,6 +32,10 @@ class TimeItem extends Component {
             <p>{message}</p>
             {imgs.length > 0 ? imgContent : null}
           </div>
+          <div>
+            <div className={`${style.Left} ${style.Border}`}></div>
+            <div className={style.Right}></div>
+          </div>
         </div>
       )
     }
@@ -102,6 +106,10 @@ class TimeItem extends Component {
           </div>
           <p className={style.MatchMessage}>{message}</p>
           {imgs.length > 0 ? imgContent : null}
+        </div>
+        <div>
+          <div className={`${style.Left} ${style.Border}`}></div>
+          <div className={style.Right}></div>
         </div>
       </div>
     )
