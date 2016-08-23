@@ -51,7 +51,6 @@ class AddTime extends Component {
 
   addTime = () => {
     const { values, time, addTimeMessage, push } = this.props;
-    console.log(values, time);
     addTimeMessage({
       ...values,
       imgs: time.imageList,
@@ -75,7 +74,6 @@ class AddTime extends Component {
         color: 'white',
       }
     };
-    console.log(permission);
 
     return (
     <form className={style.Root} onSubmit={handleSubmit(this.addTime)}>

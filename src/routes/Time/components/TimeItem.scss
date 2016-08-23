@@ -18,6 +18,7 @@
 }
 
 .Right {
+  position: relative;
   display: inline-block;
   box-sizing: border-box;
   width: 80%;
@@ -28,6 +29,18 @@
   margin-left: -11px;
   > * {
     vertical-align: middle;
+  }
+}
+
+.IconGroup {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  > i {
+    font-size: 16px;
+    fill: #929292;
+    color: #929292;
+    margin-left: 10px;
   }
 }
 

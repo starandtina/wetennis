@@ -6,10 +6,25 @@ import cs from "./MatchList.scss";
 import style from './TimeItem.scss';
 
 class TimeItem extends Component {
+  deleteItem = () => {
+    const { Item, deleteTime, fetchDeleteTime } = this.props;
+    deleteTime({
+      id: Item.id
+    })
+    fetchDeleteTime({
+      id: Item.id
+    })
+  };
   render() {
     const { Item } = this.props;
+    const { date, imgs, message, permission, id } = Item;
+    let PermissionIcon = <i className="material-icons">public</i>;
+    if (Number(permission) == 1) {
+      PermissionIcon = <i className="material-icons">person</i>;
+    } else if (Number(permission) == 2) {
+      PermissionIcon = <i className="material-icons">lock</i>;
+    }
     if (Item.type === "Message") {
-      const { date, imgs, message, permission, id } = Item;
       const imgContent = imgs.length > 0 ?
         imgs.map((img, index) => <div key={id+'_'+index} className={style.ImgMsg}>
           <img src={img}/>
@@ -22,6 +37,10 @@ class TimeItem extends Component {
             <div className={style.Right}>
               <span className={style.Circle}></span>
               发表了心情
+              <span className={style.IconGroup}>
+                {PermissionIcon}
+                <i className="material-icons" onClick={this.deleteItem}>cancel</i>
+              </span>
             </div>
           </div>
           <div>
@@ -40,11 +59,6 @@ class TimeItem extends Component {
       )
     }
     const {
-      date,
-      imgs,
-      message,
-      permission,
-      id,
       matchDate,
       location,
       match,
@@ -67,6 +81,10 @@ class TimeItem extends Component {
           <div className={style.Right}>
             <span className={style.Circle}></span>
             约球
+            <span className={style.IconGroup}>
+              {PermissionIcon}
+              <i className="material-icons" onClick={this.deleteItem}>cancel</i>
+            </span>
           </div>
         </div>
         <div>

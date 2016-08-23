@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 class FileBase64 extends React.Component {
 
   constructor() {
-    super()
+    super();
     this.state = {
       files: []
     }

@@ -28,6 +28,7 @@ export default {
   fetchTimeInfo: `${ROOT_URL}fetchTimeInfo`,
   addTimeMessage: `${ROOT_URL}addTimeMessage`,
   addTimeMatch: `${ROOT_URL}addTimeMatch`,
+  deleteTime: `${ROOT_URL}deleteTime`,
 
   //Upload Image
   uploadImage: `${ROOT_URL}uploadImage`,

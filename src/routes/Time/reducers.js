@@ -4,7 +4,9 @@ import {
   FETCH_TIME_INFO_SUCCESS,
   UPLOAD_TIME_IMAGE_SUCCESS,
   CLEAR_TIME_IMAGE,
-  ADD_TIME_MESSAGE_SUCCESS
+  ADD_TIME_MESSAGE_SUCCESS,
+  ADD_TIME_MATCH_SUCCESS,
+  DELETE_TIME
 } from './actions';
 
 export default handleActions({
@@ -45,6 +47,19 @@ export default handleActions({
     return ({
       ...state,
       imageList: []
+    });
+  },
+  [ADD_TIME_MATCH_SUCCESS]:(state, { payload }) => {
+    return ({
+      ...state,
+      imageList: []
+    });
+  },
+  [DELETE_TIME]:(state, { payload: { id } }) => {
+    const newTimeList = state.timeList.filter(time => time.id != id);
+    return ({
+      ...state,
+      timeList: newTimeList
     });
   }
 }, {

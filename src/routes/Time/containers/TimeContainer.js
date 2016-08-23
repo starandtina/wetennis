@@ -11,7 +11,7 @@ import IconButton from 'material-ui/IconButton/IconButton';
 import Footer from 'components/Footer'
 import style from './TimeContainer.scss';
 import TimeItem from '../components/TimeItem';
-import { fetchTime, fetchTimeInfo } from '../actions';
+import { fetchTime, fetchTimeInfo, deleteTime, fetchDeleteTime } from '../actions';
 const myData = {
   "id": "sha32dsjk23",
     "name": "my real name",
@@ -27,7 +27,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = ({
-  fetchTime, fetchTimeInfo, push
+  fetchTime, fetchTimeInfo, push, deleteTime, fetchDeleteTime
 })
 
 class Times extends Component {
@@ -40,7 +40,6 @@ class Times extends Component {
       id: user.id,
       currentPage: 1
     }).then(action => {
-      console.log(action);
       this.setState({
         pageStart:0,
         hasMore: !action.payload.data.lastPage
@@ -51,14 +50,12 @@ class Times extends Component {
   state = {
     pageStart: -1
   }
-  //
-  //handleRefresh = (downOrUp, callback) => {
-  //  console.log('handleRefresh');
-  //  let { time: { lastPage } } = this.props;
-  //  if (downOrUp === 'up' && !lastPage) { // 加载更多
-  //    this.loadData(downOrUp, callback);
-  //  }
-  //}
+
+  addNewTime = event => {
+    const value = event.target.value;
+    const { push } = this.props;
+    push(`/time/${value}`);
+  }
 
   loadData = (downOrUp, callback) => {
     const { fetchTime, time: { currentPage }, user } = this.props;
@@ -72,7 +69,7 @@ class Times extends Component {
   debounceFuc = this.loadData
 
   render() {
-    const { time, children } = this.props;
+    const { time, children, deleteTime, fetchDeleteTime } = this.props;
     let content = null;
     let footer =  null;
     if (children) {
@@ -103,20 +100,25 @@ class Times extends Component {
             >
               <div className={style.BackGroundImage} style={bgstyle}>
                 <div className={style.add}>
-                  <IconMenu
-                    iconButtonElement={<IconButton><i className="material-icons">add</i></IconButton>}
-                    anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-                    targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                  >
-                    <Link to="/time/addMatch" ><MenuItem primaryText="addMatch" /></Link>
-                    <Link to="/time/addTime"><MenuItem primaryText="addTime" /></Link>
-                  </IconMenu>
+                  <label htmlFor="addTimeIcon">
+                    <i className="material-icons">add</i>
+                    <select
+                      id="addTimeIcon"
+                      className="dropdown"
+                      defaultValue=""
+                      onChange={this.addNewTime}
+                    >
+                      <option style={({display:'none'})} value=""></option>
+                      <option value="addTime">添加心情</option>
+                      <option value="addMatch">晒约球</option>
+                    </select>
+                  </label>
                 </div>
                 <div className={style.Name}>{time.name}</div>
                 <div className={style.UserInfo}>{time.gender} | {time.birthday} | {time.Constellation}</div>
               </div>
               {timeList.map((item, index) => {
-                  return  <TimeItem key={index} Item={item} />
+                  return  <TimeItem key={index} Item={item} deleteTime={deleteTime} fetchDeleteTime={fetchDeleteTime} />
                 }
               )}
             </InfiniteScroll>

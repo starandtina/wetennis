@@ -98,7 +98,6 @@ class AddMatch extends Component {
 
   addMatch = () => {
     const { values, time, addTimeMatch, push } = this.props;
-    console.log(values, time);
     addTimeMatch({
       ...values,
       imgs: time.imageList,
