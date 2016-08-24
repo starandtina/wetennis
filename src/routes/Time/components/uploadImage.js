@@ -46,6 +46,7 @@ class FileBase64 extends React.Component {
       <input
         type="file"
         onChange={ this.handleChange.bind(this) }
+        accept=".png,.jpeg,.jpg"
         {...this.props}
       />
     )

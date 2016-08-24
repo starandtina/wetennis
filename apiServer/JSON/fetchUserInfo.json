@@ -1,0 +1,13 @@
+{
+  "code": 0,
+  "errorMsg": "my errorMsg",
+  "data": {
+    "id": "sha32dsjk23",
+    "name": "my real name",
+    "username": "pacific0437",
+    "password": "88888888",
+    "phone": "18629032103",
+    "gender": "male",
+    "cardId": "232323198611111111"
+  }
+}
