@@ -1,5 +1,7 @@
 import { injectReducer } from '../store/reducers'
 import CoreLayout from '../layouts/CoreLayout/CoreLayout'
+import { loggedIn, getCookie } from 'utils/auth';
+import { fetchUserInfo } from './Dashboard/modules/user';
 
 export const createRoutes = (store) => {
   const routes = {
@@ -21,9 +23,18 @@ export const createRoutes = (store) => {
     getIndexRoute (nextState, next) {
       require.ensure([], (require) => {
         injectReducer(store, { key: 'newsList', reducer: require('./News/modules/newsList').default })
-
         next(null, { component: require('./News/containers/NewsListContainer') })
       }, 'index')
+    },
+    onEnter: (nextState, replace, callback) => {
+      injectReducer(store, { key: 'user', reducer: require('./Dashboard/modules/user').default });
+      if(loggedIn() && !store.getState().user.user.id){
+        store.dispatch(fetchUserInfo({
+          userId: getCookie()
+        })).then(action => callback())
+      } else {
+        callback();
+      }
     }
   }
 

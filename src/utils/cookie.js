@@ -15,6 +15,11 @@ function get(name) {
     var jsonString = decodeURIComponent(document.cookie.split(name + '=')[1].split(';')[0]);
     return JSON.parse(jsonString);
 }
+
+function getSimple(name) {
+    var jsonString = decodeURIComponent(document.cookie.split(name + '=')[1].split(';')[0]);
+    return jsonString;
+}
 /**
  * sets a cookie
  * @param {string} name - the name of the cookie
@@ -45,5 +50,5 @@ function del(name) {
 }
 
 export {
-    get, set, del, is
+    get, set, del, is, getSimple
 }

@@ -22,6 +22,7 @@ export default {
   updateMySettings: `${ROOT_URL}updateMySettings`,
   fetchMyMatch: `${ROOT_URL}fetchMyMatch`,
   fetchMyPractice: `${ROOT_URL}fetchMyPractice`,
+  fetchUserInfo: `${ROOT_URL}fetchUserInfo`,
 
   //Times
   fetchTime: `${ROOT_URL}fetchTime`,
