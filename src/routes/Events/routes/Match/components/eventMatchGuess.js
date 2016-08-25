@@ -2,7 +2,6 @@ import React from "react";
 import cs from "./eventMatchGuess.scss";
 
 const MatchGuess = ({data}) => {
-  console.log("MatchGuess:", data);
   const {key, score} = data;
   return (
     <div className={cs.box}>

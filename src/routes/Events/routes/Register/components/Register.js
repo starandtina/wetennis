@@ -25,12 +25,8 @@ export class Register extends React.Component {
       return;
     }
     const requestPayload = { eventId: params.eventId }
-    console.log('didmount');
-    this.props.fetchEventGroups(requestPayload)
-  }
 
-  componentWillReceiveProps (nextProps) {
-    console.log('componentWillReceiveProps');
+    this.props.fetchEventGroups(requestPayload)
   }
 
   _renderEventGroups() {

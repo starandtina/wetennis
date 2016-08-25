@@ -15,7 +15,7 @@ export class SigninForm extends React.Component {
     if(nextProps.user.status === 'authenticated' && nextProps.user.user) {
       setCookie(nextProps.user.user.id);
       const locationState = this.props.location.state;
-      console.log(locationState);
+
       this.props.actions.push(locationState && locationState.nextPathname || '/');
     }
   }

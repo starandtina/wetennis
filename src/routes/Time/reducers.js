@@ -11,8 +11,6 @@ import {
 
 export default handleActions({
   [FETCH_TIME_SUCCESS]: (state, { payload }) => {
-    //console.log(state);
-    //console.log(payload);
     return ({
       ...state,
       timeList: payload.timeList.concat(state.timeList),
@@ -21,16 +19,12 @@ export default handleActions({
     });
   },
   [FETCH_TIME_INFO_SUCCESS]:(state, { payload }) => {
-    //console.log(state);
-    //console.log(payload);
     return ({
       ...state,
       ...payload
     });
   },
   [UPLOAD_TIME_IMAGE_SUCCESS]:(state, { payload }) => {
-    //console.log(state);
-    console.log(payload);
     const imageList = state.imageList.concat(payload.ImageUrl);
     return ({
       ...state,
