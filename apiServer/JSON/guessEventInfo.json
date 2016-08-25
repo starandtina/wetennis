@@ -9,6 +9,7 @@
     },
     "games": [
       {
+        "id": 1,
         "matches": "第一场",
         "completed": true,
         "gameTime": "01:11:06",
@@ -42,6 +43,7 @@
         ]
       },
       {
+        "id": 2,
         "matches": "第二场",
         "completed": true,
         "gameTime": "01:11:06",
@@ -67,6 +69,7 @@
         ]
       },
       {
+        "id": 3,
         "matches": "第三场",
         "completed": true,
         "gameTime": "01:11:06",
@@ -88,6 +91,7 @@
         ]
       },
       {
+        "id": 4,
         "matches": "第一场",
         "completed": true,
         "gameTime": "01:11:06",
@@ -119,6 +123,7 @@
         ]
       },
       {
+        "id": 5,
         "matches": "第二场",
         "completed": true,
         "gameTime": "01:11:06",
@@ -142,6 +147,7 @@
         ]
       },
       {
+        "id": 6,
         "matches": "第三场",
         "completed": true,
         "gameTime": "01:11:06",

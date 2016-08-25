@@ -12,7 +12,6 @@ export default class Guess extends Component {
   }
   render() {
     const { guessEvents } = this.props;
-    console.log("guessEvents:", guessEvents);
     return (
       <div className={cs.box}>
         <TopNav title="竞猜赛事列表" />
@@ -20,19 +19,23 @@ export default class Guess extends Component {
         {guessEvents.map((item, index) => {
           return (
             <Link
-              to={`/`}
+              to={`/guess/${item.id}`}
               key={index}
               className={cs.item}
             >
-              <img className={cs.thumb} src={item.thumb} />
+              <div className={cs.thumb}>
+                <img src={item.thumb} />
+              </div>
               <div className={cs.nameBox}>
                 <div className={cs.name}>{item.name}</div>
                 <div className={cs.smallText}>{item.date}</div>
               </div>
-              <div className={cs.activity}>
-                {item.activity}
-                <div className={cs.smallText}>Activity</div>
-              </div>
+              {item.activity && item.activity > 0
+              ? <div className={cs.activity}>
+                  {item.activity}
+                  <div className={cs.smallText}>Activity</div>
+                </div>
+              : undefined}
               <div className={cs.total}>
                 {item.total}
                 <div className={cs.smallText}>Activity</div>

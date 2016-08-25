@@ -1,0 +1,46 @@
+{
+  "code": 0,
+  "data": [
+    {
+      "text": "少年组",
+      "value": "1",
+      "children": [
+        {
+          "text": "双打",
+          "value": "1-1"
+        },
+        {
+          "text": "单打",
+          "value": "2-1"
+        }
+      ]
+    },
+    {
+      "text": "青年组",
+      "value": "2",
+      "current": true,
+      "children": [
+        {
+          "text": "女子双打",
+          "value": "1-1"
+        },
+        {
+          "text": "女子单打",
+          "value": "2-1"
+        },
+        {
+          "text": "男子双打",
+          "value": "3-1"
+        },
+        {
+          "text": "男子单打",
+          "value": "4-1"
+        }
+      ]
+    },
+    {
+      "text": "老年组",
+      "value": "3"
+    }
+  ]
+}

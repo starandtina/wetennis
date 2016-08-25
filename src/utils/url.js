@@ -89,4 +89,5 @@ export default {
   // Guess
   fetchGuessEvents: `${ROOT_URL}guessEvents`,
   fetchGuessEventInfo: `${ROOT_URL}guessEventInfo`,
+  cascadeFilter: `${ROOT_URL}cascadeFilter`,
 }

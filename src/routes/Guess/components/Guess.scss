@@ -14,9 +14,11 @@ $thumbSize: 36*$px1;
 }
 
 .thumb {
-  height: 36*$px1;
-  width: 36*$px1;
-  border-radius: 50%;
+  > img {
+    height: 36*$px1;
+    width: 36*$px1;
+    border-radius: 50%;
+  }
 }
 
 .nameBox {
@@ -28,7 +30,7 @@ $thumbSize: 36*$px1;
 }
 
 .name {
-  font-size: 18*$px1;
+  font-size: 16*$px1;
   width: 100%;
   overflow: hidden;
   white-space: nowrap;

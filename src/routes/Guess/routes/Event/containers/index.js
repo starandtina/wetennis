@@ -5,21 +5,21 @@ import { push } from 'react-router-redux'
 
 import EventScore from "../components/EventScore";
 import {
-  getGuessEventInfo
+  getGuessEventInfo, getGuessEventFilter, setCurrentFilter, setSubGroupFilter
 } from "../modules";
 
 const mapStateToProps = (state) => {
   const {
-    eventInfo
-  } = state.guessEventInfo;
+    eventInfo, eventFilter, currentFilter, subGroupFilter
+  } = state.guessEventInfo
   return {
-    eventInfo
-  };
+    eventInfo, eventFilter, currentFilter, subGroupFilter
+  }
 }
 
 export default connect(
   mapStateToProps,
   {
-    getGuessEventInfo
+    getGuessEventInfo, getGuessEventFilter, setCurrentFilter, setSubGroupFilter
   }
 )(EventScore)
