@@ -8,7 +8,7 @@ export default (store) => ({
       cb(null, [
         require("./routes/Event")(store)
       ])
-    })
+    }, 'guess')
   },
 
   getComponent (nextState, next) {

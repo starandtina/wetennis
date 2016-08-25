@@ -6,7 +6,7 @@ export default (store) => ({
   getChildRoutes (location, cb) {
     require.ensure([], (require) => {
       cb(null, [])
-    })
+    }, 'guess')
   },
 
   getComponent (nextState, next) {
@@ -17,6 +17,6 @@ export default (store) => ({
       injectReducer(store, { key: 'guessEventInfo', reducer })
 
       next(null, Container)
-    })
+    }, 'guess')
   }
 })
