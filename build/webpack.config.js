@@ -47,6 +47,7 @@ webpackConfig.output = {
 // Plugins
 // ------------------------------------
 webpackConfig.plugins = [
+  new webpack.optimize.DedupePlugin(),
   new StatsPlugin('stats.json', {
     chunkModules: true,
     exclude: [/node_modules[\\\/]react/]
