@@ -1,0 +1,61 @@
+@import "variables.scss";
+
+$thumbSize: 36*$px1;
+
+.box {
+  padding-top: $topNavHeight;
+}
+
+.item {
+  display: flex;
+  padding: 15*$px1 20*$px1;
+  border-bottom: 1px solid $borderColor;
+  color: $mainFontColor;
+}
+
+.thumb {
+  > img {
+    height: 36*$px1;
+    width: 36*$px1;
+    border-radius: 50%;
+  }
+}
+
+.nameBox {
+  overflow: hidden;
+  text-indent: $px10;
+  .smallText {
+    text-align: left;
+  }
+}
+
+.name {
+  font-size: 16*$px1;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.smallText {
+  font-size: 9*$px1;
+  color: $secondaryFontColor;
+  text-align: right;
+}
+
+.activity {
+  color: $mainColor;
+  padding: 0 15*$px1;
+  .smallText {
+    color: $mainColor;
+  }
+}
+
+.total {
+  color: $secondaryFontColor;
+}
+
+.icon {
+  color: $secondaryFontColor;
+  font-size: 32*$px1;
+}

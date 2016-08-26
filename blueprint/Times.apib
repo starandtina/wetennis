@@ -287,3 +287,32 @@ Resources related to Times in the API.
               "data": {
               }
             }
+
+## 上传图片 [/uploadImage]
+
+上传图片
+
++ imgstr: (String, required) - base64的图片字符串
++ name: (String, required) - 图片名
+
+### 上传图片 [POST]
+
++ Request (application/json)
+
+  + Body
+
+              {
+                "imgstr": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAJYlbEtacSs2S4wwg8wRpvxNw4SCLoxuUyQwl09RoqWM3EX5n//2Q=="
+                "name": "123.jpg"
+              },
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+              "code": 0,
+              "data": {
+                "ImageUrl": "http://d.hiphotos.baidu.com/image/pic/item/38dbb6fd5266d01622b0017d9f2bd40735fa353d.jpg"
+              }
+            }

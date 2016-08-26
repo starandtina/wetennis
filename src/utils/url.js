@@ -22,6 +22,7 @@ export default {
   updateMySettings: `${ROOT_URL}updateMySettings`,
   fetchMyMatch: `${ROOT_URL}fetchMyMatch`,
   fetchMyPractice: `${ROOT_URL}fetchMyPractice`,
+  fetchUserInfo: `${ROOT_URL}fetchUserInfo`,
 
   //Times
   fetchTime: `${ROOT_URL}fetchTime`,
@@ -83,6 +84,10 @@ export default {
 
   // Referee
   fetchReferee: `${ROOT_URL}referee`,
-  operateReferee: `${ROOT_URL}operateReferee`
+  operateReferee: `${ROOT_URL}operateReferee`,
 
+  // Guess
+  fetchGuessEvents: `${ROOT_URL}guessEvents`,
+  fetchGuessEventInfo: `${ROOT_URL}guessEventInfo`,
+  cascadeFilter: `${ROOT_URL}cascadeFilter`,
 }

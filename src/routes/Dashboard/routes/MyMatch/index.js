@@ -9,7 +9,6 @@ export default (store) => ({
       const MyMatch = require('./containers/MyMatchContainer')
       const MyMatchreducer = require('./reducer')
       injectReducer(store, { key: 'MyMatch', reducer: MyMatchreducer });
-      console.log(MyMatchreducer);
       next(null, MyMatch)
     }, 'dashboard')
   }

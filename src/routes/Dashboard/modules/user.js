@@ -57,6 +57,11 @@ export const FETCH_MY_DATA_FAILTURE = 'FETCH_MY_DATA_FAILTURE'
 //updateUserInfo
 export const UPDATE_USERINFO = 'UPDATE_USERINFO'
 
+// fetch UserInfo
+export const FETCH_USERINFO = 'FETCH_USERINFO'
+export const FETCH_USERINFO_SUCCESS = 'FETCH_USERINFO_SUCCESS'
+export const FETCH_USERINFO_FAILTURE = 'FETCH_USERINFO_FAILTURE'
+
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -129,20 +134,26 @@ export const logoutUser = createAction(
   }
 )
 
-export const updateUserInfo = createAction(UPDATE_USERINFO)
+export const updateUserInfo = createAction(UPDATE_USERINFO);
+
+export const fetchUserInfo = data => (
+{
+  types: [FETCH_USERINFO, FETCH_USERINFO_SUCCESS, FETCH_USERINFO_FAILTURE],
+  promise: () => API.post(URLConf.fetchUserInfo, data)
+});
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
 const INITIAL_STATE = {
   user: {
-    "id": "sha32dsjk23",
-    "name": "my real name",
-    "username": "pacific0437",
-    "password": "88888888",
-    "phone": "18629032103",
-    "gender": "male",
-    "cardId": "232323198611111111"
+    //"id": "sha32dsjk23",
+    //"name": "my real name",
+    //"username": "pacific0437",
+    //"password": "88888888",
+    //"phone": "18629032103",
+    //"gender": "male",
+    //"cardId": "232323198611111111"
   },
   initialValues: {
     // username: '1',
@@ -165,6 +176,12 @@ export default handleActions({
     user: action.payload
   }),
   [SIGNUP_USER_SUCCESS]: (state, action) => ({
+    ...state,
+    user: action.payload,
+    status: 'authenticated',
+    error: null
+  }),
+  [FETCH_USERINFO_SUCCESS]: (state, action) => ({
     ...state,
     user: action.payload,
     status: 'authenticated',

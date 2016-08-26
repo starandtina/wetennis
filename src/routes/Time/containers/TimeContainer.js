@@ -45,7 +45,6 @@ class Times extends Component {
         hasMore: !action.payload.data.lastPage
       })
     });
-    console.log('componentDidMount');
   }
   state = {
     pageStart: -1
@@ -63,7 +62,6 @@ class Times extends Component {
       currentPage: currentPage + 1,
       userId: user.id
     });
-    console.log('loadData '+(currentPage+1));
   }
 
   debounceFuc = this.loadData

@@ -127,7 +127,7 @@ class SettingsForm extends React.Component {
       settings,
       push
       } = this.props;
-    console.log(settings, user);
+
     updateMySettings({
       ...settings,
       name: user.name,
@@ -165,7 +165,7 @@ class SettingsForm extends React.Component {
     const style = {
       width: '100%'
     };
-    console.log(settings, user);
+
     const underlineStyle = {
       display: 'none'
     }
@@ -173,7 +173,7 @@ class SettingsForm extends React.Component {
     (Number(settings.SelfTechRank) + Number(settings.OtherTechRank)) / 2 : settings.OtherTechRank;
 
     const myBirth = settings.birthday ? new Date(settings.birthday) : new Date();
-    console.log(settings.birthday, myBirth);
+
     return (
         <div>
           <NavBack caption='个人中心'>

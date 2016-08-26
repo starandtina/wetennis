@@ -36,7 +36,7 @@ class Security extends Component {
     const underlineStyle = {
       display: 'none'
     }
-    console.log(user);
+
     return (
       <div>
         <NavBack caption='隐私'>

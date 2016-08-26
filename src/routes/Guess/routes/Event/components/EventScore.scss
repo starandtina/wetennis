@@ -1,0 +1,131 @@
+@import "variables.scss";
+
+.bodyBg {
+  background-color: $thirdColor;
+}
+
+.box {
+  padding: $topNavHeight 15*$px1 0;
+  color: $mainFontColor;
+}
+
+.groupNumber {
+  font-size: 12*$px1;
+}
+
+.groupInfo {
+  display: flex;
+  font-size: 11*$px1;
+  color: $secondaryFontColor;
+  margin: 5*$px1 0 10*$px1;
+}
+
+.groupItem {
+  margin-top: 25*$px1;
+  display: block;
+}
+
+.matches {
+  flex-grow: 1;
+  color: $mainFontColor;
+}
+
+.teamItem {
+  margin-right: 3*$px1;
+  text-align: center;
+  min-width: 20*$px1;
+  font-size: 20*$px1;
+  color: $secondaryFontColor;
+}
+
+.win {
+  width: 24*$px1;
+  margin-right: 10*$px1;
+  color: $mainColor;
+}
+
+.lose {
+  @extend .win;
+  visibility: hidden;
+}
+
+.current {
+  width: 30*$px1;
+  text-align: center;
+  line-height: 30*$px1;
+}
+
+.currentWin {
+  @extend .current;
+  background-color: $mainColor;
+  color: #fff;
+}
+
+.currentLose {
+  @extend .current;
+}
+
+
+.first {
+  color: #d7ed15;
+}
+
+.typeFilter {
+  color: $mainColor;
+  text-align: center;
+  width: 40*$px1;
+  height: $topNavHeight;
+  position: relative;
+  > i {
+    line-height: $topNavHeight;
+  }
+}
+
+.pageTitle {
+  display: flex;
+  align-items: center;
+  margin-top: 10*$px1;
+  height: 30*$px1;
+}
+
+.title {
+  flex-grow: 1;
+  font-size: 12*$px1;
+  color: $mainFontColor;
+  margin: 0;
+}
+
+.statusFilter {
+  position: relative;
+  font-size: 12*$px1;
+  color: $secondaryFontColor;
+  > i {
+    font-size: 18*$px1;
+    color: $secondaryFontColor;
+    vertical-align: bottom;
+  }
+}
+
+
+.eventDetail {
+  display: flex;
+  .thumb {
+    padding-right: 15*$px1;
+    > img {
+      height: 60*$px1;
+      width: 60*$px1;
+      border-radius: 50%;
+    }
+  }
+  .info {
+    flex-grow: 1;
+    align-self: center;
+  }
+  .name {
+    font-size: $px12;
+  }
+  .time, .matchName {
+    font-size: $px10;
+    color: $secondaryFontColor;
+  }
+}

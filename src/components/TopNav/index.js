@@ -5,7 +5,7 @@ export default class TopNav extends React.Component {
   render() {
     const {title, children, className, ...props} = this.props;
     let childRefs = {};
-    children.forEach(item => {
+    children && children.forEach(item => {
       childRefs[item.ref] = item;
     });
     return (

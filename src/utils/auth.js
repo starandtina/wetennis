@@ -1,7 +1,8 @@
 import {
   is,
   del,
-  set
+  set,
+  getSimple
 } from 'utils/cookie'
 
 const USER_ID = 'USER_ID'
@@ -21,6 +22,10 @@ function setCookie(user_id) {
   set(USER_ID, user_id)
 }
 
+function getCookie() {
+  return getSimple(USER_ID);
+}
+
 function loggedIn() {
   return !!is(USER_ID)
 }
@@ -36,6 +41,7 @@ function logout(cb) {
 export {
   requireAuth,
   setCookie,
+  getCookie,
   loggedIn,
   logout
 }
