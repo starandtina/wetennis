@@ -42,7 +42,16 @@ const config = {
     'react-redux',
     'react-router',
     'react-router-redux',
-    'redux'
+    'react-tap-event-plugin',
+    'redux',
+    'redux-form',
+    'redux-actions',
+    'redux-promise',
+    'redux-thunk',
+    'material-ui',
+    'react-bootstrap',
+    'isomorphic-fetch',
+    'babel-polyfill'
   ],
 
   // ----------------------------------

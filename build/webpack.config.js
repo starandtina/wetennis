@@ -3,6 +3,7 @@ import path from 'path'
 import cssnano from 'cssnano'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import StatsPlugin from 'stats-webpack-plugin'
 import config from '../config'
 import _debug from 'debug'
 
@@ -46,6 +47,10 @@ webpackConfig.output = {
 // Plugins
 // ------------------------------------
 webpackConfig.plugins = [
+  new StatsPlugin('stats.json', {
+    chunkModules: true,
+    exclude: [/node_modules[\\\/]react/]
+  }),
   new webpack.DefinePlugin(config.globals),
   new HtmlWebpackPlugin({
     template: paths.client('index.html'),
