@@ -44,7 +44,7 @@ const mapDispatchToProps = (dispatch) => ({
   ...bindActionCreators({
     resetPassword,
     checkActivationCode,
-    push,
+    push
   }, dispatch)
 })
 
@@ -53,6 +53,10 @@ export class ResetPasswordForm extends React.Component {
     super(props)
     document.querySelector('body').classList.add('u-backgroundColorGreen')
   }
+
+  componentWillUnmount() {
+    document.querySelector('body').classList.remove('u-backgroundColorGreen')
+  };
 
   state = {
     buttonSuspending: false,

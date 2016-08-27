@@ -18,18 +18,16 @@ export class RegisterConfirmation extends React.Component {
     });
   };
 
-  handleChangeGender = (event, key, payload) => {
-    this.setState({
-      gender: payload,
-    });
+  handleChangeGender = gender => (event, key, payload) => {
+    gender.onChange(payload);
   }
 
   uploadUserInfo = () => {
-    const { uploadUserInfo, push, params } = this.props;
+    const { uploadUserInfo, push, params, values } = this.props;
     const eventId = params.eventId;
-    const { name, username, gender, cardId, phone } = this.state;
+    const { name, username, gender, cardId, phone } = values;
     if (name && username && gender && cardId && phone) {
-      uploadUserInfo(this.state);
+      uploadUserInfo(values);
       push(`/events/${eventId}/register/announcement`)
     } else {
       alert('请完整填写信息')
@@ -37,7 +35,27 @@ export class RegisterConfirmation extends React.Component {
   }
 
   render() {
-    const { group, item, partnerId, partners, user } = this.props;
+    const {
+      group,
+      item,
+      partnerId,
+      partners,
+      fields: {
+        username,
+        gender,
+        name,
+        phone,
+        cardId
+        },
+      handleSubmit
+      } = this.props;
+    console.log({
+      username,
+      gender,
+      name,
+      phone,
+      cardId
+    });
     const myPartner = partners.find(item => item.id == partnerId);
     const partnerContent = item.needPartner ? (
       <div>
@@ -71,7 +89,7 @@ export class RegisterConfirmation extends React.Component {
                     textAlign: 'left',
                     width: '220px'
                   }}
-                name="phone"
+                name="gender"
                 disabled
                 value={myPartner.gender === "female" ? "女" : "男"}
               />
@@ -119,7 +137,7 @@ export class RegisterConfirmation extends React.Component {
           <h2>{group.name}</h2>
           <h4>{item.name}</h4>
         </div>
-        <div className={classes.UserInfo}>
+        <form className={classes.UserInfo} onSubmit={handleSubmit(this.uploadUserInfo)}>
           <Grid>
             <Row>
               <Col xs={4}>
@@ -132,8 +150,8 @@ export class RegisterConfirmation extends React.Component {
                   }}
                   name="name"
                   fullWidth
-                  onChange={this.handleChange('username')}
-                  defaultValue={this.state.username}
+                  {...username}
+                  errorText={username.touched && username.error}
                 />
               </Col>
             </Row>
@@ -144,8 +162,10 @@ export class RegisterConfirmation extends React.Component {
               <Col xs={8}>
                 <SelectField
                     value={this.state.gender}
-                    onChange={this.handleChangeGender}
                     fullWidth
+                    {...gender}
+                    onChange={this.handleChangeGender(gender)}
+                    errorText={gender.touched && gender.error}
                 >
                   <MenuItem value='male' primaryText="男" />
                   <MenuItem value='female' primaryText="女" />
@@ -163,8 +183,8 @@ export class RegisterConfirmation extends React.Component {
                   }}
                   name="name"
                   fullWidth
-                  onChange={this.handleChange('name')}
-                  defaultValue={this.state.name}
+                  {...name}
+                  errorText={name.touched && name.error}
                 />
               </Col>
             </Row>
@@ -179,8 +199,8 @@ export class RegisterConfirmation extends React.Component {
                   }}
                   name="phone"
                   fullWidth
-                  onChange={this.handleChange('phone')}
-                  defaultValue={this.state.phone}
+                  {...phone}
+                  errorText={phone.touched && phone.error}
                 />
               </Col>
             </Row>
@@ -195,8 +215,8 @@ export class RegisterConfirmation extends React.Component {
                   }}
                   name="cardId"
                   fullWidth
-                  onChange={this.handleChange('cardId')}
-                  defaultValue={this.state.cardId}
+                  {...cardId}
+                  errorText={cardId.touched && cardId.error}
                 />
               </Col>
             </Row>
@@ -204,12 +224,11 @@ export class RegisterConfirmation extends React.Component {
           {partnerContent}
           <div className={`button-groups clearfix ${classes.ButtonGroups}`}>
             <button
-              type="button"
+              type="submit"
               className="btn btn-primary btn-lg btn-block"
-              onClick={this.uploadUserInfo}
             >确认报名信息</button>
           </div>
-        </div>
+        </form>
       </div>
     )
   }

@@ -32,7 +32,9 @@ const mapDispatchToProps = ({
 
 class Times extends Component {
   componentDidMount(){
-    const { fetchTime, fetchTimeInfo, user } = this.props;
+    const { fetchTime, fetchTimeInfo, user: { user } } = this.props;
+    //console.log(user);
+    //debugger;
     fetchTimeInfo({
       id: user.id
     });
