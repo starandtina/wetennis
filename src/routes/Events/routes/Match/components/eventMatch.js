@@ -7,12 +7,11 @@ import cs from './eventMatch.scss';
 export default class EventMatch extends Component {
   componentDidMount () {
     const {
-      getDetails, getComments, getTechnicalStatistics, getGuess,
+      getDetails, getTechnicalStatistics, getGuess,
       params:{matchId}
     } = this.props
     getDetails(matchId)
     getGuess(matchId)
-    getComments(matchId)
     getTechnicalStatistics(matchId)
     document.body.classList.add(cs.bodyBg)
   }
@@ -21,8 +20,7 @@ export default class EventMatch extends Component {
   }
   render () {
     const {
-      details, comments, technicalStatistics, guess,
-      likeComment, sendComment,
+      details, technicalStatistics, guess,
       params: {matchId}} = this.props
     return (
       <div className={cs.box}>
@@ -30,9 +28,6 @@ export default class EventMatch extends Component {
         <MatchInfo data={details} />
         <MatchTab
           matchId={matchId}
-          comments={comments}
-          likeComment={likeComment}
-          sendComment={sendComment}
           technicalStatistics={technicalStatistics}
           guess={guess}
         />

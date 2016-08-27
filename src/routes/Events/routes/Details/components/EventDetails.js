@@ -18,7 +18,6 @@ export default class EventDetails extends React.Component {
     } = this.props;
     getDetails(eventId);
     getNotices(eventId);
-    getComments(eventId);
     getSponsors(eventId);
     const nav = findDOMNode(this.refs["nav"]);
     document.addEventListener("scroll", function() {
@@ -31,8 +30,7 @@ export default class EventDetails extends React.Component {
   }
   render() {
     const {
-      likeComment, sendComment, getComments, draw, follow,
-      details, notices, comments, sponsors,
+      draw, follow, details, notices, sponsors,
       params: {eventId},
       location: {pathname}
     } = this.props;
@@ -53,12 +51,7 @@ export default class EventDetails extends React.Component {
         <EventInfo data={details} eventId={eventId} />
         <Notice data={notices} />
         <Sponsors data={sponsors} />
-        <Comments
-          groupId={eventId}
-          data={comments}
-          likeAction={likeComment}
-          sendAction={sendComment}
-        />
+        <Comments groupId={eventId} />
         <Message
           data={details}
           path={pathname}

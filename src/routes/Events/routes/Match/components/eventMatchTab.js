@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import Slider from 'material-ui/Slider';
-import CommentsComponent from "components/Comments";
+import CommentsContainer from "components/Comments/CommentsContainer";
 import MatchTechnicalStatistics from "./eventMatchTechnicalStatistics";
 import EventMatchGuess from "./eventMatchGuess";
 import cs from "./eventMatchTab.scss";
@@ -20,19 +20,7 @@ export default class MatchTab extends Component {
           <EventMatchGuess data={guess} />
         </Tab>
         <Tab label="评论">
-          {comments && comments.total !== -1 && comments.comments.length > 0
-          ? <div className={cs.comments}>
-              <div className={cs.commentsTitle}>
-                {`评论 ${comments.total}`}
-              </div>
-              <CommentsComponent
-                groupId={matchId}
-                data={comments.comments}
-                likeAction={likeComment}
-                sendAction={sendComment}
-              />
-            </div>
-          : undefined}
+          <CommentsContainer type="match" id={matchId} />
         </Tab>
       </Tabs>
     );

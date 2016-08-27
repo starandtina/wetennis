@@ -18,21 +18,6 @@ const GET_NOTICES = `${PREFIXER}GET_NOTICES`;
 const GET_NOTICES_SUCCESS = `${PREFIXER}GET_NOTICES_SUCCESS`;
 const GET_NOTICES_FAILTURE = `${PREFIXER}GET_NOTICES_FAILTURE`;
 
-// get comments
-const GET_COMMENTS = `${PREFIXER}GET_COMMENTS`;
-const GET_COMMENTS_SUCCESS = `${PREFIXER}GET_COMMENTS_SUCCESS`;
-const GET_COMMENTS_FAILTURE = `${PREFIXER}GET_COMMENTS_FAILTURE`;
-
-// like a comment
-const LIKE_COMMENT = `${PREFIXER}LIKE_COMMENT`;
-const LIKE_COMMENT_SUCCESS = `${PREFIXER}LIKE_COMMENT_SUCCESS`;
-const LIKE_COMMENT_FAILTURE = `${PREFIXER}LIKE_COMMENT_FAILTURE`;
-
-// send a comment to event
-const SEND_COMMENT = `${PREFIXER}SEND_COMMENT`;
-const SEND_COMMENT_SUCCESS = `${PREFIXER}SEND_COMMENT_SUCCESS`;
-const SEND_COMMENT_FAILTURE = `${PREFIXER}SEND_COMMENT_FAILTURE`;
-
 // get sponsors
 const GET_SPONSORS = `${PREFIXER}GET_SPONSORS`;
 const GET_SPONSORS_SUCCESS = `${PREFIXER}GET_SPONSORS_SUCCESS`;
@@ -66,27 +51,6 @@ export function getNotices(id) {
   };
 }
 
-export function getComments (id) {
-  return {
-    types: [GET_COMMENTS, GET_COMMENTS_SUCCESS, GET_COMMENTS_FAILTURE],
-    promise: () => API.post(URLConf.fetchEventComments, {id})
-  };
-}
-
-export function likeComment (eventId, commentId) {
-  return dispatch => {
-    dispatch({
-      types: [LIKE_COMMENT, LIKE_COMMENT_SUCCESS, LIKE_COMMENT_FAILTURE],
-      promise: () => API.post(URLConf.likeComment, {id: commentId})
-    }).then(({payload: {code, data}}) => {
-      if (Number(code) === 0 && data === "ok") {
-        dispatch(getComments(eventId));
-      }
-    })
-  }
-}
-
-
 export function follow (eventId) {
   return dispatch => {
     dispatch({
@@ -108,19 +72,6 @@ export function draw (eventId) {
     }).then(({payload: {code, data}}) => {
       if (Number(code) === 0 && data === "ok") {
         dispatch(getDetails(eventId));
-      }
-    })
-  }
-}
-
-export function sendComment(eventId, context) {
-  return dispatch => {
-    dispatch({
-      types: [SEND_COMMENT, SEND_COMMENT_SUCCESS, SEND_COMMENT_FAILTURE],
-      promise: () => API.post(URLConf.sendComment, {eventId, context, userId: "city02"})
-    }).then(({payload: {code, data}}) => {
-      if (Number(code) === 0 && data === "ok") {
-        dispatch(getComments(eventId));
       }
     })
   }
@@ -167,17 +118,6 @@ function sponsors(state = [], {type, payload}) {
   return s;
 }
 
-function comments(state = {
-  total: 0,
-  comments: []
-}, {type, payload}) {
-  let s = state;
-  if (type === GET_COMMENTS_SUCCESS) {
-    s = payload;
-  }
-  return s;
-}
-
 export default combineReducers({
-  details, comments, sponsors, notices
+  details, sponsors, notices
 });

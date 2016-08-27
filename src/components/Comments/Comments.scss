@@ -40,7 +40,6 @@ $submitBtnHeight: 32*$px1;
 .likeNumber {
   float: right;
 }
-
 .like {
   color: #3159d8;
 }
@@ -79,4 +78,10 @@ $submitBtnHeight: 32*$px1;
   border: none;
   border-radius: 3px;
   color: #fff;
+}
+
+.total {
+  margin: 15*$px1 15*$px1 0 15*$px1;
+  font-size: $px12;
+  color: $secondaryFontColor;
 }

@@ -90,4 +90,9 @@ export default {
   fetchGuessEvents: `${ROOT_URL}guessEvents`,
   fetchGuessEventInfo: `${ROOT_URL}guessEventInfo`,
   cascadeFilter: `${ROOT_URL}cascadeFilter`,
+
+  // comments
+  fetchComments: `${ROOT_URL}fetchComments`,
+  sendComment: `${ROOT_URL}sendComment`,
+  likeComment: `${ROOT_URL}likeComment`,
 }

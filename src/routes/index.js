@@ -29,6 +29,7 @@ export const createRoutes = (store) => {
     },
     onEnter: (nextState, replace, callback) => {
       injectReducer(store, { key: 'user', reducer: require('./Dashboard/modules/user').default });
+      injectReducer(store, { key: 'comments', reducer: require('../store/modules/comment').default })
       if(loggedIn() && !store.getState().user.user.id){
         store.dispatch(fetchUserInfo({
           userId: getCookie()

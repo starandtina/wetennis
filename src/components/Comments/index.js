@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import cs from "./Comments.scss";
 
-const CommentItem = ({data, likeAction}) => {
+const CommentItem = ({data, likeAction, isLogin}) => {
   return (
     <div className={`clearfix ${cs.container}`}>
       <img className={cs.userimage} src={data.userimage} alt="" />
@@ -10,7 +10,7 @@ const CommentItem = ({data, likeAction}) => {
           <div className={cs.username}>{data.username}</div>
           <div className={cs.time}>{data.time}</div>
           <div
-            className={`${data.like ? cs.like : ""} ${cs.likeNumber}`}
+            className={`${isLogin && data.like ? cs.like : ""} ${cs.likeNumber}`}
             onClick={likeAction}
           >
             {data.likeNumber} <span className={`material-icons ${cs.likeIcon}`}>thumb_up</span>
@@ -23,46 +23,60 @@ const CommentItem = ({data, likeAction}) => {
 }
 
 class Comments extends Component {
+  componentDidMount() {
+    const {getComments, type, id, userId} = this.props;
+    getComments(userId, type, id);
+  }
+  componentWillUnmount() {
+    const {resetComment} = this.props;
+    resetComment()
+  }
   render() {
-    const {data} = this.props;
+    const {comments, userId, total, className} = this.props;
     return (
-      <div>
+      <div className={className || ""}>
+        <div className={cs.total}>{`评论 (${total})`}</div>
         <div>
-          {data.map((item, index) => {
+          {comments.map((item, index) => {
             return (
               <CommentItem
                 likeAction={this.like.bind(this, item.id)}
+                isLogin={userId}
                 data={item}
                 key={index}
               />
             );
           })}
         </div>
-        <div className={cs.messageBox}>
-          <input
-            placeholder="我来说两句..."
-            type="text"
-            ref="commentMessageBox"
-          />
-          <button
-            type="button"
-            className={cs.sendMessage}
-            onClick={this.send}
-          >发表</button>
-        </div>
+        {userId
+        ? <div className={cs.messageBox}>
+            <input
+              placeholder="我来说两句..."
+              type="text"
+              ref="commentMessageBox"
+            />
+            <button
+              type="button"
+              className={cs.sendMessage}
+              onClick={this.send}
+            >发表</button>
+          </div>
+        : undefined}
       </div>
     );
   }
   like = id => {
-    const {groupId, likeAction} = this.props;
-    likeAction(groupId, id);
+    const {likeComment, userId, type} = this.props;
+    if (userId) {
+      likeComment(userId, type, id);
+    }
   }
   send = () => {
-    const {groupId, sendAction} = this.props;
+    const {id, sendComment, userId, type} = this.props;
     const input = this.refs["commentMessageBox"];
     const text = input.value.trim();
     if (text) {
-      sendAction(groupId, text);
+      sendComment(userId, type, id, text);
       input.value = "";
     }
   }

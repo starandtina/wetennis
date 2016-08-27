@@ -9,3 +9,7 @@
   color: $secondaryFontColor;
   margin: 0;
 }
+.comments > div:first-child {
+  @extend .boxTitle;
+  font-weight: 600;
+}
