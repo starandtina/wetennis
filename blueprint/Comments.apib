@@ -1,0 +1,133 @@
+FORMAT: 1A
+
+# 评论相关API
+
+Comments
+
+# Group 评论相关API
+
+## 获取评论 [/fetchComments]
+
+
+### 返回数据格式
++ total (Number) - 评论总数
++ comments (Array) - 评论列表
+  + context (String) - 评论内容
+  + id
+  + like (Boolean) - 是否对这条评论点赞
+  + likeNumber (Number) - 评论总点赞条数
+  + time (String) - 发表评论的时间
+  + userimage (URL) - 发表评论的人的头像
+  + username (String) - 发表评论的人的昵称
+
+### 获取评论 [POST]
+
++ Request (application/json)
+
+  + Body
+
+    {
+      "userId": "afdaf",
+      "id": "DA05BA8E06BB410F9B86ACC14100E6F2",
+      "type": "event"
+    }
+
++ Response 200 (application/json)
+  
+  + Body
+
+    {
+        "code": 0,
+        "data": {
+            "total": 500,
+            "comments": [
+                {
+                    "id": 1,
+                    "username": "用户名1",
+                    "userimage": "http://hbimg.b0.upaiyun.com/65ad7509d8f8ea45beb7589cca3c557d02f15ac0e9e82-QDUx6P_sq120",
+                    "time": "1小时前",
+                    "context": "国际在线消息（记者 刘榕）：由泰国记者协会会长万猜·翁米猜率领的泰国记者协会代表团一行由中国记者协会国际联络部副主任马玉安陪同１９日前往天津参观访问。",
+                    "like": true,
+                    "likeNumber": 999
+                },
+                {
+                    "id": 2,
+                    "username": "用户名2",
+                    "userimage": "http://hbimg.b0.upaiyun.com/65ad7509d8f8ea45beb7589cca3c557d02f15ac0e9e82-QDUx6P_sq120",
+                    "time": "2小时前",
+                    "context": "国际在线消息（记者 刘榕）：由泰国记者协会会长万猜·翁米猜率领的泰国记者协会代表团一行由中国记者协会国际联络部副主任马玉安陪同１９日前往天津参观访问。",
+                    "like": false,
+                    "likeNumber": 999
+                },
+                {
+                    "id": 3,
+                    "username": "用户名3",
+                    "userimage": "http://hbimg.b0.upaiyun.com/65ad7509d8f8ea45beb7589cca3c557d02f15ac0e9e82-QDUx6P_sq120",
+                    "time": "3小时前",
+                    "context": "国际在线消息（记者 刘榕）：由泰国记者协会会长万猜·翁米猜率领的泰国记者协会代表团一行由中国记者协会国际联络部副主任马玉安陪同１９日前往天津参观访问。",
+                    "like": true,
+                    "likeNumber": 999
+                }
+            ]
+        }
+    }
+
+
+## 发表评论 [/sendComment]
+
+
+### 返回数据格式
+
++ data - 值为ok表示成功，其他失败 
+
+### 发表评论 [POST]
+
++ Request (application/json)
+
+  + Body
+
+    {
+      "userId": "afdaf",
+      "id": "DA05BA8E06BB410F9B86ACC14100E6F2",
+      "type": "event",
+      "content": "打雷啦，下雨啦，收衣服啦。"
+    }
+
++ Response 200 (application/json)
+  
+  + Body
+  
+    {
+      "data": "ok",
+      "code": 0
+    }
+
+
+
+## 对评论点赞 [/likeComment]
+
+
+### 返回数据格式
+
++ data - 值为ok表示成功，其他失败 
+
+### 对评论点赞 [POST]
+
++ Request (application/json)
+
+  + Body
+
+    {
+      "userId": "afdaf",
+      "id": "1",
+      "type": "event",
+    }
+
++ Response 200 (application/json)
+  
+  + Body
+  
+    {
+      "data": "ok",
+      "code": 0
+    }
