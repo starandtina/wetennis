@@ -1,0 +1,80 @@
+@import "variables.scss";
+
+.box {
+  padding-top: $topNavHeight;
+}
+
+.boxTitle {
+  background-color: $thirdColor;
+  font-size: $px12;
+  color: $secondaryFontColor;
+  height: 30*$px1;
+  line-height: 30*$px1;
+  padding: 0 15*$px1;
+}
+
+.item {
+  height: 40*$px1;
+  line-height: 40*$px1;
+  padding: 0 15*$px1;
+  display: flex;
+  border-bottom: 1px solid #ddd;
+  .label {
+    font-size: 14*$px1;
+  }
+  .value {
+    flex-grow: 1;
+    text-align: right;
+    color: $secondaryFontColor;
+    font-size: 14*$px1;
+  }
+  .inputBox {
+    height: 100%;
+    width: 90%;
+    padding: 0;
+    border: 0;
+    vertical-align: top;
+    text-align: right;
+    font-size: $px12;
+  }
+  &.itemError {
+    color: #f00;
+    font-size: $px12;
+    text-align: right;
+    display: block;
+  }
+}
+
+.submitButton {
+  margin: 30*$px1 15*$px1 0;
+}
+
+.high, .low {
+  margin-right: 20*$px1;
+  font-size: $px10;
+  &:before {
+    content: "";
+    border-style: solid;
+    display: inline-block;
+    height: 0;
+    width: 0;
+    margin-right: 5*$px1;
+  }
+}
+
+.low {
+  color: #f00;
+  &:before {
+    border-width: 4*$px1 4*$px1 0 4*$px1;
+    border-color: #f00 transparent transparent transparent;
+  }
+}
+
+.high {
+  color: $mainColor;
+  &:before {
+    border-width: 0 4*$px1 4*$px1 4*$px1;
+    border-color: transparent transparent $mainColor transparent;
+  }
+}
+

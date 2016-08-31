@@ -1,7 +1,7 @@
 import React from 'react'
 import cs from './eventMatchInfo.scss'
 
-const MatchInfo = ({data}) => {
+export const MatchInfo = ({data}) => {
   return (
     <div className={cs.box}>
       <MatchInfoStatus data={data.status} />
@@ -13,7 +13,7 @@ const MatchInfo = ({data}) => {
   )
 }
 
-const MatchVS = ({data, gameTime}) => {
+export const MatchVS = ({data, gameTime}) => {
   if (!data || !Array.isArray(data) || data.length !== 2) {
     return <div />;
   }
@@ -43,7 +43,7 @@ const MatchVS = ({data, gameTime}) => {
     </div>
   );
 };
-const MatchVSUsers = ({data}) => {
+export const MatchVSUsers = ({data}) => {
   if (!data || !Array.isArray(data) || data.length === 0) {
     return <div />;
   }
@@ -66,7 +66,7 @@ const MatchVSUsers = ({data}) => {
 };
 
 const gamesTitle = ['第一局', '第二局', '第三局', '第四局', '第五局']
-const MatchGames = ({data}) => {
+export const MatchGames = ({data}) => {
   return (
     <div className={cs.games}>
       <div className={cs.gamesTitle}>
@@ -106,7 +106,7 @@ const MatchGames = ({data}) => {
   )
 }
 
-const MatchScoreDetail = ({data}) => {
+export const MatchScoreDetail = ({data}) => {
   return (
     <div className={cs.scoreDetails}>
     {data.map((item, index) => {
@@ -136,7 +136,7 @@ const MatchScoreDetail = ({data}) => {
   );
 };
 
-const MatchInfoStatus = ({data}) => {
+export const MatchInfoStatus = ({data}) => {
   let str
   switch (data) {
     case 1:
@@ -154,7 +154,7 @@ const MatchInfoStatus = ({data}) => {
   )
 }
 
-const EventInfo = ({data}) => {
+export const EventInfo = ({data}) => {
   return (
     <div className={cs.eventInfo}>
       <div className={cs.eventName}>{data.eventName}</div>

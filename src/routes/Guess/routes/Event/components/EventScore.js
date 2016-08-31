@@ -76,7 +76,6 @@ export default class EventScore extends Component {
       eventInfo: {games, eventDetail},
       eventFilter, currentFilter, subGroupFilter
     } = this.props
-    console.log("subGroupFilter", subGroupFilter);
     const filterText = this.getCurrentFilterText()
     const filters = {status: []}
     return (

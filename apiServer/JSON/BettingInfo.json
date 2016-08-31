@@ -1,0 +1,16 @@
+{
+  "code": 0,
+  "data": {
+    "status": 1,
+    "eventName": "华侨城*东岸2016成都业余网球精英赛 成都站",
+    "matchName": "精英B | 女子双打 | 小组资格赛 | 第一组",
+    "time": "2017.2.16",
+    "location": "电子科技大学体育场一号球场",
+    "gameTime": "1:00:40",
+    "integral": 1500,
+    "match": "陈韵竹 VS 李思",
+    "profit": "1.2",
+    "risk": false,
+    "score": "3 : 0"
+  }
+}
