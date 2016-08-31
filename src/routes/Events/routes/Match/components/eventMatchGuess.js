@@ -1,5 +1,6 @@
 import React from "react";
 import cs from "./eventMatchGuess.scss";
+import {Link} from "react-router";
 
 const MatchGuess = ({data}) => {
   const {key, score} = data;
@@ -41,7 +42,7 @@ const MatchGuess = ({data}) => {
       <div className={cs.score}>
         {score.map((item, index) => {
           return (
-            <div className={cs.scoreItem} key={index}>
+            <Link className={cs.scoreItem} key={index} to={`/guess/betting/${item.id}`}>
               <div className={cs.scoreInfoBox}>
                 <div className={cs.scoreInfo}>
                   <div className={cs.scoreNumber}>{item.score}</div>
@@ -62,7 +63,7 @@ const MatchGuess = ({data}) => {
               <div className={cs.moreIcon}>
                 <i className="material-icons">keyboard_arrow_right</i>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

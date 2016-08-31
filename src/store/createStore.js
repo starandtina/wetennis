@@ -14,8 +14,8 @@ export default (initialState = {}, history) => {
   let middleware = applyMiddleware(
     thunk,
     loadingBarMiddleware,
-    errorMiddleware,
     promiseMiddleware,
+    errorMiddleware,
     routerMiddleware(history)
   )
 
