@@ -47,11 +47,6 @@ webpackConfig.output = {
 // Plugins
 // ------------------------------------
 webpackConfig.plugins = [
-  new webpack.optimize.DedupePlugin(),
-  new StatsPlugin('stats.json', {
-    chunkModules: true,
-    exclude: [/node_modules[\\\/]react/]
-  }),
   new webpack.DefinePlugin(config.globals),
   new HtmlWebpackPlugin({
     template: paths.client('index.html'),
@@ -76,6 +71,10 @@ if (__DEV__) {
   webpackConfig.plugins.push(
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
+    new StatsPlugin('stats.json', {
+      chunkModules: true,
+      exclude: [/node_modules[\\\/]react/]
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         unused: true,
