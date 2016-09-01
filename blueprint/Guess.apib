@@ -1,0 +1,426 @@
+FORMAT: 1A
+
+# 竞猜API
+
+Guess
+
+# group 竞猜api
+
+## 获取竞猜赛事列表 [/guessEvents]
+
+### 获取竞猜赛事列表 [POST]
+
+### 返回数据格式(Array)
++ id (String) - 赛事ID
++ name (String) - 赛事名称
++ activity (Number) - 活跃的竞猜数
++ total (Number) - 总竞猜数
++ date (String) - 时间
++ thumb (URL) - 赛事LOGO
+
++ Request (application/json)
+
+  + Body
+
++ Response 200 (application/json)
+  
+  + Body
+
+      {
+        "code": 0,
+        "data": [
+          {
+            "id": "1",
+            "name": "2016成都业余网球精英赛事1",
+            "thumb": "http://hbimg.b0.upaiyun.com/65ad7509d8f8ea45beb7589cca3c557d02f15ac0e9e82-QDUx6P_sq120",
+            "date": "2017",
+            "activity": 2000,
+            "total": 2000
+          },
+          {
+            "id": "2",
+            "name": "2016成都业余网球精英赛事2",
+            "thumb": "http://hbimg.b0.upaiyun.com/65ad7509d8f8ea45beb7589cca3c557d02f15ac0e9e82-QDUx6P_sq120",
+            "date": "2017",
+            "activity": 2000,
+            "total": 2000
+          },
+          {
+            "id": "3",
+            "name": "2016成都业余网球精英赛事3",
+            "thumb": "http://hbimg.b0.upaiyun.com/65ad7509d8f8ea45beb7589cca3c557d02f15ac0e9e82-QDUx6P_sq120",
+            "date": "2017",
+            "activity": 2000,
+            "total": 2000
+          },
+          {
+            "id": "4",
+            "name": "2016成都业余网球精英赛事4",
+            "thumb": "http://hbimg.b0.upaiyun.com/65ad7509d8f8ea45beb7589cca3c557d02f15ac0e9e82-QDUx6P_sq120",
+            "date": "2017",
+            "activity": 2000,
+            "total": 2000
+          },
+          {
+            "id": "5",
+            "name": "2016成都业余网球精英赛事5",
+            "thumb": "http://hbimg.b0.upaiyun.com/65ad7509d8f8ea45beb7589cca3c557d02f15ac0e9e82-QDUx6P_sq120",
+            "date": "2017",
+            "activity": 2000,
+            "total": 2000
+          },
+          {
+            "id": "6",
+            "name": "2016成都业余网球精英赛事6",
+            "thumb": "http://hbimg.b0.upaiyun.com/65ad7509d8f8ea45beb7589cca3c557d02f15ac0e9e82-QDUx6P_sq120",
+            "date": "2017",
+            "activity": 2000,
+            "total": 2000
+          }
+        ]
+      }
+
+
+## 获取竞猜赛事详细信息 [/guessEventInfo]
+
+### 获取竞猜赛事详细信息 [POST]
+
+### 返回数据格式(Array)
+
++ eventDetail (Object) - 赛事详细
+  + name (String) - 赛事名称
+  + time (String) - 比赛用时
+  + thumb (URL) - 赛事LOGO
+  + matchName (String) - 比赛名称
++ games (Array) - 比赛列表
+  + completed (boolean): 比赛是否已完成
+  + gameTime (String): 比赛用时
+  + group (String): 比赛分组
+  + matches (String): 比赛场次
+  + team (Array): 比赛队伍
+    + currentScore (Number): 当前得分分数
+    + currentScoreWin (Boolean): 当前得分是否胜利
+    + first (Boolean): 是否发球
+    + score (Number): 得分
+    + win (Boolean): 是否胜利
+    + winGameNumber (Number): 胜利场次
+    + user (Array): 队员(双打传一组数据，双打两组)
+      + username (String): 用户名
+      + Userimage (String): 用户头像
+
++ Request (application/json)
+
+  + Body
+
+    {
+      "eventId": "DFAF7F80-FD-AFDAFA-ADFA"
+    }
+
++ Response 200 (application/json)
+  
+  + Body
+
+      {
+        "code": 0,
+        "data": {
+          "eventDetail": {
+            "thumb": "http://hbimg.b0.upaiyun.com/65ad7509d8f8ea45beb7589cca3c557d02f15ac0e9e82-QDUx6P_sq120",
+            "name": "华侨城 * 东岸2016成都业余网球精英赛 成都站",
+            "time": "2017.2.16 - 3.16",
+            "matchName": "青年组 精英B | 女子单打"
+          },
+          "games": [
+            {
+              "id": 1,
+              "matches": "第一场",
+              "completed": true,
+              "gameTime": "01:11:06",
+              "team": [
+                {
+                  "users": [
+                    {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                    {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                  ],
+                  "win": true,
+                  "score": 3,
+                  "winGameNumber": 3,
+                  "currentScore": "40",
+                  "currentScoreWin": true,
+                  "first": true
+                },
+                {
+                  "users": [
+                    {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                    {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                  ],
+                  "win": false,
+                  "score": 2,
+                  "winGameNumber": 2,
+                  "currentScore": "40",
+                  "currentScoreWin": false,
+                  "first": false
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "matches": "第二场",
+              "completed": true,
+              "gameTime": "01:11:06",
+              "team": [
+                {
+                  "users": [
+                    {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                    {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                  ],
+                  "win": true,
+                  "score": 3
+                },
+                {
+                  "users": [
+                    {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                    {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                  ],
+                  "win": false,
+                  "score": 2
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "matches": "第三场",
+              "completed": true,
+              "gameTime": "01:11:06",
+              "team": [
+                {
+                  "users": [
+                    {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                    {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                  ]
+                },
+                {
+                  "users": [
+                    {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"},
+                    {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                  ]
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "matches": "第一场",
+              "completed": true,
+              "gameTime": "01:11:06",
+              "team": [
+                {
+                  "users": [
+                    {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                  ],
+                  "win": true,
+                  "score": 3,
+                  "winGameNumber": 3,
+                  "currentScore": "40",
+                  "currentScoreWin": true,
+                  "first": true
+                },
+                {
+                  "users": [
+                    {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                  ],
+                  "win": false,
+                  "score": 2,
+                  "winGameNumber": 2,
+                  "currentScore": "40",
+                  "currentScoreWin": false,
+                  "first": false
+                }
+              ]
+            },
+            {
+              "id": 5,
+              "matches": "第二场",
+              "completed": true,
+              "gameTime": "01:11:06",
+              "team": [
+                {
+                  "users": [
+                    {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                  ],
+                  "win": true,
+                  "score": 3
+                },
+                {
+                  "users": [
+                    {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                  ],
+                  "win": false,
+                  "score": 2
+                }
+              ]
+            },
+            {
+              "id": 6,
+              "matches": "第三场",
+              "completed": true,
+              "gameTime": "01:11:06",
+              "team": [
+                {
+                  "users": [
+                    {"username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                  ]
+                },
+                {
+                  "users": [
+                    {"username": "张珊", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120"}
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+
+## 获取竞猜赛事过滤条件 [/cascadeFilter]
+
+### 获取竞猜赛事过滤条件  [POST]
+
+### 返回数据格式(Array)
++ text (String) - 过滤条件名
++ value (String) - 过滤条件值
++ children (String) - 子过滤条件
+  + text (String) - 子过滤条件名
+  + value (String) - 子过滤条件值
+
++ Request (application/json)
+
+  + Body
+
+    {
+      "id": "fdafa",
+      "type": "guessEventFilter"
+    }
+
++ Response 200 (application/json)
+  
+  + Body
+
+      {
+        "code": 0,
+        "data": [
+          {
+            "text": "少年组",
+            "value": "1",
+            "children": [
+              {
+                "text": "双打",
+                "value": "1-1"
+              },
+              {
+                "text": "单打",
+                "value": "2-1"
+              }
+            ]
+          },
+          {
+            "text": "青年组",
+            "value": "2",
+            "current": true,
+            "children": [
+              {
+                "text": "女子双打",
+                "value": "1-1"
+              },
+              {
+                "text": "女子单打",
+                "value": "2-1"
+              },
+              {
+                "text": "男子双打",
+                "value": "3-1"
+              },
+              {
+                "text": "男子单打",
+                "value": "4-1"
+              }
+            ]
+          },
+          {
+            "text": "老年组",
+            "value": "3"
+          }
+        ]
+      }
+
+
+## 获取竞猜押注信息 [/bettingInfo]
+
+### 获取竞猜押注信息 [POST]
+
+### 接口有待商议
+
+### 返回数据格式(Array)
++ status (Number) - 比赛状态 1:比赛即将开始 2:比赛已经开始 3:比赛已经结束
++ eventName (Strnig) - 赛事名称
++ matchName (String)- 比赛名称
++ time (String) - 比赛开始时间
++ location (String) - 比赛地址
++ gameTime (String) - 比赛用时
++ integral (Number) - 可用积分
++ match (String) - 比赛双方名字 例:陈韵竹 VS 李思
++ profit (Number) - 投注收益比例
++ risk (Boolean) - 风险 true 风险高显示为绿色 false风险低显示为红色
++ score (比分) - 押注比分 例: 对3:0进行押注
+
++ Request (application/json)
+
+  + Body
+
+    {
+      "matchId": "123fdafa",
+      "score": "3:0"
+    }
+
++ Response 200 (application/json)
+  
+  + Body
+
+    {
+      "code": 0,
+      "data": {
+        "status": 1,
+        "eventName": "华侨城*东岸2016成都业余网球精英赛 成都站",
+        "matchName": "精英B | 女子双打 | 小组资格赛 | 第一组",
+        "time": "2017.2.16",
+        "location": "电子科技大学体育场一号球场",
+        "gameTime": "1:00:40",
+        "integral": 1500,
+        "match": "陈韵竹 VS 李思",
+        "profit": "1.2",
+        "risk": false,
+        "score": "3 : 0"
+      }
+    }
+
+
+## 押注 [/bettingSubmit]
+
+### 押注 [POST]
+
+### 接口有待商议
+
++ Request (application/json)
+
+  + Body
+
+    {
+      "matchId": "123fdafa",
+      "integral": "100"
+    }
+
++ Response 200 (application/json)
+  
+  + Body
+
+    {
+      "code": 0,
+      "data": "ok"

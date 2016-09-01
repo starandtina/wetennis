@@ -20,17 +20,17 @@ const SUBMIT_FAILTURE = `${PREFIXER}SUBMIT_FAILTURE`;
 // Actions
 // ------------------------------------
 
-export function getInfo(eventId) {
+export function getInfo(matchId) {
   return {
     types: [GET_INFO, GET_INFO_SUCCESS, GET_INFO_FAILTURE],
-    promise: () => API.post(URLConf.fetchBettingInfo, {eventId})
+    promise: () => API.post(URLConf.fetchBettingInfo, {matchId})
   }
 }
 
-export function submit(eventId, integral) {
+export function submit(matchId, integral) {
   return {
     types: [SUBMIT, SUBMIT_SUCCESS, SUBMIT_FAILTURE],
-    promise: () => API.post(URLConf.bettingSubmit, {eventId, integral})
+    promise: () => API.post(URLConf.bettingSubmit, {matchId, integral})
   }
 }
 

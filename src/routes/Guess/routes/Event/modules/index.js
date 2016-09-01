@@ -34,10 +34,10 @@ export function getGuessEventInfo (eventId) {
   };
 }
 
-export function getGuessEventFilter (eventId) {
+export function getGuessEventFilter (id) {
   return {
     types: [FETCH_GUESS_EVENT_FILTER, FETCH_GUESS_EVENT_FILTER_SUCCESS, FETCH_GUESS_EVENT_FILTER_FAILTURE],
-    promise: () => API.post(URLConf.cascadeFilter, {type: "guessEventFilter", eventId})
+    promise: () => API.post(URLConf.cascadeFilter, {type: "guessEventFilter", id})
   }
 }
 

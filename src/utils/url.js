@@ -90,7 +90,7 @@ export default {
   fetchGuessEvents: `${ROOT_URL}guessEvents`,
   fetchGuessEventInfo: `${ROOT_URL}guessEventInfo`,
   cascadeFilter: `${ROOT_URL}cascadeFilter`,
-  fetchBettingInfo: `${ROOT_URL}BettingInfo`,
+  fetchBettingInfo: `${ROOT_URL}bettingInfo`,
   bettingSubmit: `${ROOT_URL}bettingSubmit`,
 
   // comments
