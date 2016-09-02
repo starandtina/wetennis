@@ -1,0 +1,62 @@
+{
+  "code": 0,
+  "errorMsg": "",
+  "data": [
+    {
+      "id": 1,
+      "imgUrl": "http://img5.imgtn.bdimg.com/it/u=4008202820,2892448099&fm=21&gp=0.jpg",
+      "logo": "阿迪王",
+      "size": 34,
+      "price": 123
+    },
+    {
+      "id": 2,
+      "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+      "logo": "阿迪王",
+      "size": 12,
+      "price": 321
+    },
+    {
+      "id": 3,
+      "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+      "logo": "阿迪王",
+      "size": 12,
+      "price": 321
+    },
+    {
+      "id": 4,
+      "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+      "logo": "阿迪王",
+      "size": 12,
+      "price": 321
+    },
+    {
+      "id": 5,
+      "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+      "logo": "阿迪王",
+      "size": 12,
+      "price": 321
+    },
+    {
+      "id": 6,
+      "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+      "logo": "阿迪王",
+      "size": 12,
+      "price": 321
+    },
+    {
+      "id": 7,
+      "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+      "logo": "阿迪王",
+      "size": 12,
+      "price": 321
+    },
+    {
+      "id": 8,
+      "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+      "logo": "阿迪王",
+      "size": 12,
+      "price": 321
+    }
+  ]
+}

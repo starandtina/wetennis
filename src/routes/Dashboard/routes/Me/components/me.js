@@ -30,7 +30,11 @@ export class Dashboard extends React.Component {
     const { children, user } = this.props;
     const userInfo = user.userInfo;
     const equipments = userInfo && userInfo.equipment ?
-    userInfo.equipment.map(equip => (<div className={style.equip} key={equip.id}><img src={equip.imgUrl} alt=""/></div>))
+    userInfo.equipment.map(equip => (<div className={style.equip} key={equip.id}>
+      <Link to={`/dashboard/me/editEqu/${equip.id}`}>
+        <img src={equip.imgUrl} alt=""/>
+      </Link>
+    </div>))
       : null;
     const bgstyle = {
       backgroundColor: 'lightgray',
@@ -42,7 +46,7 @@ export class Dashboard extends React.Component {
     //let content = (<div>Dashboard<button onClick={this.props.logoutUser.bind(this)}>LOGOUT</button></div>);
     let content = userInfo ? (<div>
       <NavBack caption='个人中心'>
-        <Link className={style.Icon} to="/dashboard/message"><i className="material-icons">&#xE0D8;</i></Link>
+        <Link className={style.Icon} to="/dashboard/me/editBG"><i className="material-icons">collections</i></Link>
         <Link className={style.Icon} to="/dashboard/settings"><i className="material-icons">settings</i></Link>
       </NavBack>
       <div className={style.BackGroundImage} style={bgstyle}>
@@ -73,6 +77,11 @@ export class Dashboard extends React.Component {
       </div>
       <div>
         {equipments}
+        <div className={`${style.equip} ${style.Add}`}>
+          <Link to="/dashboard/me/addEqu">
+            <i className="material-icons">add</i>
+          </Link>
+        </div>
       </div>
     </div>) : null;
 

@@ -23,6 +23,11 @@ export default {
   fetchMyMatch: `${ROOT_URL}fetchMyMatch`,
   fetchMyPractice: `${ROOT_URL}fetchMyPractice`,
   fetchUserInfo: `${ROOT_URL}fetchUserInfo`,
+  uploadEquipmentImage: `${ROOT_URL}uploadEquipmentImage`,
+  addEquipment: `${ROOT_URL}addEquipment`,
+  updateEquipment: `${ROOT_URL}updateEquipment`,
+  deleteEquipment: `${ROOT_URL}deleteEquipment`,
+  updateBGImage: `${ROOT_URL}updateBGImage`,
 
   //Times
   fetchTime: `${ROOT_URL}fetchTime`,

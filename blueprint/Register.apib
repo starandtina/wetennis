@@ -40,13 +40,25 @@ Register is a simple API allowing consumers to register by yourself.
                                     "id": 1,
                                     "name": "男子单打",
                                     "price": "50.00",
-                                    "needPartner": false
+                                    "needPartner": false,
+                                    "restriction": {
+                                      "maxAge": 60,
+                                      "minAge": 20,
+                                      "gender": "male",
+                                      "isMixedPair": false
+                                    }
                                 },
                                 {
                                     "id": 2,
                                     "name": "女子单打",
                                     "price": "150.00",
-                                    "needPartner": true
+                                    "needPartner": true,
+                                    "restriction": {
+                                      "maxAge": 100,
+                                      "minAge": 0,
+                                      "gender": "male",
+                                      "isMixedPair": false
+                                    }
                                 }
                             ]
                         },

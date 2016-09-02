@@ -62,6 +62,21 @@ export const FETCH_USERINFO = 'FETCH_USERINFO'
 export const FETCH_USERINFO_SUCCESS = 'FETCH_USERINFO_SUCCESS'
 export const FETCH_USERINFO_FAILTURE = 'FETCH_USERINFO_FAILTURE'
 
+export const UPLOAD_EQUIPMENT_IMAGE = 'UPLOAD_EQUIPMENT_IMAGE'
+export const UPLOAD_EQUIPMENT_IMAGE_SUCCESS = 'UPLOAD_EQUIPMENT_IMAGE_SUCCESS'
+
+export const ADD_EQUIPMENT = 'ADD_EQUIPMENT'
+export const ADD_EQUIPMENT_SUCCESS = 'ADD_EQUIPMENT_SUCCESS'
+
+export const UPDATE_EQUIPMENT = 'UPDATE_EQUIPMENT'
+export const UPDATE_EQUIPMENT_SUCCESS = 'UPDATE_EQUIPMENT_SUCCESS'
+
+export const DELETE_EQUIPMENT = 'DELETE_EQUIPMENT'
+export const DELETE_EQUIPMENT_SUCCESS = 'DELETE_EQUIPMENT_SUCCESS'
+
+export const UPDATE_BG_IMAGE = 'UPDATE_BG_IMAGE'
+export const UPDATE_BG_IMAGE_SUCCESS = 'UPDATE_BG_IMAGE_SUCCESS'
+
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -141,6 +156,36 @@ export const fetchUserInfo = data => (
   types: [FETCH_USERINFO, FETCH_USERINFO_SUCCESS, FETCH_USERINFO_FAILTURE],
   promise: () => API.post(URLConf.fetchUserInfo, data)
 });
+
+export const addEquipment = data => (
+{
+  types: [ADD_EQUIPMENT, ADD_EQUIPMENT_SUCCESS, ADD_EQUIPMENT],
+  promise: () => API.post(URLConf.addEquipment, data)
+});
+
+export const updateEquipment = data => (
+{
+  types: [UPDATE_EQUIPMENT, UPDATE_EQUIPMENT_SUCCESS, UPDATE_EQUIPMENT],
+  promise: () => API.post(URLConf.updateEquipment, data)
+});
+
+export const updateBGImage = data => (
+{
+  types: [UPDATE_BG_IMAGE, UPDATE_BG_IMAGE_SUCCESS, UPDATE_BG_IMAGE],
+  promise: () => API.post(URLConf.updateBGImage, data),
+  meta: data
+});
+
+export const deleteEquipment = data => (
+{
+  types: [DELETE_EQUIPMENT, DELETE_EQUIPMENT_SUCCESS, DELETE_EQUIPMENT],
+  promise: () => API.post(URLConf.deleteEquipment, data)
+});
+
+export const uploadEquipmentImage = data => ({
+  types: [UPLOAD_EQUIPMENT_IMAGE, UPLOAD_EQUIPMENT_IMAGE_SUCCESS, UPLOAD_EQUIPMENT_IMAGE_SUCCESS],
+  promise: () => API.post(URLConf.uploadEquipmentImage, data)
+})
 
 // ------------------------------------
 // Reducer
@@ -236,6 +281,27 @@ export default handleActions({
   [FETCH_MY_DATA_SUCCESS]: (state, action) => ({
     ...state,
     userInfo: action.payload
+  }),
+  [ADD_EQUIPMENT_SUCCESS]: (state, action) => ({
+    ...state,
+    userInfo: {
+      ...state.userInfo,
+      equipment:action.payload
+    }
+  }),
+  [UPDATE_EQUIPMENT_SUCCESS]: (state, action) => ({
+    ...state,
+    userInfo: {
+      ...state.userInfo,
+      equipment:action.payload
+    }
+  }),
+  [UPDATE_BG_IMAGE_SUCCESS]: (state, { meta }) => ({
+    ...state,
+    userInfo: {
+      ...state.userInfo,
+      backGroundImageUrl: meta.backGroundImageUrl
+    }
   }),
   [CHECK_PHONE_DUPLICATED_SUCCESS]: (state, action) => ({
     ...state,

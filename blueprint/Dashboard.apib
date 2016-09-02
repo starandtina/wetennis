@@ -723,3 +723,315 @@ Dashboard
             }
 }
 
+## 新增个人装备 [/api/addEquipment]
+
+### 新增个人装备 [POST]
+
++ method (string) - The calling method
++ imgUrl (string) - 图片地址
++ logo (string) - 品牌名
++ size (string) - 尺码
++ price (string) - 价格
+
+请返回该用户所有equipment(一个数组) 格式参考下方(其实与fetchMyData返回的equipment一致)
+
+
++ Request (application/json)
+
+  + Body
+
+        {
+          "imgUrl": "http://img5.imgtn.bdimg.com/it/u=4008202820,2892448099&fm=21&gp=0.jpg",
+          "logo": "阿迪王",
+          "size": 34,
+          "price": 123
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+                "code": 0,
+                "errorMsg": "",
+                "data": {
+                   [
+                       {
+                         "id": 1,
+                         "imgUrl": "http://img5.imgtn.bdimg.com/it/u=4008202820,2892448099&fm=21&gp=0.jpg",
+                         "logo": "阿迪王",
+                         "size": 34,
+                         "price": 123
+                       },
+                       {
+                         "id": 2,
+                         "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+                         "logo": "阿迪王",
+                         "size": 12,
+                         "price": 321
+                       },
+                       {
+                         "id": 3,
+                         "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+                         "logo": "阿迪王",
+                         "size": 12,
+                         "price": 321
+                       },
+                       {
+                         "id": 4,
+                         "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+                         "logo": "阿迪王",
+                         "size": 12,
+                         "price": 321
+                       },
+                       {
+                         "id": 5,
+                         "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+                         "logo": "阿迪王",
+                         "size": 12,
+                         "price": 321
+                       },
+                       {
+                         "id": 6,
+                         "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+                         "logo": "阿迪王",
+                         "size": 12,
+                         "price": 321
+                       },
+                       {
+                         "id": 7,
+                         "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+                         "logo": "阿迪王",
+                         "size": 12,
+                         "price": 321
+                       }
+                     ]
+                }
+            }
+
+## 编辑个人装备 [/api/editEquipment]
+
+### 编辑个人装备 [POST]
+
++ method (string) - The calling method
++ id (string) - 装备id
++ imgUrl (string) - 图片地址
++ logo (string) - 品牌名
++ size (string) - 尺码
++ price (string) - 价格
+
+请返回该用户所有equipment(一个数组) 格式参考下方(其实与fetchMyData返回的equipment一致)
+
+
++ Request (application/json)
+
+  + Body
+
+        {
+          "id": 1,
+          "imgUrl": "http://img5.imgtn.bdimg.com/it/u=4008202820,2892448099&fm=21&gp=0.jpg",
+          "logo": "阿迪王",
+          "size": 34,
+          "price": 123
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+                "code": 0,
+                "errorMsg": "",
+                "data": {
+                   [
+                       {
+                         "id": 1,
+                         "imgUrl": "http://img5.imgtn.bdimg.com/it/u=4008202820,2892448099&fm=21&gp=0.jpg",
+                         "logo": "阿迪王",
+                         "size": 34,
+                         "price": 123
+                       },
+                       {
+                         "id": 2,
+                         "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+                         "logo": "阿迪王",
+                         "size": 12,
+                         "price": 321
+                       },
+                       {
+                         "id": 3,
+                         "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+                         "logo": "阿迪王",
+                         "size": 12,
+                         "price": 321
+                       },
+                       {
+                         "id": 4,
+                         "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+                         "logo": "阿迪王",
+                         "size": 12,
+                         "price": 321
+                       },
+                       {
+                         "id": 5,
+                         "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+                         "logo": "阿迪王",
+                         "size": 12,
+                         "price": 321
+                       },
+                       {
+                         "id": 6,
+                         "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+                         "logo": "阿迪王",
+                         "size": 12,
+                         "price": 321
+                       },
+                       {
+                         "id": 7,
+                         "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+                         "logo": "阿迪王",
+                         "size": 12,
+                         "price": 321
+                       }
+                     ]
+                }
+            }
+
+## 删除个人装备 [/api/deleteEquipment]
+
+### 删除个人装备 [POST]
+
++ method (string) - The calling method
++ id (string) - 装备id
+
+
+请返回该用户所有equipment(一个数组) 格式参考下方(其实与fetchMyData返回的equipment一致)
+
+
++ Request (application/json)
+
+  + Body
+
+        {
+          "id": "0",
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+                "code": 0,
+                "errorMsg": "",
+                "data": {
+                   [
+                       {
+                         "id": 1,
+                         "imgUrl": "http://img5.imgtn.bdimg.com/it/u=4008202820,2892448099&fm=21&gp=0.jpg",
+                         "logo": "阿迪王",
+                         "size": 34,
+                         "price": 123
+                       },
+                       {
+                         "id": 2,
+                         "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+                         "logo": "阿迪王",
+                         "size": 12,
+                         "price": 321
+                       },
+                       {
+                         "id": 3,
+                         "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+                         "logo": "阿迪王",
+                         "size": 12,
+                         "price": 321
+                       },
+                       {
+                         "id": 4,
+                         "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+                         "logo": "阿迪王",
+                         "size": 12,
+                         "price": 321
+                       },
+                       {
+                         "id": 5,
+                         "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+                         "logo": "阿迪王",
+                         "size": 12,
+                         "price": 321
+                       },
+                       {
+                         "id": 6,
+                         "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+                         "logo": "阿迪王",
+                         "size": 12,
+                         "price": 321
+                       },
+                       {
+                         "id": 7,
+                         "imgUrl": "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
+                         "logo": "阿迪王",
+                         "size": 12,
+                         "price": 321
+                       }
+                     ]
+                }
+            }
+
+## 上传装备/背景图片 [/uploadEquipmentImage]
+
+上传装备/背景图片
+
++ imgstr: (String, required) - base64的图片字符串
++ name: (String, required) - 图片名
+
+### 上传图片 [POST]
+
++ Request (application/json)
+
+  + Body
+
+              {
+                "imgstr": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAJYlbEtacSs2S4wwg8wRpvxNw4SCLoxuUyQwl09RoqWM3EX5n//2Q=="
+                "name": "123.jpg"
+              },
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+              "code": 0,
+              "data": {
+                "ImageUrl": "http://d.hiphotos.baidu.com/image/pic/item/38dbb6fd5266d01622b0017d9f2bd40735fa353d.jpg"
+              }
+            }
+
+## 更新背景图片 [/updateBGImage]
+
+更新背景图片
+
++ ImageUrl: (String, required) - 图片地址
++ userId: (String, required) - 用户id
+
+### 更新背景图片 [POST]
+
++ Request (application/json)
+
+  + Body
+
+              {
+                "ImageUrl": "http://d.hiphotos.baidu.com/image/pic/item/38dbb6fd5266d01622b0017d9f2bd40735fa353d.jpg"
+                "userId": "123"
+              },
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+              "code": 0,
+              "data": {
+                "result": "success"
+              }
+            }
