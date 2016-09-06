@@ -11,9 +11,13 @@ class API {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(data),
+          // body: null,
           // if use this attribute, fetch cann't support cors.
           // credentials: 'include'
+        }
+
+        if (method !== 'get' && method !== 'delete') {
+          fetchConfig.body = JSON.stringify(data)
         }
 
         return new Promise((resolve, reject) => {
