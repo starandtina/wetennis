@@ -25,7 +25,7 @@ const Message = ({data, path, drawTableAction}) => {
   return (
     <div>
       {/*未报名 如果有朋友已报名，显示已报名的朋友数*/}
-      {!register
+      {register
       ? <MessageItem className="clearfix">
           {friendRegisterCount > 0
           ? <div className={cs.rigisterLeft}>
@@ -41,7 +41,7 @@ const Message = ({data, path, drawTableAction}) => {
       : undefined}
       
       {/* 已报名显示已经报名的比赛 */}
-      {register && Array.isArray(registerList) && registerList.length > 0
+      {Array.isArray(registerList) && registerList.length > 0
       ? registerList.map((item, index) => {
            return (
               <MessageItem key={index} className="clearfix">
@@ -53,7 +53,7 @@ const Message = ({data, path, drawTableAction}) => {
       : undefined}
       
       {/* 未抽签 */}
-      {!draw && register
+      {!draw && !register
       ? <MessageItem className="clearfix">
           {friendRegisterCount > 0
           ? <div className={cs.rigisterLeft}>
