@@ -50,37 +50,6 @@ export default handleActions({
     ...state
   })
 }, {
-  list: [
-    {
-      "id": 1,
-      "title": "瓦林卡状态越来越好 力争在迪拜首次问鼎",
-      "date": "2016 年04月15日 23: 42: 18",
-      "thumbImgUrl": "http://img2.3lian.com/2014/f6/173/d/51.jpg",
-      "likeCount": 999,
-      "commentCount": 999,
-      "provider": "SINA",
-      "providerIconUrl": "http://www.sina.com.cn/favicon.ico"
-      },
-    {
-      "id": 2,
-      "title": "我来自ATP官网",
-      "date": "2016 年04月15日 23: 42: 18",
-      "thumbImgUrl": "http://img2.3lian.com/2014/f6/173/d/52.jpg",
-      "likeCount": 999,
-      "commentCount": 999,
-      "provider": "ATP官网",
-      "providerIconUrl": "http://www.sina.com.cn/favicon.ico"
-      },
-    {
-      "id": 3,
-      "title": "我来自新浪",
-      "date": "2016 年04月15日 23: 42: 18",
-      "thumbImgUrl": "http://img2.3lian.com/2014/f6/173/d/53.jpg",
-      "likeCount": 999,
-      "commentCount": 999,
-      "provider": "SINA",
-      "providerIconUrl": "http://www.sina.com.cn/favicon.ico"
-      }
-    ],
+  list: [],
   providerFilter: '全部'
 })

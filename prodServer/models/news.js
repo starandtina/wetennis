@@ -1,5 +1,7 @@
+const Comment = require('./comment')
+
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('News', {
+  const News = sequelize.define('News', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true
@@ -28,6 +30,16 @@ module.exports = function (sequelize, DataTypes) {
   }, {
     timestamps: false,
     freezeTableName: true,
-    tableName: 'wtf_News'
+    tableName: 'wtf_News',
+    classMethods: {
+      associate: function (models) {
+        News.hasMany(models.Comment, {
+          foreignKey: 'TypeSysno',
+          constraints: false
+        })
+      }
+    }
   })
+
+  return News
 }

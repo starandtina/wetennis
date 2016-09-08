@@ -15,7 +15,9 @@ export default class News extends Component {
         <Grid className={cs.text}>
           <Row className='u-verticalCenterWithFlex'>
             <Col xs={7}>
-              <div className={cls`pull-left ${cs.marginRight5}`}><img src={item.providerIconUrl} className='img-responsive' /></div>
+              <div className={cls`pull-left ${cs.marginRight5}`}>
+                <img src={item.providerIconUrl} className={cls`img-responsive ${cs['provider-icon']}`} />
+              </div>
               <div className='pull-left'>
                 <div>{item.provider}</div>
                 <div className='text-muted'>{item.date}</div>

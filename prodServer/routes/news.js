@@ -6,6 +6,7 @@ module.exports = function () {
 
   function show(req, res, next) {
     models.News.findAll().then((arr) => {
+      arr[0].getComments()
       res.locals.data = arr
       next()
     })

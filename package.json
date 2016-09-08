@@ -13,7 +13,7 @@
     "compile": "better-npm-run compile",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
-    "start:debug": "npm run deploy:dev && better-npm-run start",
+    "start:dev": "npm run deploy:dev && better-npm-run start",
     "start": "npm run deploy:prod && better-npm-run start:prod",
     "dev": "better-npm-run dev",
     "dev:nw": "npm run dev -- --nw",
