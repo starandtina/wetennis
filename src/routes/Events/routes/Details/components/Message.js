@@ -53,7 +53,7 @@ const Message = ({data, path, drawTableAction}) => {
       : undefined}
       
       {/* 未抽签 */}
-      {!draw
+      {!draw && register
       ? <MessageItem className="clearfix">
           {friendRegisterCount > 0
           ? <div className={cs.rigisterLeft}>

@@ -1,6 +1,15 @@
 import React, {Component} from "react";
 import cs from "./cascade.scss";
 
+// Example:
+//
+// <Cascade
+//   filters={[]}
+//   filterKeys={["group", "subGroup"]}
+//   onChange={(v) => {console.log(v)}}
+// />
+
+
 const Filter = ({data = [], active = {}, index, setValue}) => {
   return (
     <div className={cs.filter}>
