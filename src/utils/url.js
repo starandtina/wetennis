@@ -2,7 +2,7 @@ const ROOT_URL = '/api?method='
 
 export const WETENNIS_URL = 'http://wetennis.cn:3000'
 
-export const WETENNIS_WEB_API_URL = 'http://localhost:8090/api/'
+export const WETENNIS_WEB_API_URL = 'http://localhost:3000/api/v1/'
 
 export default {
   // Latest

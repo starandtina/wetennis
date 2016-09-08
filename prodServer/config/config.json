@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "sa",
+    "password": "datadriven",
+    "database": "FeServer",
+    "host": "119.90.129.23",
+    "dialect": "mssql"
+  },
+  "test": {
+    "username": "sa",
+    "password": "datadriven",
+    "database": "FeServer",
+    "host": "119.90.129.23",
+    "dialect": "mssql"
+  },
+  "production": {
+    "username": "sa",
+    "password": "datadriven",
+    "database": "FeServer",
+    "host": "119.90.129.23",
+    "dialect": "mssql"
+  }
+}
