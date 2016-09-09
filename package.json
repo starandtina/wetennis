@@ -8,22 +8,15 @@
     "npm": "^3.0.0"
   },
   "scripts": {
-    "postinstall": "echo 'fucking you' ",
     "clean": "rimraf dist",
     "compile": "better-npm-run compile",
-    "lint": "eslint .",
-    "lint:fix": "npm run lint -- --fix",
-    "start:dev": "npm run deploy:dev && better-npm-run start",
-    "start": "npm run deploy:prod && better-npm-run start:prod",
+    "start": "better-npm-run start",
+    "start:prod": "npm run deploy:prod && better-npm-run start:prod",
     "dev": "better-npm-run dev",
     "dev:nw": "npm run dev -- --nw",
     "dev:no-debug": "npm run dev -- --no_debug",
-    "test": "better-npm-run test",
-    "test:dev": "npm run test -- --watch",
     "deploy": "better-npm-run deploy",
-    "deploy:dev": "better-npm-run deploy:dev",
     "deploy:prod": "better-npm-run deploy:prod",
-    "codecov": "cat coverage/*/lcov.info | codecov",
     "api-docs": "aglio -i ./blueprint/index.apib -o api.html --verbose",
     "api": "drakov -f \"./blueprint/*.apib\" -p 8000 --watch",
     "api2": "node ./apiServer"
@@ -45,12 +38,6 @@
     "deploy": {
       "command": "npm run clean && npm run compile",
       "env": {
-        "DEBUG": "app:*"
-      }
-    },
-    "deploy:dev": {
-      "command": "npm run deploy",
-      "env": {
         "NODE_ENV": "development",
         "DEBUG": "app:*"
       }
@@ -65,6 +52,7 @@
     "start": {
       "command": "babel-node prodServer",
       "env": {
+        "NODE_ENV": "development",
         "DEBUG": "app:*"
       }
     },
@@ -72,13 +60,6 @@
       "command": "babel-node prodServer",
       "env": {
         "NODE_ENV": "production"
-      }
-    },
-    "test": {
-      "command": "babel-node ./node_modules/karma/bin/karma start build/karma.conf",
-      "env": {
-        "NODE_ENV": "test",
-        "DEBUG": "app:*"
       }
     }
   },

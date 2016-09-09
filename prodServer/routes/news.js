@@ -1,15 +1,18 @@
 const express = require('express')
-var models  = require('../models')
+const sequelize = require('../models').sequelize
 
 module.exports = function () {
   var router = express.Router()
 
   function show(req, res, next) {
-    models.News.findAll().then((arr) => {
-      arr[0].getComments()
-      res.locals.data = arr
-      next()
-    })
+    sequelize
+      .query('exec sp_GetNews', {
+        type: sequelize.QueryTypes.SELECT
+      })
+      .then((arr) => {
+        res.locals.data = arr
+        next()
+      })
   }
 
   function create(req, res, next) {
