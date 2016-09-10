@@ -22,15 +22,17 @@ export class Footer extends React.Component {
 
   render() {
     return (
-      <div className='wetennis-footer'>
-        <div className='grid'>
-          {this.renderItem('LATEST', '最新', '/')}
-          {this.renderItem('EVENTS', '赛事', '/events')}
-          {this.renderItem('TIME', '时光', '/time')}
-          {this.renderItem('GUESS', '竟猜', '/guess')}
-          {this.renderItem('DASHBOARD', '我', '/dashboard')}
-       </div>
-     </div>
+      <div className="wetennis-footer-container">
+        <div className='wetennis-footer'>
+          <div className='grid'>
+            {this.renderItem('LATEST', '最新', '/')}
+            {this.renderItem('EVENTS', '赛事', '/events')}
+            {this.renderItem('TIME', '时光', '/time')}
+            {this.renderItem('GUESS', '竟猜', '/guess')}
+            {this.renderItem('DASHBOARD', '我', '/dashboard')}
+         </div>
+        </div>
+      </div>
     )
   }
 }
