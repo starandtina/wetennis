@@ -11,6 +11,17 @@ export default class RankingTabs extends Component {
   componentWillUnmount() {
     document.body.classList.remove(cs.bodyBg);
   }
+  state = {
+    totalwl: '',
+    ytdwl: ''
+  }
+  changeTab = value => {
+    const { data } = this.props;
+    this.setState({
+      totalwl: value == 1 ? data.single_totalwl : data.couple_totalwl,
+      ytdwl: value == 1 ? data.single_ytdwl : data.couple_ytdwl
+    })
+  };
   render() {
     const { data } = this.props;
     const TabStyle = {
@@ -30,19 +41,23 @@ export default class RankingTabs extends Component {
           <div className={cs.wlInfo}>
             <div className={cs.wlYtd}>
               <div>
-                {data.ytdwl}
+                {this.state.ytdwl || data.single_ytdwl}
                 <span>今年 YTD</span>
               </div>
             </div>
             <div className={cs.wlTotal}>
               <div>
-                {data.totalwl}
+                {this.state.totalwl || data.single_totalwl}
                 <span>总计 Total</span>
               </div>
             </div>
           </div>
         </div>
-        <Tabs inkBarStyle={inkBarStyle} tabItemContainerStyle={tabItemContainerStyle}>
+        <Tabs
+          inkBarStyle={inkBarStyle}
+          tabItemContainerStyle={tabItemContainerStyle}
+          onChange={this.changeTab}
+        >
           <Tab label="单打" value={1} style={TabStyle}>
             <RankingTabBody data={data.singleMatch} />
           </Tab>

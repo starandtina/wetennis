@@ -1,8 +1,10 @@
 {
   "code": 0,
   "data": {
-    "ytdwl": "12 : 1",
-    "totalwl": "22 : 1",
+    "single_ytdwl": "12 : 1",
+    "single_totalwl": "22 : 1",
+    "couple_ytdwl": "12 : 2",
+    "couple_totalwl": "22 : 2",
     "singleMatch": [
       {
         "title": "华侨城*东岸2016成都业余网球精英赛 成都站",
