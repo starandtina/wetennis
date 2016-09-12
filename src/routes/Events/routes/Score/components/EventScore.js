@@ -1,16 +1,18 @@
 import React, {Component} from "react";
 import NavBack from "components/NavBack";
 import ScoreItem from "components/ScoreItem";
+import CascadeFilter from "components/CascadeFilter";
 
 import cs from "./EventScore.scss";
 
 export default class EventScore extends Component {
   componentDidMount() {
     const {
-      getFilter, getScore,
+      getStateFilter, getGroupFilter, getScore,
       params: {eventId}
     } = this.props;
-    getFilter(eventId);
+    getStateFilter(eventId);
+    getGroupFilter(eventId);
     getScore(eventId);
     document.body.classList.add(cs.bodyBg);
   }
@@ -18,10 +20,14 @@ export default class EventScore extends Component {
     document.body.classList.remove(cs.bodyBg);
   }
   setCurrentFilter = (field, e) => {
-    const value = e.target.value;
-    const {currentFilter, setCurrentFilter} = this.props;
-    const __obj = {...currentFilter, [field]: Number(value)};
-    setCurrentFilter(__obj);
+    if (field === "type") {
+      console.log(e);
+    } else {
+      const value = e.target.value;
+      const {currentFilter, setCurrentFilter} = this.props;
+      const __obj = {...currentFilter, [field]: Number(value)};
+      setCurrentFilter(__obj);
+    }
   }
   render() {
     const {score, currentFilter, filters} = this.props;
@@ -31,25 +37,13 @@ export default class EventScore extends Component {
     const status = currentStatus ? currentStatus.text : "";
     return (
       <div className={cs.box}>
-        <NavBack title="比分">
-          <div className={cs.typeFilter}>
-            <i className="material-icons">more_vert</i>
-            <select
-              className="dropdown"
-              defaultValue={currentFilter.type}
-              onChange={this.setCurrentFilter.bind(this, "type")}
-            >
-            {filters.type.map((item, index) => {
-              return <option
-                      key={index}
-                      value={item.value}
-                    >{item.text}</option>
-            })}
-            </select>
-          </div>
-        </NavBack>
+        <NavBack title="比分"></NavBack>
         <div className={cs.pageTitle}>
-          <h3 className={cs.title}>{title}</h3>
+          <CascadeFilter
+            filters={filters.type}
+            filterKeys={["group", "subGroup"]}
+            onChange={this.setCurrentFilter.bind(this, "type")}
+          />
           <div className={cs.statusFilter}>
             {status}
             <i className="material-icons">keyboard_arrow_down</i>
@@ -69,6 +63,7 @@ export default class EventScore extends Component {
             </select>
           </div>
         </div>
+        <h3 className={cs.title}>{title}</h3>
         {score.map(this.groupItem)}
       </div>
     );

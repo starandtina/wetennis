@@ -3,7 +3,7 @@ import cs from "./cascade.scss";
 
 // Example:
 //
-// <Cascade
+// <CascadeFilter
 //   filters={[]}
 //   filterKeys={["group", "subGroup"]}
 //   onChange={(v) => {console.log(v)}}

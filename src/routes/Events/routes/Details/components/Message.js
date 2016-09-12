@@ -70,7 +70,7 @@ class Message extends React.Component {
             <div className={cs.rigisterRight}>
               <Link to={`${path}/register`}>
                 <RaisedButton label="立即报名" style={buttonStyle} />
-              </Link>       
+              </Link>
             </div>
           </MessageItem>
         : undefined}
@@ -78,7 +78,7 @@ class Message extends React.Component {
         {/* 已报名显示已经报名的比赛 */}
         {Array.isArray(registerList) && registerList.length > 0
         ? registerList.map((item, index) => {
-             return (
+            return (
                 <MessageItem key={index} className="clearfix">
                   <div className="pull-left">您已报名</div>
                   <div className="pull-right">{item}</div>

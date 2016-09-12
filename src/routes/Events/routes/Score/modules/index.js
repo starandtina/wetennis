@@ -12,9 +12,14 @@ export const FETCH_EVENT_SCORE_SUCCESS = 'FETCH_EVENT_SCORE_SUCCESS'
 export const FETCH_EVENT_SCORE_FAILTURE = 'FETCH_EVENT_SCORE_FAILTURE'
 
 // get event filter
-export const FETCH_EVENT_SCORE_FILTER = 'FETCH_EVENT_SCORE_FILTER'
-export const FETCH_EVENT_SCORE_FILTER_SUCCESS = 'FETCH_EVENT_SCORE_FILTER_SUCCESS'
-export const FETCH_EVENT_SCORE_FILTER_FAILTURE = 'FETCH_EVENT_SCORE_FILTER_FAILTURE'
+export const FETCH_EVENT_SCORE_STATE_FILTER = 'FETCH_EVENT_SCORE_STATE_FILTER'
+export const FETCH_EVENT_SCORE_STATE_FILTER_SUCCESS = 'FETCH_EVENT_SCORE_STATE_FILTER_SUCCESS'
+export const FETCH_EVENT_SCORE_STATE_FILTER_FAILTURE = 'FETCH_EVENT_SCORE_STATE_FILTER_FAILTURE'
+
+// get event filter
+export const FETCH_EVENT_SCORE_GROUP_FILTER = 'FETCH_EVENT_SCORE_GROUP_FILTER'
+export const FETCH_EVENT_SCORE_GROUP_FILTER_SUCCESS = 'FETCH_EVENT_SCORE_GROUP_FILTER_SUCCESS'
+export const FETCH_EVENT_SCORE_GROUP_FILTER_FAILTURE = 'FETCH_EVENT_SCORE_GROUP_FILTER_FAILTURE'
 
 // set current filter
 export const SET_CURRENT_EVENT_SCORE_FILTER = 'SET_CURRENT_EVENT_SCORE_FILTER'
@@ -22,9 +27,14 @@ export const SET_CURRENT_EVENT_SCORE_FILTER = 'SET_CURRENT_EVENT_SCORE_FILTER'
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const getFilter = id => ({
-  types: [FETCH_EVENT_SCORE_FILTER, FETCH_EVENT_SCORE_FILTER_SUCCESS, FETCH_EVENT_SCORE_FILTER_FAILTURE],
-  promise: () => API.post(URLConf.fetchEventScoreFilter, {id})
+export const getStateFilter = id => ({
+  types: [FETCH_EVENT_SCORE_STATE_FILTER, FETCH_EVENT_SCORE_STATE_FILTER_SUCCESS, FETCH_EVENT_SCORE_STATE_FILTER_FAILTURE],
+  promise: () => API.post(URLConf.fetchEventScoreStateFilter, {id})
+});
+
+export const getGroupFilter = id => ({
+  types: [FETCH_EVENT_SCORE_GROUP_FILTER, FETCH_EVENT_SCORE_GROUP_FILTER_SUCCESS, FETCH_EVENT_SCORE_GROUP_FILTER_FAILTURE],
+  promise: () => API.post(URLConf.cascadeFilter, {id, type: "eventScore"})
 });
 
 export const getScore = id => ({
@@ -47,10 +57,10 @@ function currentFilter(state = {
   let s = state;
   if (type === SET_CURRENT_EVENT_SCORE_FILTER) {
     s = payload
-  } else if (type === FETCH_EVENT_SCORE_FILTER_SUCCESS) {
-    s = {};
-    s.status = payload.status[0].value;
-    s.type = payload.type[0].value;
+  } else if (type === FETCH_EVENT_SCORE_STATE_FILTER_SUCCESS) {
+    s.status = payload[0].value;
+  } else if (type === FETCH_EVENT_SCORE_GROUP_FILTER_SUCCESS) {
+    s.type = payload[0].value;
   }
 
   return s;
@@ -62,8 +72,12 @@ function filters(state = {
 }, {type, payload}) {
   let s = state;
 
-  if (type === FETCH_EVENT_SCORE_FILTER_SUCCESS) {
-    s = payload;
+  if (type === FETCH_EVENT_SCORE_STATE_FILTER_SUCCESS) {
+    s.status = payload;
+  }
+
+  if (type === FETCH_EVENT_SCORE_GROUP_FILTER_SUCCESS) {
+    s.type = payload;
   }
 
   return s;

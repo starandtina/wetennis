@@ -67,7 +67,7 @@ export default {
 
   // event score
   fetchEventScore: `${ROOT_URL}eventScore`,
-  fetchEventScoreFilter: `${ROOT_URL}eventScoreFilter`,
+  fetchEventScoreStateFilter: `${ROOT_URL}eventScoreStateFilter`,
 
   // event schedule
   fetchEventSchedule: `${ROOT_URL}eventSchedule`,
