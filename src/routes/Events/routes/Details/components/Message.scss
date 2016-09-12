@@ -43,3 +43,14 @@
   float: right;
   width: 88*$px1;
 }
+
+.registerListBox {
+  display: flex;
+  .registerListText {
+    flex-grow: 1;
+    padding-right: $px10;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}

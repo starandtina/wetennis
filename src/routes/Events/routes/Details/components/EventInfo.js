@@ -41,15 +41,13 @@ export default class EventInfo extends React.Component {
       endDate,
       banner,
       location,
-      drawTable,
-      score,
-      schedule,
+      state
     } = this.props.data;
     const eventId = this.props.eventId
     const {countdown} = this.state
 
     let fc = {}
-    if (!(drawTable || score || schedule)) {
+    if ([1,2,3].indexOf(Number(state)) !== -1) {
       fc = this.formatCountdown(countdown)
     } else if (this.__timer) {
       clearInterval(this.__timer)
@@ -77,29 +75,49 @@ export default class EventInfo extends React.Component {
             <span>{`${startDate} -`}<br />{`${endDate}`}</span>
           </div>
         </div>
-        {drawTable || score || schedule
+        {[1,2,3].indexOf(Number(state)) === -1
         ? <div className={cs.started}>
-            <Link
-              to={`/events/${eventId}/drawTable`}
-              className={`${cs.startedCol} ${drawTable ? cs.startedActive : ""}`}
-            >
-              <i className="material-icons">today</i>
-              <div>签表</div>
-            </Link>
-            <Link
-              to={`/events/${eventId}/schedule`}
-              className={`${cs.startedCol} ${schedule ? cs.startedActive : ""}`}
-            >
-              <i className="material-icons">today</i>
-              <div>赛程</div>
-            </Link>
-            <Link
-              to={`/events/${eventId}/score`}
-              className={`${cs.startedCol} ${score ? cs.startedActive : ""}`}
-            >
-              <i className="material-icons">today</i>
-              <div>比分</div>
-            </Link>
+            {[4,5,6].indexOf(Number(state)) !== -1
+            ? <Link
+                to={`/events/${eventId}/drawTable`}
+                className={`${cs.startedCol} ${cs.startedActive}`}
+              >
+                <i className="material-icons">today</i>
+                <div>签表</div>
+              </Link>
+            : <div className={`${cs.startedCol}`}>
+                <i className="material-icons">today</i>
+                <div>签表</div>
+              </div>
+            }
+            
+            {[5,6].indexOf(Number(state)) !== -1
+            ? <Link
+                to={`/events/${eventId}/schedule`}
+                className={`${cs.startedCol} ${cs.startedActive}`}
+              >
+                <i className="material-icons">today</i>
+                <div>赛程</div>
+              </Link>
+            : <div className={`${cs.startedCol}`}>
+                <i className="material-icons">today</i>
+                <div>赛程</div>
+              </div>
+            }
+
+            {[6].indexOf(Number(state)) !== -1
+            ? <Link
+                to={`/events/${eventId}/score`}
+                className={`${cs.startedCol} ${cs.startedActive}`}
+              >
+                <i className="material-icons">today</i>
+                <div>比分</div>
+              </Link>
+            : <div className={`${cs.startedCol}`}>
+                <i className="material-icons">today</i>
+                <div>比分</div>
+              </div>
+            }
           </div>
         : <div className={`${cs.countdown}`}>
             {fc.day}<i>天</i>{fc.hour}<i>小时</i>{fc.minute}<i>分</i>{fc.second}<i>秒</i>

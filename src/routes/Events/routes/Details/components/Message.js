@@ -50,17 +50,27 @@ class Message extends React.Component {
       drawId,
       drawTable,
       drawCountdown,
-      id
+      id,
+      state
     } = data;
     const {countdown} = this.state;
     let countdownFormat;
-    if (countdown) {
+    let hasDoNotDrawItem = false;
+    if (registerList && registerList.length !== 0) {
+      registerList.forEach(item => {
+        if (!hasDoNotDrawItem && !item.id) {
+          hasDoNotDrawItem = true
+        }
+      });
+    }
+    if (countdown && hasDoNotDrawItem) {
       countdownFormat = this.formatCountdown(countdown);
     }
     return (
       <div>
+
         {/*未报名 如果有朋友已报名，显示已报名的朋友数*/}
-        {register
+        {state == 1
         ? <MessageItem className="clearfix">
             {friendRegisterCount > 0
             ? <div className={cs.rigisterLeft}>
@@ -76,48 +86,31 @@ class Message extends React.Component {
         : undefined}
         
         {/* 已报名显示已经报名的比赛 */}
-        {Array.isArray(registerList) && registerList.length > 0
+        {Array.isArray(registerList) && registerList.length > 0 && [3, 4, 5, 6].indexOf(Number(state) !== -1)
         ? registerList.map((item, index) => {
             return (
-                <MessageItem key={index} className="clearfix">
-                  <div className="pull-left">您已报名</div>
-                  <div className="pull-right">{item}</div>
-                </MessageItem>
+              <MessageItem key={index}>
+                <div className={cs.registerListBox}>
+                  <div className={cs.registerListText}>
+                    {`您已报名 ${item.name}${item.id ? ` 签位码: #${item.id}` : ""}`}
+                  </div>
+                  {!item.id
+                  ? <RaisedButton onClick={drawTableAction.bind(this, id)} label="签表抽签" style={buttonStyle} />
+                  : undefined}
+                </div>
+              </MessageItem>
             );
           })
         : undefined}
-        
-        {/* 未抽签 */}
-        {draw && !register
-        ? <MessageItem className="clearfix">
-            {friendRegisterCount > 0
-            ? <div className={cs.rigisterLeft}>
-                {drawCountdown
-                ? <span>
-                    抽签倒计时 &nbsp;
-                    {countdownFormat.day}<span>天</span>
-                    {countdownFormat.hour}<span>小时</span>
-                    {countdownFormat.minute}<span>分</span>
-                    {countdownFormat.second}<span>秒</span>
-                  </span>
-                : ""}
-              </div>
-            : undefined}
-            <div className={cs.rigisterRight}>
-              <RaisedButton onClick={drawTableAction.bind(this, id)} label="签表抽签" style={buttonStyle} />       
-            </div>
-          </MessageItem>
-        : undefined}
 
-        {/* 已经抽签，并得到签位码 */}
-        {!draw && drawId
-        ? <MessageItem className="clearfix">
-            <div className="pull-left">{`你的签位号码 ${drawId}`}</div>
-            {drawTable
-            ? <div className="pull-right">
-                <RaisedButton label="查看签表" style={buttonStyle} />       
-              </div>
-            : undefined}
+        {/* 显示抽签倒计时 */}
+        {hasDoNotDrawItem && countdown && state == 3
+        ? <MessageItem>
+            抽签倒计时 &nbsp;
+            {countdownFormat.day}<span>天</span>
+            {countdownFormat.hour}<span>小时</span>
+            {countdownFormat.minute}<span>分</span>
+            {countdownFormat.second}<span>秒</span>
           </MessageItem>
         : undefined}
       </div>

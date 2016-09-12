@@ -19,14 +19,6 @@ export default class EventDetails extends React.Component {
     getDetails(eventId);
     getNotices(eventId);
     getSponsors(eventId);
-    const nav = findDOMNode(this.refs["nav"]);
-    document.addEventListener("scroll", function() {
-      if (document.body.scrollTop < 10) {
-        nav.classList.add(cs.nav);
-      } else {
-        nav.classList.remove(cs.nav);
-      }
-    })
   }
   render() {
     const {
@@ -36,7 +28,7 @@ export default class EventDetails extends React.Component {
     } = this.props;
     return (
       <div className={cs.box}>
-        <NavBack ref="nav" title=" " className={`${cs.navTransiton} ${cs.nav}`}>
+        <NavBack ref="nav" title=" " className={`${cs.navTransiton}`}>
           <div className={cs.topRightButton}>
             <div className={cs.info}>
               <i className="material-icons">info</i>

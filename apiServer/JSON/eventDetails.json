@@ -10,13 +10,22 @@
         "banner": "http://img2.3lian.com/2014/f6/173/d/51.jpg",
         "countdown": 50000,
         "drawTable": true,
+        "type": "公开赛",
         "score": true,
         "schedule": true,
         "register": false,
         "friendRegisterCount": 30,
         "drawCountdown": 50000,
-        "draw": true,
-        "drawId": "#2017",
-        "registerList": ["青年组 | 精英B | 女子单打", "青年组 | 精英B | 女子双打"]
+        "state": "4",
+        "registerList": [
+          {
+            "name": "青年组 | 男子单打",
+            "id": null
+          },
+          {
+            "name": "青年组 | 男子双打",
+            "id": "2345"
+          }
+        ]
     }
 }
