@@ -126,24 +126,19 @@
 
 返回的data字段为一个Object, 需要包含以下字段
 
-+ id: (Number, Required) - Event id
-+ name: (String, Required) - Event name
-+ startDate: (String) - Event start date
-+ endDate: (String) - Event end date
-+ type: (String) - Event type
-+ location: (String) - Event location
++ id: (Number, Required) - 赛事 id
++ name: (String, Required) - 赛事名
++ startDate: (String) - 赛事开始日期
++ endDate: (String) - 赛事结束日期
++ type: (String) - 赛事类型
++ location: (String) - 赛事地址
 + countdown: (Number) - 赛事倒计时, 以毫秒为单位的时间戳
 + banner: (Url) - 赛事背景大图
 + thumb: (Url) - 赛事Logo, 与赛事列表中显示的图为同一个
-+ schedule: (Boolean) - 赛程是否可用
-+ drawTable: (Boolean) - 签表是否可用
-+ score: (Boolean) - 比分是否可用
-+ register: (Boolean) - 是否已报名
-+ friendRegisterCount: (Boolean) - 朋友报名数
-+ draw: (Boolean) - 是否已签表
++ friendRegisterCount: (Number) - 朋友报名数
 + drawCountdown: (Number) - 签表倒计时, 以毫秒为单位的时间戳
-+ drawId: (Boolean) - 签位码
-+ registerList: (Array, String) - 已报名的比赛, 字符串数组
++ registerList: (Array, Object, {name, id}) - 已报名的比赛, 字符串数组
++ state: (Number) - 赛事状态
 
 ### 获取赛事详情 [POST]
 
@@ -166,17 +161,26 @@
               "startDate": "2016.04.15",
               "endDate": "2016.04.20",
               "location": "四川省 成都市 锦江区 红星路1号",
-              "banner": "http://hbimg.b0.upaiyun.com/02d7023e92a7227116fad577b50fbcdf0aab4e4ead0bb-lryBLC_fw658",
+              "banner": "http://img2.3lian.com/2014/f6/173/d/51.jpg",
               "countdown": 50000,
-              "drawTable": false,
-              "score": false,
-              "schedule": false,
+              "drawTable": true,
+              "type": "公开赛",
+              "score": true,
+              "schedule": true,
               "register": false,
               "friendRegisterCount": 30,
               "drawCountdown": 50000,
-              "draw": false,
-              "drawId": "#2017",
-              "registerList": ["青年组|精英B|女子单打", "青年组|精英B|女子双打"],
+              "state": "4",
+              "registerList": [
+                {
+                  "name": "青年组 | 男子单打",
+                  "id": null
+                },
+                {
+                  "name": "青年组 | 男子双打",
+                  "id": "2345"
+                }
+              ]
           }
       }
 
