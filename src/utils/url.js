@@ -7,7 +7,7 @@ let WETENNIS_WEB_API_URL
 if (__DEV__) {
   WETENNIS_WEB_API_URL = 'http://localhost:3000/api/v1/'
 } else {
-  WETENNIS_WEB_API_URL = `${WETENNIS_URL}/api/v1`
+  WETENNIS_WEB_API_URL = `${WETENNIS_URL}/api/v1/`
 }
 
 export default {
