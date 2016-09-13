@@ -34,6 +34,7 @@ router.render = function (req, res) {
 
 // Create routes
 router.use('/news', require('./news')())
+router.use('/times', require('./times')())
 
 
 router.use(function (req, res) {
