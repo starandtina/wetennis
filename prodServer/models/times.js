@@ -10,15 +10,15 @@ module.exports = function (sequelize, DataTypes) {
     },
     type: {
       type: DataTypes.STRING,
-      field: 'type',
+      field: 'type'
     },
     imgs: {
-      type: DataTypes.ARRAY,
+      type: DataTypes.STRING,
       field: 'imgs'
     },
     location: {
       type: DataTypes.STRING,
-      field: 'location',
+      field: 'location'
     },
     match: {
       type: DataTypes.STRING,
@@ -28,8 +28,8 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       field: 'us'
     },
-    ourScore: DataTypes.NUMBER,
-    opponentScore: DataTypes.NUMBER,
+    ourScore: DataTypes.INTEGER,
+    opponentScore: DataTypes.INTEGER,
     opponent: DataTypes.STRING,
     message: DataTypes.STRING
   }, {

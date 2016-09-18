@@ -16,7 +16,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     provider: {
       type: DataTypes.STRING,
-      field: 'writer',
+      field: 'writer'
     },
     providerIconUrl: {
       type: DataTypes.STRING,
