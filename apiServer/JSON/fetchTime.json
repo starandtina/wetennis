@@ -2,26 +2,26 @@
   "code": 0,
   "errorMsg": "",
   "data": {
-  "timeList": [{
-                "id": 1,
-                "type": "Message",
-                "imgs": [],
-                "permission": 0,
-                "message": "还可以吧 打得不错, 你决定 回到他身边,但你说你会永远记得有另一个人,依然令你感到眷恋",
-                "date": "12:35am"
+    "timeList": [{
+        "id": 1,
+        "type": "Message",
+        "imgs": [],
+        "permission": 0,
+        "message": "还可以吧 打得不错, 你决定 回到他身边,但你说你会永远记得有另一个人,依然令你感到眷恋",
+        "date": "12:35am"
               },
-              {
-                "id": 2,
-                "type": "Message",
-                "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg","http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
-                "permission": 1,
-                "message":"还可以吧 打得不错",
-                "date": "2016-08-12"
+      {
+        "id": 2,
+        "type": "Message",
+        "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg", "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
+        "permission": 1,
+        "message": "还可以吧 打得不错",
+        "date": "2016-08-12"
               },
-              {
-                "id": 3,
-                "type": "Message",
-                "imgs": [
+      {
+        "id": 3,
+        "type": "Message",
+        "imgs": [
                   "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg",
                   "http://img5.duitang.com/uploads/item/201506/30/20150630184627_ueUQH.thumb.700_0.jpeg",
                   "http://c.hiphotos.baidu.com/image/pic/item/d439b6003af33a876bcce3f7c35c10385243b5be.jpg",
@@ -30,88 +30,88 @@
                   "http://p4.qhimg.com/t0108d5e8a811cfe747.png",
                   "http://p4.qhimg.com/t0108d5e8a811cfe747.png"
                 ],
-                "permission": 2,
-                "message":"还可以吧 打得不错",
-                "date": "2016-08-12"
+        "permission": 2,
+        "message": "还可以吧 打得不错",
+        "date": "2016-08-12"
               },
-              {
-                "id": 4,
-                "type": "Match",
-                "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
-                "date": "2016-04-12",
-                "location": "sdfdsf address",
-                "match": "单打",
-                "us":"我就是我",
-                "myScore":6,
-                "opponent": "不一样的烟火",
-                "opponentScore": 4,
-                "message":"还可以吧 打得不错",
-                "permission": 3
+      {
+        "id": 4,
+        "type": "Match",
+        "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
+        "date": "2016-04-12",
+        "location": "sdfdsf address",
+        "match": "单打",
+        "us": "我就是我",
+        "myScore": 6,
+        "opponent": "不一样的烟火",
+        "opponentScore": 4,
+        "message": "还可以吧 打得不错",
+        "permission": 3
               },
-              {
-                "id": 5,
-                "type": "Match",
-                "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
-                "date": "2016-05-15",
-                "matchDate": "2015-05-15",
-                "location": "省体育馆",
-                "match": "单打",
-                "us":"我就是我",
-                "myScore":6,
-                "opponent": "不一样的烟火",
-                "opponentScore": 5,
-                "message":"一年前我就完虐张鑫,当时还可以吧 打得不错"
+      {
+        "id": 5,
+        "type": "Match",
+        "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
+        "date": "2016-05-15",
+        "matchDate": "2015-05-15",
+        "location": "省体育馆",
+        "match": "单打",
+        "us": "我就是我",
+        "myScore": 6,
+        "opponent": "不一样的烟火",
+        "opponentScore": 5,
+        "message": "一年前我就完虐张鑫,当时还可以吧 打得不错"
               },
-              {
-                "id": 6,
-                "type": "Message",
-                "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg","http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
-                "permission": 0,
-                "message":"哦哦你的脸 回到他身边, 我们短暂的爱情,在午夜划下句点",
-                "date": "2016-08-12"
+      {
+        "id": 6,
+        "type": "Message",
+        "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg", "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
+        "permission": 0,
+        "message": "哦哦你的脸 回到他身边, 我们短暂的爱情,在午夜划下句点",
+        "date": "2016-08-12"
               },
-              {
-                "id": 7,
-                "type": "Message",
-                "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg","http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
-                "permission": 1,
-                "message":"还可以吧 打得不错",
-                "date": "2016-08-12"
+      {
+        "id": 7,
+        "type": "Message",
+        "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg", "http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
+        "permission": 1,
+        "message": "还可以吧 打得不错",
+        "date": "2016-08-12"
               },
-              {
-                "id": 8,
-                "type": "Message",
-                "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
-                "permission": 2,
-                "message":"还可以吧 打得不错",
-                "date": "2016-08-12"
+      {
+        "id": 8,
+        "type": "Message",
+        "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
+        "permission": 2,
+        "message": "还可以吧 打得不错",
+        "date": "2016-08-12"
               },
-              {
-                "id": 9,
-                "type": "Match",
-                "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
-                "date": "2016-04-12",
-                "location": "sdfdsf address",
-                "match": 1,
-                "us":"我就是我",
-                "myScore":6,
-                "opponent": "不一样的烟火",
-                "opponentScore": 4,
-                "message":"还可以吧 打得不错"
+      {
+        "id": 9,
+        "type": "Match",
+        "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
+        "date": "2016-04-12",
+        "location": "sdfdsf address",
+        "match": 1,
+        "us": "我就是我",
+        "myScore": 6,
+        "opponent": "不一样的烟火",
+        "opponentScore": 4,
+        "message": "还可以吧 打得不错"
               },
-              {
-                "id": 10,
-                "type": "Match",
-                "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
-                "date": "2016-05-15",
-                "location": "sdfdsf address",
-                "match": "单打",
-                "us":"我就是我",
-                "myScore":6,
-                "opponent": "不一样的烟火",
-                "opponentScore": 5,
-                "message":"还可以吧 打得不错"
+      {
+        "id": 10,
+        "type": "Match",
+        "imgs": ["http://img3.imgtn.bdimg.com/it/u=3111772288,2912083143&fm=21&gp=0.jpg"],
+        "date": "2016-05-15",
+        "location": "sdfdsf address",
+        "match": "单打",
+        "us": "我就是我",
+        "myScore": 6,
+        "opponent": "不一样的烟火",
+        "opponentScore": 5,
+        "message": "还可以吧 打得不错"
               }],
     "lastPage": false
-}
+  }
 }

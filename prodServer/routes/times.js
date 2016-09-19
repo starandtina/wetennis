@@ -1,16 +1,19 @@
 const express = require('express')
-const sequelize = require('../models').sequelize
+const models = require('../models')
 
 module.exports = function () {
   var router = express.Router()
 
   function show(req, res, next) {
-    sequelize
-      .query('exec sp_GetTimes', {
-        type: sequelize.QueryTypes.SELECT
+    models.Times
+      .findAll({
+        include: models.TimesPics
       })
       .then((arr) => {
-        res.locals.data = arr
+        res.locals.data = {
+          timeList: arr,
+          lastPage: true
+        }
         next()
       })
   }

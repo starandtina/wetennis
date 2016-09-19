@@ -2,12 +2,12 @@ import { createAction } from 'redux-actions';
 import API from 'utils/API';
 import URL from 'utils/url';
 
-export const FETCH_TIME = 'FETCH_TIME';
-export const FETCH_TIME_SUCCESS = 'FETCH_TIME_SUCCESS';
-export const FETCH_TIME_FAILED = 'FETCH_TIME_FAILED';
-export const fetchTime = data => ({
-  types: [FETCH_TIME, FETCH_TIME_SUCCESS, FETCH_TIME_FAILED],
-  promise: () => API.post(URL.fetchTime, data),
+export const FETCH_TIME_LIST = 'FETCH_TIME_LIST';
+export const FETCH_TIME_LIST_SUCCESS = 'FETCH_TIME_LIST_SUCCESS';
+export const FETCH_TIME_LIST_FAILED = 'FETCH_TIME_LIST_FAILED';
+export const fetchTimesList = data => ({
+  types: [FETCH_TIME_LIST, FETCH_TIME_LIST_SUCCESS, FETCH_TIME_LIST_FAILED],
+  promise: () => API.get(URL.fetchTimesList, data),
   meta: { isHideLoadingBar: true }
 })
 

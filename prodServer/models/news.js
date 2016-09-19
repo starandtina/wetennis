@@ -1,5 +1,3 @@
-const Comment = require('./comment')
-
 module.exports = function (sequelize, DataTypes) {
   const News = sequelize.define('News', {
     id: {

@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 import {
-  FETCH_TIME_SUCCESS,
+  FETCH_TIME_LIST_SUCCESS,
   FETCH_TIME_INFO_SUCCESS,
   UPLOAD_TIME_IMAGE_SUCCESS,
   CLEAR_TIME_IMAGE,
@@ -10,7 +10,7 @@ import {
 } from './actions';
 
 export default handleActions({
-  [FETCH_TIME_SUCCESS]: (state, { payload }) => {
+  [FETCH_TIME_LIST_SUCCESS]: (state, { payload }) => {
     return ({
       ...state,
       timeList: payload.timeList.concat(state.timeList),

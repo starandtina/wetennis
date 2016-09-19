@@ -6,7 +6,7 @@ module.exports = function () {
 
   function show(req, res, next) {
     sequelize
-      .query('exec sp_GetNews', {
+      .query('exec sp_GetNewsList', {
         type: sequelize.QueryTypes.SELECT
       })
       .then((arr) => {

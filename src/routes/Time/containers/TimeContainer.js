@@ -11,7 +11,7 @@ import IconButton from 'material-ui/IconButton/IconButton';
 import Footer from 'components/Footer'
 import style from './TimeContainer.scss';
 import TimeItem from '../components/TimeItem';
-import { fetchTime, fetchTimeInfo, deleteTime, fetchDeleteTime } from '../actions';
+import { fetchTimesList, fetchTimeInfo, deleteTime, fetchDeleteTime } from '../actions';
 const myData = {
   "id": "sha32dsjk23",
     "name": "my real name",
@@ -27,18 +27,18 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = ({
-  fetchTime, fetchTimeInfo, push, deleteTime, fetchDeleteTime
+  fetchTimesList, fetchTimeInfo, push, deleteTime, fetchDeleteTime
 })
 
 class Times extends Component {
   componentDidMount(){
-    const { fetchTime, fetchTimeInfo, user: { user } } = this.props;
+    const { fetchTimesList, fetchTimeInfo, user: { user } } = this.props;
     //console.log(user);
     //debugger;
-    fetchTimeInfo({
-      id: user.id
-    });
-    fetchTime({
+    // fetchTimeInfo({
+    //   id: user.id
+    // });
+    fetchTimesList({
       id: user.id,
       currentPage: 1
     }).then(action => {
@@ -59,8 +59,8 @@ class Times extends Component {
   }
 
   loadData = (downOrUp, callback) => {
-    const { fetchTime, time: { currentPage }, user } = this.props;
-    fetchTime({
+    const { fetchTimesList, time: { currentPage }, user } = this.props;
+    fetchTimesList({
       currentPage: currentPage + 1,
       userId: user.id
     });

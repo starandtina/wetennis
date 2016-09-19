@@ -12,10 +12,6 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       field: 'type'
     },
-    imgs: {
-      type: DataTypes.STRING,
-      field: 'imgs'
-    },
     location: {
       type: DataTypes.STRING,
       field: 'location'
@@ -35,7 +31,14 @@ module.exports = function (sequelize, DataTypes) {
   }, {
     timestamps: false,
     freezeTableName: true,
-    tableName: 'wtf_Times'
+    tableName: 'wtf_Times',
+    classMethods: {
+      associate: function (models) {
+        Times.hasMany(models.TimesPics, {
+          foreignKey: 'times_id'
+        })
+      }
+    }
   })
 
   return Times

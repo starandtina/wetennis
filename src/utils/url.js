@@ -38,7 +38,7 @@ export default {
   updateBGImage: `${ROOT_URL}updateBGImage`,
 
   //Times
-  fetchTime: `${ROOT_URL}fetchTime`,
+  fetchTimesList: `${WETENNIS_WEB_API_URL}times`,
   fetchTimeInfo: `${ROOT_URL}fetchTimeInfo`,
   addTimeMessage: `${ROOT_URL}addTimeMessage`,
   addTimeMatch: `${ROOT_URL}addTimeMatch`,
