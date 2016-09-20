@@ -39,8 +39,10 @@ export default {
 
   //Times
   fetchTimesList: `${WETENNIS_WEB_API_URL}times`,
+  //fetchTimesList: `${ROOT_URL}times`,
   fetchTimeInfo: `${ROOT_URL}fetchTimeInfo`,
-  addTimeMessage: `${ROOT_URL}addTimeMessage`,
+  //addTimeMessage: `${ROOT_URL}addTimeMessage`,
+  addTimeMessage: `${WETENNIS_WEB_API_URL}times`,
   addTimeMatch: `${ROOT_URL}addTimeMatch`,
   deleteTime: `${ROOT_URL}deleteTime`,
 

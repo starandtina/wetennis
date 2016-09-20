@@ -17,17 +17,19 @@ class TimeItem extends Component {
   };
   render() {
     const { Item } = this.props;
-    const { date, imgs, message, permission, id } = Item;
+    const { date, TimesPics: imgs, message, permission, id } = Item;
     let PermissionIcon = <i className="material-icons">public</i>;
     if (Number(permission) == 1) {
       PermissionIcon = <i className="material-icons">person</i>;
     } else if (Number(permission) == 2) {
       PermissionIcon = <i className="material-icons">lock</i>;
     }
+    console.log(Item);
     if (Item.type === "Message") {
+      console.log(imgs);
       const imgContent = imgs.length > 0 ?
         imgs.map((img, index) => <div key={id+'_'+index} className={style.ImgMsg}>
-          <img src={img}/>
+          <img src={img.timesImgStr}/>
         </div>)
         : null;
       return (
@@ -71,7 +73,7 @@ class TimeItem extends Component {
     const win =  myScore > opponentScore;
     const imgContent = imgs.length > 0 ?
       imgs.map((img, index) => <div key={id+'_'+index} className={style.ImgMsg}>
-        <img src={img}/>
+        <img src={img.timesImgStr}/>
       </div>)
       : null;
     return (

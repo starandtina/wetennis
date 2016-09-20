@@ -2,7 +2,7 @@ import { handleActions } from 'redux-actions';
 import {
   FETCH_TIME_LIST_SUCCESS,
   FETCH_TIME_INFO_SUCCESS,
-  UPLOAD_TIME_IMAGE_SUCCESS,
+  UPLOAD_TIME_IMAGE,
   CLEAR_TIME_IMAGE,
   ADD_TIME_MESSAGE_SUCCESS,
   ADD_TIME_MATCH_SUCCESS,
@@ -24,8 +24,8 @@ export default handleActions({
       ...payload
     });
   },
-  [UPLOAD_TIME_IMAGE_SUCCESS]:(state, { payload }) => {
-    const imageList = state.imageList.concat(payload.ImageUrl);
+  [UPLOAD_TIME_IMAGE]:(state, { payload }) => {
+    const imageList = state.imageList.concat(payload.imgstr);
     return ({
       ...state,
       imageList

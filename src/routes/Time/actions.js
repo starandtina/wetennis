@@ -20,12 +20,7 @@ export const fetchTimeInfo = data => ({
 })
 
 export const UPLOAD_TIME_IMAGE = 'UPLOAD_TIME_IMAGE';
-export const UPLOAD_TIME_IMAGE_SUCCESS = 'UPLOAD_TIME_IMAGE_SUCCESS';
-export const UPLOAD_TIME_IMAGE_FAILED = 'UPLOAD_TIME_IMAGE_FAILED';
-export const uploadTimeImage = data => ({
-  types: [UPLOAD_TIME_IMAGE, UPLOAD_TIME_IMAGE_SUCCESS, UPLOAD_TIME_IMAGE_FAILED],
-  promise: () => API.post(URL.uploadImage, data)
-})
+export const uploadTimeImage = createAction(UPLOAD_TIME_IMAGE)
 
 export const CLEAR_TIME_IMAGE = 'CLEAR_TIME_IMAGE';
 export const clearTimeImage = createAction(CLEAR_TIME_IMAGE)
