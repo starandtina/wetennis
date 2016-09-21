@@ -7,7 +7,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import DatePicker from 'material-ui/DatePicker';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 
-import { uploadTimeImage, clearTimeImage, addTimeMatch } from '../../../actions';
+import { uploadTimeImage, clearTimeImage, addTimeMessage as addTimeMatch } from '../../../actions';
 import NavBack from '../../../components/Nav';
 import AddImage from '../../../components/addImage';
 import style from './AddMatch.scss';
@@ -68,6 +68,7 @@ const validate = (values) => {
 
 const mapStateToProps = (state) => ({
   time: state.time,
+  user: state.user.user,
   initialValues: {
     permission: "1",
     date: formatDate(new Date)
@@ -97,11 +98,14 @@ class AddMatch extends Component {
   };
 
   addMatch = () => {
-    const { values, time, addTimeMatch, push } = this.props;
+    const { values, time, addTimeMatch, push, user } = this.props;
+    debugger;
+    console.log(user.id);
     addTimeMatch({
       ...values,
       imgs: time.imageList,
-      type: "Match"
+      type: "Match",
+      userId: user.id
     }).then(action => {
       push('/time');
     })

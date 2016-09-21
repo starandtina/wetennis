@@ -1,9 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
   const Times = sequelize.define('Times', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true
-    },
     date: {
       type: DataTypes.DATE,
       field: 'date'
@@ -11,6 +7,10 @@ module.exports = function (sequelize, DataTypes) {
     type: {
       type: DataTypes.STRING,
       field: 'type'
+    },
+    userId: {
+      type: DataTypes.STRING,
+      field: 'Userid'
     },
     location: {
       type: DataTypes.STRING,

@@ -1,9 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
   const TimesPics = sequelize.define('TimesPics', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true
-    },
     timesId: {
       type: DataTypes.INTEGER,
       field: 'times_id'
@@ -21,7 +17,7 @@ module.exports = function (sequelize, DataTypes) {
         TimesPics.belongsTo(models.Times, {
           onDelete: 'CASCADE',
           foreignKey: 'times_id',
-          constraints: false
+          constraints: false,
         })
       }
     }

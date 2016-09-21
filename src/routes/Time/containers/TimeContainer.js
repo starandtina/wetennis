@@ -12,17 +12,9 @@ import Footer from 'components/Footer'
 import style from './TimeContainer.scss';
 import TimeItem from '../components/TimeItem';
 import { fetchTimesList, fetchTimeInfo, deleteTime, fetchDeleteTime } from '../actions';
-const myData = {
-  "id": "sha32dsjk23",
-    "name": "my real name",
-    "username": "pacific0437",
-    "password": "88888888",
-    "phone": "18629032103",
-    "gender": "male",
-    "cardId": "232323198611111111"
-}
+
 const mapStateToProps = (state) => ({
-  user: state.user || myData,
+  user: state.user,
   time: state.time
 });
 

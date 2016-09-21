@@ -10,6 +10,14 @@ import NavBack from '../../../components/Nav';
 import AddImage from '../../../components/addImage';
 import style from './AddTime.scss';
 
+const formatDate = date => {
+  var year = date.getFullYear();
+  var month = date.getMonth() < 10 ? '0'+ (date.getMonth()+1) : date.getMonth()+1
+
+  var day =  date.getDate() < 10 ? '0'+ date.getDate(): date.getDate()
+  return (year+'-'+month+'-'+day);
+}
+
 const fields = ['message', 'permission']
 
 const validate = (values) => {
@@ -26,6 +34,7 @@ const validate = (values) => {
 
 const mapStateToProps = (state) => ({
   time: state.time,
+  user: state.user.user,
   initialValues: {
     permission: "1"
   }
@@ -50,12 +59,16 @@ class AddTime extends Component {
   }
 
   addTime = () => {
-    const { values, time, addTimeMessage, push } = this.props;
+    const { values, time, addTimeMessage, push, user } = this.props;
+    console.log(user.id);
+    console.log(formatDate(new Date));
     addTimeMessage({
       ...values,
       imgs: time.imageList,
-      type: "Message"
-    }).then(action => {
+      type: "Message",
+      userId: user.id,
+      date: formatDate(new Date)
+    }).then(() => {
       push('/time');
     })
   };

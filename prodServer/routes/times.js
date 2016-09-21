@@ -5,9 +5,13 @@ module.exports = function () {
   var router = express.Router()
 
   function show(req, res, next) {
+    console.log(req.cookies.USER_ID);
     models.Times
       .findAll({
-        include: models.TimesPics
+        include: models.TimesPics,
+        where: {
+          userId: req.cookies.USER_ID
+        }
       })
       .then((arr) => {
         res.locals.data = {
@@ -19,16 +23,18 @@ module.exports = function () {
   }
 
   function create(req, res, next) {
-    console.log('req.body');
+    const timesPics = models.TimesPics;
     models.Times.create({
-      //id: 2006,
       ...req.body,
-      //TimesPics: req.body.imgs.map(img => {times_img_str:img})
-    //}, {
-    //    include: [ models.TimesPics ]
+      TimesPics: req.body.imgs.map(img => ({
+        timesImgStr : img
+      }))
+    }, {
+        include: [ timesPics ]
+    }).then(obj => {
+        res.locals.data = obj;
+        next()
     })
-
-    next()
   }
 
   function update(req, res, next) {

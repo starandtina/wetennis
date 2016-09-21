@@ -35,7 +35,7 @@ class TimeItem extends Component {
       return (
         <div>
           <div className={style.TipLine}>
-            <div className={style.Left}>{date}</div>
+            <div className={style.Left}>{date && date.substring(0,10)}</div>
             <div className={style.Right}>
               <span className={style.Circle}></span>
               发表了心情
@@ -79,7 +79,7 @@ class TimeItem extends Component {
     return (
       <div>
         <div className={style.TipLine}>
-          <div className={style.Left}>{date}</div>
+          <div className={style.Left}>{date && date.substring(0,10)}</div>
           <div className={style.Right}>
             <span className={style.Circle}></span>
             约球
