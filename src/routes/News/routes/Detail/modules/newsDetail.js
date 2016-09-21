@@ -11,19 +11,6 @@ export const FETCH_NEWS = 'FETCH_NEWS'
 export const FETCH_NEWS_SUCCESS = 'FETCH_NEWS_SUCCESS'
 export const FETCH_NEWS_FAILTURE = 'FETCH_NEWS_FAILTURE'
 
-export const FETCH_NEWS_COMMENTS = 'FETCH_NEWS_COMMENTS'
-export const FETCH_NEWS_COMMENTS_SUCCESS = 'FETCH_NEWS_COMMENTS_SUCCESS'
-export const FETCH_NEWS_COMMENTS_FAILTURE = 'FETCH_NEWS_COMMENTS_FAILTURE'
-
-export const LIKE_COMMENT = 'LIKE_COMMENT'
-export const LIKE_COMMENT_SUCCESS = 'LIKE_COMMENT_SUCCESS'
-export const LIKE_COMMENT_FAILTURE = 'LIKE_COMMENT_FAILTURE'
-
-
-export const SAVE_COMMENT = 'SAVE_COMMENT'
-export const SAVE_COMMENT_SUCCESS = 'SAVE_COMMENT_SUCCESS'
-export const SAVE_COMMENT_FAILTURE = 'SAVE_COMMENT_FAILTURE'
-
 
 // ------------------------------------
 // Actions
@@ -32,39 +19,6 @@ export const fetchNews = (data) => ({
   types: [FETCH_NEWS, FETCH_NEWS_SUCCESS, FETCH_NEWS_FAILTURE],
   promise: () => API.post(URLConf.fetchNews, { ...data })
 })
-
-export const fetchNewsComments = (data) => ({
-  types: [FETCH_NEWS_COMMENTS, FETCH_NEWS_COMMENTS_SUCCESS, FETCH_NEWS_COMMENTS_FAILTURE],
-  promise: () => API.post(URLConf.fetchNewsComments, { ...data })
-})
-
-export const likeComment = (id, commentId) => ({
-  types: [LIKE_COMMENT, LIKE_COMMENT_SUCCESS, LIKE_COMMENT_FAILTURE],
-  promise: () => API.post(URLConf.likeNewsComment, {
-    id,
-    commentId
-  }),
-  commentId
-})
-
-export const saveComment = (id, text) => ({
-  types: [SAVE_COMMENT, SAVE_COMMENT_SUCCESS, SAVE_COMMENT_FAILTURE],
-  promise: () => API.post(URLConf.saveNewsComment, {
-    id,
-    context: text
-  })
-})
-
-export const saveCommentThenFetchComments = (id, text) => {
-  return dispatch => {
-    dispatch(saveComment(id, text))
-      .then(resp => {
-        dispatch(fetchNewsComments({
-          id
-        }))
-      })
-  }
-}
 
 // -----------------------------
 // Reducer
@@ -93,70 +47,6 @@ const news = handleActions({
   "providerIconUrl": "http://www.sina.com.cn/favicon.ico"
 })
 
-const comments = handleActions({
-  [FETCH_NEWS_COMMENTS]: (state, action) => ({
-    ...state
-  }),
-  [FETCH_NEWS_COMMENTS_SUCCESS]: (state, action) => ({
-    ...state,
-    ...action.payload
-  }),
-  [FETCH_NEWS_COMMENTS_FAILTURE]: (state, action) => ({
-    ...state
-  }),
-  [LIKE_COMMENT_SUCCESS]: (state, action) => {
-    const {
-      commentId
-    } = action
-
-    return Object.assign({}, state, {
-      comments: state.comments.map((comment) => {
-        if (String(comment.id) === String(commentId)) {
-          return Object.assign({}, comment, {
-            like: true,
-            likeNumber: ++comment.likeNumber
-          })
-        }
-
-        return comment
-      })
-    })
-  },
-}, {
-  total: 2000,
-  comments: [
-      {
-        "id": 1,
-        "username": "用户名1",
-        "userimage": "http://hbimg.b0.upaiyun.com/65ad7509d8f8ea45beb7589cca3c557d02f15ac0e9e82-QDUx6P_sq120",
-        "time": "1小时前",
-        "context": "国际在线消息（记者 刘榕）：由泰国记者协会会长万猜·翁米猜率领的泰国记者协会代表团一行由中国记者协会国际联络部副主任马玉安陪同１９日前往天津参观访问。",
-        "like": false,
-        "likeNumber": 999
-      },
-      {
-        "id": 2,
-        "username": "用户名2",
-        "userimage": "http://hbimg.b0.upaiyun.com/65ad7509d8f8ea45beb7589cca3c557d02f15ac0e9e82-QDUx6P_sq120",
-        "time": "2小时前",
-        "context": "国际在线消息（记者 刘榕）：由泰国记者协会会长万猜·翁米猜率领的泰国记者协会代表团一行由中国记者协会国际联络部副主任马玉安陪同１９日前往天津参观访问。",
-        "like": false,
-        "likeNumber": 999
-      },
-      {
-        "id": 3,
-        "username": "用户名3",
-        "userimage": "http://hbimg.b0.upaiyun.com/65ad7509d8f8ea45beb7589cca3c557d02f15ac0e9e82-QDUx6P_sq120",
-        "time": "3小时前",
-        "context": "国际在线消息（记者 刘榕）：由泰国记者协会会长万猜·翁米猜率领的泰国记者协会代表团一行由中国记者协会国际联络部副主任马玉安陪同１９日前往天津参观访问。",
-        "like": true,
-        "likeNumber": 999
-      }
-    ]
-})
-
-
 export default combineReducers({
-  news,
-  comments
+  news
 })

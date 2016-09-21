@@ -1,20 +1,12 @@
 import React from 'react'
-import CommentsComponent from 'components/Comments'
+import CommentsContainer from "components/Comments/CommentsContainer";
 
 import ccs from './NewsComments.scss'
 
-const NewsComments = ({data, groupId, likeAction, sendAction}) => {
+const NewsComments = ({ groupId }) => {
   return (
-    <div>
-      <h3 className={ccs.boxTitle}>{`评论 (${data.total})`}</h3>
-      <CommentsComponent
-        data={data.comments}
-        groupId={groupId}
-        likeAction={likeAction}
-        sendAction={sendAction}
-      />
-    </div>
-  );
+   <CommentsContainer type='news' id={groupId} />
+  )
 }
 
-export default NewsComments;
+export default NewsComments

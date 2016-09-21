@@ -2,19 +2,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import NewsDetail from '../components/NewsDetail'
-import { fetchNews, fetchNewsComments, likeComment, saveCommentThenFetchComments } from '../modules/newsDetail'
+import { fetchNews } from '../modules/newsDetail'
 
 const mapStateToProps = (state) => ({
-  news: state.newsDetail.news,
-  comments: state.newsDetail.comments
+  news: state.newsDetail.news
 })
 
 export default connect(
   mapStateToProps,
   {
-    fetchNews,
-    fetchNewsComments,
-    likeComment,
-    saveCommentThenFetchComments
+    fetchNews
   },
 )(NewsDetail)

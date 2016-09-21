@@ -45,12 +45,7 @@ export default class NewsDetail extends Component {
             }) : undefined}
           </div>
         </div>
-        <NewsComments
-          groupId={newsId}
-          data={comments}
-          likeAction={likeComment}
-          sendAction={saveCommentThenFetchComments}
-        />
+        <NewsComments groupId={newsId} />
       </div>
     )
   }
