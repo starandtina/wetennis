@@ -19,8 +19,6 @@ export const fetchTimeInfo = data => ({
   promise: () => API.post(URL.fetchTimeInfo, data)
 })
 
-export const DELETE_TIME = 'DELETE_TIME';
-export const deleteTime = createAction(DELETE_TIME)
 
 export const ADD_TIME_MESSAGE = 'ADD_TIME_MESSAGE';
 export const ADD_TIME_MESSAGE_SUCCESS = 'ADD_TIME_MESSAGE_SUCCESS';
