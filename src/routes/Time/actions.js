@@ -19,12 +19,6 @@ export const fetchTimeInfo = data => ({
   promise: () => API.post(URL.fetchTimeInfo, data)
 })
 
-export const UPLOAD_TIME_IMAGE = 'UPLOAD_TIME_IMAGE';
-export const uploadTimeImage = createAction(UPLOAD_TIME_IMAGE)
-
-export const CLEAR_TIME_IMAGE = 'CLEAR_TIME_IMAGE';
-export const clearTimeImage = createAction(CLEAR_TIME_IMAGE)
-
 export const DELETE_TIME = 'DELETE_TIME';
 export const deleteTime = createAction(DELETE_TIME)
 
@@ -44,10 +38,10 @@ export const addTimeMatch = data => ({
   promise: () => API.post(URL.addTimeMatch, data)
 })
 
-export const FETCH_DELETE_TIME = 'FETCH_DELETE_TIME';
-export const FETCH_DELETE_TIME_SUCCESS = 'FETCH_DELETE_TIME_SUCCESS';
-export const FETCH_DELETE_TIME_FAILED = 'FETCH_DELETE_TIME_FAILED';
+export const DELETE_TIME = 'DELETE_TIME';
+export const DELETE_TIME_SUCCESS = 'DELETE_TIME_SUCCESS';
+export const DELETE_TIME_FAILED = 'DELETE_TIME_FAILED';
 export const fetchDeleteTime = data => ({
-  types: [FETCH_DELETE_TIME, FETCH_DELETE_TIME_SUCCESS, FETCH_DELETE_TIME_FAILED],
+  types: [DELETE_TIME, DELETE_TIME_SUCCESS, DELETE_TIME_FAILED],
   promise: () => API.post(URL.deleteTime, data)
 })
