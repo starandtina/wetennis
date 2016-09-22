@@ -5,7 +5,7 @@ import {
 import { connect } from 'react-redux'
 
 const mapStateToProps = ({user, comments}) => ({
-  userId: user.id,
+  userId: user.user.id,
   comments: comments.comments,
   total: comments.total
 });
