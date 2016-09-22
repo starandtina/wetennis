@@ -39,7 +39,7 @@ export function sendComment (userId, type, id, content) {
       types: [SEND_COMMENT, SEND_COMMENT_SUCCESS, SEND_COMMENT_FAILTURE],
       promise: () => API.post(URLConf.sendComment, {type, id, content, userId})
     }).then(() => {
-      dispatch(getComments(type, id))
+      dispatch(getComments(userId, type, id))
     })
   }
 }
