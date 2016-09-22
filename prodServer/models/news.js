@@ -1,7 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
   const News = sequelize.define('News', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true
     },
     date: {
@@ -32,7 +32,12 @@ module.exports = function (sequelize, DataTypes) {
     classMethods: {
       associate: function (models) {
         News.hasMany(models.Comment, {
-          foreignKey: 'TypeSysno',
+          foreignKey: 'typeSysno',
+          constraints: false
+        })
+
+        News.hasMany(models.ComPrise, {
+          foreignKey: 'typeSysno',
           constraints: false
         })
       }

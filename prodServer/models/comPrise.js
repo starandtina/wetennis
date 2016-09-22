@@ -1,35 +1,35 @@
 module.exports = function (sequelize, DataTypes) {
-  const Comment = sequelize.define('Comment', {
+  const ComPrise = sequelize.define('ComPrise', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true
     },
     type: {
       type: DataTypes.STRING,
-      field: 'Type'
+      field: 'dtype'
     },
     typeSysno: {
       type: DataTypes.STRING,
-      field: 'TypeSysno'
+      field: 'typesysno'
     },
-    updateDate: {
+    userId: {
       type: DataTypes.STRING,
-      field: 'UpdateDate'
+      field: 'memsys'
     }
   }, {
     timestamps: false,
     freezeTableName: true,
-    tableName: 'wtf_Comments',
+    tableName: 'wtf_ComPrise',
     classMethods: {
       associate: function (models) {
-        Comment.belongsTo(models.News, {
+        ComPrise.belongsTo(models.News, {
           onDelete: 'CASCADE',
-          foreignKey: 'TypeSysno',
+          foreignKey: 'typeSysno',
           constraints: false,
         })
       }
     }
   })
 
-  return Comment
+  return ComPrise
 }

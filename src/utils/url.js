@@ -11,12 +11,9 @@ if (__DEV__) {
 }
 
 export default {
-  // Latest
+  // News
   fetchNewsList: `${WETENNIS_WEB_API_URL}news`,
-  fetchNews: `${ROOT_URL}fetchNews`,
-  fetchNewsComments: `${ROOT_URL}fetchNewsComments`,
-  likeNewsComment: `${ROOT_URL}likeNewsComment`,
-  saveNewsComment: `${ROOT_URL}saveNewsComment`,
+  fetchNews: `${WETENNIS_WEB_API_URL}news`,
 
   // Dashbaord
   signUp: `${ROOT_URL}signup`,

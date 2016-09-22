@@ -12,12 +12,10 @@ import cs from './NewsDetail.scss'
 export default class NewsDetail extends Component {
   componentDidMount() {
     const { 
-      fetchNews, 
-      fetchNewsComments,
+      fetchNews,
       params: { newsId } } = this.props
 
     fetchNews({ id: newsId })
-    fetchNewsComments({ id: newsId })
   }
 
   render() {
