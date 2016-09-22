@@ -50,7 +50,7 @@ export function likeComment (userId, type, id) {
       types: [LIKE_COMMENT, LIKE_COMMENT_SUCCESS, LIKE_COMMENT_FAILTURE],
       promise: () => API.post(URLConf.likeComment, {id, type, userId})
     }).then(() => {
-      dispatch(getComments(type, id))
+      dispatch(getComments(userId, type, id))
     })
   }
 }
