@@ -32,7 +32,8 @@ export const fetchNews = (data) => ({
 
 export const likeNews = (data) => ({
   types: [LIKE_NEWS, LIKE_NEWS_SUCCESS, LIKE_NEWS_FAILTURE],
-  promise: () => API.post(`${URLConf.news}/${data.id}/like`, { ...data })
+  promise: () => API.post(`${URLConf.news}/${data.id}/like`, { ...data }),
+  meta: { isHideLoadingBar: true }
 })
 
 

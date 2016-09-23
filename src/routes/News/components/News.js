@@ -12,7 +12,7 @@ export default class News extends Component {
       like
     } = this.props
 
-    like(item)
+    like && like(item)
   }
 
   render() {
