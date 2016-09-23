@@ -7,12 +7,44 @@ module.exports = function () {
   var router = express.Router()
 
   function list(req, res, next) {
-    sequelize
-      .query('exec sp_GetNewsList', {
-        type: sequelize.QueryTypes.SELECT
+    // sequelize
+    //   .query('exec sp_GetNewsList', {
+    //     type: sequelize.QueryTypes.SELECT
+    //   })
+    //   .then((arr) => {
+    //     res.locals.data = arr
+    //     next()
+    //   })
+    models.News
+      .findAll({
+        include: [{
+          model: models.Comment,
+          required: false,
+          where: {
+            type: 'News'
+          }
+        }, {
+          model: models.ComPrise,
+          required: false,
+          where: {
+            type: 'News'
+          }
+        }],
+        raw: true
+          // order: [[models.News, 'issueTime']]
       })
-      .then((arr) => {
-        res.locals.data = arr
+      .then((newsList) => {
+        newsList = newsList || []
+
+        newsList.forEach((news) => {
+          console.warn(news)
+          news.commentCount = news.Comments.length || 0
+          news.likeCount = news.ComPrises.length || 0
+        })
+
+        console.log(JSON.stringify(newsList))
+        res.locals.data = newsList
+
         next()
       })
   }
@@ -21,13 +53,17 @@ module.exports = function () {
     models.News
       .findById(req.params.newsId, {
         include: [{
-          model: models.Comment
+          model: models.Comment,
+          where: {
+            type: 'News'
+          }
         }, {
           model: models.ComPrise,
           where: {
-            type: 'Comment'
+            type: 'News'
           }
         }],
+        raw: true,
         order: [[models.Comment, 'updateDate']]
       })
       .then((news) => {
@@ -38,7 +74,7 @@ module.exports = function () {
         }
 
         news.commentCount = news.Comments.length || 0
-        res.locals.news = news
+        res.locals.data = news
         next()
       })
   }
