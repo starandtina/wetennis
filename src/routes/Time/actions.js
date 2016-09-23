@@ -5,11 +5,12 @@ import URL from 'utils/url';
 export const FETCH_TIME_LIST = 'FETCH_TIME_LIST';
 export const FETCH_TIME_LIST_SUCCESS = 'FETCH_TIME_LIST_SUCCESS';
 export const FETCH_TIME_LIST_FAILED = 'FETCH_TIME_LIST_FAILED';
-export const fetchTimesList = data => ({
+export const fetchTimesList = ({currentPage, id}) => {
+  return ({
   types: [FETCH_TIME_LIST, FETCH_TIME_LIST_SUCCESS, FETCH_TIME_LIST_FAILED],
-  promise: () => API.get(URL.fetchTimesList, data),
+  promise: () => API.get(`${URL.times}?currentPage=${currentPage}&id=${id}`),
   meta: { isHideLoadingBar: true }
-})
+})}
 
 export const FETCH_TIME_INFO = 'FETCH_TIME_INFO';
 export const FETCH_TIME_INFO_SUCCESS = 'FETCH_TIME_INFO_SUCCESS';
@@ -39,7 +40,9 @@ export const addTimeMatch = data => ({
 export const DELETE_TIME = 'DELETE_TIME';
 export const DELETE_TIME_SUCCESS = 'DELETE_TIME_SUCCESS';
 export const DELETE_TIME_FAILED = 'DELETE_TIME_FAILED';
-export const fetchDeleteTime = data => ({
+export const fetchDeleteTime = ({ id }) => ({
   types: [DELETE_TIME, DELETE_TIME_SUCCESS, DELETE_TIME_FAILED],
-  promise: () => API.post(URL.deleteTime, data)
+  //promise: () => API.delete(URL.deleteTime)
+  promise: () => API.delete(`${URL.times}?id=${id}`),
+  meta: { id }
 })
