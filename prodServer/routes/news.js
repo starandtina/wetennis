@@ -76,7 +76,7 @@ module.exports = function () {
         })
 
         if (!news.hasOwnProperty('keywordList')) {
-          news.keywordList = ['网球']
+          news.keywordList = ['网球', news.type]
         }
 
         news.commentCount = news.Comments.length

@@ -8,6 +8,10 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.DATE,
       field: 'issueTime'
     },
+    type: {
+      type: DataTypes.STRING,
+      field: 'Type'
+    },
     thumbImgUrl: {
       type: DataTypes.STRING,
       field: 'imgurl'
