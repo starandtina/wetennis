@@ -30,19 +30,18 @@ module.exports = function () {
             type: 'News'
           }
         }],
-        raw: true
-          // order: [[models.News, 'issueTime']]
+        // order: [[models.News, 'issueTime']]
       })
       .then((newsList) => {
-        newsList = newsList || []
-
-        newsList.forEach((news) => {
-          console.warn(news)
-          news.commentCount = news.Comments.length || 0
-          news.likeCount = news.ComPrises.length || 0
+        newsList = newsList.get({
+          plain: true
         })
 
-        console.log(JSON.stringify(newsList))
+        newsList.forEach((news) => {
+          news.commentCount = news.Comments.length
+          news.likeCount = news.ComPrises.length
+        })
+
         res.locals.data = newsList
 
         next()
@@ -54,26 +53,30 @@ module.exports = function () {
       .findById(req.params.newsId, {
         include: [{
           model: models.Comment,
+          required: false,
           where: {
             type: 'News'
           }
         }, {
           model: models.ComPrise,
+          required: false,
           where: {
             type: 'News'
           }
         }],
-        raw: true,
         order: [[models.Comment, 'updateDate']]
       })
       .then((news) => {
-        news = news || {}
-        console.log(JSON.stringify(news))
+        news = news.get({
+          plain: true
+        })
+        console.log(news)
         if (!news.hasOwnProperty('keywordList')) {
           news.keywordList = ['网球']
         }
 
-        news.commentCount = news.Comments.length || 0
+        news.commentCount = news.Comments.length
+        news.likeCount = news.ComPrises.length
         res.locals.data = news
         next()
       })
