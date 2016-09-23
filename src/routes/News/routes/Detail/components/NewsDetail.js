@@ -4,7 +4,7 @@ import Footer from 'components/Footer'
 
 import { cls } from 'utils'
 import NewsDetailTopNav from './NewsDetailTopNav'
-import News from 'routes/News/components/News'
+import NewsContainer from 'routes/News/containers/NewsContainer'
 import NewsComments from './NewsComments'
 
 import cs from './NewsDetail.scss'
@@ -22,7 +22,6 @@ export default class NewsDetail extends Component {
   render() {
     const { 
       news,
-      likeNews,
       params: { newsId } 
     } = this.props
 
@@ -31,7 +30,7 @@ export default class NewsDetail extends Component {
     return (
       <div className={cs.container}>
         <NewsDetailTopNav />
-        <News item={news} like={likeNews} />
+        <NewsContainer item={news} />
         <div className='container'>
           <p>{content}</p>
           <div className={cs.keywordListContainer}>

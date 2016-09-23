@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import NewsList from '../components/NewsList'
 import { fetchNewsList } from '../modules/newsList'
+import { likeNews } from 'routes/News/routes/Detail/modules/newsDetail'
 
 const getProviderFilterList = (newsList = []) => ([ '全部', ...new Set(newsList.map(n => n.provider)) ])
 
@@ -23,6 +24,7 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   {
-    fetchNewsList
+    fetchNewsList,
+    likeNews
   },
 )(NewsList)

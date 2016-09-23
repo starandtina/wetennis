@@ -9,10 +9,10 @@ export default class News extends Component {
   onClickLike() {
     const {
       item,
-      like
+      likeNews
     } = this.props
 
-    like && like(item)
+    likeNews && likeNews(item)
   }
 
   render() {

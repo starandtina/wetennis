@@ -5,7 +5,7 @@ import Footer from 'components/Footer'
 import NewsTopNav from './NewsTopNav'
 
 import cs from './NewsList.scss'
-import News from './News'
+import NewsContainer from '../containers/NewsContainer'
 
 export default class NewsList extends Component {
   componentDidMount() {
@@ -20,7 +20,7 @@ export default class NewsList extends Component {
     const { newsList, likeNews } = this.props
 
     const rows = newsList.map((item, index) => (
-      <News item={item} />
+      <NewsContainer key={item.id} item={item} />
     ))
 
     return (

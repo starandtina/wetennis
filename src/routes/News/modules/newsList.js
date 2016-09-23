@@ -1,7 +1,13 @@
-import { handleActions } from 'redux-actions'
+import {
+  handleActions
+} from 'redux-actions'
 
 import API from 'utils/API'
 import URLConf from 'utils/url'
+
+import {
+  LIKE_NEWS_SUCCESS
+} from 'routes/News/routes/Detail/modules/newsDetail'
 
 // ------------------------------------
 // Constants
@@ -22,8 +28,11 @@ export const SET_PROVIDER_FILTER = 'SET_PROVIDER_FILTER'
 // ------------------------------------
 export const fetchNewsList = (data) => ({
   types: [FETCH_NEWS_LIST, FETCH_NEWS_LIST_SUCCESS, FETCH_NEWS_LIST_FAILTURE],
-  promise: () => API.get(URLConf.news, { ...data }),
-  meta: { isHideLoadingBar: true }
+  promise: () => API.get(URLConf.news, {...data
+  }),
+  meta: {
+    isHideLoadingBar: true
+  }
 })
 
 export const setProviderFilter = (filter) => ({
@@ -42,7 +51,24 @@ export default handleActions({
   [FETCH_NEWS_LIST_SUCCESS]: (state, action) => ({
     ...state,
     list: action.payload
-  })
+  }),
+  [LIKE_NEWS_SUCCESS]: (state, action) => {
+    const payload = action.payload
+
+    return {
+      ...state,
+      list: state.list.map((news) => {
+        if (String(payload.typeSysno) === String(news.id)) {
+          return {
+            ...news,
+            likeCount: ++news.likeCount
+          }
+        }
+
+        return news
+      })
+    }
+  }
 }, {
   list: [],
   providerFilter: '全部'
