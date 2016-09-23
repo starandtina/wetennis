@@ -30,12 +30,14 @@ module.exports = function () {
             type: 'News'
           }
         }],
-        // order: [[models.News, 'issueTime']]
+        order: 'convert(datetime, issueTime) DESC'
       })
       .then((newsList) => {
-        newsList = newsList.get({
-          plain: true
-        })
+        newsList = newsList.map(
+          (news) => news.get({
+            plain: true
+          })
+        )
 
         newsList.forEach((news) => {
           news.commentCount = news.Comments.length
@@ -64,13 +66,15 @@ module.exports = function () {
             type: 'News'
           }
         }],
-        order: [[models.Comment, 'updateDate']]
+        order: [
+          [models.Comment, 'updateDate']
+        ]
       })
       .then((news) => {
         news = news.get({
           plain: true
         })
-        console.log(news)
+
         if (!news.hasOwnProperty('keywordList')) {
           news.keywordList = ['网球']
         }
