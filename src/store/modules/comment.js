@@ -44,11 +44,11 @@ export function sendComment (userId, type, id, content) {
   }
 }
 
-export function likeComment (userId, type, id) {
+export function likeComment (userId, type, id, commentId) {
   return dispatch => {
     dispatch({
       types: [LIKE_COMMENT, LIKE_COMMENT_SUCCESS, LIKE_COMMENT_FAILTURE],
-      promise: () => API.post(URLConf.likeComment, {id, type, userId})
+      promise: () => API.post(URLConf.likeComment, {id: commentId, type, userId})
     }).then(() => {
       dispatch(getComments(userId, type, id))
     })

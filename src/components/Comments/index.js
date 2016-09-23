@@ -65,10 +65,10 @@ class Comments extends Component {
       </div>
     );
   }
-  like = id => {
-    const {likeComment, userId, type} = this.props;
+  like = commentId => {
+    const {likeComment, userId, type, id} = this.props;
     if (userId) {
-      likeComment(userId, type, id);
+      likeComment(userId, type, id, commentId);
     }
   }
   send = () => {
