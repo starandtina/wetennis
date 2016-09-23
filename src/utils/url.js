@@ -12,8 +12,8 @@ if (__DEV__) {
 
 export default {
   // News
-  fetchNewsList: `${WETENNIS_WEB_API_URL}news`,
-  fetchNews: `${WETENNIS_WEB_API_URL}news`,
+  news: `${WETENNIS_WEB_API_URL}news`,
+
 
   // Dashbaord
   signUp: `${ROOT_URL}signup`,

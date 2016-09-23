@@ -1,12 +1,17 @@
 module.exports = function (sequelize, DataTypes) {
   const ComPrise = sequelize.define('ComPrise', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true
+    isGood: {
+      type: DataTypes.STRING,
+      field: 'IsGood'
+    },
+    updateDateTime: {
+      type: DataTypes.STRING,
+      field: 'UpdateTime'
     },
     type: {
       type: DataTypes.STRING,
-      field: 'dtype'
+      field: 'dtype',
+      defaultValue: 'News'
     },
     typeSysno: {
       type: DataTypes.STRING,

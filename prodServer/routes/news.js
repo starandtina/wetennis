@@ -96,6 +96,23 @@ module.exports = function () {
     next()
   }
 
+  function like(req, res, next) {
+    const body = req.body
+
+    models.ComPrise
+      .create({
+        isGood: '1',
+        typeSysno: body.id,
+        userId: req.cookies.USER_ID,
+        UpdateTime: new Date().toISOString()
+      })
+      .then((data) => {
+        console.log(JSON.stringify(data))
+        res.locals.data = data
+        next()
+      })
+  }
+
   router.route('/')
     .get(list)
     .post(create)
@@ -104,6 +121,9 @@ module.exports = function () {
 
   router.route('/:newsId')
     .get(show)
+
+  router.route('/:newsId/like')
+    .post(like)
 
   return router
 }

@@ -22,7 +22,7 @@ export const SET_PROVIDER_FILTER = 'SET_PROVIDER_FILTER'
 // ------------------------------------
 export const fetchNewsList = (data) => ({
   types: [FETCH_NEWS_LIST, FETCH_NEWS_LIST_SUCCESS, FETCH_NEWS_LIST_FAILTURE],
-  promise: () => API.get(URLConf.fetchNewsList, { ...data }),
+  promise: () => API.get(URLConf.news, { ...data }),
   meta: { isHideLoadingBar: true }
 })
 
@@ -39,15 +39,9 @@ export default handleActions({
     ...state,
     providerFilter: action.payload
   }),
-  [FETCH_NEWS_LIST]: (state, action) => ({
-    ...state
-  }),
   [FETCH_NEWS_LIST_SUCCESS]: (state, action) => ({
     ...state,
     list: action.payload
-  }),
-  [FETCH_NEWS_LIST_FAILTURE]: (state, action) => ({
-    ...state
   })
 }, {
   list: [],

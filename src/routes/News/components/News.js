@@ -1,17 +1,29 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
+import { Link } from 'react-router'
 
 import { cls } from 'utils'
 import cs from './News.scss'
 
 export default class News extends Component {
+  onClickLike() {
+    const {
+      item,
+      like
+    } = this.props
+
+    like(item)
+  }
+
   render() {
     const { item } = this.props
 
     return (
       <div className={cs.news}>
-        <p><img src={item.thumbImgUrl} className='img-responsive center-block' /></p>
-        <h4 className='text-center'>{item.title}</h4>
+        <Link to={`/news/${item.id}`} key={item.id}>
+          <p><img src={item.thumbImgUrl} className='img-responsive center-block' /></p>
+          <h4 className={cls`text-center ${cs.h4}`}>{item.title}</h4>
+        </Link>
         <Grid className={cs.text}>
           <Row className='u-verticalCenterWithFlex'>
             <Col xs={7}>
@@ -26,7 +38,7 @@ export default class News extends Component {
             <Col xs={5}>
               <div className='pull-right'>
                 <span className={cs['icon-container']}><i className={cls`material-icons highlight ${cs.marginRight5} ${cs.icon}`}>comment</i>{item.commentCount}</span>
-                <span className={cs['icon-container']}><i className={cls`material-icons highlight ${cs.marginRight5} ${cs.icon}`}>favorite</i>{item.likeCount}</span>
+                <span className={cs['icon-container']}><i onClick={this.onClickLike.bind(this)} className={cls`material-icons highlight ${cs.marginRight5} ${cs.icon}`}>favorite</i>{item.likeCount}</span>
               </div>
             </Col>
           </Row>

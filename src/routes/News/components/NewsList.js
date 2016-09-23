@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router';
 
 import Footer from 'components/Footer'
 import NewsTopNav from './NewsTopNav'
@@ -18,10 +17,10 @@ export default class NewsList extends Component {
   }
 
   renderList() {
-    const { newsList } = this.props
+    const { newsList, likeNews } = this.props
 
     const rows = newsList.map((item, index) => (
-      <Link to={`/news/${item.id}`} key={item.id}><News item={item} /></Link>
+      <News item={item} />
     ))
 
     return (

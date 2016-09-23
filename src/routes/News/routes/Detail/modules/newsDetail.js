@@ -1,5 +1,9 @@
-import { handleActions } from 'redux-actions'
-import { combineReducers } from 'redux'
+import {
+  handleActions
+} from 'redux-actions'
+import {
+  combineReducers
+} from 'redux'
 
 import API from 'utils/API'
 import URLConf from 'utils/url'
@@ -11,28 +15,38 @@ export const FETCH_NEWS = 'FETCH_NEWS'
 export const FETCH_NEWS_SUCCESS = 'FETCH_NEWS_SUCCESS'
 export const FETCH_NEWS_FAILTURE = 'FETCH_NEWS_FAILTURE'
 
+export const LIKE_NEWS = 'LIKE_NEWS'
+export const LIKE_NEWS_SUCCESS = 'LIKE_NEWS_SUCCESS'
+export const LIKE_NEWS_FAILTURE = 'LIKE_NEWS_FAILTURE'
+
+
 
 // ------------------------------------
 // Actions
 // ------------------------------------
 export const fetchNews = (data) => ({
   types: [FETCH_NEWS, FETCH_NEWS_SUCCESS, FETCH_NEWS_FAILTURE],
-  promise: () => API.get(`${URLConf.fetchNews}/${data.id}`, { ...data })
+  promise: () => API.get(`${URLConf.news}/${data.id}`, {...data
+  })
 })
+
+export const likeNews = (data) => ({
+  types: [LIKE_NEWS, LIKE_NEWS_SUCCESS, LIKE_NEWS_FAILTURE],
+  promise: () => API.post(`${URLConf.news}/${data.id}/like`, { ...data })
+})
+
 
 // -----------------------------
 // Reducer
 // -----------------------------
 const news = handleActions({
-  [FETCH_NEWS]: (state, action) => ({
-    ...state
-  }),
   [FETCH_NEWS_SUCCESS]: (state, action) => ({
     ...state,
     ...action.payload
   }),
-  [FETCH_NEWS_FAILTURE]: (state, action) => ({
-    ...state
+  [LIKE_NEWS_SUCCESS]: (state, action) => ({
+    ...state,
+    likeCount: ++state.likeCount
   })
 }, {
   "id": 1,

@@ -13,7 +13,8 @@ export default class NewsDetail extends Component {
   componentDidMount() {
     const { 
       fetchNews,
-      params: { newsId } } = this.props
+      params: { newsId } 
+    } = this.props
 
     fetchNews({ id: newsId })
   }
@@ -21,17 +22,16 @@ export default class NewsDetail extends Component {
   render() {
     const { 
       news,
-      comments,
-      likeComment,
-      saveCommentThenFetchComments,
-      params: { newsId } } = this.props
+      likeNews,
+      params: { newsId } 
+    } = this.props
 
     const { content, keywordList } = news
 
     return (
       <div className={cs.container}>
         <NewsDetailTopNav />
-        <News item={news} />
+        <News item={news} like={likeNews} />
         <div className='container'>
           <p>{content}</p>
           <div className={cs.keywordListContainer}>
