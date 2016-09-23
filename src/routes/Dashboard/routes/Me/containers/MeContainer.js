@@ -4,7 +4,7 @@ import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 
 import { logoutUser, fetchMyData } from '../../../modules/user'
-import Dashboard from '../components/Me'
+import Dashboard from '../components/me'
 
 const mapStateToProps = (state) => ({
   user: state.user

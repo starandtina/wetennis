@@ -20,17 +20,17 @@ export const SET_CURRENT_FILTER = "SET_CURRENT_FILTER";
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const getDrawTable = function ({eventId, matchId, type}) {
+export const getDrawTable = function ({itemId, round}) {
   return {
     types: [FETCH_EVENT_GRAWTABLE, FETCH_EVENT_GRAWTABLE_SUCCESS, FETCH_EVENT_GRAWTABLE_FAILTURE],
-    promise: () => API.post(URLConf.fetchEventDrawTable, {eventId, matchId, type})
+    promise: () => API.post(URLConf.fetchEventDrawTable, {itemId, round})
   }
 }
 
 export const getFilter = function (eventId) {
   return {
     types: [FETCH_EVENT_GRAWTABLE_FILTER, FETCH_EVENT_GRAWTABLE_FILTER_SUCCESS, FETCH_EVENT_GRAWTABLE_FILTER_FAILTURE],
-    promise: () => API.post(URLConf.fetchEventDrawTableFilter, {eventId})
+    promise: () => API.post(URLConf.cascadeFilter, {id: eventId, type: "eventDrawTableFilter"})
   }
 }
 
@@ -60,7 +60,7 @@ function filters(state = [], {type, payload}) {
   return s;
 }
 
-function currentFilter(state = "", {type, payload}) {
+function currentFilter(state = {}, {type, payload}) {
   let s = state;
   if (type === FETCH_EVENT_GRAWTABLE_FILTER_SUCCESS) {
     s = payload[0].value;

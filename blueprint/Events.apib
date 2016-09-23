@@ -409,6 +409,79 @@
             "data": "ok"
         }
 
+
+## 获取签表过滤条件 [/cascadeFilter]
+
+### 获取签表过滤条件  [POST]
+
+### 返回数据格式(Array)
++ text (String) - 过滤条件名
++ value (String) - 过滤条件值
++ children (String) - 子过滤条件
+  + text (String) - 子过滤条件名
+  + value (String) - 子过滤条件值
+
++ Request (application/json)
+
+  + Body
+
+    {
+      "id": "fdafa",
+      "type": "eventDrawTableFilter"
+    }
+
++ Response 200 (application/json)
+  
+  + Body
+
+      {
+        "code": 0,
+        "data": [
+          {
+            "text": "少年组",
+            "value": "1",
+            "children": [
+              {
+                "text": "双打",
+                "value": "1-1"
+              },
+              {
+                "text": "单打",
+                "value": "2-1"
+              }
+            ]
+          },
+          {
+            "text": "青年组",
+            "value": "2",
+            "current": true,
+            "children": [
+              {
+                "text": "女子双打",
+                "value": "1-1"
+              },
+              {
+                "text": "女子单打",
+                "value": "2-1"
+              },
+              {
+                "text": "男子双打",
+                "value": "3-1"
+              },
+              {
+                "text": "男子单打",
+                "value": "4-1"
+              }
+            ]
+          },
+          {
+            "text": "老年组",
+            "value": "3"
+          }
+        ]
+    }
+
+
 ## 签表 [/eventDrawTable]
 
 ### 获取签表信息-小组资格赛 [POST]
@@ -796,6 +869,79 @@
       }
 
 
+## 获取赛事得分过滤条件 [/cascadeFilter]
+
+### 获取赛事得分过滤条件  [POST]
+
+### 返回数据格式(Array)
++ text (String) - 过滤条件名
++ value (String) - 过滤条件值
++ children (String) - 子过滤条件
+  + text (String) - 子过滤条件名
+  + value (String) - 子过滤条件值
+
++ Request (application/json)
+
+  + Body
+
+    {
+      "id": "fdafa",
+      "type": "eventScoreFilter"
+    }
+
++ Response 200 (application/json)
+  
+  + Body
+
+      {
+        "code": 0,
+        "data": [
+          {
+            "text": "少年组",
+            "value": "1",
+            "children": [
+              {
+                "text": "双打",
+                "value": "1-1"
+              },
+              {
+                "text": "单打",
+                "value": "2-1"
+              }
+            ]
+          },
+          {
+            "text": "青年组",
+            "value": "2",
+            "current": true,
+            "children": [
+              {
+                "text": "女子双打",
+                "value": "1-1"
+              },
+              {
+                "text": "女子单打",
+                "value": "2-1"
+              },
+              {
+                "text": "男子双打",
+                "value": "3-1"
+              },
+              {
+                "text": "男子单打",
+                "value": "4-1"
+              }
+            ]
+          },
+          {
+            "text": "老年组",
+            "value": "3"
+          }
+        ]
+      }
+
+
+
 ## 赛事得分 [/api/eventScore]
 
 按比赛分组返回一个数组
@@ -962,95 +1108,73 @@
           ]
       }
 
-## 赛程过滤条件 [/api/eventScheduleFilter]
+## 获取赛程过滤条件 [/cascadeFilter]
 
-返回一个Object
+### 获取赛程过滤条件  [POST]
 
-+ date (Array): 日期过滤器
-  + text (String): 日期显示
-  + value (String): 日期值与赛程中date 过滤条件对应
-+ location (Array): 地址过滤器
-  + text (String): 地址显示
-  + value (String): 地址值与赛程中location 过滤条件对应
-
-
-### 获取赛程过滤条件 [POST]
-
-+ method (string) - The calling method
+### 返回数据格式(Array)
++ text (String) - 日期
++ value (String) - 日期值
++ children (String) - 子过滤条件
+  + text (String) - 场地
+  + value (String) - 场地值
 
 + Request (application/json)
 
   + Body
 
-        {
-            "id": 1
-        }
+    {
+      "id": "fdafa",
+      "type": "eventScheduleFilter"
+    }
 
 + Response 200 (application/json)
-
+  
   + Body
 
       {
-          "code": 0,
-          "data": {
-              "location": [
-                  {
-                      "text": "全部",
-                      "value": 0
-                  },
-                  {
-                      "text": "电子科技大学体育场一号球馆",
-                      "value": 1
-                  },
-                  {
-                      "text": "电子科技大学体育场二号球馆",
-                      "value": 2
-                  }
-              ],
-              "date": [
-                  {
-                      "text": "所有",
-                      "value": 0
-                  },
-                  {
-                      "text": "2017.1.12",
-                      "value": 1
-                  },
-                  {
-                      "text": "2017.2.12",
-                      "value": 2
-                  },
-                  {
-                      "text": "2017.3.12",
-                      "value": 2
-                  },
-                  {
-                      "text": "2017.4.12",
-                      "value": 3
-                  },
-                  {
-                      "text": "2017.5.12",
-                      "value": 4
-                  },
-                  {
-                      "text": "2017.6.12",
-                      "value": 5
-                  },
-                  {
-                      "text": "2017.7.12",
-                      "value": 6
-                  },
-                  {
-                      "text": "2017.8.12",
-                      "value": 7
-                  },
-                  {
-                      "text": "2017.9.12",
-                      "value": 8
-                  }
-              ]
+        "code": 0,
+        "data": [
+          {
+            "text": "2014.1.2",
+            "value": "1",
+            "children": [
+              {
+                "text": "场地1",
+                "value": "1-1"
+              },
+              {
+                "text": "场地2",
+                "value": "2-1"
+              }
+            ]
+          },
+          {
+            "text": "2014.1.3",
+            "value": "2",
+            "current": true,
+            "children": [
+              {
+                "text": "场地3",
+                "value": "1-1"
+              },
+              {
+                "text": "场地4",
+                "value": "2-1"
+              },
+              {
+                "text": "场地5",
+                "value": "3-1"
+              },
+              {
+                "text": "场地6",
+                "value": "4-1"
+              }
+            ]
           }
+        ]
       }
+
 
 
 ## 赛程 [/api/eventSchedule]

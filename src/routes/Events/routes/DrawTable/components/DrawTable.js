@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import TopNav from "components/TopNav";
 import NavBack from "components/NavBack";
+import CascadeFilter from "components/CascadeFilter";
 
 import TableDetails from "./TableDetails";
 import QualifyTableDetails from "./QualifyTableDetails";
@@ -29,11 +30,10 @@ export default class DrawTable extends Component {
     getDrawTable({eventId, matchId, type: currentFilter})
   }
 
-  setCurrentFilter = (e) => {
-    const value = e.target.value;
-    const {setCurrentFilter, currentMatch, getDrawTable, params: {eventId}} = this.props;
-    setCurrentFilter(value)
-    getDrawTable({eventId, currentMatch, type: value})
+  setCurrentFilter = ({group, itemId}) => {
+    const {setCurrentFilter, currentMatch, getDrawTable} = this.props;
+    setCurrentFilter({group, itemId});
+    getDrawTable({itemId, round: currentMatch});
   }
 
   render() {
@@ -42,21 +42,6 @@ export default class DrawTable extends Component {
     return (
       <div>
         <NavBack caption="签表">
-          <div className={cs.typeFilter}>
-            <i className="material-icons">more_vert</i>
-            <select
-              className="dropdown"
-              defaultValue={currentFilter}
-              onChange={this.setCurrentFilter}
-            >
-            {filters.map((item, index) => {
-              return <option
-                      key={index}
-                      value={item.value}
-                    >{item.text}</option>
-            })}
-            </select>
-          </div>
         </NavBack>
         <div className={cs.tab}>
           <div className={cs.tabInnerbox}>
@@ -77,7 +62,14 @@ export default class DrawTable extends Component {
             </ul>
           </div>
         </div>
-        <div className={cs.gameName}>{gameName}</div>
+        {/*<div className={cs.gameName}>{gameName}</div>*/}
+        <div className={cs.gameName}>
+          <CascadeFilter
+            filters={filters}
+            filterKeys={['group', 'itemId']}
+            onChange={this.setCurrentFilter}
+          />
+        </div>
         {qualify
         ? <QualifyTableDetails data={data.details} />
         : <TableDetails data={data.details} />}

@@ -11,7 +11,7 @@ export default (store) => ({
 
   getComponent (nextState, next) {
     require.ensure([], (require) => {
-      const Container = require('./containers/drawTableContainer')
+      const Container = require('./containers/DrawTableContainer')
       const reducer = require('./modules/drawTable').default
 
       injectReducer(store, { key: 'drawTable', reducer })
