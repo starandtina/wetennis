@@ -7,10 +7,7 @@ import style from './TimeItem.scss';
 
 class TimeItem extends Component {
   deleteItem = () => {
-    const { Item, deleteTime, fetchDeleteTime } = this.props;
-    deleteTime({
-      id: Item.id
-    })
+    const { Item, fetchDeleteTime } = this.props;
     fetchDeleteTime({
       id: Item.id
     })
@@ -24,9 +21,7 @@ class TimeItem extends Component {
     } else if (Number(permission) == 2) {
       PermissionIcon = <i className="material-icons">lock</i>;
     }
-    console.log(Item);
     if (Item.type === "Message") {
-      console.log(imgs);
       const imgContent = imgs.length > 0 ?
         imgs.map((img, index) => <div key={id+'_'+index} className={style.ImgMsg}>
           <img src={img.timesImgStr}/>

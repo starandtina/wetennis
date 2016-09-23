@@ -49,7 +49,7 @@ export default handleActions({
       imageList: []
     });
   },
-  [DELETE_TIME]:(state, { payload: { id } }) => {
+  [DELETE_TIME]:(state, { meta: { id } }) => {
     const newTimeList = state.timeList.filter(time => time.id != id);
     return ({
       ...state,

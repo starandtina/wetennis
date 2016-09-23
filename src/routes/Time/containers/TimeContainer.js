@@ -11,7 +11,7 @@ import IconButton from 'material-ui/IconButton/IconButton';
 import Footer from 'components/Footer'
 import style from './TimeContainer.scss';
 import TimeItem from '../components/TimeItem';
-import { fetchTimesList, fetchTimeInfo, deleteTime, fetchDeleteTime } from '../actions';
+import { fetchTimesList, fetchTimeInfo, fetchDeleteTime } from '../actions';
 
 const mapStateToProps = (state) => ({
   user: state.user,
@@ -19,7 +19,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = ({
-  fetchTimesList, fetchTimeInfo, push, deleteTime, fetchDeleteTime
+  fetchTimesList, fetchTimeInfo, push, fetchDeleteTime
 })
 
 class Times extends Component {
@@ -55,13 +55,18 @@ class Times extends Component {
     fetchTimesList({
       currentPage: currentPage + 1,
       userId: user.id
+    }).then(action => {
+      this.setState({
+        pageStart:this.pageStart + 1,
+        hasMore: !action.payload.data.lastPage
+      })
     });
   }
 
   debounceFuc = this.loadData
 
   render() {
-    const { time, children, deleteTime, fetchDeleteTime } = this.props;
+    const { time, children, fetchDeleteTime } = this.props;
     let content = null;
     let footer =  null;
     if (children) {
@@ -78,6 +83,7 @@ class Times extends Component {
       const footer = <Footer activeNavTab='TIME' />;
       const timeList = time.timeList;
       const height = window.innerHeight - 55;
+      console.log(this.state.hasMore);
       content = (
         <div>
           <div className={style.Timelist} style={({height:height, overflow: 'auto', clear: 'both'})}>
@@ -110,7 +116,7 @@ class Times extends Component {
                 <div className={style.UserInfo}>{time.gender} | {time.birthday} | {time.Constellation}</div>
               </div>
               {timeList.map((item, index) => {
-                  return  <TimeItem key={index} Item={item} deleteTime={deleteTime} fetchDeleteTime={fetchDeleteTime} />
+                  return  <TimeItem key={index} Item={item} fetchDeleteTime={fetchDeleteTime} />
                 }
               )}
             </InfiniteScroll>

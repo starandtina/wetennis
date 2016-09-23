@@ -5,18 +5,20 @@ module.exports = function () {
   var router = express.Router()
 
   function show(req, res, next) {
-    console.log(req.cookies.USER_ID);
     models.Times
       .findAll({
         include: models.TimesPics,
+        order: 'id DESC',
         where: {
           userId: req.cookies.USER_ID
         }
       })
       .then((arr) => {
+        const currentPage = req.query.currentPage;
+        const lastPage = arr.length < currentPage * 10;
         res.locals.data = {
-          timeList: arr,
-          lastPage: true
+          timeList: arr.slice((currentPage - 1) * 10, lastPage ? undefined : currentPage * 10),
+          lastPage
         }
         next()
       })
@@ -42,11 +44,23 @@ module.exports = function () {
     next()
   }
 
+  function del(req, res, next) {
+    models.Times.destroy({
+      where: {
+        id: req.query.id
+      }
+    });
+    res.locals.data = {result: true};
+    next();
+  }
+
   router.route('/')
     .get(show)
     .post(create)
     .put(update)
     .patch(update)
+    .delete(del)
+
 
   return router
 }
