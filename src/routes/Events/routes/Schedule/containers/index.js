@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { push } from 'react-router-redux'
 
 import EventSchedule from "../components/EventSchedule";
-import {getSchedule, getFilter, setCurrentFilter} from "../modules";
+import {getSchedule, getFilter, setCurrentFilter, updateLocationFilters} from "../modules";
 
 const mapStateToProps = (state) => {
   const {currentFilter, filters, schedule} = state.eventSchedule;
@@ -16,6 +16,7 @@ export default connect(
   {
     getSchedule,
     getFilter,
-    setCurrentFilter
+    setCurrentFilter,
+    updateLocationFilters
   }
 )(EventSchedule)

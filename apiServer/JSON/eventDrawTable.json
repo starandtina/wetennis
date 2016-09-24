@@ -3,7 +3,6 @@
     "errorMsg": "",
     "data": {
       "qualify": false,
-      "gameName": "青年组 精英B | 女子双打",
       "matchs": [
         {"id": 1, "text": "小组资格赛"},
         {"id": 2, "text": "第一轮"},

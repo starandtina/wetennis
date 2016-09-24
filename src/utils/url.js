@@ -58,8 +58,8 @@ export default {
   fetchEventNotices: `${ROOT_URL}eventNotices`,
   fetchEventSponsors: `${ROOT_URL}eventSponsors`,
   fetchEventComments: `${ROOT_URL}eventComments`,
-  likeComment: `${ROOT_URL}eventLikeComment`,
-  sendComment: `${ROOT_URL}eventSendComment`,
+  // likeComment: `${ROOT_URL}eventLikeComment`,
+  // sendComment: `${ROOT_URL}eventSendComment`,
   registerEvent: `${ROOT_URL}registerEvent`,
   eventDraw: `${ROOT_URL}eventDraw`,
   eventFollow: `${ROOT_URL}eventFollow`,
@@ -82,7 +82,7 @@ export default {
 
   // draw table
   fetchEventDrawTable: `${ROOT_URL}eventDrawTable`,
-  // fetchEventDrawTable: `${ROOT_URL}eventDrawTable`,
+  // fetchEventDrawTable: `${ROOT_URL}eventDrawTable_qualify`,
   fetchEventDrawTableFilter: `${ROOT_URL}eventDrawTableFilter`,
 
   // rankings

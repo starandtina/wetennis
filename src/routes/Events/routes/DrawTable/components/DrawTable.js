@@ -11,23 +11,22 @@ export default class DrawTable extends Component {
   componentDidMount() {
     const {
       getFilter,
+      setCurrentFilter,
       params: {eventId}
     } = this.props;
-    getFilter(eventId).then((data) => {
-      this.getDrawTable()
-    });
+    getFilter(eventId);
   }
   getDrawTable(matchId) {
     const {
       getDrawTable,
       setCurrentMatch,
-      currentFilter,
+      currentFilter: {itemId},
       params: {eventId}
     } = this.props
     if (matchId) {
       setCurrentMatch(matchId)
     }
-    getDrawTable({eventId, matchId, type: currentFilter})
+    getDrawTable({itemId, round: matchId})
   }
 
   setCurrentFilter = ({group, itemId}) => {
@@ -62,7 +61,6 @@ export default class DrawTable extends Component {
             </ul>
           </div>
         </div>
-        {/*<div className={cs.gameName}>{gameName}</div>*/}
         <div className={cs.gameName}>
           <CascadeFilter
             filters={filters}

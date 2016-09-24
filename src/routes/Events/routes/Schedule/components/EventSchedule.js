@@ -10,37 +10,65 @@ export default class EventScore extends Component {
       getFilter, getSchedule,
       params: {eventId}
     } = this.props;
-    getFilter(eventId);
-    getSchedule(eventId);
     document.body.classList.add(cs.bodyBg);
+    getFilter(eventId).then(() => {
+      const {currentFilter} = this.props;
+      getSchedule({
+        eventId,
+        location: currentFilter.location.value,
+        date: currentFilter.date.value
+      });
+    });
   }
   componentWillUnmount() {
     document.body.classList.remove(cs.bodyBg);
   }
-  setCurrentFilter = (field, e) => {
+  setCurrentFilter = (filter, field, e) => {
     const value = e.target.value;
-    const {currentFilter, setCurrentFilter} = this.props;
-    const __obj = {...currentFilter, [field]: Number(value)};
-    setCurrentFilter(__obj);
+    const {
+      currentFilter,
+      setCurrentFilter,
+      updateLocationFilters,
+      params: {eventId}
+    } = this.props;
+    let item = {};
+    let location = currentFilter.location;
+    for (let v of filter) {
+      if (v.value == value) {
+        item = v;
+        break;
+      }
+    }
+    if (field === "date") {
+      if (item.children && item.children.length > 0) {
+        location = item.children[0];
+        updateLocationFilters(item.children)
+      } else {
+        location = [];
+      }
+    }
+    setCurrentFilter(eventId, {
+      ...currentFilter,
+      location,
+      [field]: item
+    });
   }
   render() {
     const {schedule, currentFilter, filters} = this.props;
-    const currentDate = filters.date.filter(item => item.value === currentFilter.date)[0];
-    const currentLocation = filters.location.filter(item => item.value === currentFilter.location)[0];
-    const date = currentDate ? currentDate.text : "";
-    const location = currentLocation ? currentLocation.text : "";
+    const currentDate = currentFilter.date;
+    const currentLocation = currentFilter.location;
     return (
       <div className={cs.box}>
         <NavBack title="赛程" />
         <div className={cs.filter}>
           <div className={cs.timeFilter}>
             <i className="material-icons">alarm</i>
-            <div className={cs.filterText}>{date}</div>
+            <div className={cs.filterText}>{currentDate.text || ""}</div>
             <i className="material-icons">keyboard_arrow_down</i>
             <select
               className="dropdown"
-              defaultValue={currentFilter.date}
-              onChange={this.setCurrentFilter.bind(this, "date")}
+              defaultValue={currentDate.value}
+              onChange={this.setCurrentFilter.bind(this, filters.date, "date")}
             >
             {filters.date.map((item, index) => {
               return <option key={index} value={item.value}>{item.text}</option>
@@ -49,15 +77,18 @@ export default class EventScore extends Component {
           </div>
           <div className={cs.locationFilter}>
             <i className="material-icons">place</i>
-            <div className={cs.filterText}>{location}</div>
+            <div className={cs.filterText}>{currentLocation.text || ""}</div>
             <i className="material-icons">keyboard_arrow_down</i>
             <select
               className="dropdown"
-              defaultValue={currentFilter.location}
-              onChange={this.setCurrentFilter.bind(this, "location")}
+              defaultValue={currentLocation.value}
+              onChange={this.setCurrentFilter.bind(this, filters.location, "location")}
             >
             {filters.location.map((item, index) => {
-              return <option key={index} value={item.value}>{item.text}</option>
+              return <option
+                      key={index}
+                      value={item.value}
+                    >{item.text}</option>
             })}
             </select>
           </div>
@@ -96,8 +127,6 @@ export default class EventScore extends Component {
   }
   groupItem = (item, index) => {
     const {date, location} = this.props.currentFilter;
-    if (!(item.date === date || date === 0)) return;
-    if (!(item.location === location || location === 0)) return;
     return (
       <div key={index} className={cs.groupItem}>
         <div className={cs.groupNumber}>{item.matches}</div>
