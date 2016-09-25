@@ -105,7 +105,7 @@ export default class EventInfo extends React.Component {
               </div>
             }
 
-            {[6].indexOf(Number(state)) !== -1
+            {[5, 6].indexOf(Number(state)) !== -1
             ? <Link
                 to={`/events/${eventId}/score`}
                 className={`${cs.startedCol} ${cs.startedActive}`}
