@@ -52,7 +52,7 @@ export const setCurrentFilter = (currentFilter) => ({
 
 function currentFilter(state = {
   status: 0,
-  type: 0
+  itemId: 0
 }, {type, payload}) {
   let s = state;
   if (type === SET_CURRENT_EVENT_SCORE_FILTER) {
@@ -60,7 +60,7 @@ function currentFilter(state = {
   } else if (type === FETCH_EVENT_SCORE_STATE_FILTER_SUCCESS) {
     s.status = payload[0].value;
   } else if (type === FETCH_EVENT_SCORE_GROUP_FILTER_SUCCESS) {
-    s.type = payload[0].value;
+    s.itemId = payload[0].value;
   }
 
   return s;
@@ -68,7 +68,7 @@ function currentFilter(state = {
 
 function filters(state = {
   status: [],
-  type: []
+  itemId: []
 }, {type, payload}) {
   let s = state;
 
@@ -77,7 +77,7 @@ function filters(state = {
   }
 
   if (type === FETCH_EVENT_SCORE_GROUP_FILTER_SUCCESS) {
-    s.type = payload;
+    s.itemId = payload;
   }
 
   return s;

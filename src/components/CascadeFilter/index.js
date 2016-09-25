@@ -93,8 +93,9 @@ export default class CascadeFilter extends Component {
 
   render() {
     const {filters} = this.state;
+    const {className} = this.props;
     return (
-      <div className={cs.box}>
+      <div className={`${className || ""} ${cs.box}`}>
         {filters.map((item, index) => {
           return (
             <Filter

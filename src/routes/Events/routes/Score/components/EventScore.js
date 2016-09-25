@@ -12,37 +12,42 @@ export default class EventScore extends Component {
       params: {eventId}
     } = this.props;
     getStateFilter(eventId);
-    getGroupFilter(eventId);
-    getScore(eventId);
+    getGroupFilter(eventId).then(() => {
+      const {itemId} = this.props.currentFilter;
+      getScore({eventId, itemId});
+    });
     document.body.classList.add(cs.bodyBg);
   }
   componentWillUnmount() {
     document.body.classList.remove(cs.bodyBg);
   }
   setCurrentFilter = (field, e) => {
-    if (field === "type") {
-      console.log(e);
+    const {
+      currentFilter, setCurrentFilter, getScore,
+      params: {eventId}
+      } = this.props;
+    if (field === "itemId") {
+      const itemId = e.itemId;
+      setCurrentFilter({...currentFilter, itemId});
+      getScore({itemId, eventId});
     } else {
       const value = e.target.value;
-      const {currentFilter, setCurrentFilter} = this.props;
-      const __obj = {...currentFilter, [field]: Number(value)};
-      setCurrentFilter(__obj);
+      setCurrentFilter({...currentFilter, [field]: value});
     }
   }
   render() {
     const {score, currentFilter, filters} = this.props;
-    const currentType = filters.type.filter(item => item.value === currentFilter.type)[0];
-    const currentStatus = filters.status.filter(item => item.value === currentFilter.status)[0];
-    const title = currentType ? currentType.text : "";
+    const currentStatus = filters.status.filter(item => item.value == currentFilter.status)[0];
     const status = currentStatus ? currentStatus.text : "";
     return (
       <div className={cs.box}>
         <NavBack title="比分"></NavBack>
         <div className={cs.pageTitle}>
           <CascadeFilter
-            filters={filters.type}
-            filterKeys={["group", "subGroup"]}
-            onChange={this.setCurrentFilter.bind(this, "type")}
+            className={cs.groupFilter}
+            filters={filters.itemId}
+            filterKeys={["group", "itemId"]}
+            onChange={this.setCurrentFilter.bind(this, "itemId")}
           />
           <div className={cs.statusFilter}>
             {status}
@@ -63,7 +68,6 @@ export default class EventScore extends Component {
             </select>
           </div>
         </div>
-        <h3 className={cs.title}>{title}</h3>
         {score.map(this.groupItem)}
       </div>
     );
@@ -98,8 +102,7 @@ export default class EventScore extends Component {
   }
   groupItem = (item, index) => {
     const {currentFilter: {type, status}} = this.props;
-    if (!(item.type === type || type === 0)) return;
-    if (!(item.status === status || status === 0)) return;
+    if (!(item.status == status || status == 0)) return;
     return (
       <div key={index} className={cs.groupItem}>
         <div className={cs.groupNumber}>{item.matches}</div>
