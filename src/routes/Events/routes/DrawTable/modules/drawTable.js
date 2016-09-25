@@ -20,7 +20,7 @@ export const SET_CURRENT_FILTER = "SET_CURRENT_FILTER";
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const getDrawTable = function ({itemId, round}) {
+export const getDrawTable = function ({itemId, round = -1}) {
   return {
     types: [FETCH_EVENT_GRAWTABLE, FETCH_EVENT_GRAWTABLE_SUCCESS, FETCH_EVENT_GRAWTABLE_FAILTURE],
     promise: () => API.post(URLConf.fetchEventDrawTable, {itemId, round})

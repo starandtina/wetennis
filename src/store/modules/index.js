@@ -19,10 +19,23 @@ export const loaded = () => ({
   type: LOADED
 })
 
-export const error = (msg) => ({
-  type: ERROR,
-  payload: msg
-})
+
+let errorTimer;
+export const error = (msg) => {
+  return (dispatch) => {
+    dispatch({
+      type: ERROR,
+      payload: msg
+    });
+    if (errorTimer) {
+      clearTimeout(errorTimer);
+    }
+    errorTimer = setTimeout(() => {
+      dispatch(errorHide());
+      errorTimer = false;
+    }, 5000);
+  }
+}
 
 export const errorHide = () => ({
   type: ERROR_HIDE
