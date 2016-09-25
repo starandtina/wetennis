@@ -19,7 +19,6 @@
     "database": "FeServer",
     "host": "119.90.129.23",
     "dialect": "mssql",
-    // disable logging; default: console.log
-    logging: false
+    "logging": false
   }
 }
