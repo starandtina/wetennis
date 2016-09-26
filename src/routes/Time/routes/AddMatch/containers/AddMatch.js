@@ -93,6 +93,11 @@ class AddMatch extends Component {
     document.querySelector('body').classList.remove('u-backgroundColorGreen')
   }
 
+  componentDidMount(){
+    const { clearTimeImage } = this.props;
+    clearTimeImage();
+  }
+
   handleChangeDate = (dateField) => (empty, date) => {
     dateField.onChange(formatDate(date));
   };

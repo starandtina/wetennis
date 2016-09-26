@@ -59,6 +59,11 @@ class AddTime extends Component {
     document.querySelector('body').classList.remove('u-backgroundColorGreen')
   }
 
+  componentDidMount(){
+    const { clearTimeImage } = this.props;
+    clearTimeImage();
+  }
+
   addTime = () => {
     const { values, time, addTimeMessage, push, user } = this.props;
     console.log(user.id);
