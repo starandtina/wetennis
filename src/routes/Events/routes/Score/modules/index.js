@@ -37,9 +37,9 @@ export const getGroupFilter = id => ({
   promise: () => API.post(URLConf.cascadeFilter, {id, type: "eventScore"})
 });
 
-export const getScore = id => ({
+export const getScore = ({itemId}) => ({
   types: [FETCH_EVENT_SCORE, FETCH_EVENT_SCORE_SUCCESS, FETCH_EVENT_SCORE_FAILTURE],
-  promise: () => API.post(URLConf.fetchEventScore, {id})
+  promise: () => API.post(URLConf.fetchEventScore, {itemId})
 });
 
 export const setCurrentFilter = (currentFilter) => ({

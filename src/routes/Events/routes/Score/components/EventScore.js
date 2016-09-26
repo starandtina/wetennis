@@ -14,7 +14,7 @@ export default class EventScore extends Component {
     getStateFilter(eventId);
     getGroupFilter(eventId).then(() => {
       const {itemId} = this.props.currentFilter;
-      getScore({eventId, itemId});
+      getScore({itemId});
     });
     document.body.classList.add(cs.bodyBg);
   }
@@ -29,7 +29,7 @@ export default class EventScore extends Component {
     if (field === "itemId") {
       const itemId = e.itemId;
       setCurrentFilter({...currentFilter, itemId});
-      getScore({itemId, eventId});
+      getScore({itemId});
     } else {
       const value = e.target.value;
       setCurrentFilter({...currentFilter, [field]: value});
