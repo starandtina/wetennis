@@ -13,7 +13,7 @@ class TimeItem extends Component {
     })
   };
   render() {
-    const { Item } = this.props;
+    const { Item, isLast } = this.props;
     const { date, TimesPics: imgs, message, permission, id } = Item;
     let PermissionIcon = <i className="material-icons">public</i>;
     if (Number(permission) == 1) {
@@ -48,10 +48,10 @@ class TimeItem extends Component {
             <p>{message}</p>
             {imgs.length > 0 ? imgContent : null}
           </div>
-          <div>
+          {isLast ? null : (<div>
             <div className={`${style.Left} ${style.Border}`}></div>
             <div className={style.Right}></div>
-          </div>
+          </div>)}
         </div>
       )
     }
@@ -122,10 +122,10 @@ class TimeItem extends Component {
           <p className={style.MatchMessage}>{message}</p>
           {imgs.length > 0 ? imgContent : null}
         </div>
-        <div>
+        {isLast ? null : (<div>
           <div className={`${style.Left} ${style.Border}`}></div>
           <div className={style.Right}></div>
-        </div>
+        </div>)}
       </div>
     )
   }

@@ -50,7 +50,7 @@ class Times extends Component {
     push(`/time/${value}`);
   }
 
-  loadData = (downOrUp, callback) => {
+  loadData = () => {
     const { fetchTimesList, time: { currentPage }, user } = this.props;
     fetchTimesList({
       currentPage: currentPage + 1,
@@ -83,7 +83,6 @@ class Times extends Component {
       const footer = <Footer activeNavTab='TIME' />;
       const timeList = time.timeList;
       const height = window.innerHeight - 55;
-      console.log(this.state.hasMore);
       content = (
         <div>
           <div className={style.Timelist} style={({height:height, overflow: 'auto', clear: 'both'})}>
@@ -103,10 +102,9 @@ class Times extends Component {
                     <select
                       id="addTimeIcon"
                       className="dropdown"
-                      defaultValue=""
                       onChange={this.addNewTime}
                     >
-                      <option style={({display:'none'})} value=""></option>
+                      <option style={({display:'none'})} value="">请选择</option>
                       <option value="addTime">添加心情</option>
                       <option value="addMatch">晒约球</option>
                     </select>
@@ -115,10 +113,12 @@ class Times extends Component {
                 <div className={style.Name}>{time.name}</div>
                 <div className={style.UserInfo}>{time.gender} | {time.birthday} | {time.Constellation}</div>
               </div>
-              {timeList.map((item, index) => {
-                  return  <TimeItem key={index} Item={item} fetchDeleteTime={fetchDeleteTime} />
+              {(timeList.length === 0 && this.state.hasMore ===false) ? <p className={style.text}>您的朋友圈没有任何内容</p>
+                : timeList.map((item, index) => {
+                  return  <TimeItem key={index} Item={item} isLast={index === timeList.length -1} fetchDeleteTime={fetchDeleteTime} />
                 }
               )}
+              {(timeList.length !== 0 && this.state.hasMore ===false) ? <p className={style.text}>已经到最后</p> : null}
             </InfiniteScroll>
             {footer}
           </div>

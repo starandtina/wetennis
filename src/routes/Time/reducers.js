@@ -38,15 +38,19 @@ export default handleActions({
     });
   },
   [ADD_TIME_MESSAGE_SUCCESS]:(state, { payload }) => {
+    const newTimeList = [payload].concat(state.timeList);
     return ({
       ...state,
-      imageList: []
+      imageList: [],
+      timeList: newTimeList
     });
   },
   [ADD_TIME_MATCH_SUCCESS]:(state, { payload }) => {
+    const newTimeList = [payload].concat(state.timeList);
     return ({
       ...state,
-      imageList: []
+      imageList: [],
+      timeList: newTimeList
     });
   },
   [DELETE_TIME]:(state, { meta: { id } }) => {
