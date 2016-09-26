@@ -24,6 +24,7 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       field: 'us'
     },
+    permission: DataTypes.INTEGER,
     ourScore: DataTypes.INTEGER,
     opponentScore: DataTypes.INTEGER,
     opponent: DataTypes.STRING,
