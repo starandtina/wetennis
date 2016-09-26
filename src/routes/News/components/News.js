@@ -9,10 +9,16 @@ export default class News extends Component {
   onClickLike() {
     const {
       item,
-      likeNews
+      likeNews,
+      userId
     } = this.props
 
-    likeNews && likeNews(item)
+    // If user has signed in and also we have passed in the `likeNews` action
+    if (userId && likeNews) {
+      likeNews({
+        id: item.id
+      })
+    }
   }
 
   render() {

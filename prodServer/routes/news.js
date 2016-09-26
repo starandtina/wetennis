@@ -107,7 +107,6 @@ module.exports = function () {
         UpdateTime: new Date().toISOString()
       })
       .then((data) => {
-        console.log(JSON.stringify(data))
         res.locals.data = data
         next()
       })
