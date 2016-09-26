@@ -75,11 +75,12 @@ class Times extends Component {
     } else {
       const bgstyle = {
         backgroundColor: 'lightgray',
-        backgroundImage:  `url(${time && time.backGroundImageUrl})`,
+        backgroundImage:  `url(${(time && time.backGroundImageUrl) || 'http://img1.sc115.com/uploads/sc/jpg/151/14856.jpg'})`,
         backgroundSize: 'contain',
         backgroundRepeat: 'round',
         color: 'white'
       };
+
       const footer = <Footer activeNavTab='TIME' />;
       const timeList = time.timeList;
       const height = window.innerHeight - 55;
