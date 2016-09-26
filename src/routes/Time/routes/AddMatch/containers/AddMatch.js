@@ -138,7 +138,7 @@ class AddMatch extends Component {
     return (
       <form className={style.Root} onSubmit={handleSubmit(this.addMatch)}>
         <NavBack caption="添加我的约球">
-          <button type="submit" disabled={submitting}>
+          <button type="submit" disabled={submitting} className={style.Button}>
             <i className="material-icons">done</i>
           </button>
         </NavBack>

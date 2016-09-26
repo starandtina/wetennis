@@ -40,6 +40,7 @@ const mapStateToProps = (state) => ({
   }
 });
 
+
 const mapDispatchToProps = ({
   push,
   uploadTimeImage,
@@ -91,7 +92,11 @@ class AddTime extends Component {
     return (
     <form className={style.Root} onSubmit={handleSubmit(this.addTime)}>
       <NavBack caption="添加我的时光">
-        <button type="submit" disabled={submitting}>
+        <button
+          type="submit"
+          disabled={submitting}
+          className={style.Button}
+        >
           <i className="material-icons">done</i>
         </button>
       </NavBack>

@@ -29,6 +29,12 @@ export const addTimeMessage = data => ({
   promise: () => API.post(URL.addTimeMessage, data)
 })
 
+export const UPLOAD_TIME_IMAGE = 'UPLOAD_TIME_IMAGE';
+export const uploadTimeImage = createAction(UPLOAD_TIME_IMAGE)
+
+export const CLEAR_TIME_IMAGE = 'CLEAR_TIME_IMAGE';
+export const clearTimeImage = createAction(CLEAR_TIME_IMAGE)
+
 export const ADD_TIME_MATCH = 'ADD_TIME_MATCH';
 export const ADD_TIME_MATCH_SUCCESS = 'ADD_TIME_MATCH_SUCCESS';
 export const ADD_TIME_MATCH_FAILED = 'ADD_TIME_MATCH_FAILED';
