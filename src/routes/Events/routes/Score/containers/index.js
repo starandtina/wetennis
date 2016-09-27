@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { push } from 'react-router-redux'
 
 import EventScore from "../components/EventScore";
-import {getScore, getStateFilter, getGroupFilter, setCurrentFilter} from "../modules";
+import {getScore, getGroupFilter, setCurrentFilter} from "../modules";
 
 const mapStateToProps = (state) => {
   const {currentFilter, filters, score} = state.eventScore;
@@ -15,7 +15,6 @@ export default connect(
   mapStateToProps,
   {
     getScore,
-    getStateFilter,
     getGroupFilter,
     setCurrentFilter
   }

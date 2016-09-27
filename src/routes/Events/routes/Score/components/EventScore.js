@@ -8,13 +8,12 @@ import cs from "./EventScore.scss";
 export default class EventScore extends Component {
   componentDidMount() {
     const {
-      getStateFilter, getGroupFilter, getScore,
-      params: {eventId}
+      getGroupFilter, getScore,
+      params: {eventId},
+      currentFilter
     } = this.props;
-    getStateFilter(eventId);
     getGroupFilter(eventId).then(() => {
-      const {itemId} = this.props.currentFilter;
-      getScore({itemId});
+      getScore(currentFilter);
     });
     document.body.classList.add(cs.bodyBg);
   }
@@ -29,7 +28,6 @@ export default class EventScore extends Component {
     if (field === "itemId") {
       const itemId = e.itemId;
       setCurrentFilter({...currentFilter, itemId});
-      getScore({itemId});
     } else {
       const value = e.target.value;
       setCurrentFilter({...currentFilter, [field]: value});

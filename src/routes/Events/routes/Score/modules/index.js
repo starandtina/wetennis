@@ -11,10 +11,6 @@ export const FETCH_EVENT_SCORE = 'FETCH_EVENT_SCORE'
 export const FETCH_EVENT_SCORE_SUCCESS = 'FETCH_EVENT_SCORE_SUCCESS'
 export const FETCH_EVENT_SCORE_FAILTURE = 'FETCH_EVENT_SCORE_FAILTURE'
 
-// get event filter
-export const FETCH_EVENT_SCORE_STATE_FILTER = 'FETCH_EVENT_SCORE_STATE_FILTER'
-export const FETCH_EVENT_SCORE_STATE_FILTER_SUCCESS = 'FETCH_EVENT_SCORE_STATE_FILTER_SUCCESS'
-export const FETCH_EVENT_SCORE_STATE_FILTER_FAILTURE = 'FETCH_EVENT_SCORE_STATE_FILTER_FAILTURE'
 
 // get event filter
 export const FETCH_EVENT_SCORE_GROUP_FILTER = 'FETCH_EVENT_SCORE_GROUP_FILTER'
@@ -27,25 +23,26 @@ export const SET_CURRENT_EVENT_SCORE_FILTER = 'SET_CURRENT_EVENT_SCORE_FILTER'
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const getStateFilter = id => ({
-  types: [FETCH_EVENT_SCORE_STATE_FILTER, FETCH_EVENT_SCORE_STATE_FILTER_SUCCESS, FETCH_EVENT_SCORE_STATE_FILTER_FAILTURE],
-  promise: () => API.post(URLConf.fetchEventScoreStateFilter, {id})
-});
-
 export const getGroupFilter = id => ({
   types: [FETCH_EVENT_SCORE_GROUP_FILTER, FETCH_EVENT_SCORE_GROUP_FILTER_SUCCESS, FETCH_EVENT_SCORE_GROUP_FILTER_FAILTURE],
   promise: () => API.post(URLConf.cascadeFilter, {id, type: "eventScore"})
 });
 
-export const getScore = ({itemId}) => ({
+export const getScore = ({itemId, status}) => ({
   types: [FETCH_EVENT_SCORE, FETCH_EVENT_SCORE_SUCCESS, FETCH_EVENT_SCORE_FAILTURE],
-  promise: () => API.post(URLConf.fetchEventScore, {itemId})
+  promise: () => API.post(URLConf.fetchEventScore, {itemId, status})
 });
 
-export const setCurrentFilter = (currentFilter) => ({
-  type: SET_CURRENT_EVENT_SCORE_FILTER,
-  payload: currentFilter
-});
+export const setCurrentFilter = (currentFilter) => {
+  return dispatch => {
+    dispatch({
+      type: SET_CURRENT_EVENT_SCORE_FILTER,
+      payload: currentFilter
+    })
+
+    dispatch(getScore(currentFilter))
+  }
+};
 // ------------------------------------
 // Reducer
 // ------------------------------------
@@ -57,8 +54,6 @@ function currentFilter(state = {
   let s = state;
   if (type === SET_CURRENT_EVENT_SCORE_FILTER) {
     s = payload
-  } else if (type === FETCH_EVENT_SCORE_STATE_FILTER_SUCCESS) {
-    s.status = payload[0].value;
   } else if (type === FETCH_EVENT_SCORE_GROUP_FILTER_SUCCESS) {
     s.itemId = payload[0].value;
   }
@@ -67,14 +62,14 @@ function currentFilter(state = {
 }
 
 function filters(state = {
-  status: [],
+  status: [
+    {"text": "全部", "value": 0},
+    {"text": "正在进行", "value": 1},
+    {"text": "已完成", "value": 2}
+  ],
   itemId: []
 }, {type, payload}) {
   let s = state;
-
-  if (type === FETCH_EVENT_SCORE_STATE_FILTER_SUCCESS) {
-    s.status = payload;
-  }
 
   if (type === FETCH_EVENT_SCORE_GROUP_FILTER_SUCCESS) {
     s.itemId = payload;
