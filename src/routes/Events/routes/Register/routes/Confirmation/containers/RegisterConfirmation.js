@@ -50,8 +50,10 @@ const validate = (values, props) => {
   }
 
   if (!values.cardId || values.cardId.trim() === '') {
-    errors.cardId = '请输入身份证号';
-    hasErrors = true;
+    if(!values.passport || values.passport.trim() === ''){
+      errors.cardId = '请输入身份证号或护照';
+      hasErrors = true;
+    }
   } else {
     if (!/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/.test(values.cardId)) {
       errors.cardId = '请输入正确身份证号(15位或18位数字)';
@@ -117,7 +119,7 @@ const pullAgeAndGenderFromCardId = (cardId = '') => {
 export default reduxForm(
   {
     form: 'registerConfirmForm',
-    fields: ['username', 'gender', 'name', 'phone', 'cardId'],
+    fields: ['username', 'gender', 'name', 'phone', 'cardId', 'passport'],
     validate,
   },
   mapStateToProps,
