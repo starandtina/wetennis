@@ -1303,607 +1303,345 @@
           ]
       }
 
-## Event [/api/events/{event_id}/drawResult]
+## 比赛详情 [/eventMatchInfo]
 
-抽签结果
+### 获取比赛详情 [POST]
 
-+ name: (String, required) - event name
-+ groupMatch: (Array, required) - group match of this event
-  + member: (Array, required) - member list of this team
-    + memberName: (String, required) - member name
-    + memberThumb: (String, required) - member thumb image
-    + menberEnglishName: (String, required) - member english name
-  + score: (Number, required) - match score
-+ firstRound: (Array, required) - first of this event
-  + member: (Array, required) - member list of this team
-    + memberName: (String, required) - member name
-    + memberThumb: (String, required) - member thumb image
-    + menberEnglishName: (String, required) - member english name
-  + score: (Number, required) - match score
-+ secondRound: (Array, required) - second round of this event
-  + member: (Array, required) - member list of this team
-    + memberName: (String, required) - member name
-    + memberThumb: (String, required) - member thumb image
-    + menberEnglishName: (String, required) - member english name
-  + score: (Number, required) - match score
-+ semifinal: (Array, required) - semifinal of this event
-  + member: (Array, required) - member list of this team
-    + memberName: (String, required) - member name
-    + memberThumb: (String, required) - member thumb image
-    + menberEnglishName: (String, required) - member english name
-  + score: (Number, required) - match score
-+ final: (Array, required) - final of this event
-  + member: (Array, required) - member list of this team
-    + memberName: (String, required) - member name
-    + memberThumb: (String, required) - member thumb image
-    + menberEnglishName: (String, required) - member english name
-  + score: (Number, required) - match score
-
-## Event [/eventMatchInfo]
-
-比赛详情
-
-+ name: (String, required) - event name
-+ groupMatch: (Array, required) - group match of this event
-  + member: (Array, required) - member list of this team
-    + memberName: (String, required) - member name
-    + memberThumb: (String, required) - member thumb image
-    + menberEnglishName: (String, required) - member english name
-  + score: (Number, required) - match score
-+ firstRound: (Array, required) - first of this event
-  + member: (Array, required) - member list of this team
-    + memberName: (String, required) - member name
-    + memberThumb: (String, required) - member thumb image
-    + menberEnglishName: (String, required) - member english name
-  + score: (Number, required) - match score
-+ secondRound: (Array, required) - second round of this event
-  + member: (Array, required) - member list of this team
-    + memberName: (String, required) - member name
-    + memberThumb: (String, required) - member thumb image
-    + menberEnglishName: (String, required) - member english name
-  + score: (Number, required) - match score
-+ semifinal: (Array, required) - semifinal of this event
-  + member: (Array, required) - member list of this team
-    + memberName: (String, required) - member name
-    + memberThumb: (String, required) - member thumb image
-    + menberEnglishName: (String, required) - member english name
-  + score: (Number, required) - match score
-+ final: (Array, required) - final of this event
-  + member: (Array, required) - member list of this team
-    + memberName: (String, required) - member name
-    + memberThumb: (String, required) - member thumb image
-    + menberEnglishName: (String, required) - member english name
-  + score: (Number, required) - match score
-
-### Event Draw Result [POST]
-
-+ method (string) - The calling method
++ status (Number) : 比赛状态
++ eventName (String): 赛事名称
++ matchName (String): 比赛名称
++ time (Dete): 比赛日期
++ location (String): 比赛地址
++ gameTime (String): 比赛用时
++ teams (Array): 比赛队伍
+  + win (Boolean): 是否获胜
+  + score (Number): 得分
+  + user (Array): 比赛队伍的队员 
+    + username (String): 队员名称
+    + userimage (Url): 队员头像
++ games (Array): 比赛局得分
+  + score (String): 得分
+  + win (Boolean): 是否获胜
++ scoreDetails (Array:Array): 得分详情 - 数组嵌套
+  + score (Number): 本局最终得分
+  + first (Boolean): 先发球
+  + details (Array): 详细
+    + score (Number): 得分
+    + win (Boolean): 得分
+  
 
 + Request (application/json)
 
   + Body
 
         {
-            "method": "fetchEventDrawResult",
-            "eventId": 1,
+            "matchId": 1
         }
 
 + Response 200 (application/json)
 
   + Body
 
+    {
+      "code": 0,
+      "data": {
+        "status": 1,
+        "eventName": "华侨城*东岸2016成都业余网球精英赛 成都站",
+        "matchName": "精英B | 女子双打 | 小组资格赛 | 第一组",
+        "time": "2017.2.16",
+        "location": "电子科技大学体育场一号球场",
+        "gameTime": "1:00:40",
+        "teams": [
+          {
+            "win": false,
+            "users": [
+              { "username": "陈韵竹1", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" },
+              { "username": "陈韵竹2", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+            ],
+            "score": 3
+          },
+          {
+            "win": true,
+            "users": [
+              { "username": "陈韵竹3", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" },
+              { "username": "陈韵竹4", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+            ],
+            "score": 2
+          }
+        ],
+        "games": [
+          [
+            {"score": 6, "win": true},
+            {"score": 0, "win": false}
+          ],
+          [
+            {"score": 2, "win": false},
+            {"score": 6, "win": true}
+          ],
+          [
+            {"score": 6, "win": true},
+            {"score": 2, "win": false}
+          ],
+          [
+            {"score": 1, "win": false},
+            {"score": 6, "win": true}
+          ],
+          [
+            {"score": 7, "win": true},
+            {"score": "6(4)", "win": false}
+          ]
+        ],
+        "scoreDetails": [
+          [
             {
-                "code": 0,
-                "errorMsg": "",
-                "data": [
-                  {
-                    "name": "青年组 精英B",
-                    "groupMatch": [
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                    ],
-                    "firstRound": [
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                    ],
-                    "secondRound": [
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                    ],
-                    "semifinal": [
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                    ],
-                    "final": [
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                    ],
-                  },
-                  {
-                    "name": "女子双打",
-                    "groupMatch": [
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                    ],
-                    "firstRound": [
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                    ],
-                    "secondRound": [
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                    ],
-                    "semifinal": [
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                    ],
-                    "final": [
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                      [
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 6,
-                        },
-                        {
-                          "member": [
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                            {"memberName": "陈韵竹", "memberEnglishName": "temaChen", "memberThumb": "http://aaa.baidu.com/aa.jpg"},
-                          ],
-                          "score": 3,
-                        },
-                      ],
-                    ],
-                  },
-                ]
+              "score": 1,
+              "first": true,
+              "details": [
+                {"score": 0, "win": false},
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 30, "win": false},
+                {"score": 40, "win": true},
+                {"score": 40, "win": false}
+              ]
+            },
+            {
+              "score": 1,
+              "first": false,
+              "details": [
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 30, "win": false},
+                {"score": 40, "win": true},
+                {"score": 40, "win": false},
+                {"score": "A", "win": true}
+              ]
             }
+          ],
+          [
+            {
+              "score": 1,
+              "first": true,
+              "details": [
+                {"score": 0, "win": false},
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 40, "win": true}
+              ]
+            },
+            {
+              "score": 0,
+              "first": false,
+              "details": [
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 30, "win": false},
+                {"score": 30, "win": false}
+              ]
+            }
+          ],
+          [
+            {
+              "score": 0,
+              "first": false,
+              "details": [
+                {"score": 0, "win": false},
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 40, "win": true}
+              ]
+            },
+            {
+              "score": 0,
+              "first": true,
+              "details": [
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 30, "win": false},
+                {"score": 30, "win": false}
+              ]
+            }
+          ]
+        ]
+      }
+    }
 
+## 比赛详情技术统计 [/eventMatchTechnicalStatistics]
 
+### 获取比赛详情技术统计 [POST]
 
++ title (String): 统计名称
++ team1 (Number): 队伍1 统计得分
++ team2 (Number): 队伍2 统计得分
+  
+
++ Request (application/json)
+
+  + Body
+
+        {
+            "matchId": 1
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+    {
+      "code": 0,
+      "data": [
+        {
+          "title": "总得分率",
+          "team1": 30,
+          "team2": 27
+        },
+        {
+          "title": "发球总得分率",
+          "team1": 30,
+          "team2": 27
+        },
+        {
+          "title": "接球总得分率",
+          "team1": 30,
+          "team2": 27
+        },
+        {
+          "title": "ACES",
+          "team1": 2,
+          "team2": 0
+        },
+        {
+          "title": "双误",
+          "team1": 0,
+          "team2": 2
+        },
+        {
+          "title": "制胜分",
+          "team1": 13,
+          "team2": 17
+        },
+        {
+          "title": "非受迫失误",
+          "team1": 11,
+          "team2": 12
+        },
+        {
+          "title": "一发成功率",
+          "team1": 10,
+          "team2": 10
+        },
+        {
+          "title": "一发得分率",
+          "team1": 10,
+          "team2": 10
+        },
+        {
+          "title": "二发得分率",
+          "team1": 10,
+          "team2": 10
+        },
+        {
+          "title": "破发点保发成功率",
+          "team1": 10,
+          "team2": 10
+        }
+      ]
+    }
+
+## 比赛详情竞猜 [/eventMatchGuess]
+
+### 获取比赛详情竞猜信息 [POST]
+
++ key (Array): 关键局（胜负局）
+ + team1 (Object): 队伍1
+  + name (String): 队伍队员名称
+  + percent (String): 胜率
+  + ratio (String): 收益比
+  + risk (Boolean): 风险
+ + team2 (Object): 队伍2
+  + name (String): 队伍队员名称
+  + percent (String): 胜率
+  + ratio (String): 收益比
+  + risk (Boolean): 风险
++ score (Array): 详细比分
+  + percent (String): 胜率
+  + ratio (String): 收益比
+  + risk (Boolean): 风险
+  + score (String): 竞猜比分
+  
+
++ Request (application/json)
+
+  + Body
+
+        {
+            "matchId": 1
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+    {
+      "code": 0,
+      "data": {
+        "key": {
+          "team1": {
+            "name": "陈韵1 / 李思1",
+            "percent": "70%",
+            "risk": false,
+            "ratio": "1.2"
+          },
+          "team2": {
+            "name": "陈韵2 / 李思2",
+            "percent": "30%",
+            "risk": true,
+            "ratio": "2.5"
+          }
+        },
+        "score": [
+          {
+            "score": "3 : 0",
+            "risk": false,
+            "ratio": "1.2",
+            "percent": "10%"
+          },
+          {
+            "score": "3 : 1",
+            "risk": true,
+            "ratio": "2.5",
+            "percent": "10%"
+          },
+          {
+            "score": "3 : 2",
+            "risk": false,
+            "ratio": "1.2",
+            "percent": "50%"
+          },
+          {
+            "score": "0 : 3",
+            "risk": false,
+            "ratio": "1.2",
+            "percent": "10%"
+          },
+          {
+            "score": "1 : 3",
+            "risk": true,
+            "ratio": "2.5",
+            "percent": "10%"
+          },
+          {
+            "score": "2 : 3",
+            "risk": false,
+            "ratio": "1.2",
+            "percent": "10%"
+          }
+        ]
+      }
+    }

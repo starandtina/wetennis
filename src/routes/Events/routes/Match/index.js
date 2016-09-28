@@ -7,7 +7,7 @@ export default (store) => ({
     require.ensure([], (require) => {
       cb(null, [
       ])
-    }, 'events')
+    }, 'events');
   },
 
   getComponent (nextState, next) {
@@ -18,6 +18,6 @@ export default (store) => ({
       injectReducer(store, { key: 'eventMatch', reducer })
 
       next(null, EventMatch)
-    }, 'events')
+    }, 'events');
   }
 })
