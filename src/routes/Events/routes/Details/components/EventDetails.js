@@ -34,7 +34,7 @@ export default class EventDetails extends React.Component {
               <i className="material-icons">info</i>
             </div>
             <div className={cs.favorite} onClick={follow.bind(this, eventId)}>
-              {true
+              {details.follow
               ? <i className="material-icons">favorite</i>
               : <i className="material-icons">favorite_border</i>}
             </div>
