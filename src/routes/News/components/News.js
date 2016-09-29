@@ -27,7 +27,7 @@ export default class News extends Component {
     return (
       <div className={cs.news}>
         <Link to={`/news/${item.id}`} key={item.id}>
-          <p><img src={item.thumbImgUrl} className='img-responsive center-block' /></p>
+          <p><img src={item.thumbImgUrl} className={cls`img-responsive center-block ${cs['thumbImgUrl']}`} /></p>
           <h4 className={cls`text-center ${cs.h4}`}>{item.title}</h4>
         </Link>
         <Grid className={cs.text}>

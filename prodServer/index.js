@@ -1,5 +1,3 @@
-require('babel-register')
-
 const path = require('path')
 const express = require('express')
 const webpack = require('webpack')
@@ -17,7 +15,7 @@ const host = config.server_host
 
 const app = express()
 const routes = require('./routes')
-const models = require('./models')
+const scrapeRoutes = require('./scrapeRoutes')
 
 const targetUrl = "http://wetennis.cn:8883/API/FEservice.ashx";
 
@@ -27,6 +25,9 @@ app.use(compression())
 
 // Proxy API request for Node.js
 app.use('/api/v1', routes)
+
+// Proxy Scrape request for Node.js
+app.use('/scrape/news', scrapeRoutes)
 
 // Proxy API request for .NET ASHX
 app.use('/api', httpProxyMiddleware({

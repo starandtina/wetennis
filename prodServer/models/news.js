@@ -2,6 +2,7 @@ module.exports = function (sequelize, DataTypes) {
   const News = sequelize.define('News', {
     id: {
       type: DataTypes.STRING,
+      defaultValue: DataTypes.UUIDV1,
       primaryKey: true
     },
     date: {
