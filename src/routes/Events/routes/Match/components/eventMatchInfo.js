@@ -1,10 +1,15 @@
 import React from 'react'
 import cs from './eventMatchInfo.scss'
 
-export const MatchInfo = ({data}) => {
+export const MatchInfo = ({data, sets}) => {
   return (
     <div className={cs.box}>
       <MatchInfoStatus data={data.status} />
+      <MatchSetsFilter
+        data={sets.sets}
+        value={sets.currentSets}
+        onChange={sets.changeSets}
+      />
       <EventInfo data={data} />
       <MatchVS data={data.teams} gameTime={data.gameTime} />
       <MatchGames data={data.games} />
@@ -43,6 +48,31 @@ export const MatchVS = ({data, gameTime}) => {
     </div>
   );
 };
+
+export const MatchSetsFilter = ({data=[], value, onChange = ()=>{}}) => {
+  const currentItem = data.find(function(item) {
+    return item.value == value;
+  });
+  const text = currentItem ? currentItem.text : '';
+  return (
+    <div className={cs.setsFilter}>
+      {text}
+      <i className={`material-icons ${cs.setsFilterIcon}`}>keyboard_arrow_down</i>
+      <select
+        className="dropdown"
+        onChange={onChange}
+        value={value}
+      >
+        {data.map(function(item, index) {
+          return (
+            <option key={index} value={item.value}>{item.text}</option>
+          );
+        })}        
+      </select>
+    </div>
+  );
+}
+
 export const MatchVSUsers = ({data}) => {
   if (!data || !Array.isArray(data) || data.length === 0) {
     return <div />;

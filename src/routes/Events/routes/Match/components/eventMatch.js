@@ -21,11 +21,12 @@ export default class EventMatch extends Component {
   render () {
     const {
       details, technicalStatistics, guess,
+      changeSets, currentSets, sets,
       params: {matchId}} = this.props
     return (
       <div className={cs.box}>
         <NavBack title='比赛' />
-        <MatchInfo data={details} />
+        <MatchInfo data={details} sets={{currentSets, changeSets, sets}} />
         <MatchTab
           matchId={matchId}
           technicalStatistics={technicalStatistics}

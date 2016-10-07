@@ -245,3 +245,12 @@ $team2Color: $blue;
   }
 }
 
+.setsFilter {
+  position: relative;
+  padding: $px10 0 $px10 $px10;
+  font-size: 14*$px1;
+}
+.setsFilterIcon {
+  font-size: 16*$px1;
+  vertical-align: middle;
+}

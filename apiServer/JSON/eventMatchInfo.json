@@ -25,105 +25,211 @@
         "score": 2
       }
     ],
-    "games": [
-      [
-        {"score": 6, "win": true},
-        {"score": 0, "win": false}
-      ],
-      [
-        {"score": 2, "win": false},
-        {"score": 6, "win": true}
-      ],
-      [
-        {"score": 6, "win": true},
-        {"score": 2, "win": false}
-      ],
-      [
-        {"score": 1, "win": false},
-        {"score": 6, "win": true}
-      ],
-      [
-        {"score": 7, "win": true},
-        {"score": "6(4)", "win": false}
-      ]
-    ],
-    "scoreDetails": [
-      [
-        {
-          "score": 1,
-          "first": true,
-          "details": [
-            {"score": 0, "win": false},
-            {"score": 15, "win": true},
-            {"score": 15, "win": false},
-            {"score": 30, "win": true},
-            {"score": 30, "win": false},
-            {"score": 40, "win": true},
-            {"score": 40, "win": false}
+    "sets": [
+      {
+        "games": [
+          [
+            {"score": 6, "win": true},
+            {"score": 0, "win": false}
+          ],
+          [
+            {"score": 2, "win": false},
+            {"score": 6, "win": true}
+          ],
+          [
+            {"score": 6, "win": true},
+            {"score": 2, "win": false}
+          ],
+          [
+            {"score": 1, "win": false},
+            {"score": 6, "win": true}
+          ],
+          [
+            {"score": 7, "win": true},
+            {"score": "6(4)", "win": false}
           ]
-        },
-        {
-          "score": 1,
-          "first": false,
-          "details": [
-            {"score": 15, "win": true},
-            {"score": 15, "win": false},
-            {"score": 30, "win": true},
-            {"score": 30, "win": false},
-            {"score": 40, "win": true},
-            {"score": 40, "win": false},
-            {"score": "A", "win": true}
+        ],
+        "scoreDetails": [
+          [
+            {
+              "score": 1,
+              "first": true,
+              "details": [
+                {"score": 0, "win": false},
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 30, "win": false},
+                {"score": 40, "win": true},
+                {"score": 40, "win": false}
+              ]
+            },
+            {
+              "score": 1,
+              "first": false,
+              "details": [
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 30, "win": false},
+                {"score": 40, "win": true},
+                {"score": 40, "win": false},
+                {"score": "A", "win": true}
+              ]
+            }
+          ],
+          [
+            {
+              "score": 1,
+              "first": true,
+              "details": [
+                {"score": 0, "win": false},
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 40, "win": true}
+              ]
+            },
+            {
+              "score": 0,
+              "first": false,
+              "details": [
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 30, "win": false},
+                {"score": 30, "win": false}
+              ]
+            }
+          ],
+          [
+            {
+              "score": 0,
+              "first": false,
+              "details": [
+                {"score": 0, "win": false},
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 40, "win": true}
+              ]
+            },
+            {
+              "score": 0,
+              "first": true,
+              "details": [
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 30, "win": false},
+                {"score": 30, "win": false}
+              ]
+            }
           ]
-        }
-      ],
-      [
-        {
-          "score": 1,
-          "first": true,
-          "details": [
-            {"score": 0, "win": false},
-            {"score": 15, "win": true},
-            {"score": 15, "win": false},
-            {"score": 30, "win": true},
-            {"score": 40, "win": true}
+        ]
+      },
+      {
+        "games": [
+          [
+            {"score": 3, "win": true},
+            {"score": 0, "win": false}
+          ],
+          [
+            {"score": 2, "win": false},
+            {"score": 6, "win": true}
+          ],
+          [
+            {"score": 6, "win": true},
+            {"score": 2, "win": false}
+          ],
+          [
+            {"score": 1, "win": false},
+            {"score": 6, "win": true}
+          ],
+          [
+            {"score": 7, "win": true},
+            {"score": "6(4)", "win": false}
           ]
-        },
-        {
-          "score": 0,
-          "first": false,
-          "details": [
-            {"score": 15, "win": true},
-            {"score": 15, "win": false},
-            {"score": 30, "win": true},
-            {"score": 30, "win": false},
-            {"score": 30, "win": false}
+        ],
+        "scoreDetails": [
+          [
+            {
+              "score": 1,
+              "first": true,
+              "details": [
+                {"score": 0, "win": false},
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 30, "win": false},
+                {"score": 40, "win": true},
+                {"score": 40, "win": false}
+              ]
+            },
+            {
+              "score": 1,
+              "first": false,
+              "details": [
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 30, "win": false},
+                {"score": 40, "win": true},
+                {"score": 40, "win": false},
+                {"score": "A", "win": true}
+              ]
+            }
+          ],
+          [
+            {
+              "score": 1,
+              "first": true,
+              "details": [
+                {"score": 0, "win": false},
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 40, "win": true}
+              ]
+            },
+            {
+              "score": 0,
+              "first": false,
+              "details": [
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 30, "win": false},
+                {"score": 30, "win": false}
+              ]
+            }
+          ],
+          [
+            {
+              "score": 0,
+              "first": false,
+              "details": [
+                {"score": 0, "win": false},
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 40, "win": true}
+              ]
+            },
+            {
+              "score": 0,
+              "first": true,
+              "details": [
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 30, "win": false},
+                {"score": 30, "win": false}
+              ]
+            }
           ]
-        }
-      ],
-      [
-        {
-          "score": 0,
-          "first": false,
-          "details": [
-            {"score": 0, "win": false},
-            {"score": 15, "win": true},
-            {"score": 15, "win": false},
-            {"score": 30, "win": true},
-            {"score": 40, "win": true}
-          ]
-        },
-        {
-          "score": 0,
-          "first": true,
-          "details": [
-            {"score": 15, "win": true},
-            {"score": 15, "win": false},
-            {"score": 30, "win": true},
-            {"score": 30, "win": false},
-            {"score": 30, "win": false}
-          ]
-        }
-      ]
+        ]
+      }
     ]
   }
 }
