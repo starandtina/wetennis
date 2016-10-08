@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import NavBack from "components/NavBack";
 import ScoreItem from "components/ScoreItem";
 import CascadeFilter from "components/CascadeFilter";
+import {Link} from "react-router";
 
 import cs from "./EventScore.scss";
 
@@ -99,10 +100,11 @@ export default class EventScore extends Component {
     );
   }
   groupItem = (item, index) => {
-    const {currentFilter: {type, status}} = this.props;
+    const {currentFilter: {type, status}, params: {eventId}} = this.props;
     if (!(item.status == status || status == 0)) return;
     return (
       <div key={index} className={cs.groupItem}>
+        <Link to={`/events/${eventId}/match/${item.id}`}>
         <div className={cs.groupNumber}>{item.matches}</div>
         <div className={cs.groupInfo}>
           <div className={cs.matches}>
@@ -111,6 +113,7 @@ export default class EventScore extends Component {
           {item.gameTime}
         </div>
         {item.team.map(this.team)}
+        </Link>
       </div>
     );
   }
