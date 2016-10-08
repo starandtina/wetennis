@@ -3971,6 +3971,9 @@ FORMAT: <span class="hljs-number">1</span>A</code></pre><div style="height: 1px;
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="赛事相关的api-赛事得分" class="resource"><h3 class="resource-heading">赛事得分 <a href="#赛事相关的api-赛事得分" class="permalink">&nbsp;&para;</a></h3><p>按比赛分组返回一个数组</p>
 <ul>
 <li>
+<p>id (String): 比赛id</p>
+</li>
+<li>
 <p>completed (boolean): 比赛是否已完成</p>
 </li>
 <li>
@@ -3989,7 +3992,7 @@ FORMAT: <span class="hljs-number">1</span>A</code></pre><div style="height: 1px;
 <p>type (String): 比赛类型</p>
 </li>
 <li>
-<p>team (Array): 比赛队伍</p>
+<p>team (Array):</p>
 <ul>
 <li>currentScore (Number): 当前得分分数</li>
 <li>currentScoreWin (Boolean): 当前得分是否胜利</li>
@@ -4362,14 +4365,15 @@ FORMAT: <span class="hljs-number">1</span>A</code></pre><div style="height: 1px;
 </ul>
 </li>
 <li>
-<p>games (Array): 比赛局得分</p>
+<p>sets (Array): 比赛盘</p>
+<ul>
+<li>games (Array): 比赛局得分
 <ul>
 <li>score (String): 得分</li>
 <li>win (Boolean): 是否获胜</li>
 </ul>
 </li>
-<li>
-<p>scoreDetails (Array:Array): 得分详情 - 数组嵌套</p>
+<li>scoreDetails (Array:Array): 得分详情 - 数组嵌套
 <ul>
 <li>score (Number): 本局最终得分</li>
 <li>first (Boolean): 先发球</li>
@@ -4377,6 +4381,8 @@ FORMAT: <span class="hljs-number">1</span>A</code></pre><div style="height: 1px;
 <ul>
 <li>score (Number): 得分</li>
 <li>win (Boolean): 得分</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -4423,237 +4429,475 @@ FORMAT: <span class="hljs-number">1</span>A</code></pre><div style="height: 1px;
         "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">2</span>
       </span>}
     ]</span>,
-    "<span class="hljs-attribute">games</span>": <span class="hljs-value">[
-      [
-        {
-          "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">6</span></span>,
-          "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
-        </span>},
-        {
-          "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-          "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
-        </span>}
-      ],
-      [
-        {
-          "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
-          "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
-        </span>},
-        {
-          "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">6</span></span>,
-          "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
-        </span>}
-      ],
-      [
-        {
-          "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">6</span></span>,
-          "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
-        </span>},
-        {
-          "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
-          "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
-        </span>}
-      ],
-      [
-        {
-          "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-          "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
-        </span>},
-        {
-          "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">6</span></span>,
-          "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
-        </span>}
-      ],
-      [
-        {
-          "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">7</span></span>,
-          "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
-        </span>},
-        {
-          "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-string">"6(4)"</span></span>,
-          "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
-        </span>}
-      ]
-    ]</span>,
-    "<span class="hljs-attribute">scoreDetails</span>": <span class="hljs-value">[
-      [
-        {
-          "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-          "<span class="hljs-attribute">first</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-          "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+    "<span class="hljs-attribute">sets</span>": <span class="hljs-value">[
+      {
+        "<span class="hljs-attribute">games</span>": <span class="hljs-value">[
+          [
+            {
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">6</span></span>,
+              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+            </span>},
             {
               "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
               "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
-            </span>},
+            </span>}
+          ],
+          [
             {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
-              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
-            </span>},
-            {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
               "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
             </span>},
             {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">6</span></span>,
+              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+            </span>}
+          ],
+          [
+            {
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">6</span></span>,
               "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
             </span>},
             {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+            </span>}
+          ],
+          [
+            {
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
               "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
             </span>},
             {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">40</span></span>,
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">6</span></span>,
+              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+            </span>}
+          ],
+          [
+            {
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">7</span></span>,
               "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
             </span>},
             {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">40</span></span>,
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-string">"6(4)"</span></span>,
               "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
             </span>}
           ]
-        </span>},
-        {
-          "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-          "<span class="hljs-attribute">first</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
-          "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+        ]</span>,
+        "<span class="hljs-attribute">scoreDetails</span>": <span class="hljs-value">[
+          [
             {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
-              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+              "<span class="hljs-attribute">first</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+              "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">40</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">40</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>}
+              ]
             </span>},
             {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
-              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+              "<span class="hljs-attribute">first</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+              "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">40</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">40</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-string">"A"</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>}
+              ]
+            </span>}
+          ],
+          [
+            {
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+              "<span class="hljs-attribute">first</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+              "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">40</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>}
+              ]
             </span>},
             {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
-              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+              "<span class="hljs-attribute">first</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+              "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>}
+              ]
+            </span>}
+          ],
+          [
+            {
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+              "<span class="hljs-attribute">first</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+              "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">40</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>}
+              ]
             </span>},
             {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
-              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
-            </span>},
-            {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">40</span></span>,
-              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
-            </span>},
-            {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">40</span></span>,
-              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
-            </span>},
-            {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-string">"A"</span></span>,
-              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+              "<span class="hljs-attribute">first</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+              "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>}
+              ]
             </span>}
           ]
-        </span>}
-      ],
-      [
-        {
-          "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-          "<span class="hljs-attribute">first</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-          "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+        ]
+      </span>},
+      {
+        "<span class="hljs-attribute">games</span>": <span class="hljs-value">[
+          [
+            {
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+            </span>},
             {
               "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
               "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
-            </span>},
+            </span>}
+          ],
+          [
             {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
-              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
-            </span>},
-            {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
               "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
             </span>},
             {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
-              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
-            </span>},
-            {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">40</span></span>,
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">6</span></span>,
               "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
             </span>}
-          ]
-        </span>},
-        {
-          "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-          "<span class="hljs-attribute">first</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
-          "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+          ],
+          [
             {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">6</span></span>,
               "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
             </span>},
             {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+            </span>}
+          ],
+          [
+            {
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
               "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
             </span>},
             {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">6</span></span>,
+              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+            </span>}
+          ],
+          [
+            {
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">7</span></span>,
               "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
             </span>},
             {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
-              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
-            </span>},
-            {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-string">"6(4)"</span></span>,
               "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
             </span>}
           ]
-        </span>}
-      ],
-      [
-        {
-          "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-          "<span class="hljs-attribute">first</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
-          "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+        ]</span>,
+        "<span class="hljs-attribute">scoreDetails</span>": <span class="hljs-value">[
+          [
+            {
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+              "<span class="hljs-attribute">first</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+              "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">40</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">40</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>}
+              ]
+            </span>},
+            {
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+              "<span class="hljs-attribute">first</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+              "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">40</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">40</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-string">"A"</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>}
+              ]
+            </span>}
+          ],
+          [
+            {
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+              "<span class="hljs-attribute">first</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+              "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">40</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>}
+              ]
+            </span>},
             {
               "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+              "<span class="hljs-attribute">first</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+              "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>}
+              ]
+            </span>}
+          ],
+          [
+            {
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+              "<span class="hljs-attribute">first</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+              "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">40</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>}
+              ]
             </span>},
             {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
-              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
-            </span>},
-            {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
-              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
-            </span>},
-            {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
-              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
-            </span>},
-            {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">40</span></span>,
-              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+              "<span class="hljs-attribute">first</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+              "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>},
+                {
+                  "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+                  "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+                </span>}
+              ]
             </span>}
           ]
-        </span>},
-        {
-          "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-          "<span class="hljs-attribute">first</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-          "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
-            {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
-              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
-            </span>},
-            {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
-              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
-            </span>},
-            {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
-              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
-            </span>},
-            {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
-              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
-            </span>},
-            {
-              "<span class="hljs-attribute">score</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
-              "<span class="hljs-attribute">win</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
-            </span>}
-          ]
-        </span>}
-      ]
+        ]
+      </span>}
     ]
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="赛事相关的api-比赛详情技术统计" class="resource"><h3 class="resource-heading">比赛详情技术统计 <a href="#赛事相关的api-比赛详情技术统计" class="permalink">&nbsp;&para;</a></h3><div id="赛事相关的api-比赛详情技术统计-post" class="action post"><h4 class="action-heading"><div class="name">获取比赛详情技术统计</div><a href="#赛事相关的api-比赛详情技术统计-post" class="method post">POST</a><code class="uri">/eventMatchTechnicalStatistics</code></h4><ul>
@@ -4830,7 +5074,7 @@ FORMAT: <span class="hljs-number">1</span>A</code></pre><div style="height: 1px;
       </span>}
     ]
   </span>}
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 28 Sep 2016</p><script>/* eslint-env browser */
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 08 Oct 2016</p><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
 'use strict';
 

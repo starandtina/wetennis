@@ -945,13 +945,14 @@
 
 按比赛分组返回一个数组
 
++ id (String): 比赛id
 + completed (boolean): 比赛是否已完成
 + gameTime (String): 比赛用时
 + group (String): 比赛分组
 + matches (String): 比赛场次
 + status (String): 比赛状态
 + type (String): 比赛类型
-+ team (Array): 比赛队伍
++ team (Array):
   + currentScore (Number): 当前得分分数
   + currentScoreWin (Boolean): 当前得分是否胜利
   + first (Boolean): 是否发球
@@ -1319,15 +1320,16 @@
   + user (Array): 比赛队伍的队员 
     + username (String): 队员名称
     + userimage (Url): 队员头像
-+ games (Array): 比赛局得分
-  + score (String): 得分
-  + win (Boolean): 是否获胜
-+ scoreDetails (Array:Array): 得分详情 - 数组嵌套
-  + score (Number): 本局最终得分
-  + first (Boolean): 先发球
-  + details (Array): 详细
-    + score (Number): 得分
-    + win (Boolean): 得分
++ sets (Array): 比赛盘
+  + games (Array): 比赛局得分
+    + score (String): 得分
+    + win (Boolean): 是否获胜
+  + scoreDetails (Array:Array): 得分详情 - 数组嵌套
+    + score (Number): 本局最终得分
+    + first (Boolean): 先发球
+    + details (Array): 详细
+      + score (Number): 得分
+      + win (Boolean): 得分
   
 
 + Request (application/json)
@@ -1369,108 +1371,215 @@
             "score": 2
           }
         ],
-        "games": [
-          [
-            {"score": 6, "win": true},
-            {"score": 0, "win": false}
-          ],
-          [
-            {"score": 2, "win": false},
-            {"score": 6, "win": true}
-          ],
-          [
-            {"score": 6, "win": true},
-            {"score": 2, "win": false}
-          ],
-          [
-            {"score": 1, "win": false},
-            {"score": 6, "win": true}
-          ],
-          [
-            {"score": 7, "win": true},
-            {"score": "6(4)", "win": false}
-          ]
-        ],
-        "scoreDetails": [
-          [
-            {
-              "score": 1,
-              "first": true,
-              "details": [
-                {"score": 0, "win": false},
-                {"score": 15, "win": true},
-                {"score": 15, "win": false},
-                {"score": 30, "win": true},
-                {"score": 30, "win": false},
-                {"score": 40, "win": true},
-                {"score": 40, "win": false}
+        "sets": [
+          {
+            "games": [
+              [
+                {"score": 6, "win": true},
+                {"score": 0, "win": false}
+              ],
+              [
+                {"score": 2, "win": false},
+                {"score": 6, "win": true}
+              ],
+              [
+                {"score": 6, "win": true},
+                {"score": 2, "win": false}
+              ],
+              [
+                {"score": 1, "win": false},
+                {"score": 6, "win": true}
+              ],
+              [
+                {"score": 7, "win": true},
+                {"score": "6(4)", "win": false}
               ]
-            },
-            {
-              "score": 1,
-              "first": false,
-              "details": [
-                {"score": 15, "win": true},
-                {"score": 15, "win": false},
-                {"score": 30, "win": true},
-                {"score": 30, "win": false},
-                {"score": 40, "win": true},
-                {"score": 40, "win": false},
-                {"score": "A", "win": true}
+            ],
+            "scoreDetails": [
+              [
+                {
+                  "score": 1,
+                  "first": true,
+                  "details": [
+                    {"score": 0, "win": false},
+                    {"score": 15, "win": true},
+                    {"score": 15, "win": false},
+                    {"score": 30, "win": true},
+                    {"score": 30, "win": false},
+                    {"score": 40, "win": true},
+                    {"score": 40, "win": false}
+                  ]
+                },
+                {
+                  "score": 1,
+                  "first": false,
+                  "details": [
+                    {"score": 15, "win": true},
+                    {"score": 15, "win": false},
+                    {"score": 30, "win": true},
+                    {"score": 30, "win": false},
+                    {"score": 40, "win": true},
+                    {"score": 40, "win": false},
+                    {"score": "A", "win": true}
+                  ]
+                }
+              ],
+              [
+                {
+                  "score": 1,
+                  "first": true,
+                  "details": [
+                    {"score": 0, "win": false},
+                    {"score": 15, "win": true},
+                    {"score": 15, "win": false},
+                    {"score": 30, "win": true},
+                    {"score": 40, "win": true}
+                  ]
+                },
+                {
+                  "score": 0,
+                  "first": false,
+                  "details": [
+                    {"score": 15, "win": true},
+                    {"score": 15, "win": false},
+                    {"score": 30, "win": true},
+                    {"score": 30, "win": false},
+                    {"score": 30, "win": false}
+                  ]
+                }
+              ],
+              [
+                {
+                  "score": 0,
+                  "first": false,
+                  "details": [
+                    {"score": 0, "win": false},
+                    {"score": 15, "win": true},
+                    {"score": 15, "win": false},
+                    {"score": 30, "win": true},
+                    {"score": 40, "win": true}
+                  ]
+                },
+                {
+                  "score": 0,
+                  "first": true,
+                  "details": [
+                    {"score": 15, "win": true},
+                    {"score": 15, "win": false},
+                    {"score": 30, "win": true},
+                    {"score": 30, "win": false},
+                    {"score": 30, "win": false}
+                  ]
+                }
               ]
-            }
-          ],
-          [
-            {
-              "score": 1,
-              "first": true,
-              "details": [
-                {"score": 0, "win": false},
-                {"score": 15, "win": true},
-                {"score": 15, "win": false},
-                {"score": 30, "win": true},
-                {"score": 40, "win": true}
+            ]
+          },
+          {
+            "games": [
+              [
+                {"score": 3, "win": true},
+                {"score": 0, "win": false}
+              ],
+              [
+                {"score": 2, "win": false},
+                {"score": 6, "win": true}
+              ],
+              [
+                {"score": 6, "win": true},
+                {"score": 2, "win": false}
+              ],
+              [
+                {"score": 1, "win": false},
+                {"score": 6, "win": true}
+              ],
+              [
+                {"score": 7, "win": true},
+                {"score": "6(4)", "win": false}
               ]
-            },
-            {
-              "score": 0,
-              "first": false,
-              "details": [
-                {"score": 15, "win": true},
-                {"score": 15, "win": false},
-                {"score": 30, "win": true},
-                {"score": 30, "win": false},
-                {"score": 30, "win": false}
+            ],
+            "scoreDetails": [
+              [
+                {
+                  "score": 1,
+                  "first": true,
+                  "details": [
+                    {"score": 0, "win": false},
+                    {"score": 15, "win": true},
+                    {"score": 15, "win": false},
+                    {"score": 30, "win": true},
+                    {"score": 30, "win": false},
+                    {"score": 40, "win": true},
+                    {"score": 40, "win": false}
+                  ]
+                },
+                {
+                  "score": 1,
+                  "first": false,
+                  "details": [
+                    {"score": 15, "win": true},
+                    {"score": 15, "win": false},
+                    {"score": 30, "win": true},
+                    {"score": 30, "win": false},
+                    {"score": 40, "win": true},
+                    {"score": 40, "win": false},
+                    {"score": "A", "win": true}
+                  ]
+                }
+              ],
+              [
+                {
+                  "score": 1,
+                  "first": true,
+                  "details": [
+                    {"score": 0, "win": false},
+                    {"score": 15, "win": true},
+                    {"score": 15, "win": false},
+                    {"score": 30, "win": true},
+                    {"score": 40, "win": true}
+                  ]
+                },
+                {
+                  "score": 0,
+                  "first": false,
+                  "details": [
+                    {"score": 15, "win": true},
+                    {"score": 15, "win": false},
+                    {"score": 30, "win": true},
+                    {"score": 30, "win": false},
+                    {"score": 30, "win": false}
+                  ]
+                }
+              ],
+              [
+                {
+                  "score": 0,
+                  "first": false,
+                  "details": [
+                    {"score": 0, "win": false},
+                    {"score": 15, "win": true},
+                    {"score": 15, "win": false},
+                    {"score": 30, "win": true},
+                    {"score": 40, "win": true}
+                  ]
+                },
+                {
+                  "score": 0,
+                  "first": true,
+                  "details": [
+                    {"score": 15, "win": true},
+                    {"score": 15, "win": false},
+                    {"score": 30, "win": true},
+                    {"score": 30, "win": false},
+                    {"score": 30, "win": false}
+                  ]
+                }
               ]
-            }
-          ],
-          [
-            {
-              "score": 0,
-              "first": false,
-              "details": [
-                {"score": 0, "win": false},
-                {"score": 15, "win": true},
-                {"score": 15, "win": false},
-                {"score": 30, "win": true},
-                {"score": 40, "win": true}
-              ]
-            },
-            {
-              "score": 0,
-              "first": true,
-              "details": [
-                {"score": 15, "win": true},
-                {"score": 15, "win": false},
-                {"score": 30, "win": true},
-                {"score": 30, "win": false},
-                {"score": 30, "win": false}
-              ]
-            }
-          ]
+            ]
+          }
         ]
       }
     }
+
 
 ## 比赛详情技术统计 [/eventMatchTechnicalStatistics]
 
