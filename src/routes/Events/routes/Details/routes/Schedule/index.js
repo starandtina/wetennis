@@ -1,7 +1,7 @@
 import { injectReducer } from 'store/reducers'
 
 export default (store) => ({
-  path: 'Schedule',
+  path: 'schedule',
 
   getChildRoutes (location, cb) {
     require.ensure([], (require) => {

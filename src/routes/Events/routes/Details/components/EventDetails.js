@@ -14,8 +14,10 @@ export default class EventDetails extends React.Component {
   componentDidMount() {
     const {
       getDetails, getNotices, getSponsors, getComments,
-      params: {eventId}
+      params: {eventId},
+      children
     } = this.props;
+    if (children) return;
     getDetails(eventId);
     getNotices(eventId);
     getSponsors(eventId);
@@ -24,8 +26,12 @@ export default class EventDetails extends React.Component {
     const {
       draw, follow, details, notices, sponsors,
       params: {eventId},
-      location: {pathname}
+      location: {pathname},
+      children,
     } = this.props;
+    if (children) {
+      return <div>{children}</div>
+    }
     return (
       <div className={cs.box}>
         <NavBack ref="nav" title=" " className={`${cs.navTransiton}`}>

@@ -1,7 +1,7 @@
 import { injectReducer } from 'store/reducers'
 
 export default (store) => ({
-  path: 'Score',
+  path: 'score',
 
   getChildRoutes (location, cb) {
     require.ensure([], (require) => {
