@@ -3,7 +3,7 @@ import NavBack from "components/NavBack";
 import RaisedButton from 'material-ui/RaisedButton';
 import {
   MatchInfoStatus, EventInfo
-} from "routes/Events/routes/Match/components/eventMatchInfo";
+} from "routes/Events/routes/Details/routes/Match/components/eventMatchInfo";
 import cs from "./Betting.scss";
 
 export default class Betting extends Component {

@@ -7,6 +7,9 @@ export default (store) => ({
     require.ensure([], (require) => {
       cb(null, [
         // require('./routes/Confirmation')
+        require('./routes/Match')(store),
+        require('./routes/Score')(store),
+        require('./routes/Schedule')(store),
       ])
     }, 'events')
   },
