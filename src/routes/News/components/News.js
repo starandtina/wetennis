@@ -28,7 +28,7 @@ export default class News extends Component {
       <div className={cs.news}>
         <Link to={`/news/${item.id}`} key={item.id}>
           <p><img src={item.thumbImgUrl} className={cls`img-responsive center-block ${cs['thumbImgUrl']}`} /></p>
-          <h4 className={cls`text-center ${cs.h4}`}>{item.title}</h4>
+          <h4 className={cls`text-left ${cs.title}`}>{item.title}</h4>
         </Link>
         <Grid className={cs.text}>
           <Row className='u-verticalCenterWithFlex'>
