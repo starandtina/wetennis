@@ -119,7 +119,7 @@ const pullAgeAndGenderFromCardId = (cardId = '') => {
 export default reduxForm(
   {
     form: 'registerConfirmForm',
-    fields: ['username', 'gender', 'name', 'phone', 'cardId', 'passport'],
+    fields: ['username', 'gender', 'name', 'phone', 'cardId', 'passport', 'companyName', 'companyTitle'],
     validate,
   },
   mapStateToProps,

@@ -132,7 +132,9 @@ class SettingsForm extends React.Component {
       ...settings,
       name: user.name,
       phone: user.phone,
-      card: user.card,
+      cardId: user.cardId,
+      companyName: user.companyName,
+      companyTitle: user.companyTitle,
       id: user.id
     }).then(action => {
       this.handleOpen();

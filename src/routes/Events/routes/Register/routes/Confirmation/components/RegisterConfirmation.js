@@ -25,7 +25,7 @@ export class RegisterConfirmation extends React.Component {
   uploadUserInfo = () => {
     const { uploadUserInfo, push, params, values } = this.props;
     const eventId = params.eventId;
-    const { name, username, gender, cardId, passport, phone } = values;
+    const { name, username, gender, cardId, passport, phone, companyName, companyTitle } = values;
     if (name && username && gender && (cardId || passport) && phone) {
       uploadUserInfo(values);
       push(`/events/${eventId}/register/announcement`)
@@ -46,7 +46,9 @@ export class RegisterConfirmation extends React.Component {
         name,
         phone,
         cardId,
-        passport
+        passport,
+        companyName,
+        companyTitle,
         },
       handleSubmit
       } = this.props;
@@ -234,6 +236,38 @@ export class RegisterConfirmation extends React.Component {
                   fullWidth
                   {...passport}
                   errorText={passport.touched && passport.error}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={4}>
+                <label className={classes.label}>公司名称</label>
+              </Col>
+              <Col xs={8}>
+                <TextField
+                  inputStyle={{
+                    textAlign: 'left'
+                  }}
+                  name="companyName"
+                  fullWidth
+                  {...companyName}
+                  errorText={companyName.touched && companyName.error}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={4}>
+                <label className={classes.label}>公司职位</label>
+              </Col>
+              <Col xs={8}>
+                <TextField
+                  inputStyle={{
+                    textAlign: 'left'
+                  }}
+                  name="companyTitle"
+                  fullWidth
+                  {...companyTitle}
+                  errorText={companyTitle.touched && companyTitle.error}
                 />
               </Col>
             </Row>

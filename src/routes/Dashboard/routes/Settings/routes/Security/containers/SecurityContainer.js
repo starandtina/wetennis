@@ -102,6 +102,44 @@ class Security extends Component {
               </Col>
               <Divider />
             </Row>
+            <Row>
+              <Col xs={4}>
+                <label className={classes.label}>公司名称</label>
+              </Col>
+              <Col xs={8}>
+                <TextField
+                  inputStyle={{
+                        textAlign: 'left',
+                        color: '#929292',
+                      }}
+                  name="companyName"
+                  fullWidth
+                  onChange={this.handleChange('companyName')}
+                  value={user.companyName}
+                  underlineShow={false}
+                />
+              </Col>
+              <Divider />
+            </Row>
+            <Row>
+              <Col xs={4}>
+                <label className={classes.label}>公司职务</label>
+              </Col>
+              <Col xs={8}>
+                <TextField
+                  inputStyle={{
+                        textAlign: 'left',
+                        color: '#929292',
+                      }}
+                  name="companyTitle"
+                  fullWidth
+                  onChange={this.handleChange('companyTitle')}
+                  value={user.companyTitle}
+                  underlineShow={false}
+                />
+              </Col>
+              <Divider />
+            </Row>
           </Grid>
         </form>
       </div>
