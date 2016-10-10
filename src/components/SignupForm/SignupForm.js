@@ -102,6 +102,29 @@ export class SignupForm extends React.Component {
       <form className='registration-form' onSubmit={handleSubmit(this.props.signUpUserThenSetCookie.bind(this))}>
         <Grid>
           <Row>
+            <Col xs={12}>
+              <TextField
+                style={style}
+                hintText="用户名"
+                errorText={username.touched ? username.error : ''}
+                floatingLabelText="用户名"
+                {...username}
+                onBlur={this.checkUserName}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <TextField
+                style={style}
+                hintText="密码"
+                errorText={password.touched ? password.error : ''}
+                floatingLabelText="密码"
+                {...password}
+              />
+            </Col>
+          </Row>
+          <Row>
             <Col xs={8}>
               <TextField
                 style={style}
@@ -125,33 +148,10 @@ export class SignupForm extends React.Component {
             <Col xs={12}>
               <TextField
                 style={style}
-                hintText="用户名"
-                errorText={username.touched ? username.error : ''}
-                floatingLabelText="用户名"
-                {...username}
-                onBlur={this.checkUserName}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <TextField
-                style={style}
                 hintText="验证码"
                 errorText={activationCode.touched ? activationCode.error : ''}
                 floatingLabelText="验证码"
                 {...activationCode}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <TextField
-                style={style}
-                hintText="密码"
-                errorText={password.touched ? password.error : ''}
-                floatingLabelText="密码"
-                {...password}
               />
             </Col>
           </Row>
