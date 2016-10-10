@@ -47,7 +47,8 @@ const news = handleActions({
   }),
   [LIKE_NEWS_SUCCESS]: (state, action) => ({
     ...state,
-    likeCount: ++state.likeCount
+    likeCount: ++state.likeCount,
+    hasClickLike: true
   })
 }, {
   "id": 1,

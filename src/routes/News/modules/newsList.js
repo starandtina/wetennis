@@ -57,11 +57,12 @@ export default handleActions({
 
     return {
       ...state,
-      list: state.list.map((news) => {
+      list: state.list.map(news => {
         if (String(payload.typeSysno) === String(news.id)) {
           return {
             ...news,
-            likeCount: ++news.likeCount
+            likeCount: ++news.likeCount,
+            hasClickLike: true
           }
         }
 

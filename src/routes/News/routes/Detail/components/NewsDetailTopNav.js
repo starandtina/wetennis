@@ -1,27 +1,33 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { goBack } from 'react-router-redux'
+
 import TopNav from 'components/TopNav'
-import { browserHistory } from 'react-router'
 
 import classes from './NewsDetailTopNav.scss'
 
-const goBack = (e) => {
-  e.preventDefault()
-  return browserHistory.goBack()
-}
-
-class NewsDetailTopNav extends React.Component {
+class NewsDetailTopNav extends Component {
   render() {
+    const { goBack } = this.props
+
     return (
       <TopNav title='新闻详情'>
         <div ref='left'>
-          <a className={`${classes['nav-back-icon']} pull-left`} href='#' onClick={goBack}><i className='u-verticalAlignMiddle material-icons'>keyboard_arrow_left</i></a>
+          <a className={`${classes['nav-back-icon']} pull-left`} href='#' onClick={goBack}>
+            <i className='u-verticalAlignMiddle material-icons'>
+              keyboard_arrow_left
+            </i>
+          </a>
         </div>
-        <div ref='right'>
-
-        </div>
+        <div ref='right'></div>
       </TopNav>
     );
   }
 }
 
-export default NewsDetailTopNav
+export default connect(
+  null,
+  {
+    goBack
+  },
+)(NewsDetailTopNav)
