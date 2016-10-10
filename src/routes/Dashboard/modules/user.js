@@ -83,13 +83,15 @@ export const UPDATE_BG_IMAGE_SUCCESS = 'UPDATE_BG_IMAGE_SUCCESS'
 
 export const checkUserNameDuplicated = data => ({
   types: [CHECK_USERNAME_DUPLICATED, CHECK_USERNAME_DUPLICATED_SUCCESS, CHECK_USERNAME_DUPLICATED_FAILTURE],
-  promise: () => API.post(URLConf.checkUserNameDuplicated, data)
+  promise: () => API.post(URLConf.checkUserNameDuplicated, data),
+  meta: { isHideLoadingBar: true }
   })
 
 export const checkPhoneDuplicated = data => (
   {
     types: [CHECK_PHONE_DUPLICATED, CHECK_PHONE_DUPLICATED_SUCCESS, CHECK_PHONE_DUPLICATED_FAILTURE],
-    promise: () => API.post(URLConf.checkPhoneDuplicated, data)
+    promise: () => API.post(URLConf.checkPhoneDuplicated, data),
+    meta: { isHideLoadingBar: true }
   }
 );
 
