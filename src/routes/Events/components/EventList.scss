@@ -6,6 +6,13 @@ $thumbSize: 3.75rem;
   background-color: #fff;
 }
 
+.icons {
+  font-size: 14*$px1;
+  vertical-align: middle;
+  padding-bottom: $px1;
+  margin-right: 5*$px1;
+}
+
 .eventList-item {
   padding: $space 0;
   margin: 0 $space;
@@ -37,6 +44,8 @@ $thumbSize: 3.75rem;
 .eventList-name {
   font-size: 1rem;
   margin-bottom: $px10 / 2;
+  color: $secondaryFontColor;
+  margin-top: -4*$px1;
 }
 
 .eventList-date, .eventList-location {
