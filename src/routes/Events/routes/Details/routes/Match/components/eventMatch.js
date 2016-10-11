@@ -11,7 +11,7 @@ export default class EventMatch extends Component {
       params:{matchId}
     } = this.props
     getDetails(matchId)
-    getGuess(matchId)
+    // getGuess(matchId)
     getTechnicalStatistics(matchId)
     document.body.classList.add(cs.bodyBg)
   }
@@ -21,12 +21,11 @@ export default class EventMatch extends Component {
   render () {
     const {
       details, technicalStatistics, guess,
-      changeSets, currentSets, sets,
       params: {matchId}} = this.props
     return (
       <div className={cs.box}>
         <NavBack title='比赛' />
-        <MatchInfo data={details} sets={{currentSets, changeSets, sets}} />
+        <MatchInfo data={details} />
         <MatchTab
           matchId={matchId}
           technicalStatistics={technicalStatistics}

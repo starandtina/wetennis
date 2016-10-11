@@ -17,7 +17,9 @@ export default class EventDetails extends React.Component {
       params: {eventId},
       children
     } = this.props;
-    if (children) return;
+    if (children) {
+      return
+    };
     getDetails(eventId);
     getNotices(eventId);
     getSponsors(eventId);

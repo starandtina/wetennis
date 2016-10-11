@@ -43,8 +43,9 @@ $team2Color: $blue;
   .icons {
     font-size: 14*$px1;
     display: inline-block;
-    vertical-align: bottom;
+    vertical-align: middle;
     margin-right: 2*$px1;
+    padding-bottom: $px1;
   }
 }
 .eventName {
@@ -99,7 +100,7 @@ $team2Color: $blue;
 }
 
 .scoreDetails {
-  padding: 30*$px1 15*$px1;
+  padding: 0 15*$px1 30*$px1;
 }
 
 
@@ -117,6 +118,10 @@ $team2Color: $blue;
     text-align: center;
     margin-right: 20px;
     color: $secondaryFontColor;
+  }
+
+  .breakPoint {
+    color: #d7ed15;
   }
   .scoreFirst {
     margin: 0 0 0 -20px;
@@ -253,4 +258,15 @@ $team2Color: $blue;
 .setsFilterIcon {
   font-size: 16*$px1;
   vertical-align: middle;
+}
+
+.scoreGamesTitle {
+  font-size: $px14;
+  padding: $px10 0;
+  text-align: center;
+  color: $secondaryFontColor;
+}
+
+.scoreGamesItem {
+  margin-top: 10*$px1;
 }

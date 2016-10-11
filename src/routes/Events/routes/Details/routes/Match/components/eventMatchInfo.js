@@ -1,15 +1,10 @@
 import React from 'react'
 import cs from './eventMatchInfo.scss'
 
-export const MatchInfo = ({data, sets}) => {
+export const MatchInfo = ({data}) => {
   return (
     <div className={cs.box}>
       <MatchInfoStatus data={data.status} />
-      <MatchSetsFilter
-        data={sets.sets}
-        value={sets.currentSets}
-        onChange={sets.changeSets}
-      />
       <EventInfo data={data} />
       <MatchVS data={data.teams} gameTime={data.gameTime} />
       <MatchGames data={data.games} />
@@ -49,30 +44,6 @@ export const MatchVS = ({data, gameTime}) => {
   );
 };
 
-export const MatchSetsFilter = ({data=[], value, onChange = ()=>{}}) => {
-  const currentItem = data.find(function(item) {
-    return item.value == value;
-  });
-  const text = currentItem ? currentItem.text : '';
-  return (
-    <div className={cs.setsFilter}>
-      {text}
-      <i className={`material-icons ${cs.setsFilterIcon}`}>keyboard_arrow_down</i>
-      <select
-        className="dropdown"
-        onChange={onChange}
-        value={value}
-      >
-        {data.map(function(item, index) {
-          return (
-            <option key={index} value={item.value}>{item.text}</option>
-          );
-        })}        
-      </select>
-    </div>
-  );
-}
-
 export const MatchVSUsers = ({data}) => {
   if (!data || !Array.isArray(data) || data.length === 0) {
     return <div />;
@@ -95,7 +66,7 @@ export const MatchVSUsers = ({data}) => {
   );
 };
 
-const gamesTitle = ['第一局', '第二局', '第三局', '第四局', '第五局']
+const gamesTitle = ['第一盘', '第二盘', '第三盘', '第四盘', '第五盘']
 export const MatchGames = ({data}) => {
   return (
     <div className={cs.games}>
@@ -108,8 +79,9 @@ export const MatchGames = ({data}) => {
       </div>
       <div className={cs.gamesScore}>
         <i className={cs.team1}></i>
-      {data.map((item, index) => {
+      {gamesTitle.map((v, index) => {
         let score, win
+        const item = data[index];
         if (item) {
           score = item[0].score
           win = item[0].win
@@ -121,8 +93,9 @@ export const MatchGames = ({data}) => {
       </div>
       <div className={cs.gamesScore}>
         <i className={cs.team2}></i>
-      {data.map((item, index) => {
+      {gamesTitle.map((v, index) => {
         let score, win
+        const item = data[index];
         if (item) {
           score = item[1].score
           win = item[1].win
@@ -142,21 +115,31 @@ export const MatchScoreDetail = ({data}) => {
     {data.map((item, index) => {
       return (
         <div className={cs.scoreDetailsItem} key={index}>
-          {item.map((item, index) => {
+          <h3 className={cs.scoreGamesTitle}>{item.name}</h3>
+          {item.games.map((item, index) => {
             return (
-              <div className={cs.scoreInfo} key={index}>
-                <div className={cs.scoreNumber}>{item.score}</div>
-                <div className={cs.scoreFirst}>
-                  {item.first
-                  ? <i className="material-icons">fiber_manual_record</i>
-                  : undefined}
-                </div>
-                {item.details.map((v, k) => {
-                  return (
-                    <div className={v.win ? cs.win : cs.lose} key={k}>{v.score}</div>
-                  );
-                })}
-              </div>
+              <div key={index} className={cs.scoreGamesItem}>
+              {item.map((item, index) => {
+                const hasBreakPoint = item.details.find((v) => {
+                  return v.isBreakPoint;
+                });
+                return (
+                  <div className={cs.scoreInfo} key={index}>
+                    <div className={`${hasBreakPoint ? cs.breakPoint : ""}`}>{item.score}</div>
+                    <div className={cs.scoreFirst}>
+                      {item.first
+                      ? <i className="material-icons">fiber_manual_record</i>
+                      : undefined}
+                    </div>
+                    {item.details.map((v, k) => {
+                      return (
+                        <div className={`${v.win ? cs.win : cs.lose} ${v.isBreakPoint ? cs.breakPoint : ""}`} key={k}>{v.score}</div>
+                      );
+                    })}
+                  </div>
+                );
+              })}
+            </div>
             );
           })}
         </div>
@@ -189,7 +172,7 @@ export const EventInfo = ({data}) => {
     <div className={cs.eventInfo}>
       <div className={cs.eventName}>{data.eventName}</div>
       <div className={cs.matchName}>{data.matchName}</div>
-      <div className={cs.gameTime}><i className={`material-icons ${cs.icons}`}>access_time</i>{data.gameTime}</div>
+      <div className={cs.gameTime}><i className={`material-icons ${cs.icons}`}>access_time</i>{data.dateTime}</div>
       <div className={cs.location}><i className={`material-icons ${cs.icons}`}>place</i>{data.location}</div>
       <div className={cs.vs}></div>
     </div>

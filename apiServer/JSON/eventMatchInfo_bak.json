@@ -1,0 +1,235 @@
+{
+  "code": 0,
+  "data": {
+    "status": 1,
+    "eventName": "华侨城*东岸2016成都业余网球精英赛 成都站",
+    "matchName": "精英B | 女子双打 | 小组资格赛 | 第一组",
+    "time": "2017.2.16",
+    "location": "电子科技大学体育场一号球场",
+    "gameTime": "1:00:40",
+    "teams": [
+      {
+        "win": false,
+        "users": [
+          { "username": "陈韵竹1", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" },
+          { "username": "陈韵竹2", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+        ],
+        "score": 3
+      },
+      {
+        "win": true,
+        "users": [
+          { "username": "陈韵竹3", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" },
+          { "username": "陈韵竹4", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
+        ],
+        "score": 2
+      }
+    ],
+    "sets": [
+      {
+        "games": [
+          [
+            {"score": 6, "win": true},
+            {"score": 0, "win": false}
+          ],
+          [
+            {"score": 2, "win": false},
+            {"score": 6, "win": true}
+          ],
+          [
+            {"score": 6, "win": true},
+            {"score": 2, "win": false}
+          ],
+          [
+            {"score": 1, "win": false},
+            {"score": 6, "win": true}
+          ],
+          [
+            {"score": 7, "win": true},
+            {"score": "6(4)", "win": false}
+          ]
+        ],
+        "scoreDetails": [
+          [
+            {
+              "score": 1,
+              "first": true,
+              "details": [
+                {"score": 0, "win": false},
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 30, "win": false},
+                {"score": 40, "win": true},
+                {"score": 40, "win": false}
+              ]
+            },
+            {
+              "score": 1,
+              "first": false,
+              "details": [
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 30, "win": false},
+                {"score": 40, "win": true},
+                {"score": 40, "win": false},
+                {"score": "A", "win": true}
+              ]
+            }
+          ],
+          [
+            {
+              "score": 1,
+              "first": true,
+              "details": [
+                {"score": 0, "win": false},
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 40, "win": true}
+              ]
+            },
+            {
+              "score": 0,
+              "first": false,
+              "details": [
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 30, "win": false},
+                {"score": 30, "win": false}
+              ]
+            }
+          ],
+          [
+            {
+              "score": 0,
+              "first": false,
+              "details": [
+                {"score": 0, "win": false},
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 40, "win": true}
+              ]
+            },
+            {
+              "score": 0,
+              "first": true,
+              "details": [
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 30, "win": false},
+                {"score": 30, "win": false}
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "games": [
+          [
+            {"score": 3, "win": true},
+            {"score": 0, "win": false}
+          ],
+          [
+            {"score": 2, "win": false},
+            {"score": 6, "win": true}
+          ],
+          [
+            {"score": 6, "win": true},
+            {"score": 2, "win": false}
+          ],
+          [
+            {"score": 1, "win": false},
+            {"score": 6, "win": true}
+          ],
+          [
+            {"score": 7, "win": true},
+            {"score": "6(4)", "win": false}
+          ]
+        ],
+        "scoreDetails": [
+          [
+            {
+              "score": 1,
+              "first": true,
+              "details": [
+                {"score": 0, "win": false},
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 30, "win": false},
+                {"score": 40, "win": true},
+                {"score": 40, "win": false}
+              ]
+            },
+            {
+              "score": 1,
+              "first": false,
+              "details": [
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 30, "win": false},
+                {"score": 40, "win": true},
+                {"score": 40, "win": false},
+                {"score": "A", "win": true}
+              ]
+            }
+          ],
+          [
+            {
+              "score": 1,
+              "first": true,
+              "details": [
+                {"score": 0, "win": false},
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 40, "win": true}
+              ]
+            },
+            {
+              "score": 0,
+              "first": false,
+              "details": [
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 30, "win": false},
+                {"score": 30, "win": false}
+              ]
+            }
+          ],
+          [
+            {
+              "score": 0,
+              "first": false,
+              "details": [
+                {"score": 0, "win": false},
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 40, "win": true}
+              ]
+            },
+            {
+              "score": 0,
+              "first": true,
+              "details": [
+                {"score": 15, "win": true},
+                {"score": 15, "win": false},
+                {"score": 30, "win": true},
+                {"score": 30, "win": false},
+                {"score": 30, "win": false}
+              ]
+            }
+          ]
+        ]
+      }
+    ]
+  }
+}

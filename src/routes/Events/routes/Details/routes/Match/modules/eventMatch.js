@@ -23,14 +23,9 @@ const GET_GUESS = `${PREFIXER}GET_GUESS`;
 const GET_GUESS_SUCCESS = `${PREFIXER}GET_GUESS_SUCCESS`;
 const GET_GUESS_FAILTURE = `${PREFIXER}GET_GUESS_FAILTURE`;
 
-// change current sets
-const CHANGE_CURRENT_SETS = `${PREFIXER}CHANGE_CURRENT_SETS`;
-
 // ------------------------------------
 // Actions
 // ------------------------------------
-
-
 export function getDetails (matchId) {
   return {
     types: [GET_DETAILS, GET_DETAILS_SUCCESS, GET_DETAILS_FAILTURE],
@@ -52,14 +47,6 @@ export function getGuess(matchId) {
   }
 }
 
-export function changeSets(e) {
-  const v = e.target.value;
-  return {
-    type: CHANGE_CURRENT_SETS,
-    payload: v
-  }
-}
-
 
 // ------------------------------------
 // Reducer
@@ -78,45 +65,11 @@ function details (state = {
 }, {type, payload}) {
   let s = state
   if (type === GET_DETAILS_SUCCESS) {
-    const {sets, ...other} = payload;
-    let games = [];
-    let scoreDetails = [];
-    if (Array.isArray(sets) && sets.length > 0) {
-      games = sets[0]['games'];
-      scoreDetails = sets[0]['scoreDetails'];
-    }
-    s = {...other, games, scoreDetails, sets};
+    const {sets, ...fields} = payload;
+    s = {...fields, games: sets};
   }
 
-  if (type === CHANGE_CURRENT_SETS) {
-    const {sets, ...other} = state;
-    let games = [];
-    let scoreDetails = [];
-    if (Array.isArray(sets) && sets.length > 0) {
-      games = sets[payload]['games'];
-      scoreDetails = sets[payload]['scoreDetails'];
-    }
-    s = {...other, games, scoreDetails, sets};
-  }
   return s
-}
-
-function sets(state = [], {type, payload}) {
-  let s = state;
-  if (type === GET_DETAILS_SUCCESS) {
-    s = payload.sets.map((item, index) => {
-      return {value: index, text: `第${index + 1}盘`};
-    });
-  }
-  return s;
-}
-
-function currentSets(state = 0, {type, payload}) {
-  let s = state;
-  if (type === CHANGE_CURRENT_SETS) {
-    s = payload;
-  }
-  return s;
 }
 
 function technicalStatistics(state = [], {type, payload}) {
@@ -146,5 +99,5 @@ function guess(state = {
 }
 
 export default combineReducers({
-  details, technicalStatistics, guess, sets, currentSets
+  details, technicalStatistics, guess,
 })

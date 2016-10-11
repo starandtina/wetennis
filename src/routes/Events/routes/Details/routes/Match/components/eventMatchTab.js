@@ -3,7 +3,7 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import Slider from 'material-ui/Slider';
 import CommentsContainer from "components/Comments/CommentsContainer";
 import MatchTechnicalStatistics from "./eventMatchTechnicalStatistics";
-import EventMatchGuess from "./eventMatchGuess";
+// import EventMatchGuess from "./eventMatchGuess";
 import cs from "./eventMatchTab.scss";
 
 export default class MatchTab extends Component {
@@ -16,9 +16,9 @@ export default class MatchTab extends Component {
         <Tab label="技术统计">
           <MatchTechnicalStatistics data={technicalStatistics} />
         </Tab>
-        <Tab label="竞猜">
+        {/*<Tab label="竞猜">
           <EventMatchGuess data={guess} />
-        </Tab>
+        </Tab>*/}
         <Tab label="评论">
           <CommentsContainer type="match" id={matchId} />
         </Tab>
