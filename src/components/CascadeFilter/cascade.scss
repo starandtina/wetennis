@@ -10,7 +10,9 @@
   color: $secondaryFontColor;
   display: flex;
   align-items: center;
-  margin-right: 5*$px1;
+  & + & {
+    margin-left: 15*$px1;
+  }
 }
 
 .filterIcon {
