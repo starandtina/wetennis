@@ -14,7 +14,11 @@ export default class DrawTable extends Component {
       setCurrentFilter,
       params: {eventId}
     } = this.props;
+    document.body.classList.add(cs.bodyBg);
     getFilter(eventId);
+  }
+  componentWillUnmount() {
+    document.body.classList.remove(cs.bodyBg);
   }
   getDrawTable(matchId) {
     const {
