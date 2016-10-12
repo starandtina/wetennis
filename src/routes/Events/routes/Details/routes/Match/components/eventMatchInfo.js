@@ -53,7 +53,7 @@ export const MatchVSUsers = ({data}) => {
       <div className={cs.vsUserimageBox}>
         {data.map((item, index) => {
           return (
-            <img key={index} className={cs.vsUserimage} src={item.userimage} alt="" />
+            <img key={index} className={`${cs.vsUserimage}`} src={item.userimage} alt="" />
           );
         })}
       </div>

@@ -194,30 +194,10 @@ $team2Color: $blue;
   }
   .vsTeam1 {
     background-color: $mainColor;
-    .vsUserimage {
-      &:first-child {
-        transform: translateY(-8*$px1) translateX(8*$px1);
-        z-index: 2;
-      }
-      &:last-child {
-        transform: translateY(8*$px1) translateX(-8*$px1);
-        z-index: 3;
-      }
-    }
   }
   .vsTeam2 {
     background-color: $blue;
     justify-content: flex-end;
-    .vsUserimage {
-      &:first-child {
-        transform: translateY(8*$px1) translateX(8*$px1);
-        z-index: 3;
-      }
-      &:last-child {
-        transform: translateY(-8*$px1) translateX(-8*$px1);
-        z-index: 2;
-      }
-    }
   }
   .vsUser {
     width: 110*$px1;
@@ -233,11 +213,44 @@ $team2Color: $blue;
       content: " / ";
     }
   }
+  .vsUser1 {
+    .vsTeam1, .vsTeam2 {
+      text-align: center;
+    }
+    .vsUserimage {
+      height: 60*$px1;
+      width: 60*$px1;
+    }
+  }
   .vsUser2 {
     .vsUserimage {
       height: 40*$px1;
       width: 40*$px1;
       position: relative;
+    }
+  }
+  .vsTeam1 .vsUser2 {
+    .vsUserimage {
+      &:first-child {
+        transform: translateY(-8*$px1) translateX(8*$px1);
+        z-index: 2;
+      }
+      &:last-child {
+        transform: translateY(8*$px1) translateX(-8*$px1);
+        z-index: 3;
+      }
+    }
+  }
+  .vsTeam2 .vsUser2 {
+    .vsUserimage {
+      &:first-child {
+        transform: translateY(8*$px1) translateX(8*$px1);
+        z-index: 3;
+      }
+      &:last-child {
+        transform: translateY(-8*$px1) translateX(-8*$px1);
+        z-index: 2;
+      }
     }
   }
   .vsGameTime {
