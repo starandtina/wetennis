@@ -28,24 +28,42 @@ export default ({data, eventId}) => {
                 <div className={`${cs.littleItemLeft} ${winTeam ? cs.hasWinner : ""}`}>
                   {item.map((item, index) => {
                     return (
-                      <Link key={index} to={`/events/${eventId}/match/${item.id}`}>
-                        <ScoreItem
-                          user={item.users}
-                          doubles={doubles}
-                        >
-                          <span className={cs.score}>{item.score}</span>
-                          <span className={`material-icons ${item.win ? cs.win : cs.lose}`}>done</span>
-                        </ScoreItem>
-                      </Link>
+                      <div key={index}>
+                        {item.matchId
+                        ? <Link className={cs.matchLink} to={`/events/${eventId}/match/${item.matchId}`}>
+                            <ScoreItem
+                              user={item.users}
+                              doubles={doubles}
+                            >
+                              <span className={cs.score}>{item.score}</span>
+                              <span className={`material-icons ${item.win ? cs.win : cs.lose}`}>done</span>
+                            </ScoreItem>
+                          </Link>
+                        : <ScoreItem
+                            user={item.users}
+                            doubles={doubles}
+                          >
+                            <span className={cs.score}>{item.score}</span>
+                            <span className={`material-icons ${item.win ? cs.win : cs.lose}`}>done</span>
+                          </ScoreItem>}
+                      </div>
                     );
                   })}
                 </div>
                 <div className={cs.littleItemRight}>
-                    <ScoreItem
+                  {winTeam
+                  ? <Link　className={cs.matchLink} key={index} to={`/events/${eventId}/match/${item.matchId}`}>
+                      <ScoreItem
+                        className={cs.winTeam}
+                        user={winTeam.users}
+                        doubles={doubles}
+                      ></ScoreItem>
+                    </Link>
+                  : <ScoreItem
                       className={cs.winTeam}
-                      user={winTeam ? winTeam.users : false}
+                      user={false}
                       doubles={doubles}
-                    ></ScoreItem>
+                    ></ScoreItem>}
                 </div>
               </div>
             );

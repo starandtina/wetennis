@@ -18,6 +18,7 @@
           "groupName": "第一组",
           "games": [
             {
+              "matchId": 2,
               "users": [
                 { "username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
               ],
@@ -27,6 +28,7 @@
               "criticalGame": "3:0"
             },
             {
+              "matchId": 2,
               "users": [
                 { "username": "陈韵1", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
               ],
@@ -36,6 +38,7 @@
               "criticalGame": "3:0"
             },
             {
+              "matchId": 2,
               "users": [
                 { "username": "陈韵2", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
               ],
@@ -45,6 +48,7 @@
               "criticalGame": "3:0"
             },
             {
+              "matchId": 2,
               "users": [
                 { "username": "陈韵竹3", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
               ],
@@ -60,6 +64,7 @@
           "groupName": "第一组",
           "games": [
             {
+              "matchId": 2,
               "users": [
                 { "username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
               ],
@@ -69,6 +74,7 @@
               "criticalGame": "3:0"
             },
             {
+              "matchId": 2,
               "users": [
                 { "username": "陈韵1", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
               ],
@@ -78,6 +84,7 @@
               "criticalGame": "3:0"
             },
             {
+              "matchId": 2,
               "users": [
                 { "username": "陈韵2", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
               ],
@@ -87,6 +94,7 @@
               "criticalGame": "3:0"
             },
             {
+              "matchId": 2,
               "users": [
                 { "username": "陈韵竹3", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
               ],
@@ -102,6 +110,7 @@
           "groupName": "第一组",
           "games": [
             {
+              "matchId": 2,
               "users": [
                 { "username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
               ],
@@ -111,6 +120,7 @@
               "criticalGame": "3:0"
             },
             {
+              "matchId": 2,
               "users": [
                 { "username": "陈韵1", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
               ],
@@ -120,6 +130,7 @@
               "criticalGame": "3:0"
             },
             {
+              "matchId": 2,
               "users": [
                 { "username": "陈韵2", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
               ],
@@ -129,6 +140,7 @@
               "criticalGame": "3:0"
             },
             {
+              "matchId": 2,
               "users": [
                 { "username": "陈韵竹3", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
               ],
@@ -144,6 +156,7 @@
           "groupName": "第一组",
           "games": [
             {
+              "matchId": 2,
               "users": [
                 { "username": "陈韵竹", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
               ],
@@ -153,6 +166,7 @@
               "criticalGame": "3:0"
             },
             {
+              "matchId": 2,
               "users": [
                 { "username": "陈韵1", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
               ],
@@ -162,6 +176,7 @@
               "criticalGame": "3:0"
             },
             {
+              "matchId": 2,
               "users": [
                 { "username": "陈韵2", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
               ],
@@ -171,6 +186,7 @@
               "criticalGame": "3:0"
             },
             {
+              "matchId": 2,
               "users": [
                 { "username": "陈韵竹3", "userimage": "http://hbimg.b0.upaiyun.com/1b27e032369e7f502535fc6a9203e5035f18d3871a2bd-8hggiJ_sq120" }
               ],
