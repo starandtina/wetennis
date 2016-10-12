@@ -10,7 +10,6 @@ export default (store) => ({
       cb(null, [
         require('./routes/Register')(store),
         require('./routes/Details')(store),
-        require('./routes/DrawTable')(store),
       ])
     }, 'events')
   },
