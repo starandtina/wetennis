@@ -1,9 +1,10 @@
 import React from "react";
+import {Link} from "react-router";
 
 import ScoreItem from "components/ScoreItem";
 import cs from "./TableDetails.scss";
 
-export default ({data}) => {
+export default ({data, eventId}) => {
   return (
     <div className={cs.container}>
     {data.map((item, index) => {
@@ -27,23 +28,24 @@ export default ({data}) => {
                 <div className={`${cs.littleItemLeft} ${winTeam ? cs.hasWinner : ""}`}>
                   {item.map((item, index) => {
                     return (
-                      <ScoreItem
-                        key={index}
-                        user={item.users}
-                        doubles={doubles}
-                      >
-                        <span className={cs.score}>{item.score}</span>
-                        <span className={`material-icons ${item.win ? cs.win : cs.lose}`}>done</span>
-                      </ScoreItem>
+                      <Link key={index} to={`/events/${eventId}/match/${item.id}`}>
+                        <ScoreItem
+                          user={item.users}
+                          doubles={doubles}
+                        >
+                          <span className={cs.score}>{item.score}</span>
+                          <span className={`material-icons ${item.win ? cs.win : cs.lose}`}>done</span>
+                        </ScoreItem>
+                      </Link>
                     );
                   })}
                 </div>
                 <div className={cs.littleItemRight}>
-                  <ScoreItem
-                    className={cs.winTeam}
-                    user={winTeam ? winTeam.users : false}
-                    doubles={doubles}
-                  ></ScoreItem>
+                    <ScoreItem
+                      className={cs.winTeam}
+                      user={winTeam ? winTeam.users : false}
+                      doubles={doubles}
+                    ></ScoreItem>
                 </div>
               </div>
             );

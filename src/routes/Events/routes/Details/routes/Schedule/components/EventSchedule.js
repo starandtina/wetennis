@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import NavBack from "components/NavBack";
 import ScoreItem from "components/ScoreItem";
+import {Link} from "react-router";
 
 import cs from "./EventSchedule.scss";
 
@@ -127,6 +128,7 @@ export default class EventScore extends Component {
   }
   groupItem = (item, index) => {
     const {date, location} = this.props.currentFilter;
+    const {params: {eventId}} = this.props;
     return (
       <div key={index} className={cs.groupItem}>
         <div className={cs.groupNumber}>{item.matches}</div>
@@ -136,7 +138,9 @@ export default class EventScore extends Component {
           </div>
           {item.gameTime}
         </div>
-        {item.team.map(this.team)}
+        <Link to={`/events/${eventId}/match/${item.id}`}>
+          {item.team.map(this.team)}
+        </Link>
       </div>
     );
   }

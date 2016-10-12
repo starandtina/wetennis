@@ -104,7 +104,6 @@ export default class EventScore extends Component {
     if (!(item.status == status || status == 0)) return;
     return (
       <div key={index} className={cs.groupItem}>
-        <Link to={`/events/${eventId}/match/${item.id}`}>
         <div className={cs.groupNumber}>{item.matches}</div>
         <div className={cs.groupInfo}>
           <div className={cs.matches}>
@@ -112,7 +111,8 @@ export default class EventScore extends Component {
           </div>
           {item.gameTime}
         </div>
-        {item.team.map(this.team)}
+        <Link to={`/events/${eventId}/match/${item.id}`}>
+          {item.team.map(this.team)}
         </Link>
       </div>
     );

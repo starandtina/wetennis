@@ -40,7 +40,7 @@ export default class DrawTable extends Component {
   }
 
   render() {
-    const {data, currentMatch, filters, currentFilter} = this.props;
+    const {data, currentMatch, filters, currentFilter, params: {eventId}} = this.props;
     const {qualify, gameName} = data;
     return (
       <div>
@@ -73,8 +73,8 @@ export default class DrawTable extends Component {
           />
         </div>
         {qualify
-        ? <QualifyTableDetails data={data.details} />
-        : <TableDetails data={data.details} />}
+        ? <QualifyTableDetails data={data.details} eventId={eventId} />
+        : <TableDetails data={data.details} eventId={eventId} />}
       </div>
     );
   }
