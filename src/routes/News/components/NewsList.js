@@ -9,9 +9,9 @@ import NewsContainer from '../containers/NewsContainer'
 
 export default class NewsList extends Component {
   componentDidMount() {
-    const { fetchNewsList, children } = this.props
+    const { fetchNewsList, children, newsList } = this.props
 
-    if (!children) {
+    if (!children || newsList.length === 0) {
       fetchNewsList()
     }
   }

@@ -14,9 +14,9 @@ import cs from "./EventContainer.scss";
 
 class EventContainer extends React.Component {
   componentDidMount () {
-    const {children, action: {getFilter, getEventList, setCurrentFilter}, currentFilter} = this.props;
+    const {children, eventList, action: {getFilter, getEventList, setCurrentFilter}, currentFilter} = this.props;
     // get initial list data from server
-    if (!children) {
+    if (!children || eventList.length === 0) {
       getFilter().then(data => {
         const {status, location} = data.payload.data;
         const __obj = Object.assign({}, currentFilter, {
