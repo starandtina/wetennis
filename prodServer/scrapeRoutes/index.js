@@ -10,6 +10,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // Create routes
 router.use('/atp', require('./atp')())
+router.use('/sina', require('./sina')())
 
 // Expose render
 router.render = function (req, res) {

@@ -25,8 +25,8 @@ export class RegisterConfirmation extends React.Component {
   uploadUserInfo = () => {
     const { uploadUserInfo, push, params, values } = this.props;
     const eventId = params.eventId;
-    const { name, username, gender, cardId, passport, phone, companyName, companyTitle } = values;
-    if (name && username && gender && (cardId || passport) && phone) {
+    const { name, username, gender, personCard, passport, phone, companyName, companyTitle, club } = values;
+    if (name && username && gender && (personCard || passport) && phone) {
       uploadUserInfo(values);
       push(`/events/${eventId}/register/announcement`)
     } else {
@@ -45,10 +45,11 @@ export class RegisterConfirmation extends React.Component {
         gender,
         name,
         phone,
-        cardId,
+        personCard,
         passport,
         companyName,
         companyTitle,
+        club,
         },
       handleSubmit
       } = this.props;
@@ -57,7 +58,7 @@ export class RegisterConfirmation extends React.Component {
       gender,
       name,
       phone,
-      cardId
+      personCard
     });
     const myPartner = partners.find(item => item.id == partnerId);
     const partnerContent = item.needPartner ? (
@@ -89,10 +90,10 @@ export class RegisterConfirmation extends React.Component {
             <Col xs={8}>
               <TextField
                 inputStyle={{
-                    textAlign: 'left',
-                    width: '220px'
-                  }}
+                  textAlign: 'left'
+                }}
                 name="gender"
+                fullWidth
                 disabled
                 value={myPartner.gender === "female" ? "女" : "男"}
               />
@@ -121,8 +122,7 @@ export class RegisterConfirmation extends React.Component {
             <Col xs={8}>
               <TextField
                 inputStyle={{
-                    textAlign: 'left',
-                     width: '220px'
+                    textAlign: 'left'
                   }}
                 name="phone"
                 fullWidth
@@ -216,10 +216,10 @@ export class RegisterConfirmation extends React.Component {
                   inputStyle={{
                     textAlign: 'left'
                   }}
-                  name="cardId"
+                  name="personCard"
                   fullWidth
-                  {...cardId}
-                  errorText={cardId.touched && cardId.error}
+                  {...personCard}
+                  errorText={personCard.touched && personCard.error}
                 />
               </Col>
             </Row>
@@ -241,7 +241,7 @@ export class RegisterConfirmation extends React.Component {
             </Row>
             <Row>
               <Col xs={4}>
-                <label className={classes.label}>公司名称</label>
+                <label className={classes.label}>工作单位</label>
               </Col>
               <Col xs={8}>
                 <TextField
@@ -257,7 +257,7 @@ export class RegisterConfirmation extends React.Component {
             </Row>
             <Row>
               <Col xs={4}>
-                <label className={classes.label}>公司职位</label>
+                <label className={classes.label}>职务</label>
               </Col>
               <Col xs={8}>
                 <TextField
@@ -268,6 +268,22 @@ export class RegisterConfirmation extends React.Component {
                   fullWidth
                   {...companyTitle}
                   errorText={companyTitle.touched && companyTitle.error}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={4}>
+                <label className={classes.label}>所属俱乐部</label>
+              </Col>
+              <Col xs={8}>
+                <TextField
+                  inputStyle={{
+                    textAlign: 'left'
+                  }}
+                  name="club"
+                  fullWidth
+                  {...club}
+                  errorText={club.touched && club.error}
                 />
               </Col>
             </Row>

@@ -90,9 +90,9 @@ class Security extends Component {
               <Col xs={8}>
                 <TextField
                   inputStyle={{
-                        textAlign: 'left',
-                        color: '#929292',
-                      }}
+                    textAlign: 'left',
+                    color: '#929292',
+                  }}
                   name="cardId"
                   fullWidth
                   onChange={this.handleChange('cardId')}
@@ -104,14 +104,14 @@ class Security extends Component {
             </Row>
             <Row>
               <Col xs={4}>
-                <label className={classes.label}>公司名称</label>
+                <label className={classes.label}>工作单位</label>
               </Col>
               <Col xs={8}>
                 <TextField
                   inputStyle={{
-                        textAlign: 'left',
-                        color: '#929292',
-                      }}
+                    textAlign: 'left',
+                    color: '#929292',
+                  }}
                   name="companyName"
                   fullWidth
                   onChange={this.handleChange('companyName')}
@@ -123,18 +123,37 @@ class Security extends Component {
             </Row>
             <Row>
               <Col xs={4}>
-                <label className={classes.label}>公司职务</label>
+                <label className={classes.label}>职务</label>
               </Col>
               <Col xs={8}>
                 <TextField
                   inputStyle={{
-                        textAlign: 'left',
-                        color: '#929292',
-                      }}
+                    textAlign: 'left',
+                    color: '#929292',
+                  }}
                   name="companyTitle"
                   fullWidth
                   onChange={this.handleChange('companyTitle')}
                   value={user.companyTitle}
+                  underlineShow={false}
+                />
+              </Col>
+              <Divider />
+            </Row>
+            <Row>
+              <Col xs={4}>
+                <label className={classes.label}>所属俱乐部</label>
+              </Col>
+              <Col xs={8}>
+                <TextField
+                  inputStyle={{
+                    textAlign: 'left',
+                    color: '#929292',
+                  }}
+                  name="club"
+                  fullWidth
+                  onChange={this.handleChange('club')}
+                  value={user.club}
                   underlineShow={false}
                 />
               </Col>

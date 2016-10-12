@@ -5,8 +5,7 @@ const fs = require('fs')
 const models = require('../models')
 
 module.exports = function () {
-  var router = express.Router()
-
+  const router = express.Router()
 
   function show(req, res, next) {
     const url = 'http://cn.atpworldtour.com'
@@ -63,7 +62,7 @@ module.exports = function () {
                 return models.News
                   .create(news)
               }))
-              .then((results) => {
+              .then(results => {
                 res.locals.data = results
 
                 next()

@@ -126,20 +126,17 @@ class SettingsForm extends React.Component {
       user: { user },
       settings,
       push
-      } = this.props;
+    } = this.props
 
     updateMySettings({
       ...settings,
-      name: user.name,
-      phone: user.phone,
-      cardId: user.cardId,
-      companyName: user.companyName,
-      companyTitle: user.companyTitle,
-      id: user.id
-    }).then(action => {
-      this.handleOpen();
+      ...user,
+      userId: user.id
+    }).then(({payload: {code, data}}) => {
+      if (Number(code) === 0) {
+        this.handleOpen()
+      }
     })
-
   }
 
   render () {

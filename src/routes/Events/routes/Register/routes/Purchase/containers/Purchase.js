@@ -27,11 +27,7 @@ class Purchase extends Component {
 
     registerEvent({
       itemId: item.id,
-      id: user.id,
-      gender: user.gender,
-      name: user.name,
-      phone: user.phone,
-      personCard: user.cardId,
+      ...user,
       partnerId
     }).then(action => {
       location.replace(
