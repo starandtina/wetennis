@@ -35,6 +35,9 @@
   min-width: 20*$px1;
   font-size: 20*$px1;
   color: $secondaryFontColor;
+  &.winGameNumber {
+    color: $mainColor;
+  }
 }
 
 .win {
