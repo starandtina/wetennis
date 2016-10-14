@@ -16,6 +16,10 @@ const muiTheme = getMuiTheme({
 
 export class Sign extends React.Component {
 
+  componentWillUnmount() {
+    this.props.resetSigninUser()
+  }
+
   render () {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>

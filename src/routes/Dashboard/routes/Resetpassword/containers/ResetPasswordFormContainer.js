@@ -108,50 +108,48 @@ export class ResetPasswordForm extends React.Component {
     };
     return (
       <form className='registration-form' onSubmit={handleSubmit(this.resetPassword)}>
-        <Grid>
-          <Row>
-            <Col xs={8}>
-              <TextField
-                style={style}
-                hintText="手机号"
-                errorText={phone.touched ? phone.error : ''}
-                floatingLabelText="手机号"
-                {...phone}
-                onBlur={this.checkPhone}
-              />
-            </Col>
-            <Col xs={4}>
-              <RaisedButton
-                style={{'marginTop': '28px'}}
-                label={this.state.Tip}
-                disabled={this.state.buttonSuspending}
-                onClick={sendactivationCode}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <TextField
-                style={style}
-                hintText="验证码"
-                errorText={activationCode.touched ? activationCode.error : ''}
-                floatingLabelText="验证码"
-                {...activationCode}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <TextField
-                style={style}
-                hintText="密码"
-                errorText={password.touched ? password.error : ''}
-                floatingLabelText="密码"
-                {...password}
-              />
-            </Col>
-          </Row>
-        </Grid>
+        <Row>
+          <Col xs={8}>
+            <TextField
+              style={style}
+              hintText="手机号"
+              errorText={phone.touched ? phone.error : ''}
+              floatingLabelText="手机号"
+              {...phone}
+              onBlur={this.checkPhone}
+            />
+          </Col>
+          <Col xs={4}>
+            <RaisedButton
+              style={{'marginTop': '28px'}}
+              label={this.state.Tip}
+              disabled={this.state.buttonSuspending}
+              onClick={sendactivationCode}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12}>
+            <TextField
+              style={style}
+              hintText="验证码"
+              errorText={activationCode.touched ? activationCode.error : ''}
+              floatingLabelText="验证码"
+              {...activationCode}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12}>
+            <TextField
+              style={style}
+              hintText="密码"
+              errorText={password.touched ? password.error : ''}
+              floatingLabelText="密码"
+              {...password}
+            />
+          </Col>
+        </Row>
         <div className='button-groups clearfix'>
           {this.props.user.error ? <p className='u-errorText'>{this.props.user.error.message}</p> : ''}
           <button type="submit" className="btn btn-default btn-lg btn-block" disabled={submitting}>确认修改</button>

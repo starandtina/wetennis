@@ -21,12 +21,13 @@ import URLConf from 'utils/url'
 export const SIGNUP_USER = 'SIGNUP_USER'
 export const SIGNUP_USER_SUCCESS = 'SIGNUP_USER_SUCCESS'
 export const SIGNUP_USER_FAILTURE = 'SIGNUP_USER_FAILTURE'
-
+export const RESET_SIGNUP_USER = 'RESET_SIGNUP_USER'
 
 // Sign In User
 export const SIGNIN_USER = 'SIGNIN_USER'
 export const SIGNIN_USER_SUCCESS = 'SIGNIN_USER_SUCCESS'
 export const SIGNIN_USER_FAILTURE = 'SIGNIN_USER_FAILTURE'
+export const RESET_SIGNIN_USER = 'RESET_SIGNIN_USER'
 
 export const RESET_PASSWORD = 'RESET_PASSWORD'
 export const CHECK_ACTIVATION_CODE = 'CHECK_ACTIVATION_CODE'
@@ -109,9 +110,17 @@ export function signUpUserThenSetCookie(data) {
     })
 }
 
+export const resetSignupUser = (data) => ({
+  type: RESET_SIGNUP_USER
+})
+
 export const signInUser = (data) => ({
   types: [SIGNIN_USER, SIGNIN_USER_SUCCESS, SIGNIN_USER_FAILTURE],
   promise: () => API.post(URLConf.signIn, data)
+})
+
+export const resetSigninUser = (data) => ({
+  type: RESET_SIGNIN_USER
 })
 
 //export const verifyPhone = (data) => ({
@@ -242,6 +251,12 @@ export default handleActions({
     },
     user: null
   }),
+  [RESET_SIGNIN_USER]: (state, action) => ({
+    ...state,
+    status: null,
+    error: null,
+    user: null
+  }),
   [LOGOUT_USER]: (state, action) => ({
     ...state,
     user: null,
@@ -270,6 +285,12 @@ export default handleActions({
     error: {
       message: action.payload
     },
+    user: null
+  }),
+  [RESET_SIGNUP_USER]: (state, action) => ({
+    ...state,
+    status: null,
+    error: null,
     user: null
   }),
   [CHECK_USERNAME_DUPLICATED_SUCCESS]: (state, action) => ({

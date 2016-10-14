@@ -1,10 +1,12 @@
-import React, {Component} from "react";
+import React, { Component } from 'react'
+import { Link } from 'react-router'
+
 import cs from "./Comments.scss";
 
 const CommentItem = ({data, likeAction, isLogin}) => {
   return (
     <div className={`clearfix ${cs.container}`}>
-      <img className={cs.userimage} src={data.userimage} alt="" />
+      <Link to={`/time/users/${data.id}`}><img className={cs.userimage} src={data.userimage} alt="" /></Link>
       <div className={cs.right}>
         <div className="clearfix">
           <div className={cs.username}>{data.username}</div>

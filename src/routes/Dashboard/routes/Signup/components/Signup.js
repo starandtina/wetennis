@@ -4,6 +4,10 @@ import NavBack from 'components/NavBack'
 import SignupFormContainer from '../containers/SignupFormContainer'
 
 export class Signup extends Component {
+  componentWillUnmount() {
+    this.props.resetSignupUser()
+  }
+
   render () {
     const { children } = this.props
     let content = children

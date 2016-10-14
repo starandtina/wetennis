@@ -3,14 +3,17 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 
+import { resetSigninUser } from 'routes/Dashboard/modules/user'
+
 import Signin from '../components/Signin'
 
 const mapStateToProps = (state) => ({
 
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  actions : bindActionCreators({ }, dispatch)
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Signin)
+export default connect(
+  mapStateToProps, 
+  {
+    resetSigninUser
+  }
+)(Signin)
