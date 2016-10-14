@@ -5,14 +5,14 @@ import { reduxForm } from 'redux-form'
 import TextField from 'material-ui/TextField'
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 
-import { uploadTimeImage, clearTimeImage, addTimeMessage } from '../../../actions';
-import NavBack from '../../../components/Nav';
-import AddImage from '../../../components/addImage';
+import { uploadTimeImage, clearTimeImage, addTimeMessage } from '../../../../../actions';
+import NavBack from '../../../../../components/Nav';
+import AddImage from '../../../../../components/addImage';
 import style from './AddTime.scss';
 
 const formatDate = date => {
   var year = date.getFullYear();
-  var month = date.getMonth() < 10 ? '0'+ (date.getMonth()+1) : date.getMonth()+1
+  var month = date.getMonth() < 9 ? '0'+ (date.getMonth()+1) : date.getMonth()+1
 
   var day =  date.getDate() < 10 ? '0'+ date.getDate(): date.getDate()
   return (year+'-'+month+'-'+day);
@@ -36,13 +36,14 @@ const mapStateToProps = (state) => ({
   time: state.time,
   user: state.user.user,
   initialValues: {
-    permission: "1"
+    permission: "0"
   }
 });
 
 
 const mapDispatchToProps = ({
   push,
+  goBack,
   uploadTimeImage,
   clearTimeImage,
   addTimeMessage
@@ -65,9 +66,7 @@ class AddTime extends Component {
   }
 
   addTime = () => {
-    const { values, time, addTimeMessage, push, user } = this.props;
-    console.log(user.id);
-    console.log(formatDate(new Date));
+    const { values, time, addTimeMessage, push, goBack, user } = this.props;
     addTimeMessage({
       ...values,
       imgs: time.imageList,
@@ -75,7 +74,9 @@ class AddTime extends Component {
       userId: user.id,
       date: formatDate(new Date)
     }).then(() => {
-      push('/time');
+      debugger;
+      //push('/time');
+      goBack();
     })
   };
 

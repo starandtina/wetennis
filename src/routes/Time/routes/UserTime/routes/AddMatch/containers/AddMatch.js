@@ -7,15 +7,15 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import DatePicker from 'material-ui/DatePicker';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 
-import { uploadTimeImage, clearTimeImage, addTimeMessage as addTimeMatch } from '../../../actions';
-import NavBack from '../../../components/Nav';
-import AddImage from '../../../components/addImage';
+import { uploadTimeImage, clearTimeImage, addTimeMessage as addTimeMatch } from '../../../../../actions';
+import NavBack from '../../../../../components/Nav';
+import AddImage from '../../../../../components/addImage';
 import style from './AddMatch.scss';
 
 const fields = ['message', 'permission','date','location','match','us','ourScore','opponent','opponentScore'];
 const formatDate = date => {
   var year = date.getFullYear();
-  var month = date.getMonth() < 10 ? '0'+ (date.getMonth()+1) : date.getMonth()+1
+  var month = date.getMonth() < 9 ? '0'+ (date.getMonth()+1) : date.getMonth()+1
 
   var day =  date.getDate() < 10 ? '0'+ date.getDate(): date.getDate()
   return (year+'-'+month+'-'+day);
@@ -70,13 +70,14 @@ const mapStateToProps = (state) => ({
   time: state.time,
   user: state.user.user,
   initialValues: {
-    permission: "1",
+    permission: "0",
     date: formatDate(new Date)
   }
 });
 
 const mapDispatchToProps = ({
   push,
+  goBack,
   uploadTimeImage,
   clearTimeImage,
   addTimeMatch
@@ -103,16 +104,14 @@ class AddMatch extends Component {
   };
 
   addMatch = () => {
-    const { values, time, addTimeMatch, push, user } = this.props;
-    debugger;
-    console.log(user.id);
+    const { values, time, addTimeMatch, goBack, user } = this.props;
     addTimeMatch({
       ...values,
       imgs: time.imageList,
       type: "Match",
       userId: user.id
-    }).then(action => {
-      push('/time');
+    }).then(() => {
+      goBack();
     })
   };
 

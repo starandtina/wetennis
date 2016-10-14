@@ -9,8 +9,6 @@ export default (store) => ({
   getChildRoutes (location, cb) {
     require.ensure([], (require) => {
       cb(null, [
-        require('./routes/AddMatch')(store),
-        require('./routes/AddTime')(store),
         require('./routes/UserTime')(store)
       ])
     }, 'time')

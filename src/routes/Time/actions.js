@@ -5,11 +5,11 @@ import URL from 'utils/url';
 export const FETCH_TIME_LIST = 'FETCH_TIME_LIST';
 export const FETCH_TIME_LIST_SUCCESS = 'FETCH_TIME_LIST_SUCCESS';
 export const FETCH_TIME_LIST_FAILED = 'FETCH_TIME_LIST_FAILED';
-export const fetchTimesList = ({currentPage, id}) => {
+export const fetchTimesList = ({currentPage, id, needLoading}) => {
   return ({
   types: [FETCH_TIME_LIST, FETCH_TIME_LIST_SUCCESS, FETCH_TIME_LIST_FAILED],
   promise: () => API.get(`${URL.times}?currentPage=${currentPage}&id=${id}`),
-  meta: { isHideLoadingBar: true }
+  meta: { isHideLoadingBar: !needLoading }
 })}
 
 export const FETCH_TIME_INFO = 'FETCH_TIME_INFO';
@@ -34,6 +34,9 @@ export const uploadTimeImage = createAction(UPLOAD_TIME_IMAGE)
 
 export const CLEAR_TIME_IMAGE = 'CLEAR_TIME_IMAGE';
 export const clearTimeImage = createAction(CLEAR_TIME_IMAGE)
+
+export const CLEAR_TIME = 'CLEAR_TIME';
+export const clearTime = createAction(CLEAR_TIME)
 
 export const ADD_TIME_MATCH = 'ADD_TIME_MATCH';
 export const ADD_TIME_MATCH_SUCCESS = 'ADD_TIME_MATCH_SUCCESS';

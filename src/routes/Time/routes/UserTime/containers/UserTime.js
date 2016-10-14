@@ -11,7 +11,7 @@ import IconButton from 'material-ui/IconButton/IconButton';
 import Footer from 'components/Footer'
 import style from './UserTime.scss';
 import TimeItem from '../../../components/TimeItem';
-import { fetchTimesList, fetchTimeInfo, fetchDeleteTime } from '../../../actions';
+import { fetchTimesList, fetchTimeInfo, fetchDeleteTime, clearTime } from '../../../actions';
 
 const mapStateToProps = (state) => ({
   user: state.user,
@@ -19,22 +19,23 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = ({
-  fetchTimesList, fetchTimeInfo, push, fetchDeleteTime
+  fetchTimesList, fetchTimeInfo, push, fetchDeleteTime, clearTime
 })
 
 class Times extends Component {
   componentDidMount(){
-    const { fetchTimesList, fetchTimeInfo, params, user: { user } } = this.props;
+    const { fetchTimesList, fetchTimeInfo, params, clearTime, user: { user } } = this.props;
     console.log(params);
     console.log(user);
     //debugger;
     // fetchTimeInfo({
     //   id: user.id
     // });
+    clearTime();
     fetchTimesList({
       id: params.userId,
       currentPage: 1,
-      isGuess: !(params.userId === user.id)
+      needLoading: true
     }).then(action => {
       this.setState({
         pageStart:0,
@@ -47,17 +48,17 @@ class Times extends Component {
   }
 
   addNewTime = event => {
+    const { user: { user } } = this.props;
     const value = event.target.value;
     const { push } = this.props;
-    push(`/time/${value}`);
+    push(`/time/users/${user.id}/${value}`);
   }
 
   loadData = () => {
-    const { fetchTimesList, params, time: { currentPage }, user } = this.props;
+    const { fetchTimesList, params, time: { currentPage }, user: { user } } = this.props;
     fetchTimesList({
       currentPage: currentPage + 1,
       id: params.userId,
-      isGuess: !(params.userId === user.id)
     }).then(action => {
       this.setState({
         pageStart:this.pageStart + 1,
@@ -69,10 +70,11 @@ class Times extends Component {
   debounceFuc = this.loadData
 
   render() {
-    const { time, children, fetchDeleteTime, params, user } = this.props;
+    const { time, children, fetchDeleteTime, params, user: { user } } = this.props;
     let content = null;
     let footer =  null;
     const isGuess = !(params.userId === user.id);
+    console.log(params.userId, user.id);
     if (children) {
       content = children;
       footer =  null;

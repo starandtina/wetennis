@@ -4,6 +4,7 @@ import {
   FETCH_TIME_INFO_SUCCESS,
   UPLOAD_TIME_IMAGE,
   CLEAR_TIME_IMAGE,
+  CLEAR_TIME,
   ADD_TIME_MESSAGE_SUCCESS,
   ADD_TIME_MATCH_SUCCESS,
   DELETE_TIME
@@ -16,6 +17,14 @@ export default handleActions({
       timeList: payload.timeList.concat(state.timeList),
       currentPage: state.currentPage + 1,
       lastPage: payload.lastPage || false
+    });
+  },
+  [CLEAR_TIME]: (state, { payload }) => {
+    return ({
+      ...state,
+      timeList: [],
+      currentPage: 0,
+      lastPage: false
     });
   },
   [FETCH_TIME_INFO_SUCCESS]:(state, { payload }) => {

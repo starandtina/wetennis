@@ -1,5 +1,13 @@
 export default (store) => ({
-  path: ':userId',
+  path: 'users/:userId',
+  getChildRoutes (location, cb) {
+    require.ensure([], (require) => {
+      cb(null, [
+        require('./routes/AddMatch')(store),
+        require('./routes/AddTime')(store)
+      ])
+    }, 'time')
+  },
   getComponent (nextState, next) {
     require.ensure([
       './containers/UserTime'
