@@ -24,7 +24,7 @@ export default class EventMatch extends Component {
       params: {matchId}} = this.props
     return (
       <div className={cs.box}>
-        <NavBack title='比赛' />
+        <NavBack title='比赛' transparent />
         <MatchInfo data={details} />
         <MatchTab
           matchId={matchId}

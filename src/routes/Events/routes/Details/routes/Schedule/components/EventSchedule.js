@@ -60,7 +60,7 @@ export default class EventScore extends Component {
     const currentLocation = currentFilter.location;
     return (
       <div className={cs.box}>
-        <NavBack title="赛程" />
+        <NavBack title="赛程" transparent />
         <div className={cs.filter}>
           <div className={cs.timeFilter}>
             <i className="material-icons">alarm</i>

@@ -40,7 +40,7 @@ export default class EventScore extends Component {
     const status = currentStatus ? currentStatus.text : "";
     return (
       <div className={cs.box}>
-        <NavBack title="比分"></NavBack>
+        <NavBack title="比分" transparent={true} />
         <div className={cs.pageTitle}>
           <CascadeFilter
             className={cs.groupFilter}

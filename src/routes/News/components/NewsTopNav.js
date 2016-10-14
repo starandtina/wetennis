@@ -13,7 +13,7 @@ class NewsTopNav extends Component {
 
     return (
       <div className={cs.container}>
-        <TopNav title='最新新闻'>
+        <TopNav title='最新新闻' transparent>
           <div ref='left'></div>
           <div ref='right'>
             <div className={cs.container}>

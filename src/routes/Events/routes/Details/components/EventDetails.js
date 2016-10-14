@@ -36,7 +36,7 @@ export default class EventDetails extends React.Component {
     }
     return (
       <div className={cs.box}>
-        <NavBack ref="nav" title=" " className={`${cs.navTransiton}`}>
+        <NavBack ref="nav" title=" " transparent className={`${cs.navTransiton}`}>
           <div className={cs.topRightButton}>
             <div className={cs.info}>
               <i className="material-icons">info</i>
