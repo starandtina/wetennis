@@ -5,12 +5,15 @@ module.exports = function () {
   var router = express.Router()
 
   function show(req, res, next) {
+    const isGuess = req.body.id === req.cookies.USER_ID;
+    const permission = isGuess && 0;
     models.Times
       .findAll({
         include: models.TimesPics,
         order: 'id DESC',
         where: {
-          userId: req.cookies.USER_ID
+          userId: req.body.userId,
+          permission,
         }
       })
       .then((arr) => {

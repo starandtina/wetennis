@@ -1,0 +1,91 @@
+.BackGroundImage {
+  width: 100%;
+  padding-top: 210px;
+  padding-left: 20px;
+  height: 280px;
+  margin-bottom: 10px;
+}
+.Name {
+  height: 40px;
+  font-size: 36px;
+  line-height: 1.11;
+  font-weight: 400;
+}
+
+.UserInfo {
+  height: 30px;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 2.5;
+  //color: #ffffff;
+}
+
+.Item {
+  width: 33.3%;
+  height: 80px;
+  background-color: #ffffff;
+  float: left;
+  padding-top: 20px;
+  .Num {
+    text-align: center;
+    height: 28px;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 1.17;
+    color: #029933;
+  }
+  .Des {
+    text-align: center;
+    height: 12px;
+    opacity: 0.6;
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 1.33;
+    color: #029933;
+  }
+}
+
+.Item.Green {
+  width: 50%;
+  background-color: #1cca5a;;
+  .Num {
+    color: #ffffff;
+  }
+  .Des {
+    color: #ffffff;
+  }
+}
+
+.equip {
+  width: 25%;
+  height: 93px;
+  float: left;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.Timelist {
+  position: relative;
+}
+
+.loader {
+  clear: both;
+  text-align: center;
+}
+
+.add {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.select {
+  display: none;
+}
+
+.text {
+  text-align: center;
+  padding-top: 20px;
+}

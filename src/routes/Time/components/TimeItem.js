@@ -13,7 +13,7 @@ class TimeItem extends Component {
     })
   };
   render() {
-    const { Item, isLast } = this.props;
+    const { Item, isLast, isGuess } = this.props;
     const { date, TimesPics: imgs, message, permission, id } = Item;
     let PermissionIcon = <i className="material-icons">public</i>;
     if (Number(permission) == 1) {
@@ -36,7 +36,7 @@ class TimeItem extends Component {
               发表了心情
               <span className={style.IconGroup}>
                 {PermissionIcon}
-                <i className="material-icons" onClick={this.deleteItem}>cancel</i>
+                {isGuess ? null : <i className="material-icons" onClick={this.deleteItem}>cancel</i>}
               </span>
             </div>
           </div>
@@ -80,7 +80,7 @@ class TimeItem extends Component {
             约球
             <span className={style.IconGroup}>
               {PermissionIcon}
-              <i className="material-icons" onClick={this.deleteItem}>cancel</i>
+              {isGuess ? null : <i className="material-icons" onClick={this.deleteItem}>cancel</i>}
             </span>
           </div>
         </div>
