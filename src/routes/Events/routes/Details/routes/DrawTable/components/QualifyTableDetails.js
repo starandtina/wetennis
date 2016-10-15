@@ -28,7 +28,7 @@ export default ({data, eventId}) => {
                     </div>
                     <div className={cs.score}>
                       <span>{item.criticalGame}</span>
-                      <div>胜负局</div>
+                      <div>净胜局</div>
                     </div>
                     <div className={`${cs.complete} ${complete ? "" : cs.hide} ${index === 0 ? cs.winner : ""}`}>
                       <span>{index + 1}</span>

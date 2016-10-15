@@ -6,7 +6,7 @@ const MatchGuess = ({data}) => {
   const {key, score} = data;
   return (
     <div className={cs.box}>
-      <div className={cs.title}>胜负局</div>
+      <div className={cs.title}>净胜局</div>
       <div className={cs.key}>
         <div className={cs.keyTeam}>
           <div className={cs.keyTeam1}>{key.team1.name}</div>
