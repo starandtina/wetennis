@@ -25,7 +25,7 @@ export class SignupForm extends React.Component {
 
   state = {
     buttonSuspending: false,
-    Tip: '验证',
+    Tip: '发送',
   };
 
   checkPhone = () => {
@@ -91,6 +91,24 @@ export class SignupForm extends React.Component {
       width: '100%'
     };
 
+    const underlineStyle = {
+      marginBottom: '-10px'
+    }
+
+    const errorStyle = {
+      bottom: 0,
+      top: 0,
+    }
+
+    const inputStyle = {
+      color: 'white',
+      fontSize: '30px',
+      lineHeight: '40px'
+    };
+
+    const buttonStyle = {
+      marginTop: '5px'
+    }
     if(!username.error && userNameDuplicated){
       username.error = '用户名重复';
     }
@@ -105,6 +123,9 @@ export class SignupForm extends React.Component {
             <Col xs={12}>
               <TextField
                 style={style}
+                inputStyle={inputStyle}
+                underlineStyle={underlineStyle}
+                errorStyle={errorStyle}
                 hintText="用户名"
                 errorText={username.touched ? username.error : ''}
                 floatingLabelText="用户名"
@@ -117,6 +138,9 @@ export class SignupForm extends React.Component {
             <Col xs={12}>
               <TextField
                 style={style}
+                inputStyle={inputStyle}
+                underlineStyle={underlineStyle}
+                errorStyle={errorStyle}
                 hintText="密码"
                 errorText={password.touched ? password.error : ''}
                 floatingLabelText="密码"
@@ -125,9 +149,12 @@ export class SignupForm extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col xs={8}>
+            <Col xs={12}>
               <TextField
                 style={style}
+                inputStyle={inputStyle}
+                underlineStyle={underlineStyle}
+                errorStyle={errorStyle}
                 hintText="手机号"
                 errorText={phone.touched ? phone.error : ''}
                 floatingLabelText="手机号"
@@ -135,23 +162,27 @@ export class SignupForm extends React.Component {
                 onBlur={this.checkPhone}
               />
             </Col>
-            <Col xs={4}>
-              <RaisedButton
-                style={{'marginTop': '28px'}}
-                label={this.state.Tip}
-                disabled={this.state.buttonSuspending}
-                onClick={this.sendactivationCode}
-              />
-            </Col>
           </Row>
           <Row>
-            <Col xs={12}>
+            <Col xs={8}>
               <TextField
                 style={style}
+                inputStyle={inputStyle}
+                underlineStyle={underlineStyle}
+                errorStyle={errorStyle}
                 hintText="验证码"
                 errorText={activationCode.touched ? activationCode.error : ''}
                 floatingLabelText="验证码"
                 {...activationCode}
+              />
+            </Col>
+            <Col xs={4}>
+              <RaisedButton
+                buttonStyle={buttonStyle}
+                style={{'marginTop': '28px', borderRadius: '6px'}}
+                label={this.state.Tip}
+                disabled={this.state.buttonSuspending}
+                onClick={this.sendactivationCode}
               />
             </Col>
           </Row>

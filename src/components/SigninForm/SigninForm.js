@@ -55,8 +55,8 @@ export class SigninForm extends React.Component {
         <Link to='/dashboard/resetPassword' className={`pull-right ${classes['forget-password-link']} `}>忘记密码？</Link>
         <div className={`clearfix ${classes['button-groups']}`}>
           {this.props.user.error ? <p className='u-errorText'>{this.props.user.error.message}</p> : ''}
-          <button type="submit" className="btn btn-default btn-lg btn-block" disabled={submitting}>登录</button>
-          <button type="button" onClick={this.handleSigninButtonClick.bind(this)} className="btn btn-default btn-lg btn-block u-backgroundColorTransparent">注册</button>
+          <button type="submit" className={`btn btn-default btn-lg btn-block ${classes.submitButton}`} disabled={submitting}>登录</button>
+          <button type="button" onClick={this.handleSigninButtonClick.bind(this)} className={`btn btn-default btn-lg btn-block u-backgroundColorTransparent ${classes.RegisterButton}`}>注册</button>
         </div>
       </form>
     )
