@@ -3,7 +3,7 @@
 .scoreItem {
   background-color: #fff;
   margin-bottom: $px1;
-  height: 50*$px1;
+  min-height: 50*$px1;
   display: flex;
 }
 
