@@ -25,7 +25,7 @@ export class Sign extends React.Component {
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
           <img src={SignBackgroundImage} className={classes['signin-background']} />
-          <div className={classes['form-container']}>
+          <div className={`container ${classes['form-container']}`}>
             <div className={classes['text']}>
               <p>WE</p>
               <p>TENNIS</p>

@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import { Grid, Row, Col } from 'react-bootstrap'
 import classes from './ResetPasswordContainer.scss'
 
-import { resetPassword, checkActivationCode } from 'routes/Dashboard/modules/user'
+import { resetPassword, checkPhoneDuplicated, sendActivationCode } from 'routes/Dashboard/modules/user'
 
 export const fields = ['phone', 'password', 'activationCode']
 
@@ -43,7 +43,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   ...bindActionCreators({
     resetPassword,
-    checkActivationCode,
+    sendActivationCode,
     push
   }, dispatch)
 })
@@ -56,58 +56,83 @@ export class ResetPasswordForm extends React.Component {
 
   componentWillUnmount() {
     document.querySelector('body').classList.remove('u-backgroundColorGreen')
-  };
+  }
 
   state = {
     buttonSuspending: false,
     leftTime: 180,
-    Tip: '验证',
-  };
+    Tip: '发送',
+  }
+
+  checkPhone = () => {
+    const { checkPhoneDuplicated, fields: { phone } } = this.props;
+    phone && phone.onBlur();
+    checkPhoneDuplicated({
+      "phone": +phone.value
+    })
+  }
 
   resetPassword = () => {
     const { resetPassword, values, push } = this.props;
     resetPassword(values).then(action => {
       if(action.payload.data.resetPassword){
-        alert('修改成功');
+        push('/dashboard/signin')
       }
-    });
-  };
+    })
+  }
+  
+  sendActivationCode = () => {
+    const {
+      sendActivationCode,
+      fields: {
+        phone
+      }
+    } = this.props
+    
+    sendActivationCode({
+      phone: +phone.value
+    })
+    
+    this.setState({
+      buttonSuspending: true,
+      Tip: 180,
+    })
+    
+    window.startTiming = () => {
+      let time = this.state.Tip - 1;
+      this.setState({
+        Tip: time,
+      })
+      if (time < 1) {
+        clearInterval(window.thisEvent);
+        this.setState({
+          buttonSuspending: false,
+          Tip: '发送',
+        })
+      }
+    }
+
+    window.thisEvent = setInterval("startTiming()", 1000);
+  }
 
   render () {
     const {
       fields: { password, phone, activationCode },
+      phoneDuplicated,
       handleSubmit,
       submitting,
       } = this.props;
 
     const style = {
       width: '100%'
-    };
+    }
 
-    const sendactivationCode = () => {
-      const { checkActivationCode, fields: { phone } } = this.props;
-      checkActivationCode({phone: +phone.value});
-      this.setState({
-        buttonSuspending: true,
-        Tip: 60,
-      })
-      window.startTiming = () => {
-        let time = this.state.Tip - 1;
-        this.setState({
-          Tip: time,
-        })
-        if(time < 1){
-          clearInterval(window.thisEvent);
-          this.setState({
-            buttonSuspending: false,
-            Tip: '验证',
-          })
-        }
-      }
-      window.thisEvent = setInterval("startTiming()", 1000);
-    };
+    if(!phone.error && !phoneDuplicated){
+      phone.error = '电话号码不存在';
+    }
+
     return (
-      <form className='registration-form' onSubmit={handleSubmit(this.resetPassword)}>
+      <form className='form' onSubmit={handleSubmit(this.resetPassword)}>
         <Row>
           <Col xs={8}>
             <TextField
@@ -120,12 +145,13 @@ export class ResetPasswordForm extends React.Component {
             />
           </Col>
           <Col xs={4}>
-            <RaisedButton
-              style={{'marginTop': '28px'}}
-              label={this.state.Tip}
+            <button
+              style={{marginTop: '28px'}}
+              className='btn btn-default btn-block btn-transparent'
               disabled={this.state.buttonSuspending}
-              onClick={sendactivationCode}
-            />
+              onClick={this.sendActivationCode}>
+              {this.state.Tip}
+            </button>
           </Col>
         </Row>
         <Row>
@@ -142,6 +168,7 @@ export class ResetPasswordForm extends React.Component {
         <Row>
           <Col xs={12}>
             <TextField
+              type='password'
               style={style}
               hintText="密码"
               errorText={password.touched ? password.error : ''}
@@ -152,7 +179,7 @@ export class ResetPasswordForm extends React.Component {
         </Row>
         <div className='button-groups clearfix'>
           {this.props.user.error ? <p className='u-errorText'>{this.props.user.error.message}</p> : ''}
-          <button type="submit" className="btn btn-default btn-lg btn-block" disabled={submitting}>确认修改</button>
+          <button type="submit" className="btn btn-default btn-submit btn-lg btn-block" disabled={submitting}>确认修改</button>
         </div>
       </form>
     )
@@ -164,6 +191,7 @@ export default reduxForm({
   validate
 }, mapStateToProps, {
   resetPassword,
-  checkActivationCode,
+  checkPhoneDuplicated,
+  sendActivationCode,
   push,
 })(ResetPasswordForm)

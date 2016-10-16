@@ -30,9 +30,9 @@ export const SIGNIN_USER_FAILTURE = 'SIGNIN_USER_FAILTURE'
 export const RESET_SIGNIN_USER = 'RESET_SIGNIN_USER'
 
 export const RESET_PASSWORD = 'RESET_PASSWORD'
-export const CHECK_ACTIVATION_CODE = 'CHECK_ACTIVATION_CODE'
-export const CHECK_ACTIVATION_CODE_SUCCESS = 'CHECK_ACTIVATION_CODE_SUCCESS'
-export const CHECK_ACTIVATION_CODE_FAILTURE = 'CHECK_ACTIVATION_CODE_FAILTURE'
+export const SEND_ACTIVATION_CODE =  'SEND_ACTIVATION_CODE'
+export const SEND_ACTIVATION_CODE_SUCCESS =  'SEND_ACTIVATION_CODE_SUCCESS'
+export const SEND_ACTIVATION_CODE_FAILTURE =  'SEND_ACTIVATION_CODE_FAILTURE'
 
 // Verify Code
 export const VERIFY_PHONE = 'VERIFY_PHONE'
@@ -123,18 +123,8 @@ export const resetSigninUser = (data) => ({
   type: RESET_SIGNIN_USER
 })
 
-//export const verifyPhone = (data) => ({
-//  types: [VERIFY_PHONE, VERIFY_PHONE_SUCCESS, VERIFY_PHONE_FAILTURE],
-//  promise: () => API.post(URLConf.verifyPhone, data)
-//})
-
-//export const checkActivationCode = (data) => ({
-//  types: [CHECK_ACTIVATION_CODE, CHECK_ACTIVATION_CODE_SUCCESS, CHECK_ACTIVATION_CODE_FAILTURE],
-//  promise: () => API.post(URLConf.checkActivationCode, data)
-//})
-
-export const checkActivationCode = data => ({
-  types: [CHECK_ACTIVATION_CODE, CHECK_ACTIVATION_CODE, CHECK_ACTIVATION_CODE],
+export const sendActivationCode = data => ({
+  types: [SEND_ACTIVATION_CODE, SEND_ACTIVATION_CODE, SEND_ACTIVATION_CODE],
   promise: () => API.post(URLConf.sendActivationCode, data)
 })
 

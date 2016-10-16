@@ -25,14 +25,13 @@ export class SignupForm extends React.Component {
 
   state = {
     buttonSuspending: false,
-    Tip: '验证',
+    Tip: '发送',
   };
 
   checkPhone = () => {
     const { checkPhoneDuplicated, fields: { phone } } = this.props;
     phone && phone.onBlur();
     checkPhoneDuplicated({
-      "method": "checkPhoneDuplicated",
       "phone": +phone.value
     })
   }
@@ -41,8 +40,7 @@ export class SignupForm extends React.Component {
     const { checkUserNameDuplicated, fields: { username } } = this.props;
     username && username.onBlur();
     checkUserNameDuplicated({
-      "method": "checkUserNameDuplicated",
-      "userName": username.value
+      userName: username.value
     })
   }
 
@@ -55,19 +53,19 @@ export class SignupForm extends React.Component {
       window.clearInterval(this.thisEvent);
       this.setState({
         buttonSuspending: false,
-        Tip: '验证',
+        Tip: '发送',
       })
     }
   }
 
   sendactivationCode = () => {
-    const { checkActivationCode, fields: { phone } } = this.props;
+    const { sendActivationCode, fields: { phone } } = this.props;
 
     if (phone.error) {
       return
     }
 
-    checkActivationCode({
+    sendActivationCode({
       phone: phone.value
     })
 
@@ -99,7 +97,7 @@ export class SignupForm extends React.Component {
     }
 
     return (
-      <form className='registration-form' onSubmit={handleSubmit(this.props.signUpUserThenSetCookie.bind(this))}>
+      <form className='form' onSubmit={handleSubmit(this.props.signUpUserThenSetCookie.bind(this))}>
         <Grid>
           <Row>
             <Col xs={12}>
@@ -116,6 +114,7 @@ export class SignupForm extends React.Component {
           <Row>
             <Col xs={12}>
               <TextField
+                type='password'
                 style={style}
                 hintText="密码"
                 errorText={password.touched ? password.error : ''}
@@ -136,12 +135,13 @@ export class SignupForm extends React.Component {
               />
             </Col>
             <Col xs={4}>
-              <RaisedButton
-                style={{'marginTop': '28px'}}
-                label={this.state.Tip}
+              <button
+                style={{marginTop: '28px'}}
+                className='btn btn-default btn-block btn-transparent'
                 disabled={this.state.buttonSuspending}
-                onClick={this.sendactivationCode}
-              />
+                onClick={this.sendactivationCode}>
+                {this.state.Tip}
+              </button>
             </Col>
           </Row>
           <Row>
@@ -158,7 +158,7 @@ export class SignupForm extends React.Component {
         </Grid>
         <div className='button-groups clearfix'>
           {this.props.user.error ? <p className='u-errorText'>{this.props.user.error.message}</p> : ''}
-          <button type="submit" className="btn btn-default btn-lg btn-block" disabled={userNameDuplicated||userNameDuplicated||submitting}>注册</button>
+          <button type="submit" className="btn btn-default btn-submit btn-lg btn-block" disabled={userNameDuplicated||userNameDuplicated||submitting}>注册</button>
         </div>
       </form>
     )

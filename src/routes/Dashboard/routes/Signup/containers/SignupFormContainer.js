@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { push } from 'react-router-redux'
 import { reduxForm } from 'redux-form'
 
-import { signUpUserThenSetCookie, verifyPhone, checkPhoneDuplicated, checkUserNameDuplicated, checkActivationCode } from 'routes/Dashboard/modules/user'
+import { signUpUserThenSetCookie, verifyPhone, checkPhoneDuplicated, checkUserNameDuplicated, sendActivationCode } from 'routes/Dashboard/modules/user'
 import SignupForm from 'components/SignupForm'
 
 
@@ -48,7 +48,7 @@ const mapDispatchToProps = (dispatch) => ({
   ...bindActionCreators({
     signUpUserThenSetCookie,
     verifyPhone,
-    checkActivationCode,
+    sendActivationCode,
     push,
     checkUserNameDuplicated,
     checkPhoneDuplicated
