@@ -31,6 +31,9 @@ class Times extends Component {
       content = children;
       footer =  null;
     } else {
+      if(user === null) {
+        return <div></div>;
+      }
       push(`/time/users/${user.id}`)
     }
     return (

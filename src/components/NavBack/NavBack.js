@@ -11,11 +11,12 @@ const goBack = (e) => {
 
 export default class NavBack extends React.Component {
   render() {
-    const {children, title, caption, ...props} = this.props;
+    const {children, title, caption, hiddenBack, ...props} = this.props;
+    const backIcon = hiddenBack ? null : <i className={`material-icons ${cs.navBackIcon}`}>keyboard_backspace</i>;
     return (
       <TopNav title={caption || title || "wetennis"} {...props}>
         <div ref="left" onClick={goBack} className={cs.left}>
-          <i className={`material-icons ${cs.navBackIcon}`}>keyboard_backspace</i>
+          {backIcon}
         </div>
         <div ref="right">{children}</div>
       </TopNav>

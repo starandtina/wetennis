@@ -254,8 +254,7 @@ export default handleActions({
   [RESET_SIGNIN_USER]: (state, action) => ({
     ...state,
     status: null,
-    error: null,
-    user: null
+    error: null
   }),
   [LOGOUT_USER]: (state, action) => ({
     ...state,
