@@ -29,7 +29,7 @@ export const getRankings = id => ({
 
 export const getRankingsFilter = id => ({
   types:[FETCH_RANKINGS_FILTER, FETCH_RANKINGS_FILTER_SUCCESS, FETCH_RANKINGS_FILTER_FAILTURE],
-  promise: () => API.post(URLConf.fetchRankingsFilter, {id})
+  promise: () => API.post(URLConf.cascadeFilter, {id, type: 'rangkins'})
 });
 
 export const setCurrentFilter = id => ({
@@ -57,7 +57,7 @@ function filters(state = [], {type, payload}) {
   return s;
 }
 
-function currentFilter(state = 0, {type, payload}) {
+function currentFilter(state = '', {type, payload}) {
   let s = state;
   if (type === FETCH_RANKINGS_FILTER_SUCCESS) {
     if (Array.isArray(payload) && payload.length > 0) {

@@ -2,55 +2,38 @@ import React, {Component} from "react";
 import NavBack from "components/NavBack";
 import User from "components/User";
 import {Link} from "react-router";
+import CascadeFilter from "components/CascadeFilter";
 
 import cs from "./Rankings.scss";
 
 export default class Rankings extends Component {
   componentDidMount() {
     const {getRankingsFilter, getRankings} = this.props;
-    getRankingsFilter().then(({payload: {data}}) => {
-      getRankings();
-    });
+    getRankingsFilter();
     document.body.classList.add(cs.bodyBg);
   }
   componentWillUnmount() {
     document.body.classList.remove(cs.bodyBg);
   }
-  setCurrentFilter = e => {
-    const value = e.target.value;
-    const {setCurrentFilter} = this.props;
-    setCurrentFilter(Number(value));
+  setCurrentFilter = ({filter}) => {
+    const {setCurrentFilter, getRankings} = this.props;
+    setCurrentFilter(filter);
+    getRankings(filter);
   }
   render() {
-    const {currentFilter, filters, rankings, params: {eventId}} = this.props;
-    const currentFilterItem = filters.filter(item => item.value === currentFilter)[0];
-    const title = currentFilterItem ? currentFilterItem.text : "";
+    const {filters, rankings, params: {eventId}} = this.props;
     return (
       <div className={cs.box}>
-        <NavBack title="排行">
-          <div className={cs.titleFilter}>
-            <i className="material-icons">more_vert</i>
-            <select
-              className="dropdown"
-              defaultValue={currentFilter.type}
-              onChange={this.setCurrentFilter}
-            >
-            {filters.map((item, index) => {
-              return <option
-                      key={index}
-                      value={item.value}
-                    >{item.text}</option>
-            })}
-            </select>
-          </div>
-        </NavBack>
+        <NavBack title="排行" />
         <div className={cs.pageTitle}>
-          {title}
+          <CascadeFilter
+            className={cs.groupFilter}
+            filters={filters}
+            filterKeys={["group", "filter"]}
+            onChange={this.setCurrentFilter}
+          />
         </div>
         {rankings.map((item, index) => {
-          if (!(item.type === currentFilter || currentFilter === 0)) {
-            return;
-          }
           return (
             <Link
               key={index}
