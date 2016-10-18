@@ -24,7 +24,7 @@ export default class TopNav extends React.Component {
   }
 
   transparentControll = () => {
-    const top = document.documentElement.scrollTop;
+    const top = (document.documentElement || document.body.parentNode || document.body).scrollTop;
     const { transparent } = this.state;
     let newTransparent = transparent;
     if (top > 10) {
