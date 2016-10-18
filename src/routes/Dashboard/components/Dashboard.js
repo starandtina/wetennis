@@ -15,12 +15,12 @@ export class Dashboard extends Component {
     if (children) {
       content = children;
       
-      if (routes && routes[2].path != 'signin' &&
-        routes[2].path != 'signup' &&
-        routes[2].path != 'resetPassword'
-      ) {
-        footer = <Footer activeNavTab='DASHBOARD' />
-      }
+      // if (routes && routes[2].path != 'signin' &&
+      //   routes[2].path != 'signup' &&
+      //   routes[2].path != 'resetPassword'
+      // ) {
+      //   footer = <Footer activeNavTab='DASHBOARD' />
+      // }
     } else {
       push('/dashboard/me')
     }

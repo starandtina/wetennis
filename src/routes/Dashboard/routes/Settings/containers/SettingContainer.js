@@ -174,7 +174,7 @@ class SettingsForm extends React.Component {
     const myBirth = settings.birthday ? new Date(settings.birthday) : new Date();
 
     return (
-        <div>
+        <div className='u-hasNav'>
           <NavBack caption='个人中心'>
           </NavBack>
 
@@ -216,6 +216,8 @@ class SettingsForm extends React.Component {
                 <Col xs={8}>
                   <SelectField
                     value={settings.gender}
+                    fullWidth
+                    autoWidth
                     onChange={this.handleChangeGender}
                     underlineStyle={underlineStyle}
                     name="gender"
@@ -235,7 +237,9 @@ class SettingsForm extends React.Component {
                 </Col>
                 <Col xs={8}>
                   <DatePicker
+                    underlineStyle={underlineStyle}
                     onChange={this.handleChangeDate}
+                    fullWidth
                     autoOk
                     value={myBirth}
                     name="birth"
@@ -292,6 +296,7 @@ class SettingsForm extends React.Component {
                 </Col>
                 <Col xs={8}>
                   <SelectField
+                    fullWidth
                     value={settings.hand}
                     onChange={this.handleChangeHand}
                     underlineStyle={underlineStyle}
@@ -312,6 +317,7 @@ class SettingsForm extends React.Component {
                 </Col>
                 <Col xs={8}>
                   <SelectField
+                    fullWidth
                     value={settings.habit}
                     onChange={this.handleChangeHabit}
                     underlineStyle={underlineStyle}

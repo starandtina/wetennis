@@ -23,7 +23,7 @@ export default class TopNav extends React.Component {
     }
   }
 
-  transparentControll = () => {
+  transparentControll = () => {debugger
     const top = document.body.scrollTop;
     const { transparent } = this.state;
     let newTransparent = transparent;

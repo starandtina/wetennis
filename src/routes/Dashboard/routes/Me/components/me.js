@@ -44,7 +44,7 @@ export class Dashboard extends React.Component {
       color: 'white',
     };
     //let content = (<div>Dashboard<button onClick={this.props.logoutUser.bind(this)}>LOGOUT</button></div>);
-    let content = userInfo ? (<div>
+    let content = userInfo ? (<div className='u-hasNav'>
       <NavBack caption='个人中心' hiddenBack={true}>
         <Link className={style.Icon} to="/dashboard/me/editBG"><i className="material-icons">collections</i></Link>
         <Link className={style.Icon} to="/dashboard/settings"><i className="material-icons">settings</i></Link>
@@ -83,6 +83,7 @@ export class Dashboard extends React.Component {
           </Link>
         </div>
       </div>
+      <Footer activeNavTab='DASHBOARD' />
     </div>) : null;
 
 

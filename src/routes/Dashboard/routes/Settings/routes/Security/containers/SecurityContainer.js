@@ -38,7 +38,7 @@ class Security extends Component {
     }
 
     return (
-      <div>
+      <div className='u-hasNav'>
         <NavBack caption='隐私'>
         </NavBack>
 
@@ -157,6 +157,9 @@ class Security extends Component {
                   underlineShow={false}
                 />
               </Col>
+              <Divider />
+            </Row>
+            <Row>
               <Divider />
             </Row>
           </Grid>
