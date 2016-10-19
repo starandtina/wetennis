@@ -138,7 +138,7 @@ export default class EventScore extends Component {
           </div>
           {item.gameTime}
         </div>
-        <Link to={`/events/${eventId}/match/${item.id}`}>
+        <Link to={`/events/${eventId}/match/${item.matchId}`}>
           {item.team.map(this.team)}
         </Link>
       </div>

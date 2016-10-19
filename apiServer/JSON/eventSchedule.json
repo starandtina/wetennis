@@ -2,7 +2,7 @@
   "code": 0,
   "data": [
     {
-      "id": 1,
+      "matchId": 1,
       "matches": "第一场",
       "group": "精英B | 女子双打 | 小组资格赛 | 第1组",
       "completed": true,
@@ -37,7 +37,7 @@
       ]
     },
     {
-      "id": 2,
+      "matchId": 2,
       "matches": "第一场",
       "group": "精英B | 女子双打 | 小组资格赛 | 第1组",
       "completed": true,
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "id": 3,
+      "matchId": 3,
       "matches": "第一场",
       "group": "精英B | 女子双打 | 小组资格赛 | 第1组",
       "completed": true,
