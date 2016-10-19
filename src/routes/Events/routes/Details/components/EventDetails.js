@@ -13,11 +13,13 @@ import cs from "./EventDetails.scss";
 export default class EventDetails extends React.Component {
   componentDidMount() {
     const {
+      details,
       getDetails, getNotices, getSponsors, getComments,
       params: {eventId},
       children
     } = this.props;
-    if (children) {
+    // If visiting child page but we had fetched the event details then don't call the service again
+    if (children && !!details.name) {
       return
     };
     getDetails(eventId);
