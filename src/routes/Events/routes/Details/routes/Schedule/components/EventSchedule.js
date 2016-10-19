@@ -1,11 +1,12 @@
 import React, {Component} from "react";
+import { Link } from "react-router"
+
 import NavBack from "components/NavBack";
 import ScoreItem from "components/ScoreItem";
-import {Link} from "react-router";
 
 import cs from "./EventSchedule.scss";
 
-export default class EventScore extends Component {
+export default class EventSchedule extends Component {
   componentDidMount() {
     const {
       getFilter, getSchedule,
@@ -58,6 +59,7 @@ export default class EventScore extends Component {
     const {schedule, currentFilter, filters} = this.props;
     const currentDate = currentFilter.date;
     const currentLocation = currentFilter.location;
+
     return (
       <div className={cs.box}>
         <NavBack title="赛程" transparent />
