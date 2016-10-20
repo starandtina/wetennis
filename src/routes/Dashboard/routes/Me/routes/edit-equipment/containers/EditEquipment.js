@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { push, goBack } from 'react-router-redux'
 import { reduxForm } from 'redux-form';
 import TextField from 'material-ui/TextField'
-import NavBack from '../../../components/Nav';
+import NavBack from 'components/NavBack';
 import UploadImage from 'components/UploadImage/uploadImage';
 
 import classes from './EditEquipment.scss'
@@ -114,7 +114,7 @@ class AddressEdit extends React.Component {
     };
     return (
       <form className={classes.Root} onSubmit={handleSubmit(this.updateEquipment)}>
-        <NavBack caption="">
+        <NavBack caption="" leftText="close">
           <button type="button" disabled={submitting}>
             <label htmlFor="uploadImage" className={classes.AddImage}>
               <UploadImage
