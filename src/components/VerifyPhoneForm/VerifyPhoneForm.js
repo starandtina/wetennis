@@ -61,7 +61,7 @@ export class VerifyPhoneForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <div className={`clearfix ${classes['button-groups']}`}>
+              <div className={`clearfix button-groups`}>
                 {this.props.user.error ? <p className='u-errorText'>{this.props.user.error.message}</p> : ''}
                 <RaisedButton
                   label='确认'

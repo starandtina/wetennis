@@ -1,9 +1,5 @@
-import React, {
-  Component
-} from 'react'
-import {
-  white
-} from 'material-ui/styles/colors'
+import React, { Component } from 'react'
+import { white } from 'material-ui/styles/colors'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
@@ -20,7 +16,7 @@ class ResetPassword extends Component {
   render() {
     let content = (
       <div className='u-hasNav container'>
-        <NavBack caption='重置密码' style={{color: 'white'}} />
+        <NavBack caption='重置密码' transparent={false} style={{color: 'white'}} />
         <ResetPasswordFormContainer {...this.props} />
       </div>
     )

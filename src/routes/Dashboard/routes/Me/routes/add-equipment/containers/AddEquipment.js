@@ -91,7 +91,7 @@ class AddressEdit extends React.Component {
     };
     return (
       <form className={classes.Root} onSubmit={handleSubmit(this.addEquipment)}>
-        <NavBack caption="" leftText="close">
+        <NavBack caption="" leftText="close" transparent>
           <button type="button" disabled={submitting}>
             <label htmlFor="uploadImage" className={classes.AddImage}>
               <UploadImage

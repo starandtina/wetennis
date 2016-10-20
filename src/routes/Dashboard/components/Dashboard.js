@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 
-import NavBack from 'components/NavBack'
-import Footer from 'components/Footer'
 import style from './Dashboard.scss'
 
 export class Dashboard extends Component {
@@ -13,14 +11,7 @@ export class Dashboard extends Component {
     let footer = null
 
     if (children) {
-      content = children;
-      
-      // if (routes && routes[2].path != 'signin' &&
-      //   routes[2].path != 'signup' &&
-      //   routes[2].path != 'resetPassword'
-      // ) {
-      //   footer = <Footer activeNavTab='DASHBOARD' />
-      // }
+      content = children
     } else {
       push('/dashboard/me')
     }
