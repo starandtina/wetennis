@@ -8,7 +8,7 @@ import DatePicker from 'material-ui/DatePicker';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 
 import { uploadTimeImage, clearTimeImage, addTimeMessage as addTimeMatch } from '../../../../../actions';
-import NavBack from '../../../../../components/Nav';
+import NavBack from 'components/NavBack';
 import AddImage from '../../../../../components/addImage';
 import style from './AddMatch.scss';
 
@@ -141,7 +141,7 @@ class AddMatch extends Component {
     };
     return (
       <form className={style.Root} onSubmit={handleSubmit(this.addMatch)}>
-        <NavBack caption="添加我的约球">
+        <NavBack caption="添加我的约球" leftText="close" transparent removeColor>
           <button type="submit" disabled={submitting} className={style.Button}>
             <i className="material-icons">done</i>
           </button>

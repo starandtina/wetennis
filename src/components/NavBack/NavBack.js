@@ -11,8 +11,8 @@ const goBack = (e) => {
 
 export default class NavBack extends React.Component {
   render() {
-    const {children, title, caption, hiddenBack, ...props} = this.props;
-    const backIcon = hiddenBack ? null : <i className={`material-icons ${cs.navBackIcon}`}>keyboard_backspace</i>;
+    const {children, title, caption, leftText, hiddenBack, ...props} = this.props;
+    const backIcon = hiddenBack ? null : <i className={`material-icons ${this.props.removeColor ? '' : cs.navBackIcon}`}>{leftText||'keyboard_backspace'}</i>;
     return (
       <TopNav title={caption || title || "wetennis"} {...props}>
         <div ref="left" onClick={goBack} className={cs.left}>

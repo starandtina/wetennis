@@ -6,7 +6,7 @@ import TextField from 'material-ui/TextField'
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 
 import { uploadTimeImage, clearTimeImage, addTimeMessage } from '../../../../../actions';
-import NavBack from '../../../../../components/Nav';
+import NavBack from 'components/NavBack';
 import AddImage from '../../../../../components/addImage';
 import style from './AddTime.scss';
 
@@ -97,7 +97,7 @@ class AddTime extends Component {
 
     return (
     <form className={style.Root} onSubmit={handleSubmit(this.addTime)}>
-      <NavBack caption="添加我的时光">
+      <NavBack caption="添加我的时光" leftText="close" transparent removeColor>
         <button
           type="submit"
           disabled={submitting}
