@@ -1,6 +1,7 @@
 @import "variables.scss";
 
 .container {
+  color: $mainColor;
   height: $topNavHeight;
   background-color: $whiteTranBgc;
   top: 0;
@@ -21,6 +22,20 @@
   }
 }
 
+.white-theme.container
+{
+    color: white;
+    border-bottom: none;
+    background-color: transparent;
+
+    .title,
+    .nav-back-icon
+    {
+        color:  white;
+    }
+}
+
+
 .title {
   position: absolute;
   color: $mainFontColor;
@@ -32,9 +47,12 @@
   bottom: 0;
   z-index: 2;
   padding: 0 $topNavHeight + 10*$px1;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
   line-height: 1.5;
   overflow: hidden;
 }
@@ -50,29 +68,3 @@
 .right {
   float: right;
 }
-
-.nav-back
-{
-    font-weight: bold;
-    line-height: 30px;
-
-    margin: 0 3px;
-
-    color: #5cb85c;
-}
-
-.nav-back-icon
-{
-    font-size: 18px;
-
-    width: 32px;
-    height: 32px;
-
-    color: #5cb85c;
-}
-
-.caption
-{
-    margin-left: -32px;
-}
-

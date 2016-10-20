@@ -5,7 +5,6 @@ import { reduxForm } from 'redux-form'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import { Grid, Row, Col } from 'react-bootstrap'
-import classes from './ResetPasswordContainer.scss'
 
 import { resetPassword, checkPhoneDuplicated, sendActivationCode } from 'routes/Dashboard/modules/user'
 
