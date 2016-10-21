@@ -48,9 +48,7 @@ module.exports = function () {
             })
 
             models.News
-              .findAll({
-                order: 'convert(datetime, issueTime) DESC'
-              })
+              .findAll()
               .then(newsList => {
                 // Filter out existed news depending on the title
                 const existedNewsTitles = newsList.map(news => news.title)
