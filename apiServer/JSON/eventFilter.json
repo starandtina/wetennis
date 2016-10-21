@@ -1,19 +1,37 @@
 {
   "code": 0,
   "data": {
-    "location": [
-      {"text": "全部", "value": 1},
-      {"text": "成都", "value": 2},
-      {"text": "上海", "value": 3},
-      {"text": "北京", "value": 4},
-      {"text": "广州", "value": 5}
-    ],
-    "status": [
-      {"text": "全部", "value": 1},
-      {"text": "正在报名", "value": 2},
-      {"text": "分配签表", "value": 3},
-      {"text": "正在进行", "value": 4},
-      {"text": "已完成", "value": 5}
-    ]
+    "location": [{
+      "text": "全部",
+      "value": 1
+    }, {
+      "text": "成都",
+      "value": 2
+    }, {
+      "text": "上海",
+      "value": 3
+    }, {
+      "text": "北京",
+      "value": 4
+    }, {
+      "text": "广州",
+      "value": 5
+    }],
+    "status": [{
+      "text": "全部",
+      "value": 1
+    }, {
+      "text": "正在报名",
+      "value": 2
+    }, {
+      "text": "分配签表",
+      "value": 3
+    }, {
+      "text": "正在进行",
+      "value": 4
+    }, {
+      "text": "已完成",
+      "value": 5
+    }]
   }
 }

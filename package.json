@@ -17,9 +17,9 @@
     "dev:no-debug": "npm run dev -- --no_debug",
     "deploy": "better-npm-run deploy",
     "deploy:prod": "better-npm-run deploy:prod",
-    "api-docs": "aglio -i ./blueprint/index.apib -o api.html --verbose",
-    "api": "drakov -f \"./blueprint/*.apib\" -p 8000 --watch",
-    "api2": "node ./apiServer"
+    "api:docs": "aglio -i ./blueprint/index.apib -o api.html --verbose",
+    "api2": "drakov -f \"./blueprint/*.apib\" -p 8000 --watch",
+    "api": "node ./apiServer"
   },
   "betterScripts": {
     "compile": {

@@ -20,9 +20,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => bindActionCreators({ uploadUserInfo, push }, dispatch);
 
 const validate = (values, props) => {
-  const restriction = props.item.restriction || {};
-  var errors = {};
-  var hasErrors = false;
+  const { restriction = {}, needPartner } = props.item
+  const errors = {}
+  let hasErrors = false
 
   if (!values.username || values.username.trim() === '') {
     errors.username = '请输入用户名';
@@ -40,7 +40,7 @@ const validate = (values, props) => {
   }
 
   if (!restriction.isMixedPair && values.gender !== restriction.gender) {
-    errors.gender = `性别不符合报名条件（要求为${restriction.gender}）`;
+    errors.gender = `性别不符合报名条件（要求为${restriction.gender === 'male' ? '男性' : '女性'}）`
     hasErrors = true;
   }
 
@@ -49,6 +49,7 @@ const validate = (values, props) => {
     hasErrors = true
   }
 
+  // Validation for ID & age
   if (!values.personCard || values.personCard.trim() === '') {
     if(!values.passport || values.passport.trim() === ''){
       errors.personCard = '请输入身份证号或护照';
@@ -68,6 +69,7 @@ const validate = (values, props) => {
         errors.personCard = `年龄不符合报名条件（${restriction.minAge} - ${restriction.maxAge}）`;
         hasErrors = true;
       }
+
       if (restriction.isMixedPair) {
         const userPartner = props.partners.find(partner => partner.id === props.partnerId)
         if (userGender == userPartner.gender) {
@@ -78,9 +80,23 @@ const validate = (values, props) => {
         errors.personCard = `性别不符合报名条件（要求为${restriction.gender === 'male' ? '男性' : '女性'}）`;
         hasErrors = true;
       }
+      
       if (userGender != values.gender) {
         errors.personCard = '身份证同个人信息性别不一致';
         hasErrors = true;
+      }
+
+      // If we need the partner, then the total amount of age should be greater than `restriction.amountAge`
+      if (needPartner) {
+        const {
+          amountAge
+        } = restriction
+        const partner = props.partners.find(partner => partner.id === props.partnerId)
+
+        if (age + partner.age < amountAge) {
+          errors.personCard = `您（${parseInt(age)}）与您搭档（${partner.age}）的年龄和不满足年龄条件（${amountAge}）`
+          hasErrors = true
+        }
       }
     }
   }

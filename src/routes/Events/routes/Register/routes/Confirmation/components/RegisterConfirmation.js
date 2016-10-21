@@ -52,14 +52,8 @@ export class RegisterConfirmation extends React.Component {
         club,
         },
       handleSubmit
-      } = this.props;
-    console.log({
-      username,
-      gender,
-      name,
-      phone,
-      personCard
-    });
+      } = this.props
+
     const myPartner = partners.find(item => item.id == partnerId);
     const partnerContent = item.needPartner ? (
       <div>
@@ -134,6 +128,7 @@ export class RegisterConfirmation extends React.Component {
         </Grid>
       </div>
     ) : null;
+
     return (
       <div className={classes.Root}>
         <div className={`${classes.header} text-muted`}>
@@ -154,7 +149,7 @@ export class RegisterConfirmation extends React.Component {
                   name="name"
                   fullWidth
                   {...username}
-                  errorText={username.touched && username.error}
+                  errorText={username.error}
                 />
               </Col>
             </Row>
@@ -168,7 +163,7 @@ export class RegisterConfirmation extends React.Component {
                     fullWidth
                     {...gender}
                     onChange={this.handleChangeGender(gender)}
-                    errorText={gender.touched && gender.error}
+                    errorText={gender.error}
                 >
                   <MenuItem value='male' primaryText="男" />
                   <MenuItem value='female' primaryText="女" />
@@ -187,7 +182,7 @@ export class RegisterConfirmation extends React.Component {
                   name="name"
                   fullWidth
                   {...name}
-                  errorText={name.touched && name.error}
+                  errorText={name.error}
                 />
               </Col>
             </Row>
@@ -203,7 +198,7 @@ export class RegisterConfirmation extends React.Component {
                   name="phone"
                   fullWidth
                   {...phone}
-                  errorText={phone.touched && phone.error}
+                  errorText={phone.error}
                 />
               </Col>
             </Row>
@@ -219,7 +214,7 @@ export class RegisterConfirmation extends React.Component {
                   name="personCard"
                   fullWidth
                   {...personCard}
-                  errorText={personCard.touched && personCard.error}
+                  errorText={personCard.error}
                 />
               </Col>
             </Row>
@@ -235,7 +230,7 @@ export class RegisterConfirmation extends React.Component {
                   name="passport"
                   fullWidth
                   {...passport}
-                  errorText={passport.touched && passport.error}
+                  errorText={passport.error}
                 />
               </Col>
             </Row>
@@ -251,7 +246,7 @@ export class RegisterConfirmation extends React.Component {
                   name="companyName"
                   fullWidth
                   {...companyName}
-                  errorText={companyName.touched && companyName.error}
+                  errorText={companyName.error}
                 />
               </Col>
             </Row>
@@ -267,7 +262,7 @@ export class RegisterConfirmation extends React.Component {
                   name="companyTitle"
                   fullWidth
                   {...companyTitle}
-                  errorText={companyTitle.touched && companyTitle.error}
+                  errorText={companyTitle.error}
                 />
               </Col>
             </Row>
@@ -283,7 +278,7 @@ export class RegisterConfirmation extends React.Component {
                   name="club"
                   fullWidth
                   {...club}
-                  errorText={club.touched && club.error}
+                  errorText={club.error}
                 />
               </Col>
             </Row>

@@ -1,20 +1,53 @@
 {
   "code": 0,
   "errorMsg": "",
-  "data": [
-    {
-      "id": 1,
-      "name": "陈龙",
-      "username": "pacific0437",
-      "phone": "1422133221",
-      "gender": "male"
-    },
-    {
-      "id": 2,
-      "name": "陈翔",
-      "username": "pacific0437",
-      "phone": "1422133221",
-      "gender": "male"
-    }
-  ]
+  "data": [{
+    "id": "6",
+    "name": "邱锋",
+    "username": "邱锋",
+    "phone": "",
+    "age": 10
+  }, {
+    "id": "7",
+    "name": "胡文林",
+    "username": "胡文林",
+    "phone": "13708064157",
+    "age": 10
+  }, {
+    "id": "7",
+    "name": "胡文林",
+    "username": "胡文林",
+    "phone": "13708064157",
+    "age": 10
+  }, {
+    "id": "10",
+    "name": "霍瑞",
+    "username": "霍瑞",
+    "phone": "",
+    "age": 10
+  }, {
+    "id": "21",
+    "name": "崔剑兵",
+    "username": "崔剑兵",
+    "phone": "15983674567",
+    "age": 10
+  }, {
+    "id": "56",
+    "name": "黄灵",
+    "username": "黄灵",
+    "phone": "13808057555",
+    "age": 10
+  }, {
+    "id": "192",
+    "name": "廖永华",
+    "username": "廖永华",
+    "phone": "13666198550",
+    "age": 10
+  }, {
+    "id": "a4bc3817-7a26-4272-9000-6470cbfe237b",
+    "name": "毛亮",
+    "username": "网球王子530",
+    "phone": "18899778688",
+    "age": 10
+  }]
 }

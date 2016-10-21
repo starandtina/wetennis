@@ -1,31 +1,20 @@
 {
     "code": 0,
+    "errorMsg": null,
     "data": {
-        "id": 1,
-        "thumb": "http://hbimg.b0.upaiyun.com/65ad7509d8f8ea45beb7589cca3c557d02f15ac0e9e82-QDUx6P_sq120",
-        "name": "2016成都业余网球精英赛事1",
-        "startDate": "2016.04.15",
-        "endDate": "2016.04.20",
-        "location": "四川省 成都市 锦江区 红星路1号",
-        "banner": "http://img2.3lian.com/2014/f6/173/d/51.jpg",
-        "countdown": 50000,
-        "drawTable": true,
+        "id": "9C926C24AC1741799FA568566984AC94",
+        "name": "枫丹白露网球赛",
+        "startDate": "2016-10-30",
+        "endDate": "2016-10-30",
         "type": "公开赛",
-        "score": true,
-        "schedule": true,
-        "register": false,
-        "friendRegisterCount": 30,
-        "drawCountdown": 50000,
-        "state": "2",
-        "registerList": [
-          {
-            "name": "青年组 | 男子单打",
-            "id": null
-          },
-          {
-            "name": "青年组 | 男子双打",
-            "id": "2345"
-          }
-        ]
+        "location": "高新网球场",
+        "countdown": 1000000,
+        "banner": "http://wetennis.cn:86/banner/hainan.jpg",
+        "thumb": "http://wetennis.cn/http://wetennis.cn:86/upload/E075F99C-B94B-44D7-A287-A3C99033139F.jpg",
+        "friendRegisterCount": 0,
+        "drawCountdown": 0,
+        "registerList": null,
+        "state": "1",
+        "follow": false
     }
 }
