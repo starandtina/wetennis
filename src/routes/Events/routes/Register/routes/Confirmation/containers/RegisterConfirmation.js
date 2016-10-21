@@ -20,7 +20,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => bindActionCreators({ uploadUserInfo, push }, dispatch);
 
 const validate = (values, props) => {
-  const restriction = props.item.restriction;
+  const restriction = props.item.restriction || {};
   var errors = {};
   var hasErrors = false;
 
@@ -40,7 +40,7 @@ const validate = (values, props) => {
   }
 
   if (!restriction.isMixedPair && values.gender !== restriction.gender) {
-    errors.gender = '性别不符合报名条件';
+    errors.gender = `性别不符合报名条件（要求为${restriction.gender}）`;
     hasErrors = true;
   }
 
@@ -65,7 +65,7 @@ const validate = (values, props) => {
       } = pullAgeAndGenderFromCardId(values.personCard)
 
       if (age > restriction.maxAge || age < restriction.minAge) {
-        errors.personCard = '年龄不满足不符合报名条件';
+        errors.personCard = `年龄不符合报名条件（${restriction.minAge} - ${restriction.maxAge}）`;
         hasErrors = true;
       }
       if (restriction.isMixedPair) {
@@ -75,7 +75,7 @@ const validate = (values, props) => {
           hasErrors = true;
         }
       } else if (restriction.gender && (userGender !== restriction.gender)) {
-        errors.personCard = '性别不符合报名条件';
+        errors.personCard = `性别不符合报名条件（要求为${restriction.gender === 'male' ? '男性' : '女性'}）`;
         hasErrors = true;
       }
       if (userGender != values.gender) {
