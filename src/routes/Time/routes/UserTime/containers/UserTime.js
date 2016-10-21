@@ -25,8 +25,6 @@ const mapDispatchToProps = ({
 class Times extends Component {
   componentDidMount(){
     const { fetchTimesList, fetchTimeInfo, params, clearTime, user: { user } } = this.props;
-    console.log(params);
-    console.log(user);
     //debugger;
     // fetchTimeInfo({
     //   id: user.id
@@ -74,7 +72,6 @@ class Times extends Component {
     let content = null;
     let footer =  null;
     const isGuess = !(params.userId === user.id);
-    console.log(params.userId, user.id);
     if (children) {
       content = children;
       footer =  null;

@@ -141,7 +141,7 @@ class AddMatch extends Component {
     };
     return (
       <form className={style.Root} onSubmit={handleSubmit(this.addMatch)}>
-        <NavBack caption="添加我的约球" leftText="close" transparent removeColor>
+        <NavBack caption="添加我的约球" leftText="close" transparent removeColor className='white-theme'>
           <button type="submit" disabled={submitting} className={style.Button}>
             <i className="material-icons">done</i>
           </button>
