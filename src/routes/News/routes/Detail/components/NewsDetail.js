@@ -32,7 +32,7 @@ export default class NewsDetail extends Component {
         <NewsDetailTopNav />
         <NewsContainer item={news} />
         <div className='container'>
-          <p>{content}</p>
+          <div dangerouslySetInnerHTML={{ __html: content }} />
           <div className={cs.keywordListContainer}>
             <p className='text-muted small'>关键词</p>
             {keywordList ? keywordList.map((item, index) => {

@@ -30,7 +30,8 @@ module.exports = function () {
             type: 'News'
           }
         }],
-        order: 'convert(datetime, issueTime) DESC'
+        order: 'issueTime DESC'
+        // order: 'convert(datetime, issueTime) DESC'
       })
       .then((newsList) => {
         newsList = newsList.map(
