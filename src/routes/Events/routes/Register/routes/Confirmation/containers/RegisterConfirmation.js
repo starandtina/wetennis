@@ -86,15 +86,15 @@ const validate = (values, props) => {
         hasErrors = true;
       }
 
-      // If we need the partner, then the total amount of age should be greater than `restriction.amountAge`
+      // If we need the partner, then the total amount of age should be greater than `restriction.minAmountAge`
       if (needPartner) {
         const {
-          amountAge
+          minAmountAge
         } = restriction
         const partner = props.partners.find(partner => partner.id === props.partnerId)
 
-        if (age + partner.age < amountAge) {
-          errors.personCard = `您（${parseInt(age)}）与您搭档（${partner.age}）的年龄和不满足年龄条件（${amountAge}）`
+        if (age + partner.age < minAmountAge) {
+          errors.personCard = `您（${parseInt(age)}）与您搭档（${partner.age}）的年龄和不满足年龄条件（${minAmountAge}）`
           hasErrors = true
         }
       }

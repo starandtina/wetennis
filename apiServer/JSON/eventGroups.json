@@ -11,7 +11,7 @@
         "price": 0.01,
         "needPartner": true,
         "restriction": {
-          "amountAge": 80,
+          "minAmountAge": 80,
           "maxAge": 40,
           "minAge": 20,
           "gender": "male",
@@ -23,7 +23,7 @@
         "price": 0.01,
         "needPartner": true,
         "restriction": {
-          "amountAge": 100,
+          "minAmountAge": 100,
           "maxAge": 40,
           "minAge": 20,
           "gender": "male",
