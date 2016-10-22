@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Footer from 'components/Footer'
 
 import { cls } from 'utils'
-import NewsDetailTopNav from './NewsDetailTopNav'
+import NavBack from 'components/NavBack'
 import NewsContainer from 'routes/News/containers/NewsContainer'
 import NewsComments from './NewsComments'
 
@@ -29,7 +29,7 @@ export default class NewsDetail extends Component {
 
     return (
       <div className={cs.container}>
-        <NewsDetailTopNav />
+        <NavBack caption='新闻详情' />
         <NewsContainer item={news} />
         <div className='container'>
           <div dangerouslySetInnerHTML={{ __html: content }} />

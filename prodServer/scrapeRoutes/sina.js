@@ -36,6 +36,8 @@ module.exports = function () {
               }).get().join(' ')
               const title = $newsHTML('#artibodyTitle').text().trim()
 
+              // TODO: ADD keyword list
+
               sinaNewsList.push({
                 date,
                 provider,
