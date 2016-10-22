@@ -312,7 +312,7 @@ export default handleActions({
     ...state,
     userInfo: {
       ...state.userInfo,
-      backGroundImageUrl: meta.backGroundImageUrl
+      backGroundImageUrl: meta.ImageUrl
     }
   }),
   [CHECK_PHONE_DUPLICATED_SUCCESS]: (state, action) => ({

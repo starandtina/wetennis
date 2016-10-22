@@ -39,7 +39,7 @@ export class Dashboard extends React.Component {
     const bgstyle = {
       backgroundColor: 'lightgray',
       backgroundImage:  `url(${userInfo && userInfo.backGroundImageUrl})`,
-      backgroundSize: 'contain',
+      backgroundSize: 'cover',
       backgroundRepeat: 'round',
       color: 'white',
     };

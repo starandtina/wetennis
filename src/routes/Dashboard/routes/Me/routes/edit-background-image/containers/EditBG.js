@@ -41,8 +41,7 @@ class AddressEdit extends React.Component {
       imgstr: uploadFile.base64,
       name: uploadFile.name
     }).then(action => {
-      console.log(action.payload.data.ImageUrl)
-      backGroundImageUrl.onChange(action.payload.data.ImageUrl);
+      backGroundImageUrl.onChange(action.payload.data.imageUrl);
     });
   };
 
@@ -53,8 +52,9 @@ class AddressEdit extends React.Component {
       id,
       push,
       } = this.props;
+    console.log(values);
     updateBGImage({
-      ...values,
+      ImageUrl: values.backGroundImageUrl,
       userId: id
     }).then(action => {
       if (!action.error) {
