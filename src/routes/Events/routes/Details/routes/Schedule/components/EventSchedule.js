@@ -62,7 +62,7 @@ export default class EventSchedule extends Component {
 
     return (
       <div className={cs.box}>
-        <NavBack title="赛程" transparent />
+        <NavBack routes={this.props.routes} title="赛程" transparent />
         <div className={cs.filter}>
           <div className={cs.timeFilter}>
             <i className="material-icons">alarm</i>

@@ -175,7 +175,7 @@ class SettingsForm extends React.Component {
 
     return (
         <div className='u-hasNav'>
-          <NavBack caption='个人中心' transparent>
+          <NavBack routes={this.props.routes} caption='个人中心' transparent>
           </NavBack>
 
           <form className='setting-form'>

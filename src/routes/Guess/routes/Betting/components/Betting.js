@@ -43,7 +43,7 @@ export default class Betting extends Component {
     const {integralError, integral} = this.state;
     return (
       <div className={cs.box}>
-        <NavBack title='竞猜投注' />
+        <NavBack routes={this.props.routes} title='竞猜投注' />
         <MatchInfoStatus data={info.status} />
         <EventInfo data={info} />
         <div className={cs.boxTitle}>竞猜项目</div>

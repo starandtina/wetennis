@@ -44,7 +44,7 @@ export default class RankingDetails extends Component {
     }
     return (
       <div className={cs.box}>
-        <NavBack title=" ">
+        <NavBack routes={this.props.routes} title=" ">
           <div
             className={cs.favoriteIcon}
             onClick={this.like.bind(this, info.like)}

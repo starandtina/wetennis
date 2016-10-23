@@ -83,7 +83,7 @@ class Security extends Component {
     ))}
     return (
       <div>
-        <NavBack caption='我的地址'>
+        <NavBack routes={this.props.routes} caption='我的地址'>
           <div className={classes.Icon} onClick={this.newAddress} to="/dashboard/settings/address/new"><i className="material-icons">add</i></div>
         </NavBack>
 

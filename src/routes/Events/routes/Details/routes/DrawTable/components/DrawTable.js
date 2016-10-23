@@ -44,7 +44,7 @@ export default class DrawTable extends Component {
     const {qualify, gameName} = data;
     return (
       <div>
-        <NavBack caption="签表">
+        <NavBack routes={this.props.routes} caption="签表">
         </NavBack>
         <div className={cs.tab}>
           <div className={cs.tabInnerbox}>

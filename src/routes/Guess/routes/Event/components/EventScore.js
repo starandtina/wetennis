@@ -80,7 +80,7 @@ export default class EventScore extends Component {
     const filters = {status: []}
     return (
       <div className={cs.box}>
-        <NavBack title="赛事">
+        <NavBack routes={this.props.routes} title="赛事">
           <div className={cs.typeFilter}>
             <i className="material-icons">more_vert</i>
             <select

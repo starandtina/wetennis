@@ -16,7 +16,7 @@ class ResetPassword extends Component {
   render() {
     let content = (
       <div className='u-hasNav container'>
-        <NavBack caption='重置密码' transparent={false} className='white-theme' />
+        <NavBack routes={this.props.routes} caption='重置密码' transparent={false} className='white-theme' />
         <ResetPasswordFormContainer {...this.props} />
       </div>
     )

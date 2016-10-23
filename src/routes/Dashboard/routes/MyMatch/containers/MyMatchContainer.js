@@ -37,7 +37,7 @@ class MyMatch extends Component {
 
     return (
       <div>
-        <NavBack caption='个人中心' transparent>
+        <NavBack routes={this.props.routes} caption='个人中心' transparent>
         </NavBack>
         <Tabs inkBarStyle={inkBarStyle}>
           <Tab label="我的赛事" value={1} style={TabStyle}>

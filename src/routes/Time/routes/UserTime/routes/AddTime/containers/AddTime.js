@@ -97,7 +97,7 @@ class AddTime extends Component {
 
     return (
     <form className={style.Root} onSubmit={handleSubmit(this.addTime)}>
-      <NavBack caption="添加我的时光" leftText="close" transparent removeColor className='white-theme'>
+      <NavBack routes={this.props.routes} caption="添加我的时光" leftText="close" transparent removeColor className='white-theme'>
         <button
           type="submit"
           disabled={submitting}

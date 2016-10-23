@@ -45,7 +45,7 @@ export class Dashboard extends React.Component {
     };
     //let content = (<div>Dashboard<button onClick={this.props.logoutUser.bind(this)}>LOGOUT</button></div>);
     let content = userInfo ? (<div className='u-hasNav'>
-      <NavBack caption='个人中心' hiddenBack={true} transparent>
+      <NavBack routes={this.props.routes} caption='个人中心' hiddenBack={true} transparent>
         <Link className={style.Icon} to="/dashboard/me/editBG"><i className="material-icons">collections</i></Link>
         <Link className={style.Icon} to="/dashboard/settings"><i className="material-icons">settings</i></Link>
       </NavBack>

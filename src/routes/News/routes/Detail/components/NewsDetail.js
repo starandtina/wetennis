@@ -29,7 +29,7 @@ export default class NewsDetail extends Component {
 
     return (
       <div className={cs.container}>
-        <NavBack caption='新闻详情' />
+        <NavBack routes={this.props.routes} caption='新闻详情' />
         <NewsContainer item={news} />
         <div className='container'>
           <div dangerouslySetInnerHTML={{ __html: content }} />

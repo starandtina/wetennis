@@ -24,7 +24,7 @@ export default class Rankings extends Component {
     const {filters, rankings, params: {eventId}} = this.props;
     return (
       <div className={cs.box}>
-        <NavBack title="排行" />
+        <NavBack routes={this.props.routes} title="排行" />
         <div className={cs.pageTitle}>
           <CascadeFilter
             className={cs.groupFilter}

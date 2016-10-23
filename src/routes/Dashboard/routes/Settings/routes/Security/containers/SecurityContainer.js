@@ -39,7 +39,7 @@ class Security extends Component {
 
     return (
       <div className='u-hasNav'>
-        <NavBack caption='隐私'>
+        <NavBack routes={this.props.routes} caption='隐私'>
         </NavBack>
 
         <form className='setting-form'>

@@ -24,7 +24,7 @@ export class Signup extends Component {
     if (!children) {
       content = (
         <div className='u-hasNav container'>
-          <NavBack caption='注册' transparent={false} className='white-theme' />
+          <NavBack routes={this.props.routes} caption='注册' transparent={false} className='white-theme' />
           <SignupFormContainer {...this.props} />
         </div>
       )

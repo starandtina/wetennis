@@ -119,7 +119,7 @@ export class Register extends React.Component {
 
     return (
       <div className='register'>
-         <NavBack caption='报名' />
+         <NavBack routes={this.props.routes} caption='报名' />
          {content}
       </div>
     )

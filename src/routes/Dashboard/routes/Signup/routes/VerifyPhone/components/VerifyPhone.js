@@ -11,7 +11,7 @@ export class Sign extends React.Component {
 
     return (
       <div>
-        <NavBack caption='验证手机' style={{color: 'white'}} />
+        <NavBack routes={this.props.routes} caption='验证手机' style={{color: 'white'}} />
         <VerifyPhoneFormContainer {...this.props} />
       </div>
     )
