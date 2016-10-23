@@ -6,7 +6,7 @@ const webpackConfig = require('../build/webpack.config')
 const compression = require('compression')
 const httpProxyMiddleware = require('http-proxy-middleware')
 const historyApiFallback = require('connect-history-api-fallback')
-const debug = require('debug')('wetennis:app')
+const debug = require('debug')('app')
 
 const config = require('../config')
 const paths = config.utils_paths

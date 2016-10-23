@@ -5,6 +5,13 @@ const cheerio = require('cheerio')
 const fs = require('fs')
 const models = require('../models')
 
+const debug = require('debug')('app')
+const config = require('../../config')
+const paths = config.utils_paths
+const port = config.server_port
+const host = config.server_host
+
+
 module.exports = function () {
   const router = express.Router()
 
@@ -94,14 +101,17 @@ module.exports = function () {
           .catch(err => {
             console.error(err)
           })
-
-
       }
     })
   }
 
   router.route('/')
     .get(show)
+
+  setInterval(() => {
+    rp(`http://${host}:${port}/scrape/news/sina`)
+      .then(() => debug(`Server is now fetching tennis news from Sina at http://${host}:${port}.`))
+  }, 1000 * 60 * 60 * 12)
 
   return router
 }
