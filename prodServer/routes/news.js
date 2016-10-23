@@ -31,7 +31,7 @@ module.exports = function () {
           }
         }],
         order: 'issueTime DESC'
-        // order: 'convert(datetime, issueTime) DESC'
+          // order: 'convert(datetime, issueTime) DESC'
       })
       .then((newsList) => {
         newsList = newsList.map(
@@ -76,8 +76,11 @@ module.exports = function () {
           plain: true
         })
 
-        if (!news.hasOwnProperty('keywordList')) {
+        if (!news.keywords) {
           news.keywordList = ['网球', news.type]
+        } else {
+          news.keywordList = news.keywords.split(',')
+          news.keywordList.unshift('网球', news.type)
         }
 
         news.commentCount = news.Comments.length

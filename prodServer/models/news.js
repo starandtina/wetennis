@@ -29,7 +29,8 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       field: 'NewsContent'
     },
-    title: DataTypes.STRING
+    title: DataTypes.STRING,
+    keywords: DataTypes.STRING
   }, {
     timestamps: false,
     freezeTableName: true,

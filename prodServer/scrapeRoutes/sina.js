@@ -13,7 +13,9 @@ module.exports = function () {
 
     request(url, function (error, response, html) {
       if (!error && response.statusCode === 200) {
-        const $ = cheerio.load(html)
+        const $ = cheerio.load(html, {
+          decodeEntities: false
+        })
         const links = []
         const sinaNewsList = []
 
@@ -24,19 +26,29 @@ module.exports = function () {
         Promise.all(links.map(link => rp(link)))
           .then(results => {
             results.forEach(r => {
-              const $newsHTML = cheerio.load(r)
+              const $newsHTML = cheerio.load(r, {
+                decodeEntities: false
+              })
 
               const date = $newsHTML('#pub_date').text().trim()
               const provider = 'Sina'
               const type = '新浪体育'
               const thumbImgUrl = $newsHTML('.img_wrapper:first-of-type img').attr('src')
               const providerIconUrl = 'http://sports.sina.com.cn/favicon.ico'
-              const content = $newsHTML('#artibody p').map(function (i, el) {
-                return `<p>${$(this).text()}</p>`
-              }).get().join(' ')
+                // const content = $newsHTML('#artibody p').map(function (i, el) {
+                //   return `<p>${$(this).text()}</p>`
+                // }).get().join(' ')
+              const content = $newsHTML('.BSHARE_POP')
+                .contents()
+                .not('.img_wrapper')
+                .map((i, el) => $newsHTML.html(el))
+                .get().join(' ')
+
               const title = $newsHTML('#artibodyTitle').text().trim()
 
               // TODO: ADD keyword list
+
+              const keywords = $newsHTML('.art_keywords a').map((i, el) => $(el).text()).get().join(',')
 
               sinaNewsList.push({
                 date,
@@ -45,7 +57,8 @@ module.exports = function () {
                 thumbImgUrl,
                 providerIconUrl,
                 content,
-                title
+                title,
+                keywords
               })
             })
 
