@@ -60,8 +60,7 @@ class AddressEdit extends React.Component {
       imgstr: uploadFile.base64,
       name: uploadFile.name
     }).then(action => {
-      console.log(action.payload.data.ImageUrl)
-      imgUrl.onChange(action.payload.data.ImageUrl);
+      imgUrl.onChange(action.payload.data.imageUrl);
     });
   };
 
@@ -90,7 +89,7 @@ class AddressEdit extends React.Component {
       verticalAlign: 'bottom'
     };
     return (
-      <form className={classes.Root} onSubmit={handleSubmit(this.addEquipment)}>
+      <form className={`${classes.Root} u-hasNav`} onSubmit={handleSubmit(this.addEquipment)}>
         <NavBack routes={this.props.routes} caption=" " leftText="close" transparent className='white-theme'>
           <button type="button" disabled={submitting}>
             <label htmlFor="uploadImage" className={classes.AddImage}>
@@ -106,7 +105,9 @@ class AddressEdit extends React.Component {
             <i className="material-icons">done</i>
           </button>
         </NavBack>
-        <div className={classes.imgContainer}><img src={imgUrl.value} alt=""/></div>
+        <div className={`${classes.imgContainer} u-aligner`}>
+          {imgUrl.value && <img src={imgUrl.value} alt=""/>}
+        </div>
         <div className={classes.Field}>
           <TextField
             style={style}

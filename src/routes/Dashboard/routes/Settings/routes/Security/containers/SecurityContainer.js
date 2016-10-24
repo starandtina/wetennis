@@ -116,7 +116,7 @@ class Security extends Component {
                   name="companyName"
                   fullWidth
                   onChange={this.handleChange('companyName')}
-                  value={settings.companyName}
+                  value={setting.companyName}
                   underlineShow={false}
                 />
               </Col>
@@ -135,7 +135,7 @@ class Security extends Component {
                   name="companyTitle"
                   fullWidth
                   onChange={this.handleChange('companyTitle')}
-                  value={settings.companyTitle}
+                  value={setting.companyTitle}
                   underlineShow={false}
                 />
               </Col>
@@ -154,7 +154,7 @@ class Security extends Component {
                   name="club"
                   fullWidth
                   onChange={this.handleChange('club')}
-                  value={settings.club}
+                  value={setting.club}
                   underlineShow={false}
                 />
               </Col>

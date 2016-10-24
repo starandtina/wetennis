@@ -17,7 +17,7 @@ const style = {
 export default class LoadingBar extends Component {
   render() {
     return (
-      <div className={`u-verticalCenterWithFlex ${cs.backdrop}`}> 
+      <div className={`u-aligner ${cs.backdrop}`}> 
         <CircularProgress />
       </div>
     );

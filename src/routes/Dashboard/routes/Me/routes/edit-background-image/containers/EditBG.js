@@ -5,7 +5,7 @@ import TextField from 'material-ui/TextField'
 import NavBack from 'components/NavBack';
 import UploadImage from 'components/UploadImage/uploadImage';
 
-import classes from './EditBG.scss'
+import cs from './EditBG.scss'
 
 import { updateBGImage, uploadEquipmentImage } from 'routes/Dashboard/modules/user'
 
@@ -52,7 +52,7 @@ class AddressEdit extends React.Component {
       id,
       push,
       } = this.props;
-    console.log(values);
+
     updateBGImage({
       ImageUrl: values.backGroundImageUrl,
       userId: id
@@ -62,20 +62,6 @@ class AddressEdit extends React.Component {
       }
     })
   };
-  //
-  //deleteBGImage = () => {
-  //  const {
-  //    deleteBGImage,
-  //    params: { id },
-  //    goBack,
-  //    } = this.props;
-  //  console.log(this.props);
-  //  deleteBGImage({ id }).then(action => {
-  //    if (!action.error) {
-  //      goBack();
-  //    }
-  //  })
-  //};
 
   render () {
     const {
@@ -85,25 +71,26 @@ class AddressEdit extends React.Component {
       } = this.props;
 
     return (
-      <form className={classes.Root} onSubmit={handleSubmit(this.updateBGImage)}>
-        <NavBack routes={this.props.routes} caption=" " leftText="close" transparent removeColor className='white-theme'>
-          <button type="button" disabled={submitting}>
-            <label htmlFor="uploadImage" className={classes.AddImage}>
-              <UploadImage
-                type="file"
-                id="uploadImage"
-                onDone={this.uploadImage}
-              />
-              <i className="material-icons">collections</i>
-            </label>
-          </button>
-          <button type="submit" disabled={submitting}>
-            <i className="material-icons">done</i>
-          </button>
-        </NavBack>
-        <div className={classes.imgContainer}><img src={backGroundImageUrl.value} alt=""/></div>
-      </form>
-
+      <div className='u-hasNav'>
+        <form className={cs.Root} onSubmit={handleSubmit(this.updateBGImage)}>
+          <NavBack routes={this.props.routes} caption=" " leftText="close" transparent removeColor className='white-theme'>
+            <button type="button" disabled={submitting}>
+              <label htmlFor="uploadImage" className={cs.AddImage}>
+                <UploadImage
+                  type="file"
+                  id="uploadImage"
+                  onDone={this.uploadImage}
+                />
+                <i className="material-icons">collections</i>
+              </label>
+            </button>
+            <button type="submit" disabled={submitting}>
+              <i className="material-icons">done</i>
+            </button>
+          </NavBack>
+          <div className={`${cs.imgContainer} u-aligner`}><img className='img-responsive' src={backGroundImageUrl.value} alt=""/></div>
+        </form>
+      </div>
     )
   }
 }

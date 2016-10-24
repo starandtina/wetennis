@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
-import { bindActionCreators } from 'redux'
 
 import { logoutUser, fetchMyData } from '../../../modules/user'
 import Dashboard from '../components/me'
@@ -9,10 +8,6 @@ import Dashboard from '../components/me'
 const mapStateToProps = (state) => ({
   user: state.user
 })
-
-//const mapDispatchToProps = (dispatch) => ({
-//  actions : bindActionCreators({ fetchMyData, logoutUser, push }, dispatch)
-//})
 
 const mapDispatchToProps = {
   fetchMyData, logoutUser, push

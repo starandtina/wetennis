@@ -14,13 +14,6 @@ const mapStateToProps = (state) => ({
   settings: state.settings
 });
 
-//const mapDispatchToProps = (dispatch) => ({
-//  ...bindActionCreators({
-//    fetchMySettings,
-//    updateSettings,
-//    push,
-//  }, dispatch)
-//})
 const mapDispatchToProps = {
   fetchMySettings,
   updateSettings
@@ -44,10 +37,8 @@ class TechRank extends Component {
       display: 'none'
     }
     return (
-      <div>
-        <NavBack routes={this.props.routes} caption='网球等级'>
-        </NavBack>
-
+      <div class='u-hasNav'>
+        <NavBack routes={this.props.routes} caption='网球等级' />
         <form className={classes.Form}>
           <Grid>
             <div className={classes.Head}>网球等级</div>
@@ -57,6 +48,7 @@ class TechRank extends Component {
               </Col>
               <Col xs={8}>
                 <SelectField
+                  fullWidth
                   value={settings.SelfTechRank}
                   onChange={this.handleChangeSelfTechRank}
                   underlineStyle={underlineStyle}

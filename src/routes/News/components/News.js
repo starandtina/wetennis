@@ -34,7 +34,7 @@ export default class News extends Component {
           <h4 className={cls`text-left ${cs.title}`}>{item.title}</h4>
         </Link>
         <Grid className={cs.text}>
-          <Row className='u-verticalCenterWithFlex'>
+          <Row className='u-aligner'>
             <Col xs={7}>
               <div className={cls`pull-left ${cs.marginRight5}`}>
                 <img src={item.providerIconUrl} className={cls`img-responsive ${cs['provider-icon']}`} />

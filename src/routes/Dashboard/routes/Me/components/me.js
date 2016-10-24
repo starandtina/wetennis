@@ -51,7 +51,7 @@ export class Dashboard extends React.Component {
       </NavBack>
       <div className={style.BackGroundImage} style={bgstyle}>
         <div className={style.Name}>{userInfo.name}</div>
-        <div className={style.UserInfo}>{userInfo.gender} | {userInfo.birthday} | {userInfo.Constellation}</div>
+        <div className={style.UserInfo}>{userInfo.gender === 'male' ? '男' : '女'} | {userInfo.birthday} | {userInfo.Constellation}</div>
       </div>
       <div>
         <div className={style.Item}>
