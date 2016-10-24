@@ -24,12 +24,17 @@ export const SET_RANKINGS_CURRENT_FILTER = "SET_RANKINGS_CURRENT_FILTER"
 
 export const getRankings = id => ({
   types:[FETCH_RANKINGS, FETCH_RANKINGS_SUCCESS, FETCH_RANKINGS_FAILTURE],
-  promise: () => API.post(URLConf.fetchRankings, {id})
+  promise: () => API.post(URLConf.fetchRankings, {
+    value: id,
+    rankId: 'union1',
+    currentPage: 1,
+    limit: 10,
+  })
 });
 
 export const getRankingsFilter = id => ({
   types:[FETCH_RANKINGS_FILTER, FETCH_RANKINGS_FILTER_SUCCESS, FETCH_RANKINGS_FILTER_FAILTURE],
-  promise: () => API.post(URLConf.cascadeFilter, {id, type: 'rangkins'})
+  promise: () => API.post(URLConf.cascadeFilter, {id, type: 'rankings'})
 });
 
 export const setCurrentFilter = id => ({
