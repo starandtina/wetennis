@@ -17,7 +17,7 @@ export default class NewsList extends Component {
   }
 
   renderList() {
-    const { newsList, likeNews } = this.props
+    const { newsList } = this.props
 
     const rows = newsList.map((item, index) => (
       <NewsContainer key={item.id} item={item} />
