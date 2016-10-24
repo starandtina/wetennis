@@ -130,7 +130,6 @@ class SettingsForm extends React.Component {
 
     updateMySettings({
       ...settings,
-      ...user,
       userId: user.id
     }).then(({payload: {code, data}}) => {
       if (Number(code) === 0) {

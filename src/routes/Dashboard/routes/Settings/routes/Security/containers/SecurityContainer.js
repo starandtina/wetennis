@@ -31,6 +31,7 @@ class Security extends Component {
 
   render() {
     const {
+      settings,
       user: { user },
       } = this.props;
     const underlineStyle = {
@@ -115,7 +116,7 @@ class Security extends Component {
                   name="companyName"
                   fullWidth
                   onChange={this.handleChange('companyName')}
-                  value={user.companyName}
+                  value={settings.companyName}
                   underlineShow={false}
                 />
               </Col>
@@ -134,7 +135,7 @@ class Security extends Component {
                   name="companyTitle"
                   fullWidth
                   onChange={this.handleChange('companyTitle')}
-                  value={user.companyTitle}
+                  value={settings.companyTitle}
                   underlineShow={false}
                 />
               </Col>
@@ -153,7 +154,7 @@ class Security extends Component {
                   name="club"
                   fullWidth
                   onChange={this.handleChange('club')}
-                  value={user.club}
+                  value={settings.club}
                   underlineShow={false}
                 />
               </Col>

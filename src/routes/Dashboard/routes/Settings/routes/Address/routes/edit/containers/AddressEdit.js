@@ -72,7 +72,7 @@ class AddressEdit extends React.Component {
       width: '100%'
     };
     return (
-      <div>
+      <div className='u-hasNav'>
         <NavBack routes={this.props.routes} caption='我的地址'>
           <div onClick={this.deleteAddr} className={classes.Icon} ><i className="material-icons">delete</i></div>
         </NavBack>
