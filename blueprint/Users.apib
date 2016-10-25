@@ -227,6 +227,7 @@ User is a simple API allowing consumers to signin and signup.
                 }
             }
 
+
 ## 读取个人用户信息 [/api/fetchUserInfo]
 
 通过userId向服务器请求个人信息,返回内容和signin(登录)一致
@@ -261,6 +262,53 @@ User is a simple API allowing consumers to signin and signup.
                     "gender": "male/female",
                     "cardId": "232323198611111111",
                     "companyName": "china mobile",
-                    "companyTitle": "CTO"
+                    "companyTitle": "CTO",
+                    "club": "club"
+                }
+            }
+
+
+## 更新个人用户信息 [/api/updateUserInfo]
+
+### 更新个人用户信息 [POST]
+
++ method (string) - The calling method
+
++ Request (application/json)
+
+  + Body
+
+        {
+            "method": "updateUserInfo",
+            "id": "user id",
+            "name": "real name",
+            "username": "user name",
+            "password": "user password",
+            "phone": "user phone",
+            "gender": "male/female",
+            "cardId": "232323198611111111",
+            "companyName": "china mobile",
+            "companyTitle": "CTO",
+            "club": "club"
+        }
+
++ Response 200 (application/json)
+
+  + Body
+
+            {
+                "code": 0,
+                "errorMsg": "",
+                "data": {
+                    "id": "user id",
+                    "name": "real name",
+                    "username": "user name",
+                    "password": "user password",
+                    "phone": "user phone",
+                    "gender": "male/female",
+                    "cardId": "232323198611111111",
+                    "companyName": "china mobile",
+                    "companyTitle": "CTO",
+                    "club": "club"
                 }
             }
