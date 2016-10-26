@@ -28,7 +28,7 @@ export class Footer extends React.Component {
             {this.renderItem('LATEST', '最新', '/')}
             {this.renderItem('EVENTS', '赛事', '/events')}
             {this.renderItem('TIME', '时光', '/time')}
-            {this.renderItem('GUESS', '竟猜', '/guess')}
+            {/*this.renderItem('GUESS', '竟猜', '/guess')*/}
             {this.renderItem('DASHBOARD', '我', '/dashboard')}
          </div>
         </div>
