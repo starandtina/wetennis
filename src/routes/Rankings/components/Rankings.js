@@ -1,8 +1,9 @@
 import React, {Component} from "react";
-import NavBack from "components/NavBack";
+import TopNav from "components/TopNav";
 import User from "components/User";
 import {Link} from "react-router";
 import CascadeFilter from "components/CascadeFilter";
+import Footer from "components/Footer";
 
 import cs from "./Rankings.scss";
 
@@ -24,7 +25,7 @@ export default class Rankings extends Component {
     const {filters, rankings, params: {eventId}} = this.props;
     return (
       <div className={cs.box}>
-        <NavBack routes={this.props.routes} title="排行" />
+        <TopNav title="排行" />
         <div className={cs.pageTitle}>
           <CascadeFilter
             className={cs.groupFilter}
@@ -33,6 +34,9 @@ export default class Rankings extends Component {
             onChange={this.setCurrentFilter}
           />
         </div>
+        {rankings.length === 0
+        ? <div className={cs.noData}>暂时没有排行数据</div>
+        : undefined}
         {rankings.map((item, index) => {
           return (
             <Link
@@ -52,6 +56,7 @@ export default class Rankings extends Component {
             </Link>
           );
         })}
+        <Footer activeNavTab='RANKINGS' />
       </div>
     );
   }
