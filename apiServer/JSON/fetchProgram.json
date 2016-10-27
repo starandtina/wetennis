@@ -1,0 +1,33 @@
+{
+  "code": 0,
+  "data": {
+    "courts": {
+      "court1": {
+        "name": "1号场",
+        "matches": ["match1", "match2"]
+      },
+      "court2": {
+        "name": "2号场",
+        "matches": []
+      }
+    },
+    "matches": {
+      "match1": {
+        "name": "青年组女子单打-小组赛/资格赛-第8组",
+        "players": ["player1", "player2"]
+      },
+      "match2": {
+        "name": "青年组女子单打-小组赛/资格赛-第9组",
+        "players": ["player1", "player2"]
+      }
+    },
+    "players": {
+      "player1": {
+        "name": "杨硕"
+      },
+      "player2": {
+        "name": "陈龙"
+      }
+    }
+  }
+}

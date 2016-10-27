@@ -19,6 +19,31 @@ router.post('/', function (ctx, next) {
   return next()
 });
 
+router
+  .all('/v1/:method', function (ctx, next) {
+    var fs = require('fs')
+    var path = require('path')
+    var file = path.resolve(__dirname, 'JSON', ctx.params.method + '.json')
+
+    var data = fs.readFileSync(file, 'utf8')
+
+    console.log('Reading JSON file from ' + file + ' for ' + ctx.path);
+    ctx.body = JSON.parse(data)
+
+    return next()
+  }).all('/v1/:method/:id/:action', function (ctx, next) {
+    var fs = require('fs')
+    var path = require('path')
+    var file = path.resolve(__dirname, 'JSON', ctx.params.action + '.json')
+
+    var data = fs.readFileSync(file, 'utf8')
+
+    console.log('Reading JSON file from ' + file + ' for ' + ctx.path);
+    ctx.body = JSON.parse(data)
+
+
+    return next()
+  })
 
 app.use(router.routes())
   .use(router.allowedMethods())

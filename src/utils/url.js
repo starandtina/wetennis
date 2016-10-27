@@ -14,6 +14,9 @@ export default {
   // News
   news: `${WETENNIS_WEB_API_URL}news`,
 
+  // Program
+  fetchProgram: `${ROOT_URL}fetchProgram`,
+  updateProgram: `${ROOT_URL}updateProgram`,
 
   // Dashbaord
   signUp: `${ROOT_URL}signup`,

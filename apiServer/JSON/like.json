@@ -1,4 +1,11 @@
 {
   "code": 0,
-  "data": true
+  "errorMsg": "",
+  "data": {
+    "type": "News",
+    "id": 107,
+    "isGood": "1",
+    "typeSysno": "eeaace63-9b27-11e6-a528-f999fe78c614",
+    "userId": "5e6a6a44-c34e-4bb8-be7c-a48ea588090b"
+  }
 }
