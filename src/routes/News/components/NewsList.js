@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 
 import Footer from 'components/Footer'
 import NewsTopNav from './NewsTopNav'
