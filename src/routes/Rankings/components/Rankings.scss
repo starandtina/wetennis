@@ -15,8 +15,7 @@ $rankingItemHeight: 60*$px1;
   display: flex;
   align-items: center;
   font-size: $px12;
-  padding: 0 15*$px1;
-  color: $secondaryFontColor;
+  padding: 0 15*$px1; color: $secondaryFontColor;
 }
 
 .rankingItem {
@@ -73,4 +72,12 @@ $rankingItemHeight: 60*$px1;
   > i {
     line-height: $topNavHeight;
   }
+}
+
+.noData {
+  height: 300*$px1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $mainFontColor;
 }
