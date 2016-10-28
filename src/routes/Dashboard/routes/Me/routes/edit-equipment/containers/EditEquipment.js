@@ -65,8 +65,8 @@ class AddressEdit extends React.Component {
       imgstr: uploadFile.base64,
       name: uploadFile.name
     }).then(action => {
-      console.log(action.payload.data.ImageUrl)
-      imgUrl.onChange(action.payload.data.ImageUrl);
+      console.log(action.payload.data.imageUrl)
+      imgUrl.onChange(action.payload.data.imageUrl);
     });
   };
 
@@ -91,12 +91,12 @@ class AddressEdit extends React.Component {
     const {
       deleteEquipment,
       params: { id },
-      goBack,
+      push,
       } = this.props;
     console.log(this.props);
     deleteEquipment({ id }).then(action => {
       if (!action.error) {
-        goBack();
+        push('/dashboard');
       }
     })
   };

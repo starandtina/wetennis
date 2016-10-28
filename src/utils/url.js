@@ -33,7 +33,7 @@ export default {
   fetchUserInfo: `${ROOT_URL}fetchUserInfo`,
   uploadEquipmentImage: `${ROOT_URL}uploadImage`,
   addEquipment: `${ROOT_URL}addEquipment`,
-  updateEquipment: `${ROOT_URL}updateEquipment`,
+  updateEquipment: `${ROOT_URL}editEquipment`,
   deleteEquipment: `${ROOT_URL}deleteEquipment`,
   updateBGImage: `${ROOT_URL}updateBGImage`,
 
