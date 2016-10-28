@@ -51,7 +51,8 @@ const config = {
     'material-ui',
     'react-bootstrap',
     'isomorphic-fetch',
-    'babel-polyfill'
+    'babel-polyfill',
+    'react-dragula'
   ],
 
   // ----------------------------------
