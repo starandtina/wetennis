@@ -1,0 +1,47 @@
+.container
+{
+    margin: 20px;
+}
+
+.court-container
+{
+    display: -ms-flexbox;
+    display: flex;
+
+    overflow-x: auto;
+}
+
+.match
+{
+    display: inline-block;
+
+    width: 150px;
+    min-height: 200px;
+    margin-right: 15px;
+    padding: 15px;
+
+    text-align: center;
+    vertical-align: top;
+
+    border: 1px solid #ccc;
+}
+
+.court
+{
+    display: inline-block;
+
+    width: 150px;
+    margin-top: 15px;
+    margin-right: 15px;
+
+    text-align: center;
+    vertical-align: top;
+}
+
+
+.court-name
+{
+    padding: 15px;
+
+    background-color: #999;
+}
