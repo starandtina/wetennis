@@ -35,5 +35,16 @@
 {
     width: 100%;
     min-height: 200px;
+}
+
+.dragula-container.temporary
+{
+    display: -ms-flexbox;
+    display: flex;
+
+    padding: 10px;
+
     border: 1px solid #ccc;
+
+    overflow-x: auto;
 }

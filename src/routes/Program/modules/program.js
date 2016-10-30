@@ -19,6 +19,7 @@ export const UPDATE_PROGRAM_FAILTURE = 'FETCH_PROGRAM_FAILTURE'
 
 export const ADJUST_MATCH = 'ADJUST_MATCH'
 
+
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -39,6 +40,7 @@ export const adjustMatch = (data) => ({
   type: ADJUST_MATCH,
   payload: data
 })
+
 
 // -----------------------------
 // Reducer
@@ -83,36 +85,34 @@ export default handleActions({
     let {
       el,
       targetCourtId,
-      sibling: { matchId: siblingMatchId},
-      isFromTemporary
+      sibling: {
+        matchId: siblingMatchId
+      },
+      isFromTemporary,
+      isReorder
     } = action.payload
-
-    let adjustCourts
-
-    adjustCourts = Object.keys(courts)
-      .reduce((memo, key)=> {
-        const sourceMatches = courts[key].matches
-        let court = courts[key]
-
-        // Move `el` from CourtX/temporary container to CourtY/temporary container
-        // Delete from source court if it's moved from cout instead of temporary container
-        if (el.courtId === key && !isFromTemporary) {
-          court = deleteFromCourt(courts[el.courtId], el.matchId)
-        }
-        // Insert into target court
-        else if (targetCourtId && targetCourtId === key) {
-          court = insertIntoCourt(courts[targetCourtId], el.matchId, siblingMatchId)
-        }
-
-        memo[key] = court
-
-        return memo
-      }, {})
-
 
     return {
       ...state,
-      courts: adjustCourts
+      courts: Object.keys(courts)
+        .reduce((memo, key) => {
+          const sourceMatches = courts[key].matches
+          let court = courts[key]
+
+          // Move `el` from CourtX/temporary container to CourtY/temporary container
+          // Delete from source court if it's moved from cout instead of temporary container
+          if (el.courtId === key && !isFromTemporary && !isReorder) {
+            court = deleteFromCourt(courts[el.courtId], el.matchId)
+          }
+          // Insert into target court
+          else if (targetCourtId && targetCourtId === key) {
+            court = insertIntoCourt(courts[targetCourtId], el.matchId, siblingMatchId)
+          }
+
+          memo[key] = court
+
+          return memo
+        }, {})
     }
   }
 }, {

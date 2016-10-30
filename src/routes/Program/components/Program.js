@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, {
+  Component
+} from 'react'
 import dragula from 'react-dragula'
 
 import Court from './Court'
@@ -10,16 +12,10 @@ export default class Program extends Component {
     const {
       fetchProgram,
       adjustMatch,
-      params: {
-        eventId,
-        date
-      }
+      params
     } = this.props
 
-    fetchProgram({
-      eventId,
-      date
-    })
+    fetchProgram(params)
 
     dragula([...document.querySelectorAll('.dragula-container')], {
       copy: true,
@@ -28,32 +24,41 @@ export default class Program extends Component {
       }
     }).on('drop', function (el, target, source, sibling) {
       // If we only adjust order in current court, then targe'd be `null`
-
       const targetCourtId = target ? target.dataset.courtId : source.dataset.courtId
+      const isFromTemporary = source.classList.contains('temporary')
+      const isReorder = !target
+
+      // If we just reorder in the temporary container then don't dispatch the `ADJUST_MATCH` action
+      if (isFromTemporary && isReorder) {
+        return
+      }
 
       adjustMatch({
-        el: { ...el.dataset },
-        targetCourtId: targetCourtId,
-        sibling: { matchId: sibling && sibling.dataset.matchId },
-        isFromTemporary: source.classList.contains('temporary')
+        el: {...el.dataset
+        },
+        sibling: {
+          matchId: sibling && sibling.dataset.matchId
+        },
+        targetCourtId,
+        isFromTemporary,
+        isReorder
       })
 
-      el.parentNode.removeChild(el)
+      if (el.parentNode) {
+        el.parentNode.removeChild(el)
+      }
     })
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    // if (Object.keys(this.props.program.players).length === Object.keys(nextProps.program.players).length) {
-    //   return false
-    // }
-
-    return true
-  }
-
   handleClick = () => {
-    const { updateProgram, program } = this.props
+    const {
+      updateProgram,
+      program,
+      params
+    } = this.props
 
     updateProgram({
+      ...params,
       courts: program.courts
     })
   }
