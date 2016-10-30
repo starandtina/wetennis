@@ -28,8 +28,7 @@ export default class Program extends Component {
       const isFromTemporary = source.classList.contains('temporary')
       const isReorder = !target
 
-      // If we just reorder in the temporary container then don't dispatch the `ADJUST_MATCH` action
-      if (isFromTemporary && isReorder) {
+      if (isReorder) {
         return
       }
 
