@@ -4,7 +4,7 @@ export default (store) => ({
   path: 'program/:eventId/:date',
   getComponent (nextState, next) {
     require.ensure([], (require) => {
-      const reducer = require('./modules/program').default
+      const reducer = require('./modules').default
 
       injectReducer(store, { key: 'program', reducer })
 

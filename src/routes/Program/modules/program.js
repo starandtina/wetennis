@@ -76,7 +76,6 @@ export default handleActions({
   [ADJUST_MATCH]: (state, action) => {
     // `el = { courtId: "", matchId: ""}`
     // `sibling = { courtId: "", matchId: ""}`
-
     const {
       courts,
       matches
@@ -120,3 +119,12 @@ export default handleActions({
   matches: {},
   players: {}
 })
+
+export const getUnScheduledMatchIds = ({ courts, matches, players }) => {
+  // Collect all of scheduled matches
+  const scheduledMatchIds = Object.keys(courts).reduce((memo, courtId) => {
+    return [...memo, ...courts[courtId].matches]
+  }, [])
+
+  return Object.keys(matches).filter( key => scheduledMatchIds.indexOf(key) === -1)
+}
