@@ -7,7 +7,9 @@ import Root from "../components/Rankings";
 import {
   getRankings,
   getRankingsFilter,
-  setCurrentFilter
+  setCurrentFilter,
+  getRankingType,
+  setCurrentRankingType,
 } from "../modules";
 
 class Container extends Component {
@@ -26,9 +28,9 @@ class Container extends Component {
 }
 
 const mapStateToProps = ({eventRankings: {
-  currentFilter, rankings, filters
+  currentFilter, rankings, filters, currentRankingType, rankingType
 }}) => ({
-  currentFilter, rankings, filters
+  currentFilter, rankings, filters, currentRankingType, rankingType
 });
 
 export default connect(
@@ -36,6 +38,8 @@ export default connect(
   {
     getRankings,
     getRankingsFilter,
-    setCurrentFilter
+    setCurrentFilter,
+    getRankingType,
+    setCurrentRankingType,
   }
 )(Container)

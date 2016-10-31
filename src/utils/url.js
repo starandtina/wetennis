@@ -90,6 +90,7 @@ export default {
 
   // rankings
   fetchRankings: `${ROOT_URL}rankings`,
+  fetchRankingType: `${ROOT_URL}rankingTypeFilter`,
   fetchRankingsFilter: `${ROOT_URL}rankingsFilter`,
   like: `${ROOT_URL}like`,
 

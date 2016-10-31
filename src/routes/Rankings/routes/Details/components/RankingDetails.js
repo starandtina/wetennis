@@ -59,7 +59,7 @@ export default class RankingDetails extends Component {
           <div className={cs.infoBox}>
             <div className={cs.left}>
               <div className={cs.username}>{info.username}</div>
-              {`${usersex} | ${info.borthday} | ${info.constellation}`}
+              {`${usersex} | ${info.birthday} | ${info.constellation}`}
             </div>
             <div className={cs.right}>
               <div className={cs.sNum}>
@@ -79,7 +79,7 @@ export default class RankingDetails extends Component {
         </div>
         <ul className={cs.detailInfo}>
           <li>{`单打积分：${info.singleAccumulatePoints}`}</li>
-          <li>{`生日：${info.borthday}`}</li>
+          <li>{`生日：${info.birthday}`}</li>
           <li>{`双打积分：${info.doubleAccumulatePoints}`}</li>
           <li>{`身高：${info.stature}`}</li>
           <li>{`用户名：${info.account}`}</li>
