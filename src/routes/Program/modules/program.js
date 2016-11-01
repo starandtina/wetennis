@@ -26,15 +26,27 @@ export const ADJUST_MATCH = 'ADJUST_MATCH'
 
 export const fetchProgram = (data) => ({
   types: [FETCH_PROGRAM, FETCH_PROGRAM_SUCCESS, FETCH_PROGRAM_FAILTURE],
-  promise: () => API.post(URLConf.fetchProgram, {...data
-  })
+  promise: () => API.post(URLConf.fetchProgram, {...data})
 })
 
-export const updateProgram = (data) => ({
-  types: [UPDATE_PROGRAM, UPDATE_PROGRAM_SUCCESS, UPDATE_PROGRAM_FAILTURE],
-  promise: () => API.post(URLConf.updateProgram, {...data
-  })
-})
+export const updateProgram = (data) => {
+  // Covert {"courts": {"courtId1": { "name": "courtName1", "matches": ["match1", ....]}}}
+  // => {"courts": [{"id": "courtId1" "name": "courtName1", "matches": ["match1", ....]}...]}
+  const {
+    courts = {}
+  } = data
+
+  return {
+    types: [UPDATE_PROGRAM, UPDATE_PROGRAM_SUCCESS, UPDATE_PROGRAM_FAILTURE],
+    promise: () => API.post(URLConf.updateProgram, {
+      ...data,
+      courts: Object.keys(courts).map(id => ({
+        ...courts[id],
+        id
+      }))
+    })
+  }
+}
 
 export const adjustMatch = (data) => ({
   type: ADJUST_MATCH,
@@ -120,11 +132,15 @@ export default handleActions({
   players: {}
 })
 
-export const getUnScheduledMatchIds = ({ courts, matches, players }) => {
+export const getUnScheduledMatchIds = ({
+  courts,
+  matches,
+  players
+}) => {
   // Collect all of scheduled matches
   const scheduledMatchIds = Object.keys(courts).reduce((memo, courtId) => {
     return [...memo, ...courts[courtId].matches]
   }, [])
 
-  return Object.keys(matches).filter( key => scheduledMatchIds.indexOf(key) === -1)
+  return Object.keys(matches).filter(key => scheduledMatchIds.indexOf(key) === -1)
 }
