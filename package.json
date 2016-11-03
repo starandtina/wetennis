@@ -19,7 +19,7 @@
     "deploy:prod": "better-npm-run deploy:prod",
     "api:docs": "aglio -i ./blueprint/index.apib -o api.html --verbose",
     "api2": "drakov -f \"./blueprint/*.apib\" -p 8000 --watch",
-    "api": "node ./apiServer"
+    "api": "node ./api"
   },
   "betterScripts": {
     "compile": {
@@ -29,7 +29,7 @@
       }
     },
     "dev": {
-      "command": "nodemon --exec babel-node bin/server",
+      "command": "nodemon --ignore dist --ignore coverage --ignore tests --ignore src --ignore api --exec babel-node bin/server",
       "env": {
         "NODE_ENV": "development",
         "DEBUG": "app:*"
@@ -96,10 +96,10 @@
     "express": "4.14.0",
     "extract-text-webpack-plugin": "^1.0.0",
     "file-loader": "^0.8.4",
+    "stats-webpack-plugin": "0.4.2",
     "fs-extra": "^0.26.3",
     "history": "^2.0.0",
     "html-webpack-plugin": "^2.7.1",
-    "http-proxy-middleware": "0.17.0",
     "imports-loader": "^0.6.5",
     "isomorphic-fetch": "^2.2.1",
     "json-loader": "^0.5.4",
@@ -127,12 +127,10 @@
     "rimraf": "^2.5.1",
     "sass-loader": "^3.0.0",
     "sequelize": "3.24.2",
-    "stats-webpack-plugin": "0.4.2",
     "style-loader": "^0.13.0",
     "tedious": "1.14.0",
     "url-loader": "^0.5.6",
     "webpack": "^1.12.14",
-    "webpack-dev-middleware": "^1.6.1",
     "yargs": "^4.0.0"
   },
   "devDependencies": {
@@ -142,7 +140,6 @@
     "chai-enzyme": "^0.4.0",
     "codecov": "^1.0.1",
     "drakov": "^1.0.0",
-    "enzyme": "^2.0.0",
     "eslint": "^2.4.0",
     "eslint-config-standard": "^5.1.0",
     "eslint-config-standard-react": "^2.2.0",
@@ -151,28 +148,13 @@
     "eslint-plugin-promise": "^1.0.8",
     "eslint-plugin-react": "^4.0.0",
     "eslint-plugin-standard": "^1.3.1",
-    "flow-bin": "0.22.1",
-    "flow-interfaces": "^0.6.0",
     "isparta-loader": "^2.0.0",
-    "karma": "^0.13.21",
-    "karma-coverage": "^0.5.0",
-    "karma-mocha": "^0.2.0",
-    "karma-mocha-reporter": "^2.0.0",
-    "karma-webpack-with-fast-source-maps": "^1.9.2",
-    "koa": "^2.0.0-alpha.3",
-    "koa-connect-history-api-fallback": "^0.3.0",
-    "koa-convert": "^1.2.0",
-    "koa-proxy": "^0.6.0",
-    "koa-router": "7.0.1",
-    "koa-static": "^3.0.0",
-    "mocha": "^2.2.5",
     "nodemon": "^1.8.1",
-    "react-addons-test-utils": "^15.0.0",
     "react-transform-catch-errors": "^1.0.2",
     "react-transform-hmr": "^1.0.2",
     "redbox-react": "^1.2.2",
-    "sinon": "^1.17.3",
-    "sinon-chai": "^2.8.0",
-    "webpack-hot-middleware": "^2.6.0"
+    "webpack-hot-middleware": "^2.6.0",
+    "webpack-dev-middleware": "^1.6.1",
+    "http-proxy-middleware": "0.17.0"
   }
 }
