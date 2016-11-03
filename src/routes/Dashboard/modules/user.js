@@ -136,7 +136,7 @@ export const resetPassword = data => (
 
 export const fetchMyData = data => (
 {
-  types: [FETCH_MY_DATA, FETCH_MY_DATA_SUCCESS, VERIFY_PHONE_FAILTURE],
+  types: [FETCH_MY_DATA, FETCH_MY_DATA_SUCCESS, FETCH_MY_DATA_FAILTURE],
   promise: () => API.post(URLConf.fetchMyData, data)
 });
 
