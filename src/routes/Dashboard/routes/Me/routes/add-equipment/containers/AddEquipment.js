@@ -60,7 +60,7 @@ class AddressEdit extends React.Component {
       imgstr: uploadFile.base64,
       name: uploadFile.name
     }).then(action => {
-      imgUrl.onChange(action.payload.data.imageUrl);
+      imgUrl.onChange(action.payload.data.ImageUrl);
     });
   };
 

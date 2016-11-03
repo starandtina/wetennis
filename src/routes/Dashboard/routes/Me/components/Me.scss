@@ -1,23 +1,32 @@
-.BackGroundImage {
-  width: 100%;
-  padding-top: 210px;
-  padding-left: 20px;
-}
-.Name {
-  height: 40px;
-  font-size: 36px;
-  font-weight: normal;
-  line-height: 1.11;
-  //color: #ffffff;
+.container
+{
+    padding-top: 3.5rem;
 }
 
-.UserInfo {
-  height: 30px;
-  font-size: 12px;
-  font-weight: normal;
-  line-height: 2.5;
-  //color: #ffffff;
+.BackGroundImage
+{
+    width: 100%;
+    padding-top: 210px;
+    padding-left: 20px;
 }
+.Name
+{
+    font-size: 36px;
+    font-weight: normal;
+    line-height: 1.11;
+
+    height: 40px;
+}
+
+.UserInfo
+{
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 2.5;
+
+    height: 30px;
+}
+
 
 .Item {
   width: 33.3%;
