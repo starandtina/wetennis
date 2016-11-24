@@ -1,0 +1,16 @@
+{
+  "code": 0,
+  "errorMsg": "",
+  "data": {
+    "name": "团体名",
+    "groupName": "精英组",
+    "coachName": "教练名",
+    "members": [{
+      "name": "陈韵竹",
+      "gender": "女",
+      "identityCard": "xxx",
+      "passport": "xxx",
+      "isBench": true
+    }]
+  }
+}

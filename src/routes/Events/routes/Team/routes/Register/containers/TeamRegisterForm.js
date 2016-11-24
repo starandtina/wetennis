@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react'
 import { reduxForm } from 'redux-form'
 
-import TeamMemberForm from '../components/TeamMemberForm'
+import TeamRegisterForm from '../components/TeamRegisterForm'
 
 const validate = values => {
   const errors = {}
-  const requiredFields = ['firstName', 'lastName', 'email', 'favoriteColor', 'notes']
+  const requiredFields = ['name', 'gener', 'idNumber', 'isBench']
   requiredFields.forEach(field => {
     if (!values[field]) {
       errors[field] = 'Required'
@@ -18,11 +18,6 @@ const validate = values => {
 }
 
 export default reduxForm({
-  form: 'TeamMemberForm',
-  validate,
-  initialValues: {
-    gender: 'male',
-    identify: 'identifyCard',
-    isBench: false
-  }
-})(TeamMemberForm)
+  form: 'TeamRegisterForm',
+  validate
+})(TeamRegisterForm)
