@@ -2,7 +2,6 @@ import { applyMiddleware, compose, createStore } from 'redux'
 
 import { routerMiddleware } from 'react-router-redux'
 import promiseMiddleware from 'store/middlewares/promiseMiddleware'
-import createLogger from 'redux-logger';
 
 import 'utils/promise'
 import loadingBarMiddleware from 'store/middlewares/loadingBarMiddleware'
@@ -18,9 +17,6 @@ export default (initialState = {}, history) => {
     promiseMiddleware,
     errorMiddleware,
     routerMiddleware(history),
-    createLogger({
-      collapsed: true
-    })
   )
 
   // Use DevTools chrome extension in development
