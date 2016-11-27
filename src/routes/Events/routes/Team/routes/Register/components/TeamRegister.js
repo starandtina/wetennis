@@ -1,10 +1,12 @@
 import React, { PureComponent } from 'react'
 import uuid from 'uuid'
+import { browserHistory } from 'react-router'
 
 import NavBack from 'components/NavBack'
 import TeamRegisterFormContainer from '../containers/TeamRegisterForm'
 import TeamMemberFormContainer from '../containers/TeamMemberForm'
 import TeamMemberView from './TeamMemberView'
+import { buildUrl } from 'utils'
 
 import cs from './TeamRegister.scss'
 
@@ -19,6 +21,30 @@ export default class TeamRegisterContainer extends PureComponent {
 
   componentWillUnmount() {
     document.body.classList.remove(cs['body-backgroundColor'])
+  }
+
+  handleSubmitForm = () => {
+    const { submitTeamRegisterForm } = this.props
+
+    submitTeamRegisterForm('TeamRegisterForm')
+  }
+
+  handleSubmitTeamRegisterForm = (values) => {
+    const { registerTeam, members, groups, push, params: {eventId} } = this.props
+    const { groupId } = values
+    const group = groups.find( group => group.id === groupId)
+
+    registerTeam({
+      ...values,
+      members
+    }).then((data) => {
+      push(
+        buildUrl(`/events/${eventId}/team/pay`, {
+          payUrl: data.payload.data.payUrl,
+          price: group.price,
+        })
+      )
+    })
   }
 
   handleSubmitTeamMemberForm = (values) => {
@@ -42,7 +68,7 @@ export default class TeamRegisterContainer extends PureComponent {
         </div>
       </NavBack>
       <div className='container'>
-        <TeamRegisterFormContainer {...this.props} />
+        <TeamRegisterFormContainer {...this.props} onSubmit={this.handleSubmitTeamRegisterForm} />
         <p className='text-muted'>队员</p>
         {Object.keys(members).map( k => {
           return members[k] && <TeamMemberView key={k} id={k} {...members[k]} {...this.props} />
@@ -53,7 +79,7 @@ export default class TeamRegisterContainer extends PureComponent {
             onSubmit={this.handleSubmitTeamMemberForm} /> }
       </div>
       <div className={cs['submit-btn-container']}>
-        <button className='btn btn-primary btn-lg btn-block' type='button'>确认团队信息</button>
+        <button className='btn btn-primary btn-lg btn-block' onClick={this.handleSubmitForm} type='button'>确认团队信息</button>
       </div>
     </div>
   }

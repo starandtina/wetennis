@@ -73,17 +73,22 @@ export default handleActions({
     currentEditingTeamMember: false,
     editing: false,
   }),
-  [DELETE_TEAM_MEMBER]: (state, action) => ({
-    ...state,
-    members: Object.keys(state.members).map(k => {
-      if (k != action.payload) {
-        return state.members[k]
-      }
+  [DELETE_TEAM_MEMBER]: (state, action) => {
+    const members = state.members
+    const results = {}
 
-      return null
-    }),
-    editing: false,
-  })
+    Object.keys(state.members).forEach(k => {
+      if (k != action.payload) {
+        results[k] = members[k]
+      }
+    })
+
+    return {
+      ...state,
+      members: results,
+      editing: false,
+    }
+  }
 }, {
   members: {
     'ccf485c8-b3f7-4377-bbc6-8008430a7962': {

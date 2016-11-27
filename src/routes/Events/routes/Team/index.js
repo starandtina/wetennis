@@ -12,6 +12,7 @@ export default (store) => ({
     require.ensure([], (require) => {
       cb(null, [
          require('./routes/Register')(store),
+         require('./routes/Pay')(store),
       ])
     }, 'events')
   },

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 
 import TeamRegister from '../components/TeamRegister'
 
@@ -11,7 +12,7 @@ import {
   deleteTeamMember
 } from '../modules/teamMember'
 
-import { fetchEventGroups } from '../modules/register'
+import { fetchEventGroups, submitTeamRegisterForm, registerTeam } from '../modules/register'
 import { getGroups } from '../modules'
 
 const mapStateToProps = (state) => ({
@@ -31,5 +32,9 @@ export default connect(
 
     // register
     fetchEventGroups,
+    submitTeamRegisterForm,
+    registerTeam,
+
+    push,
   }
 )(TeamRegister)

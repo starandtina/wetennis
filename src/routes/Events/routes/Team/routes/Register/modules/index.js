@@ -12,3 +12,6 @@ export const getTeamMemberFormInitialValues = (state, fields) =>
   fromTeamMember.getTeamMemberFormInitialValues(state.teamMember, fields)
 
 export const getGroups = (state) => fromRegister.getGroups(state.register)
+
+export const getTeamRegisterFormInitialValues = (state) =>
+  fromRegister.getTeamRegisterFormInitialValues(state.register)

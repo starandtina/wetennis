@@ -1,4 +1,5 @@
 import { handleActions } from 'redux-actions'
+import { submit } from 'redux-form'
 
 import API from 'utils/API'
 import URLConf from 'utils/url'
@@ -27,27 +28,47 @@ export const fetchEventGroups = (data) => ({
   })
 })
 
-export const registerTeam = (data) =>({
+export const registerTeam = (data) => ({
   types: [REGISTER_TEAM, REGISTER_TEAM_SUCCESS, REGISTER_TEAM_FAILTURE],
-  promise: () => API.post(URLConf.registerTeam, {...data} )
+  promise: () => API.post(URLConf.registerTeam, {
+    ...data,
+    members: Object.keys(data.members).map(id => ({
+      ...data.members[id],
+      id
+    }))
+  }),
+  meta: {
+    payload: data
+  }
 })
+
+export const submitTeamRegisterForm = (form) => 
+  (dispatch, state) => {
+    dispatch(submit(form))
+}
 
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
 
-export default handleActions({  
+export default handleActions({
+  [REGISTER_TEAM]: (state, action) => ({
+    ...state,
+    groupId: action.meta.payload.groupId,
+    group: state.groups.find(group => group.id === action.meta.payload.groupId),
+  }),
+  [REGISTER_TEAM_SUCCESS]: (state, action) => ({
+    ...state,
+    ...action.payload,
+  }),
   [FETCH_EVENT_GROUPS_SUCCESS]: (state, action) => ({
     ...state,
     groups: action.payload.groups,
-    groupName: action.payload.groups[0] && action.payload.groups[0].name,
+    groupId: action.payload.groups[0] && action.payload.groups[0].id,
   }),
 }, {
-  groups: [],
-  groupName: '精英组',
-  name: '',
-  coachName: '',
+  groups: []
 })
 
 // ------------------------------------
@@ -55,3 +76,9 @@ export default handleActions({
 // ------------------------------------
 
 export const getGroups = (state) => state.groups
+
+export const getTeamRegisterFormInitialValues = (state) => ({
+  groupId: state.groupId,
+  name: '',
+  coachName: '',
+})

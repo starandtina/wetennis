@@ -13,12 +13,12 @@ const TeamMemberForm = props => {
     <form className='form-horizontal' onSubmit={handleSubmit}>
       <Field name='name' component={renderTextField} label='姓名'/>
       <Field name='gender' component={renderSelectField} label='性别'>
-        <MenuItem value={'male'} primaryText='男'/>
-        <MenuItem value={'female'} primaryText='女'/>
+        <MenuItem value='male' primaryText='男'/>
+        <MenuItem value='female' primaryText='女'/>
       </Field>
       <Field name='identify' component={renderSelectField} label='证件'>
-        <MenuItem value={'identifyCard'} primaryText='身份证'/>
-        <MenuItem value={'passport'} primaryText='护照'/>
+        <MenuItem value='identifyCard' primaryText='身份证'/>
+        <MenuItem value='passport' primaryText='护照'/>
       </Field>
       <Field name='idNumber' component={renderTextField} label='证件号'/>
       <Field name='isBench' component={renderSelectField} label='是否替补'>

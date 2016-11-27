@@ -3,7 +3,7 @@
   "errorMsg": "",
   "data": {
     "groups": [{
-      "id": 1,
+      "id": "thisismygroupid",
       "price": 500,
       "name": "中年组",
       "items": [{

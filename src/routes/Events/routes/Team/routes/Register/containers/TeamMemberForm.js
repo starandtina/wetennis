@@ -19,7 +19,7 @@ const validate = values => {
   return errors
 }
 
-let form = reduxForm({
+const form = reduxForm({
   form: 'TeamMemberForm',
   validate
 })(TeamMemberForm)
