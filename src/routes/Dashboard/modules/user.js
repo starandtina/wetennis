@@ -114,10 +114,12 @@ export const resetSignupUser = (data) => ({
   type: RESET_SIGNUP_USER
 })
 
-export const signInUser = (data) => ({
+export const signInUser = (data) => {
+  console.log(URLConf.signIn);
+  return ({
   types: [SIGNIN_USER, SIGNIN_USER_SUCCESS, SIGNIN_USER_FAILTURE],
   promise: () => API.post(URLConf.signIn, data)
-})
+})}
 
 export const resetSigninUser = (data) => ({
   type: RESET_SIGNIN_USER

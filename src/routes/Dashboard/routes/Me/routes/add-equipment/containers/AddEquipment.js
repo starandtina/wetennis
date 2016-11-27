@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { push, goBack } from 'react-router-redux'
-import { reduxForm } from 'redux-form';
-import TextField from 'material-ui/TextField'
+import { reduxForm, getFormValues } from 'redux-form';
+import { Field } from 'redux-form'
+import FormInput from 'components/form/input'
 import NavBack from 'components/NavBack';
 import UploadImage from 'components/UploadImage/uploadImage';
 
@@ -11,6 +13,7 @@ import { addEquipment, uploadEquipmentImage } from 'routes/Dashboard/modules/use
 
 const mapStateToProps = (state) => ({
   settings: state.settings,
+  formValues: getFormValues('addEquipmentForm')(state)
 });
 
 const mapDispatchToProps = {
@@ -54,23 +57,32 @@ class AddressEdit extends React.Component {
     document.querySelector('body').classList.remove('u-backgroundColorGreen')
   }
 
+  state = {
+    imgUrl: null
+  };
+
   uploadImage = uploadFile => {
-    const { uploadEquipmentImage, fields: { imgUrl } } = this.props;
+    const { uploadEquipmentImage } = this.props;
     uploadEquipmentImage({
       imgstr: uploadFile.base64,
       name: uploadFile.name
     }).then(action => {
-      imgUrl.onChange(action.payload.data.ImageUrl);
+      this.setState({
+        imgUrl: action.payload.data.ImageUrl,
+      });
     });
   };
 
   addEquipment = () => {
     const {
       addEquipment,
-      values,
+      formValues,
       goBack,
       } = this.props;
-    addEquipment(values).then(action => {
+    addEquipment({
+      imgUrl: this.state.imgUrl,
+      ...formValues
+    }).then(action => {
       if (!action.error) {
         goBack();
       }
@@ -79,7 +91,6 @@ class AddressEdit extends React.Component {
 
   render () {
     const {
-      fields: { logo, price, size, imgUrl },
       handleSubmit,
       submitting,
       } = this.props;
@@ -106,31 +117,29 @@ class AddressEdit extends React.Component {
           </button>
         </NavBack>
         <div className={`${classes.imgContainer} u-aligner`}>
-          {imgUrl.value && <img src={imgUrl.value} alt=""/>}
+          {this.state.imgUrl && <img src={this.state.imgUrl} alt=""/>}
         </div>
         <div className={classes.Field}>
-          <TextField
-            style={style}
+          <Field
+            name="logo"
+            component={FormInput}
             hintText="品牌"
             floatingLabelText="品牌"
-            {...logo}
-            errorText={logo.touched ? logo.error : ''}
-          />
-          <TextField
-            type="number"
             style={style}
+          />
+          <Field
+            name="price"
+            component={FormInput}
             hintText="价格"
             floatingLabelText="价格"
-            {...price}
-            errorText={price.touched ? price.error : ''}
-          />
-          <TextField
-            type="number"
             style={style}
+          />
+          <Field
+            name="size"
+            component={FormInput}
             hintText="尺码"
             floatingLabelText="尺码"
-            {...size}
-            errorText={size.touched ? size.error : ''}
+            style={style}
           />
         </div>
       </form>
@@ -138,12 +147,9 @@ class AddressEdit extends React.Component {
     )
   }
 }
-export default reduxForm(
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm(
   {
     form: 'addEquipmentForm',
-    fields: ['logo', 'price', 'size', 'imgUrl'],
     validate
-  },
-  mapStateToProps,
-  mapDispatchToProps
-)(AddressEdit)
+  }
+)(AddressEdit));

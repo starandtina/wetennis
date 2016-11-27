@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { push, goBack } from 'react-router-redux'
-import { reduxForm } from 'redux-form'
-import TextField from 'material-ui/TextField'
-import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+import { goBack } from 'react-router-redux'
+import { reduxForm, getFormValues, Field } from 'redux-form'
+import { RadioButton } from 'material-ui/RadioButton';
+import {
+  RadioButtonGroup,
+  TextField,
+} from 'redux-form-material-ui'
 
 import { uploadTimeImage, clearTimeImage, addTimeMessage } from '../../../../../actions';
 import NavBack from 'components/NavBack';
@@ -18,9 +21,7 @@ const formatDate = date => {
   return (year+'-'+month+'-'+day);
 }
 
-const fields = ['message', 'permission']
-
-const validate = (values) => {
+const validate = values => {
   var errors = {};
   var hasErrors = false;
 
@@ -30,19 +31,19 @@ const validate = (values) => {
   }
 
   return hasErrors && errors;
-}
+};
 
 const mapStateToProps = (state) => ({
   time: state.time,
   user: state.user.user,
   initialValues: {
     permission: "0"
-  }
+  },
+  formValues: getFormValues('AddTimeForm')(state)
 });
 
 
 const mapDispatchToProps = ({
-  push,
   goBack,
   uploadTimeImage,
   clearTimeImage,
@@ -66,23 +67,20 @@ class AddTime extends Component {
   }
 
   addTime = () => {
-    const { values, time, addTimeMessage, push, goBack, user } = this.props;
+    const { formValues, time, addTimeMessage, goBack, user } = this.props;
     addTimeMessage({
-      ...values,
+      ...formValues,
       imgs: time.imageList,
       type: "Message",
       userId: user.id,
       date: formatDate(new Date)
     }).then(() => {
-      debugger;
-      //push('/time');
       goBack();
     })
   };
 
   render() {
     const {
-      fields: { message, permission },
       handleSubmit,
       submitting,
       time,
@@ -91,7 +89,7 @@ class AddTime extends Component {
     const fieldStyle = {
       radioButton: {
         marginBottom: 16,
-        color: 'white',
+        color: 'white'
       }
     };
 
@@ -107,24 +105,20 @@ class AddTime extends Component {
         </button>
       </NavBack>
       <div className={style.Fields}>
-        <TextField
+        <Field
+          name="message"
+          component={TextField}
           style={fieldStyle}
           fullWidth
           multiLine
           hintText="添加这一刻的心情..."
-          errorText={message.touched ? message.error : ''}
           floatingLabelText="添加这一刻的心情..."
-          {...message}
         />
         <AddImage
           uploadedImages={time.imageList}
           addImage={uploadTimeImage}
         />
-        <RadioButtonGroup
-          name="shipSpeed"
-          defaultSelected="0"
-          {...permission}
-        >
+        <Field name="permission" defaultSelected="0" component={RadioButtonGroup}>
           <RadioButton
             value="0"
             label="公开"
@@ -146,15 +140,16 @@ class AddTime extends Component {
             iconStyle={({fill: 'white'})}
             labelStyle={({color: 'white'})}
           />
-        </RadioButtonGroup>
+        </Field>
       </div>
     </form>
     )
   }
 }
 
-export default reduxForm({
+const MyForm = reduxForm({
   form: 'AddTimeForm',
-  fields,
   validate
-}, mapStateToProps, mapDispatchToProps)(AddTime)
+})(AddTime);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyForm)
