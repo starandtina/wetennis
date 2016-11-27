@@ -19,11 +19,11 @@ export default class Pay extends PureComponent {
   }
 
   render() {
-    const { location: {query}, group = {name:''} } = this.props
+    const { location: {query}, group = {name:''}, params: {eventId}, push } = this.props
 
     return (
       <div className={`${style.container} u-hasNav`}>
-        <NavBack routes={this.props.routes} caption='团体报名'>
+        <NavBack routes={this.props.routes} caption='团体报名' handleGoBack={() => push(`/events/${eventId}/team/register`)}>
         </NavBack>
         <p className={`${style['group-name']}`}>{group.name}</p>
         <div className={`${style['price-info']} text-center`}>

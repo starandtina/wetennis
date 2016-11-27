@@ -28,11 +28,11 @@ const goBack = (routes, e) => {
 
 export default class NavBack extends React.Component {
   render() {
-    const {children, title, caption, leftText, routes, hiddenBack, transparent = true, ...props} = this.props;
+    const {children, title, caption, leftText, routes, hiddenBack, transparent = true, handleGoBack = goBack, ...props} = this.props;
     const backIcon = hiddenBack ? null : <i className={`material-icons ${this.props.removeColor ? '' : cs.navBackIcon}`}>{leftText||'keyboard_backspace'}</i>;
     return (
       <TopNav title={caption || title || "wetennis"} transparent={transparent} {...props}>
-        <div ref="left" onClick={goBack.bind(this, routes)} className={cs.left}>
+        <div ref="left" onClick={handleGoBack.bind(this, routes)} className={cs.left}>
           {backIcon}
         </div>
         <div ref="right">{children}</div>

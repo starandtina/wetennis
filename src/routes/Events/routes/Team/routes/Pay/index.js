@@ -1,5 +1,5 @@
 export default (store) => ({
-  path: 'Pay',
+  path: 'pay',
 
   getComponent(nextState, next) {
     require.ensure([], (require) => {
