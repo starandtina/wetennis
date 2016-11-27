@@ -1,6 +1,6 @@
 {
-  "code": 1,
-  "errorMsg": "password error",
+  "code": 0,
+  "errorMsg": "",
   "data": {
     "id": "city03",
     "name": "殷锋",

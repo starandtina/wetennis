@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux';
 import { push } from 'react-router-redux'
-import { reduxForm } from 'redux-form'
-import TextField from 'material-ui/TextField'
+import { reduxForm, getFormValues, Field } from 'redux-form'
+import FormInput from 'components/form/input'
 import RaisedButton from 'material-ui/RaisedButton'
 import { Grid, Row, Col } from 'react-bootstrap'
-
 import { resetPassword, checkPhoneDuplicated, sendActivationCode } from 'routes/Dashboard/modules/user'
 
-export const fields = ['phone', 'password', 'activationCode']
-
-const validate = (values) => {
+const validate = values => {
   var errors = {};
   var hasErrors = false;
   if(!values.password || values.password.trim() === '') {
@@ -30,22 +27,32 @@ const validate = (values) => {
     hasErrors = true;
   }
    return hasErrors && errors;
-}
+};
+
+const asyncValidate = (values, dispatch, props, blurredField) => {
+  if (blurredField === 'phone') {
+    return dispatch(checkPhoneDuplicated(values.phone)).then(action => {
+      if (action.payload.data.phoneDuplicated) {
+        throw ({ 'phone': '电话号码重复', hidenErrorBar: true })
+      }
+    });
+  }
+  return new Promise((resolve, reject) => resolve());
+};
 
 const mapStateToProps = (state) => ({
   user: state.user,
   initialValues: state.user.initialValues,
   userNameDuplicated: state.user.userNameDuplicated,
-  phoneDuplicated: state.user.phoneDuplicated
-})
+  phoneDuplicated: state.user.phoneDuplicated,
+  formValues: getFormValues('ResetPasswordForm')(state)
+});
 
-const mapDispatchToProps = (dispatch) => ({
-  ...bindActionCreators({
-    resetPassword,
-    sendActivationCode,
-    push
-  }, dispatch)
-})
+const mapDispatchToProps = {
+  resetPassword,
+  sendActivationCode,
+  push,
+};
 
 export class ResetPasswordForm extends React.Component {
   constructor(props) {
@@ -61,47 +68,37 @@ export class ResetPasswordForm extends React.Component {
     buttonSuspending: false,
     leftTime: 180,
     Tip: '发送',
-  }
-
-  checkPhone = () => {
-    const { checkPhoneDuplicated, fields: { phone } } = this.props;
-    phone && phone.onBlur();
-    checkPhoneDuplicated({
-      "phone": +phone.value
-    })
-  }
+  };
 
   resetPassword = () => {
-    const { resetPassword, values, push } = this.props;
-    resetPassword(values).then(action => {
+    const { resetPassword, formValues, push } = this.props;
+    resetPassword(formValues).then(action => {
       if(action.payload.data.resetPassword){
         push('/dashboard/signin')
       }
     })
-  }
+  };
   
   sendActivationCode = () => {
     const {
       sendActivationCode,
-      fields: {
-        phone
-      }
+      formValues,
     } = this.props
     
     sendActivationCode({
-      phone: +phone.value
-    })
+      phone: formValues.phone
+    });
     
     this.setState({
       buttonSuspending: true,
-      Tip: 180,
-    })
+      Tip: 180
+    });
     
     window.startTiming = () => {
       let time = this.state.Tip - 1;
       this.setState({
-        Tip: time,
-      })
+        Tip: time
+      });
       if (time < 1) {
         clearInterval(window.thisEvent);
         this.setState({
@@ -109,38 +106,31 @@ export class ResetPasswordForm extends React.Component {
           Tip: '发送',
         })
       }
-    }
+    };
 
     window.thisEvent = setInterval("startTiming()", 1000);
-  }
+  };
 
   render () {
     const {
-      fields: { password, phone, activationCode },
-      phoneDuplicated,
       handleSubmit,
       submitting,
       } = this.props;
 
     const style = {
       width: '100%'
-    }
-
-    if(!phone.error && !phoneDuplicated){
-      phone.error = '电话号码不存在';
-    }
+    };
 
     return (
       <form className='form' onSubmit={handleSubmit(this.resetPassword)}>
         <Row>
           <Col xs={8}>
-            <TextField
+            <Field
+              name="phone"
+              component={FormInput}
               style={style}
               hintText="手机号"
-              errorText={phone.touched ? phone.error : ''}
               floatingLabelText="手机号"
-              {...phone}
-              onBlur={this.checkPhone}
             />
           </Col>
           <Col xs={4}>
@@ -155,24 +145,24 @@ export class ResetPasswordForm extends React.Component {
         </Row>
         <Row>
           <Col xs={12}>
-            <TextField
+            <Field
+              name="activationCode"
+              component={FormInput}
               style={style}
               hintText="验证码"
-              errorText={activationCode.touched ? activationCode.error : ''}
               floatingLabelText="验证码"
-              {...activationCode}
             />
           </Col>
         </Row>
         <Row>
           <Col xs={12}>
-            <TextField
-              type='password'
+            <Field
+              name="password"
+              type="password"
+              component={FormInput}
               style={style}
               hintText="密码"
-              errorText={password.touched ? password.error : ''}
               floatingLabelText="密码"
-              {...password}
             />
           </Col>
         </Row>
@@ -184,13 +174,12 @@ export class ResetPasswordForm extends React.Component {
     )
   }
 }
-export default reduxForm({
+
+const MyForm = reduxForm({
   form: 'ResetPasswordForm',
-  fields,
-  validate
-}, mapStateToProps, {
-  resetPassword,
-  checkPhoneDuplicated,
-  sendActivationCode,
-  push,
-})(ResetPasswordForm)
+  validate,
+  asyncValidate,
+  asyncBlurFields: [ 'phone' ]
+})(ResetPasswordForm);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyForm)
