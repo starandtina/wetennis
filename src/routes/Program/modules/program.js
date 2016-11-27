@@ -132,6 +132,10 @@ export default handleActions({
   players: {}
 })
 
+// -----------------------------
+// Selectors
+// -----------------------------
+
 export const getUnScheduledMatchIds = ({
   courts,
   matches,

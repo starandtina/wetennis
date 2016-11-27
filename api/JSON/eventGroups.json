@@ -4,6 +4,7 @@
   "data": {
     "groups": [{
       "id": 1,
+      "price": 500,
       "name": "中年组",
       "items": [{
         "id": "c7fdc72fb8504902952d1f2865b6d5f0",

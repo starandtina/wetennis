@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import uuid from 'uuid'
 
 import NavBack from 'components/NavBack'
 import TeamRegisterFormContainer from '../containers/TeamRegisterForm'
@@ -10,6 +11,10 @@ import cs from './TeamRegister.scss'
 export default class TeamRegisterContainer extends PureComponent {
   componentDidMount() {
     document.body.classList.add(cs['body-backgroundColor'])
+
+    const { fetchEventGroups, params: { eventId } } = this.props
+
+    fetchEventGroups({eventId})
   }
 
   componentWillUnmount() {
@@ -17,28 +22,35 @@ export default class TeamRegisterContainer extends PureComponent {
   }
 
   handleSubmitTeamMemberForm = (values) => {
-    const { addTeamMember } = this.props
-    const { name, gender, isBench, identify, idNumber } = values
+    const { saveTeamMember, currentEditingTeamMember } = this.props
+    const { identify, idNumber } = values
 
-    addTeamMember({
-      name, gender, isBench,
-      [identify]: idNumber
+    saveTeamMember({
+      ...values,
+      [identify]: idNumber,
+      id: currentEditingTeamMember && currentEditingTeamMember.id ||　uuid()
     })
   }
 
   render() {
-    const { adding, startAddTeamMember, members } = this.props
+    const { editing, startAddTeamMember, cancelEditTeamMember, members } = this.props
 
     return <div className={`${cs['team-register-container']} u-hasNav`}>
       <NavBack routes={this.props.routes} caption='团体报名'>
-        <div className={cs['add-team-member']} onClick={startAddTeamMember}><i className='material-icons'>add</i><i className='material-icons'>people</i></div>
+        <div onClick={startAddTeamMember}>
+          <i className={`${cs['add-team-member-icon']} material-icons`}>add</i><i className={`${cs['add-team-member-icon']} material-icons`}>people</i>
+        </div>
       </NavBack>
       <div className='container'>
         <TeamRegisterFormContainer {...this.props} />
-        {members.map( m => {
-          return <TeamMemberView key={m.name} {...m} />
+        <p className='text-muted'>队员</p>
+        {Object.keys(members).map( k => {
+          return members[k] && <TeamMemberView key={k} id={k} {...members[k]} {...this.props} />
         })}
-        { adding ? <TeamMemberFormContainer {...this.props} onSubmit={this.handleSubmitTeamMemberForm} /> : undefined}
+        { editing && 
+          <TeamMemberFormContainer {...this.props}
+            onCancel={cancelEditTeamMember}
+            onSubmit={this.handleSubmitTeamMemberForm} /> }
       </div>
       <div className={cs['submit-btn-container']}>
         <button className='btn btn-primary btn-lg btn-block' type='button'>确认团队信息</button>

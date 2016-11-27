@@ -1,57 +1,57 @@
-import {
-  handleActions
-} from 'redux-actions'
+import { handleActions } from 'redux-actions'
 
 import API from 'utils/API'
-
 import URLConf from 'utils/url'
 
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const TEAM_REGISTER = 'TEAM_REGISTER'
 
-export const START_ADD_TEAM_MEMBER = 'START_ADD_TEAM_MEMBER'
-export const ADD_TEAM_MEMBER = 'ADD_TEAM_MEMBER'
+export const FETCH_EVENT_GROUPS = 'FETCH_EVENT_GROUPS'
+export const FETCH_EVENT_GROUPS_SUCCESS = 'FETCH_EVENT_GROUPS_SUCCESS'
+export const FETCH_EVENT_GROUPS_FAILTURE = 'FETCH_EVENT_GROUPS_FAILTURE'
+
+export const REGISTER_TEAM = 'REGISTER_TEAM'
+export const REGISTER_TEAM_SUCCESS = 'REGISTER_TEAM_SUCCESS'
+export const REGISTER_TEAM_FAILTURE = 'REGISTER_TEAM_FAILTURE'
 
 // ------------------------------------
 // Actions
 // ------------------------------------
 
-export const startAddTeamMember = () => ({
-  type: START_ADD_TEAM_MEMBER
+export const fetchEventGroups = (data) => ({
+  types: [FETCH_EVENT_GROUPS, FETCH_EVENT_GROUPS_SUCCESS, FETCH_EVENT_GROUPS_FAILTURE],
+  promise: () => API.post(URLConf.fetchEventGroups, {
+    ...data,
+    method: 'fetchEventGroups'
+  })
 })
 
-export const addTeamMember = (data) => ({
-  type: ADD_TEAM_MEMBER,
-  payload: data
+export const registerTeam = (data) =>({
+  types: [REGISTER_TEAM, REGISTER_TEAM_SUCCESS, REGISTER_TEAM_FAILTURE],
+  promise: () => API.post(URLConf.registerTeam, {...data} )
 })
+
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-export default handleActions({
-  [TEAM_REGISTER]: (state, action) => ({
+
+export default handleActions({  
+  [FETCH_EVENT_GROUPS_SUCCESS]: (state, action) => ({
     ...state,
-    adding: false
+    groups: action.payload.groups,
+    groupName: action.payload.groups[0] && action.payload.groups[0].name,
   }),
-  [START_ADD_TEAM_MEMBER]: (state, action) => ({
-    ...state,
-    adding: true
-  }),
-  [ADD_TEAM_MEMBER]: (state, action) => ({
-    ...state,
-    members: state.members.concat(action.payload),
-    adding: false
-  })
 }, {
+  groups: [],
   groupName: '精英组',
   name: '',
   coachName: '',
-  members: [{
-    name: 'testing',
-    gender: 'male',
-    identifyCard: 'identifyCard',
-    isBench: true
-  }]
 })
+
+// ------------------------------------
+// Selectors
+// ------------------------------------
+
+export const getGroups = (state) => state.groups

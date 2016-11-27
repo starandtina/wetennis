@@ -1,28 +1,34 @@
 import React, { PureComponent } from 'react'
 import { reduxForm } from 'redux-form'
+import { connect } from 'react-redux'
 
 import TeamMemberForm from '../components/TeamMemberForm'
+import { getTeamMemberFormInitialValues } from '../modules'
+
+const fields = ['name', 'gender', 'identify', 'idNumber',  'isBench']
 
 const validate = values => {
   const errors = {}
-  const requiredFields = ['firstName', 'lastName', 'email', 'favoriteColor', 'notes']
+  const requiredFields = ['name', 'idNumber']
   requiredFields.forEach(field => {
     if (!values[field]) {
-      errors[field] = 'Required'
+      errors[field] = '必填项'
     }
   })
-  if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address'
-  }
+
   return errors
 }
 
-export default reduxForm({
+let form = reduxForm({
   form: 'TeamMemberForm',
-  validate,
-  initialValues: {
-    gender: 'male',
-    identify: 'identifyCard',
-    isBench: false
-  }
+  validate
 })(TeamMemberForm)
+
+const mapStateToProps = (state) => ({
+  initialValues: getTeamMemberFormInitialValues(state.register, fields)
+})
+
+export default connect(
+  mapStateToProps,
+)(form)
+

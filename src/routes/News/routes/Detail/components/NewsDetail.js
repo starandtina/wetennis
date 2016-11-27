@@ -37,7 +37,7 @@ export default class NewsDetail extends Component {
             <p className='text-muted small'>关键词</p>
             {keywordList ? keywordList.map((item, index) => {
             return (
-              <span key={index} className={cls`badge ${cs.badge}`}>{item}</span>
+              <span key={index} className='badge'>{item}</span>
             )
             }) : undefined}
           </div>

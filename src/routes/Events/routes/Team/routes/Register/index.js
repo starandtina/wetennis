@@ -14,7 +14,7 @@ export default (store) => ({
   getComponent(nextState, next) {
     require.ensure([], (require) => {
       const Register = require('./containers/TeamRegister')
-      const reducer = require('./modules')
+      const reducer = require('./modules').default
 
       injectReducer(store, {
         key: 'register',

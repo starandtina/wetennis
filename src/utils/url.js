@@ -18,6 +18,9 @@ export default {
   fetchProgram: `${ROOT_URL}fetchProgram`,
   updateProgram: `${ROOT_URL}updateProgram`,
 
+  // Team
+  registerTeam: `${ROOT_URL}registerTeam`,
+
   // Dashbaord
   signUp: `${ROOT_URL}signup`,
   signIn: `${ROOT_URL}signin`,
