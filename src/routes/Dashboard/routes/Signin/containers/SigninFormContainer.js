@@ -1,5 +1,6 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux';
 import { push, goBack } from 'react-router-redux'
 import { reduxForm } from 'redux-form'
 
@@ -29,12 +30,13 @@ const mapStateToProps = (state) => ({
   user: state.user
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  actions : bindActionCreators({ signInUser, push, goBack }, dispatch)
-})
+const mapDispatchToProps = ({
+  signInUser,
+  push,
+  goBack
+});
 
-export default reduxForm({
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: 'SigninForm',
-  fields,
   validate
-}, mapStateToProps, mapDispatchToProps)(SigninForm)
+})(SigninForm));

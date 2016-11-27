@@ -1,18 +1,20 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux';
 import { push } from 'react-router-redux'
-import { reduxForm } from 'redux-form'
+import { reduxForm, getFormValues, getFormSyncErrors } from 'redux-form'
 
-import { signUpUserThenSetCookie, verifyPhone, checkPhoneDuplicated, checkUserNameDuplicated, sendActivationCode } from 'routes/Dashboard/modules/user'
+import {
+  signUpUserThenSetCookie,
+  verifyPhone,
+  checkPhoneDuplicated,
+  checkUserNameDuplicated,
+  sendActivationCode
+} from 'routes/Dashboard/modules/user'
 import SignupForm from 'components/SignupForm'
 
-
-export const fields = ['username', 'phone', 'password', 'activationCode']
-
-const validate = (values) => {
+const validate = values => {
   var errors = {};
   var hasErrors = false;
-
   if (!values.username || values.username.trim() === '') {
     errors.username = '请输入用户名';
     hasErrors = true;
@@ -33,32 +35,50 @@ const validate = (values) => {
     errors.activationCode = '请输入验证码';
     hasErrors = true;
   }
-  
   return hasErrors && errors;
-}
+};
 
-const mapStateToProps = (state) => ({
+const asyncValidate = (values, dispatch, props, blurredField) => {
+  if (blurredField === 'username') {
+    return dispatch(checkUserNameDuplicated(values.userName)).then(action => {
+      if (action.payload.data.userNameDuplicated) {
+        throw { username: '用户名重复', hidenErrorBar: true }
+      }
+    });
+  }
+  if (blurredField === 'phone') {
+    return dispatch(checkPhoneDuplicated(values.phone)).then(action => {
+      if (action.payload.data.phoneDuplicated) {
+        throw ({ 'phone': '用户名重复', hidenErrorBar: true })
+      }
+    });
+  }
+  return new Promise((resolve, reject) => resolve());
+};
+
+const mapStateToProps = (state) =>  ({
   user: state.user,
   initialValues: state.user.initialValues,
   userNameDuplicated: state.user.userNameDuplicated,
-  phoneDuplicated: state.user.phoneDuplicated
-})
+  phoneDuplicated: state.user.phoneDuplicated,
+  formValues: getFormValues('SignupForm')(state),
+  theSyncErrors: getFormSyncErrors('SignupForm')(state),
+});
 
-const mapDispatchToProps = (dispatch) => ({
-  ...bindActionCreators({
+const mapDispatchToProps = {
     signUpUserThenSetCookie,
     verifyPhone,
     sendActivationCode,
     push,
     checkUserNameDuplicated,
     checkPhoneDuplicated
-  }, dispatch)
-})
+};
 
-// connect: first argument is mapStateToProps, 2nd is mapDispatchToProps
-// reduxForm: 1st is form config, 2nd is mapStateToProps, 3rd is mapDispatchToProps
-export default reduxForm({
+const MyForm = reduxForm({
   form: 'SignupForm',
-  fields,
-  validate
-}, mapStateToProps, mapDispatchToProps)(SignupForm)
+  validate,
+  asyncValidate,
+  asyncBlurFields: [ 'username', 'phone' ]
+})(SignupForm);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyForm)

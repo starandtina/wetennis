@@ -1,6 +1,8 @@
 import React from 'react'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
+import { Field } from 'redux-form'
+import FormInput from '../form/input'
 import { Grid, Row, Col } from 'react-bootstrap'
 import classes from './SignupForm.scss'
 
@@ -28,22 +30,6 @@ export class SignupForm extends React.Component {
     Tip: '发送',
   };
 
-  checkPhone = () => {
-    const { checkPhoneDuplicated, fields: { phone } } = this.props;
-    phone && phone.onBlur();
-    checkPhoneDuplicated({
-      "phone": +phone.value
-    })
-  }
-
-  checkUserName = () => {
-    const { checkUserNameDuplicated, fields: { username } } = this.props;
-    username && username.onBlur();
-    checkUserNameDuplicated({
-      userName: username.value
-    })
-  }
-
   startTiming = () => {
     let time = this.state.Tip - 1;
     this.setState({
@@ -59,26 +45,22 @@ export class SignupForm extends React.Component {
   }
 
   sendactivationCode = () => {
-    const { sendActivationCode, fields: { phone } } = this.props;
+    const { sendActivationCode, formValues, theSyncErrors } = this.props;
+    if (formValues.phone && (!theSyncErrors || !theSyncErrors.phone)) {
+      sendActivationCode({
+        phone: formValues.phone
+      });
 
-    if (phone.error) {
-      return
+      this.setState({
+        buttonSuspending: true,
+        Tip: 180,
+      })
+      this.thisEvent = setInterval(this.startTiming.bind(this), 1000)
     }
-
-    sendActivationCode({
-      phone: phone.value
-    })
-
-    this.setState({
-      buttonSuspending: true,
-      Tip: 180,
-    })
-    this.thisEvent = setInterval(this.startTiming.bind(this), 1000)
   }
 
   render () {
     const {
-      fields: { username, password, phone, activationCode },
       handleSubmit,
       submitting,
       userNameDuplicated,
@@ -91,12 +73,12 @@ export class SignupForm extends React.Component {
 
     const underlineStyle = {
       marginBottom: '-10px'
-    }
+    };
 
     const errorStyle = {
       bottom: 0,
-      top: 0,
-    }
+      top: 0
+    };
 
     const inputStyle = {
       color: 'white',
@@ -107,72 +89,64 @@ export class SignupForm extends React.Component {
     const buttonStyle = {
       marginTop: '5px'
     }
-    if(!username.error && userNameDuplicated){
-      username.error = '用户名重复';
-    }
-    if(!phone.error && phoneDuplicated){
-      phone.error = '电话号码重复';
-    }
 
     return (
       <form className='form' onSubmit={handleSubmit(this.props.signUpUserThenSetCookie.bind(this))}>
         <Grid>
           <Row>
             <Col xs={12}>
-              <TextField
+              <Field
+                name="username"
+                component={FormInput}
                 style={style}
-                inputStyle={inputStyle}
-                underlineStyle={underlineStyle}
-                errorStyle={errorStyle}
                 hintText="用户名"
-                errorText={username.touched ? username.error : ''}
                 floatingLabelText="用户名"
-                {...username}
-                onBlur={this.checkUserName}
+                inputStyle={inputStyle}
+                underlineStyle={underlineStyle}
+                errorStyle={errorStyle}
               />
             </Col>
           </Row>
           <Row>
             <Col xs={12}>
-              <TextField
-                type='password'
+              <Field
+                name="password"
+                type="password"
+                component={FormInput}
                 style={style}
-                inputStyle={inputStyle}
-                underlineStyle={underlineStyle}
-                errorStyle={errorStyle}
                 hintText="密码"
-                errorText={password.touched ? password.error : ''}
                 floatingLabelText="密码"
-                {...password}
+                inputStyle={inputStyle}
+                underlineStyle={underlineStyle}
+                errorStyle={errorStyle}
               />
             </Col>
           </Row>
           <Row>
             <Col xs={12}>
-              <TextField
+              <Field
+                name="phone"
+                component={FormInput}
                 style={style}
+                hintText="手机号"
+                floatingLabelText="手机号"
                 inputStyle={inputStyle}
                 underlineStyle={underlineStyle}
                 errorStyle={errorStyle}
-                hintText="手机号"
-                errorText={phone.touched ? phone.error : ''}
-                floatingLabelText="手机号"
-                {...phone}
-                onBlur={this.checkPhone}
               />
             </Col>
           </Row>
           <Row>
             <Col xs={8}>
-              <TextField
+              <Field
+                name="activationCode"
+                component={FormInput}
                 style={style}
+                hintText="验证码"
+                floatingLabelText="验证码"
                 inputStyle={inputStyle}
                 underlineStyle={underlineStyle}
                 errorStyle={errorStyle}
-                hintText="验证码"
-                errorText={activationCode.touched ? activationCode.error : ''}
-                floatingLabelText="验证码"
-                {...activationCode}
               />
             </Col>
             <Col xs={4}>
