@@ -1,34 +1,37 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push, goBack } from 'react-router-redux'
-import { reduxForm } from 'redux-form'
-import TextField from 'material-ui/TextField'
+import { reduxForm, getFormValues, Field } from 'redux-form'
 import { Grid, Row, Col } from 'react-bootstrap';
-import DatePicker from 'material-ui/DatePicker';
-import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+import { RadioButton } from 'material-ui/RadioButton';
+import {
+  RadioButtonGroup,
+  TextField,
+  DatePicker,
+} from 'redux-form-material-ui'
 
 import { uploadTimeImage, clearTimeImage, addTimeMessage as addTimeMatch } from '../../../../../actions';
 import NavBack from 'components/NavBack';
 import AddImage from '../../../../../components/addImage';
 import style from './AddMatch.scss';
 
-const fields = ['message', 'permission','date','location','match','us','ourScore','opponent','opponentScore'];
 const formatDate = date => {
   var year = date.getFullYear();
   var month = date.getMonth() < 9 ? '0'+ (date.getMonth()+1) : date.getMonth()+1
 
   var day =  date.getDate() < 10 ? '0'+ date.getDate(): date.getDate()
   return (year+'-'+month+'-'+day);
-}
+};
+
 const validate = (values) => {
   var errors = {};
   var hasErrors = false;
-
+  console.log(values);
   if (!values.message || values.message.trim() === '') {
     errors.message = '请添加心情';
     hasErrors = true;
   }
-  if (!values.date || values.date.trim() === '') {
+  if (!values.date) {
     errors.date = '请选择时间';
     hasErrors = true;
   }
@@ -71,17 +74,18 @@ const mapStateToProps = (state) => ({
   user: state.user.user,
   initialValues: {
     permission: "0",
-    date: formatDate(new Date)
-  }
+    date: new Date
+  },
+  formValues: getFormValues('AddMatchForm')(state)
 });
 
-const mapDispatchToProps = ({
+const mapDispatchToProps = {
   push,
   goBack,
   uploadTimeImage,
   clearTimeImage,
   addTimeMatch
-});
+};
 
 class AddMatch extends Component {
 
@@ -99,14 +103,12 @@ class AddMatch extends Component {
     clearTimeImage();
   }
 
-  handleChangeDate = (dateField) => (empty, date) => {
-    dateField.onChange(formatDate(date));
-  };
-
   addMatch = () => {
-    const { values, time, addTimeMatch, goBack, user } = this.props;
+    const { formValues, time, addTimeMatch, goBack, user } = this.props;
+    console.log(formValues);
     addTimeMatch({
-      ...values,
+      ...formValues,
+      date: formatDate(formValues.date),
       imgs: time.imageList,
       type: "Match",
       userId: user.id
@@ -117,17 +119,6 @@ class AddMatch extends Component {
 
   render() {
     const {
-      fields: {
-        message,
-        permission,
-        date,
-        location,
-        match,
-        us,
-        ourScore,
-        opponent,
-        opponentScore
-        },
       handleSubmit,
       submitting,
       time,
@@ -136,7 +127,7 @@ class AddMatch extends Component {
     const fieldStyle = {
       radioButton: {
         marginBottom: 16,
-        color: 'white',
+        color: 'white'
       }
     };
     return (
@@ -150,82 +141,81 @@ class AddMatch extends Component {
           <Grid>
             <Row>
               <Col xs={6}>
-                <DatePicker
+                <Field
+                  name="date"
+                  component={DatePicker}
                   floatingLabelText="选择时间"
                   fullWidth
                   defaultDate={new Date}
                   maxDate={new Date}
-                  onChange={this.handleChangeDate(date)}
                   autoOk
-                  name="date"
                 />
               </Col>
               <Col xs={6}>
-                <TextField
+                <Field
+                  name="location"
+                  component={TextField}
                   fullWidth
-                  floatingLabelText="选择地点"
-                  errorText={location.touched ? location.error : ''}
                   floatingLabelText="选择地点..."
-                  {...location}
                 />
               </Col>
             </Row>
             <Row>
               <Col xs={12}>
-                <TextField
+                <Field
+                  name="match"
+                  component={TextField}
                   fullWidth
                   floatingLabelText="比赛"
-                  errorText={match.touched ? match.error : ''}
-                  {...match}
                 />
               </Col>
             </Row>
             <Row>
               <Col xs={6}>
-                <TextField
+                <Field
+                  name="us"
+                  component={TextField}
                   fullWidth
                   floatingLabelText="选手"
-                  errorText={us.touched ? us.error : ''}
-                  {...us}
                 />
               </Col>
               <Col xs={6}>
-                <TextField
-                  fullWidth
+                <Field
+                  name="ourScore"
                   type="number"
+                  component={TextField}
+                  fullWidth
                   floatingLabelText="比分"
-                  errorText={ourScore.touched ? ourScore.error : ''}
-                  {...ourScore}
                 />
               </Col>
             </Row>
             <Row>
               <Col xs={6}>
-                <TextField
+                <Field
+                  name="opponent"
+                  component={TextField}
                   fullWidth
                   floatingLabelText="对手"
-                  errorText={opponent.touched ? opponent.error : ''}
-                  {...opponent}
                 />
               </Col>
               <Col xs={6}>
-                <TextField
-                  fullWidth
+                <Field
+                  name="opponentScore"
                   type="number"
+                  component={TextField}
+                  fullWidth
                   floatingLabelText="比分"
-                  errorText={opponentScore.touched ? opponentScore.error : ''}
-                  {...opponentScore}
                 />
               </Col>
             </Row>
           </Grid>
-          <TextField
+          <Field
+            name="message"
+            component={TextField}
             className={style.Message}
             multiLine
             hintText="添加这一刻的心情..."
-            errorText={message.touched ? message.error : ''}
             floatingLabelText="添加这一刻的心情..."
-            {...message}
             fullWidth
             style={({paddingLeft:'15px', paddingRight: '15px'})}
           />
@@ -233,11 +223,7 @@ class AddMatch extends Component {
             uploadedImages={time.imageList}
             addImage={uploadTimeImage}
           />
-          <RadioButtonGroup
-            name="shipSpeed"
-            defaultSelected="0"
-            {...permission}
-          >
+          <Field name="permission" defaultSelected="0" component={RadioButtonGroup}>
             <RadioButton
               value="0"
               label="公开"
@@ -259,15 +245,16 @@ class AddMatch extends Component {
               iconStyle={({fill: 'white'})}
               labelStyle={({color: 'white'})}
             />
-          </RadioButtonGroup>
+          </Field>
         </div>
       </form>
     )
   }
 }
 
-export default reduxForm({
+const MyForm = reduxForm({
   form: 'AddMatchForm',
-  fields,
   validate
-}, mapStateToProps, mapDispatchToProps)(AddMatch)
+})(AddMatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyForm)

@@ -2,5 +2,11 @@
   "code": 0,
   "errorMsg": "",
   "data": {
+    "id": 11,
+    "type": "Message",
+    "TimesPics": [],
+    "permission": 0,
+    "message": "还可以吧 打得不错, 你决定 回到他身边,但你说你会永远记得有另一个人,依然令你感到眷恋",
+    "date": "12:35am"
   }
 }
