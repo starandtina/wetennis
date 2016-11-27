@@ -36,7 +36,7 @@ export default class TeamRegisterContainer extends PureComponent {
 
     registerTeam({
       ...values,
-      members
+      members,
     }).then((data) => {
       push(
         buildUrl(`/events/${eventId}/team/pay`, {

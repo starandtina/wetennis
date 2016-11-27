@@ -1,31 +1,31 @@
 import React from 'react'
 
-import TextField from 'material-ui/TextField'
-import SelectField from 'material-ui/SelectField'
+import { TextField, SelectField } from 'redux-form-material-ui'
 
-export const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
+export const renderTextField = ({ input, meta, label, ...custom }) => (
   <div className='form-group'>
     <label className='control-label col-xs-4' style={{lineHeight: '48px'}}>{label}</label>
     <div className='col-xs-8'>
       <TextField
         fullWidth
         hintText={label}
-        errorText={touched && error}
-        {...input}
+        input={input}
+        meta={meta}
         {...custom}
       />
     </div>
   </div>
 )
 
-export const renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }) => (
+export const renderSelectField = ({ input, meta, label, children, ...custom }) => (
    <div className='form-group'>
     <label className='control-label col-xs-4' style={{'lineHeight': '48px'}}>{label}</label>
     <div className='col-xs-8'>
       <SelectField
         fullWidth
-        errorText={touched && error}
-        {...input}
+        hintText={label}
+        input={input}
+        meta={meta}
         onChange={(event, index, value) => input.onChange(value)}
         children={children}
         {...custom}

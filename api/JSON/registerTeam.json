@@ -2,20 +2,6 @@
   "code": 0,
   "errorMsg": "",
   "data": {
-    "payUrl": "http://wetennis.cn:3000",
-    "price": "500",
-
-    "eventId": "event id",
-    "groupId": "group id",
-    "groupName": "精英组",
-    "name": "团体名",
-    "coachName": "教练名",
-    "members": [{
-      "name": "陈韵竹",
-      "gender": "female",
-      "identityCard": "xxx",
-      "passport": "xxx",
-      "isBench": true
-    }]
+    "payUrl": "http://wetennis.cn:3000"
   }
 }

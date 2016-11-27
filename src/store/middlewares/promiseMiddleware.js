@@ -1,6 +1,6 @@
 export default function promiseMiddleware({ dispatch, getState }) {
   return next => action => {
-    const { promise, types, payload, ...rest } = action
+    const { promise, types, ...rest } = action
     if (!promise) {
       return next(action)
     }

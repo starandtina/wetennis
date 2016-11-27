@@ -17,7 +17,7 @@ const TeamRegisterForm = props => {
         })}
       </Field>
       <Field name='name' component={renderTextField} label='团体名称'/>
-      <Field name='coachName' component={renderTextField} label='教练'/>
+      <Field name='coachName' component={renderTextField} label='教练名字'/>
     </form>
   </div>
 }

@@ -37,9 +37,7 @@ export const registerTeam = (data) => ({
       id
     }))
   }),
-  meta: {
-    payload: data
-  }
+  payload: data,
 })
 
 export const submitTeamRegisterForm = (form) => 
@@ -55,8 +53,8 @@ export const submitTeamRegisterForm = (form) =>
 export default handleActions({
   [REGISTER_TEAM]: (state, action) => ({
     ...state,
-    groupId: action.meta.payload.groupId,
-    group: state.groups.find(group => group.id === action.meta.payload.groupId),
+    ...action.payload,
+    group: state.groups.find(group => group.id === action.payload.groupId),
   }),
   [REGISTER_TEAM_SUCCESS]: (state, action) => ({
     ...state,
@@ -79,6 +77,6 @@ export const getGroups = (state) => state.groups
 
 export const getTeamRegisterFormInitialValues = (state) => ({
   groupId: state.groupId,
-  name: '',
-  coachName: '',
+  name: state.name,
+  coachName: state.coachName,
 })
