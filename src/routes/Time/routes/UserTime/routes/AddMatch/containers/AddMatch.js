@@ -26,7 +26,6 @@ const formatDate = date => {
 const validate = (values) => {
   var errors = {};
   var hasErrors = false;
-  console.log(values);
   if (!values.message || values.message.trim() === '') {
     errors.message = '请添加心情';
     hasErrors = true;

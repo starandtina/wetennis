@@ -1,14 +1,10 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { push, goBack } from 'react-router-redux'
 import { reduxForm } from 'redux-form'
 
 import { signInUser } from 'routes/Dashboard/modules/user'
 import SigninForm from 'components/SigninForm'
-
-
-export const fields = ['username', 'password']
 
 const validate = (values) => {
   var errors = {};
@@ -22,13 +18,12 @@ const validate = (values) => {
     errors.password = '请输入密码';
     hasErrors = true;
   }
-
   return hasErrors && errors;
 }
 
 const mapStateToProps = (state) => ({
   user: state.user
-})
+});
 
 const mapDispatchToProps = ({
   signInUser,
