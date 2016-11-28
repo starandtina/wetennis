@@ -6,71 +6,58 @@
 /* Margins, Padding, Width, etc...*/
 /* -------------------------*/
 
-.u-textAlignCenter
-{
-    text-align: center;
+.u-textAlignCenter {
+  text-align: center;
 }
 
-.u-paddingLeft0
-{
-    padding-left: 0;
+.u-paddingLeft0 {
+  padding-left: 0;
 }
 
-.u-paddingRight0
-{
-    padding-right: 0;
+.u-paddingRight0 {
+  padding-right: 0;
 }
 
-.u-marginRight5
-{
-    margin-right:  5px;
+.u-marginRight5 {
+  margin-right: 5px;
 }
 
-.u-backgroundColorTransparent
-{
-    background-color: transparent;
+.u-backgroundColorTransparent {
+  background-color: transparent;
 }
 
-.u-errorText
-{
-    color: #f44336;
+.u-errorText {
+  color: #f44336;
 }
 
-.u-backgroundColorGreen
-{
-    background-color: #1cca5a;
+.u-backgroundColorGreen {
+  background-color: #1cca5a;
 }
 
-.u-backgroundColorBlack
-{
-    background-color: #000;
+.u-backgroundColorBlack {
+  background-color: #000;
 }
 
-.u-verticalAlignMiddle
-{
-    vertical-align: middle;
+.u-verticalAlignMiddle {
+  vertical-align: middle;
 }
 
-.u-aligner
-{
-    display: -ms-flexbox;
-    display: flex;
+.u-aligner {
+  display: -ms-flexbox;
+  display: flex;
 
-    -ms-flex-align: center;
-
-        align-items: center;
-    -ms-flex-pack: center;
-        justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
-.u-hasNav
-{
-    padding-top:  3.5em;
+.u-hasNav {
+  padding-top: 3.5em;
 }
 
-.u-bgGrey
-{
-    background-color: grey;
-    padding: 15px 0;
-}
+.u-bgGrey {
+  padding: 15px 0;
 
+  background-color: grey;
+}

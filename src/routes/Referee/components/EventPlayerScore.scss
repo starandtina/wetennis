@@ -2,89 +2,88 @@ $playLineHeight: 2rem;
 
 .highlight
 {
-    color: white;
+  color: white;
 }
 
 .event-game-score
 {
-    margin: 10px;
+  margin: 10px;
 }
 
 .player-name
 {
-    font-size: 0.8rem;
+  font-size: .8rem;
 }
 
 .player-icon
 {
-    display: inline-block;
+  display: inline-block;
 
-    width: 16px;
-    height: 16px;
+  width: 16px;
+  height: 16px;
+  margin: 0 5px;
 
-    margin: 0 5px;
-
-    border-radius: 50% 50%;
+  border-radius: 50% 50%;
 }
 
 .player-1
 {
-    display: inline-block;
+  line-height: $playLineHeight;
 
-    line-height: $playLineHeight;
+  display: inline-block;
 
-    margin-right: 10px;
-    padding: 4px;
+  margin-right: 10px;
+  padding: 4px;
 
-    background-color: red;
+  background-color: red;
 }
 
 .player-2-container
 {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .player-2
 {
-    display: inline-block;
+  line-height: $playLineHeight;
 
-    line-height: $playLineHeight;
+  display: inline-block;
 
-    margin-right: 10px;
-    padding: 4px;
+  margin-right: 10px;
+  padding: 4px;
 
-    background-color: blue;
+  background-color: blue;
 }
 
 .game-score
 {
-    margin-right: 20px;
+  line-height: $playLineHeight;
 
-    display: inline-block;
+  display: inline-block;
 
-    line-height: $playLineHeight;
+  margin-right: 20px;
 
-    color: gray;
+  color: gray;
 }
 
 .game-score.highlight
 {
-    color: white;
+  color: white;
 }
 
 
 .living-score-container
 {
-    color: white;
+  padding: 20px 20px 30px 20px;
 
-    padding: 20px 20px 30px 20px;
-
-    background-color: blue;
+  color: white;
+  background-color: blue;
 }
 
 .living-score
 {
-    text-align: center;
+  font-size: 48px;
 
-    font-size: 48px;
+  text-align: center;
 }
+

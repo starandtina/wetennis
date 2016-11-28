@@ -1,29 +1,25 @@
-.grid
-{
-    display: -ms-flexbox;
-    display: flex;
+.grid {
+  display: -ms-flexbox;
+  display: flex;
 
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 
-    list-style: none;
+  list-style: none;
 
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
-.grid-cell
-{
-    -ms-flex: 1;
-        flex: 1;
+.grid-cell {
+  -ms-flex: 1;
+      flex: 1;
 }
 
-.grid--gutters
-{
-    margin: -1em 0 1em -1em;
+.grid--gutters {
+  margin: -1em 0 1em -1em;
 }
 
-.grid--gutters > .grid-cell
-{
-    padding: 1em 0 0 1em;
+.grid--gutters > .grid-cell {
+  padding: 1em 0 0 1em;
 }

@@ -1,47 +1,39 @@
 @import 'variables.scss';
 
-.news
-{
-    margin-bottom: 20px;
+.news {
+  margin-bottom: 20px;
 
-    color: #333;
+  color: #333;
 }
 
-.thumbImgUrl
-{
-    min-width: 375px;
-    min-height: auto;
+.thumbImgUrl {
+  min-width: 375px;
+  min-height: auto;
 }
 
-.text
-{
-    font-size: $px10;
+.text {
+  font-size: $px10;
 }
 
-.icon-container
-{
-    margin-right: 10px;
+.icon-container {
+  margin-right: 10px;
 }
 
-.icon
-{
-    vertical-align: middle;
+.icon {
+  vertical-align: middle;
 }
 
-.marginRight5
-{
-    margin-right: 5px;
+.marginRight5 {
+  margin-right: 5px;
 }
 
-.provider-icon
-{
-    width: 30px;
-    height: 30px;
+.provider-icon {
+  width: 30px;
+  height: 30px;
 }
 
-.title
-{
-    color: black;
+.title {
+  padding-left: 15px;
 
-    padding-left: 15px;
+  color: black;
 }
