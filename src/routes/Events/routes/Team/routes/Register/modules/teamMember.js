@@ -91,14 +91,14 @@ export default handleActions({
   }
 }, {
   members: {
-    'ccf485c8-b3f7-4377-bbc6-8008430a7962': {
-      name: 'testing',
-      gender: 'male',
-      identify: 'identifyCard',
-      idNumber: '500230199010110010',
-      identifyCard: '500230199010110010',
-      isBench: false
-    }
+    // 'ccf485c8-b3f7-4377-bbc6-8008430a7962': {
+    //   name: 'testing',
+    //   gender: 'male',
+    //   identify: 'identifyCard',
+    //   idNumber: '500230199010110010',
+    //   identifyCard: '500230199010110010',
+    //   isBench: false
+    // }
   }
 })
 
