@@ -51,7 +51,8 @@ class Message extends React.Component {
       drawTable,
       drawCountdown,
       id,
-      state
+      state,
+      isGroup,
     } = data;
     const {countdown} = this.state;
     let countdownFormat;
@@ -77,14 +78,22 @@ class Message extends React.Component {
                 {`你的 ${friendRegisterCount} 位朋友已经报名了比赛`}
               </div>
             : undefined}
-            <div className={cs.rigisterRight}>
-              <Link to={`${path}/register`}>
-                <RaisedButton label="立即报名" style={buttonStyle} />
-              </Link>
-            </div>
+            {isGroup
+            ? <MessageItem className="clearfix">
+                <div className={cs.rigisterRight}>
+                  <Link to={`${path}/team/register`}>
+                    <RaisedButton label="团队报名" style={buttonStyle} />
+                  </Link>
+                </div>
+              </MessageItem>
+            : <div className={cs.rigisterRight}>
+                <Link to={`${path}/register`}>
+                  <RaisedButton label="立即报名" style={buttonStyle} />
+                </Link>
+              </div>}
           </MessageItem>
         : undefined}
-        
+
         {/* 已报名显示已经报名的比赛 */}
         {Array.isArray(registerList) && registerList.length > 0 && [3, 4, 5, 6].indexOf(Number(state) !== -1)
         ? registerList.map((item, index) => {
