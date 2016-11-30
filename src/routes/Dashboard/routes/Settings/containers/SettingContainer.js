@@ -1,26 +1,35 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { push } from 'react-router-redux'
-import { reduxForm } from 'redux-form'
+import { reduxForm, getFormValues, Field, initialize } from 'redux-form'
 import NavBack from 'components/NavBack'
-import TextField from 'material-ui/TextField'
-import SelectField from 'material-ui/SelectField';
 import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
 import { Grid, Row, Col } from 'react-bootstrap';
-import DatePicker from 'material-ui/DatePicker';
 import Divider from 'material-ui/Divider';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import {
+  SelectField,
+  TextField,
+  DatePicker,
+} from 'redux-form-material-ui'
 
 import { fetchMySettings, updateSettings, updateMySettings } from 'routes/Dashboard/modules/settings'
 
 import classes from './SettingContainer.scss';
 
-const fields = ['email', 'gender', 'birthday', 'startYear', 'hand', 'habit', 'height', 'weight'];
+const formatDate = date => {
+  var year = date.getFullYear();
+  var month = date.getMonth() < 9 ? '0'+ (date.getMonth()+1) : date.getMonth()+1
 
-const validate = (values) => {
+  var day =  date.getDate() < 10 ? '0'+ date.getDate(): date.getDate()
+  return (year+'-'+month+'-'+day);
+}
+
+const validate = values => {
   var errors = {};
   var hasErrors = false;
   //if(!values.password || values.password.trim() === '') {
@@ -42,22 +51,23 @@ const validate = (values) => {
   return hasErrors && errors;
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => {
+  const settings = state.settings;
+  return ({
   user: state.user,
-  settings: state.settings
-});
+  settings,
+  formValues: getFormValues('SettingsForm')(state),
+  initialValues: {
+    ...settings,
+    birthday: (state.settings && state.settings.birthday ? new Date(state.settings.birthday) : new Date)
+  }
+})};
 
-//const mapDispatchToProps = (dispatch) => ({
-//  ...bindActionCreators({
-//    fetchMySettings,
-//    updateSettings,
-//    push,
-//  }, dispatch)
-//})
 const mapDispatchToProps = {
     fetchMySettings,
     updateSettings,
     updateMySettings,
+    initialize,
     push
 };
 
@@ -67,7 +77,7 @@ class SettingsForm extends React.Component {
   }
 
   state = {
-    open: false,
+    open: false
   };
 
   handleOpen = () => {
@@ -79,44 +89,15 @@ class SettingsForm extends React.Component {
   };
 
   componentDidMount () {
-    const { fetchMySettings , user: { user: { id } } } = this.props;
+    const { fetchMySettings, initialize , user: { user: { id } } } = this.props;
     fetchMySettings({
-      userId: id,
-    });
-  }
-
-  handleChange = field => ({ target: { value } }) => {
-    const { updateSettings } = this.props;
-    updateSettings({
-      [field]: value,
-    });
-  };
-
-  handleChangeDate = (empty, date) => {
-    const { updateSettings } = this.props;
-    updateSettings({
-      birthday: date.toISOString().substring(0, 10),
-    });
-  };
-
-  handleChangeGender = (event, key, payload) => {
-    const { updateSettings } = this.props;
-    updateSettings({
-      gender: payload,
-    });
-  }
-
-  handleChangeHand = (event, key, payload) => {
-    const { updateSettings } = this.props;
-    updateSettings({
-      hand: payload,
-    });
-  }
-
-  handleChangeHabit = (event, key, payload) => {
-    const { updateSettings } = this.props;
-    updateSettings({
-      habit: payload,
+      userId: id
+    }).then(action => {
+      const settings = action.payload.data;
+      initialize({
+        ...settings,
+        birthday: new Date(settings.birthday)
+      })
     });
   }
 
@@ -124,34 +105,30 @@ class SettingsForm extends React.Component {
     const {
       updateMySettings,
       user: { user },
-      settings,
-      push
-    } = this.props
+      formValues
+    } = this.props;
 
     updateMySettings({
-      ...settings,
+      ...formValues,
+      birthday: formatDate(formValues.birthday),
       userId: user.id
-    }).then(({payload: {code, data}}) => {
+    }).then(({payload: { code }}) => {
       if (Number(code) === 0) {
         this.handleOpen()
       }
     })
-  }
+  };
 
   render () {
     const {
-      fields: { email, gender, birthday, startYear, hand, habit, height, weight },
-      handleSubmit,
       submitting,
       user,
       settings,
       children,
       } = this.props;
-
     if(children){
       return children;
     }
-
     const actions = [
       <FlatButton
         label="OK"
@@ -169,8 +146,6 @@ class SettingsForm extends React.Component {
     }
     const FinalRank = settings.SelfTechRank ?
     (Number(settings.SelfTechRank) + Number(settings.OtherTechRank)) / 2 : settings.OtherTechRank;
-
-    const myBirth = settings.birthday ? new Date(settings.birthday) : new Date();
 
     return (
         <div className='u-hasNav'>
@@ -194,15 +169,14 @@ class SettingsForm extends React.Component {
                   <label className={classes.label}>邮箱</label>
                 </Col>
                 <Col xs={8}>
-                  <TextField
+                  <Field
+                    component={TextField}
                     inputStyle={{
                         textAlign: 'left',
                         color: '#929292',
                       }}
                     name="email"
                     fullWidth
-                    onChange={this.handleChange('email')}
-                    value={settings.email}
                     underlineShow={false}
                   />
                 </Col>
@@ -213,11 +187,10 @@ class SettingsForm extends React.Component {
                   <label className={classes.label}>性别</label>
                 </Col>
                 <Col xs={8}>
-                  <SelectField
-                    value={settings.gender}
+                  <Field
+                    component={SelectField}
                     fullWidth
                     autoWidth
-                    onChange={this.handleChangeGender}
                     underlineStyle={underlineStyle}
                     name="gender"
                     style={{
@@ -226,7 +199,7 @@ class SettingsForm extends React.Component {
                   >
                     <MenuItem value='male' primaryText="男" />
                     <MenuItem value='female' primaryText="女" />
-                  </SelectField>
+                  </Field>
                 </Col>
                 <Divider />
               </Row>
@@ -235,13 +208,12 @@ class SettingsForm extends React.Component {
                   <label className={classes.label}>生日</label>
                 </Col>
                 <Col xs={8}>
-                  <DatePicker
+                  <Field
+                    component={DatePicker}
                     underlineStyle={underlineStyle}
-                    onChange={this.handleChangeDate}
                     fullWidth
                     autoOk
-                    value={myBirth}
-                    name="birth"
+                    name="birthday"
                   />
                 </Col>
                 <Divider />
@@ -275,15 +247,14 @@ class SettingsForm extends React.Component {
                   <label className={classes.label}>网球元年</label>
                 </Col>
                 <Col xs={8}>
-                  <TextField
+                  <Field
+                    component={TextField}
                     inputStyle={{
                         textAlign: 'left',
                         color: '#929292',
                       }}
                     name="startYear"
                     fullWidth
-                    onChange={this.handleChange('startYear')}
-                    value={settings.startYear || new Date().getFullYear()}
                     underlineShow={false}
                   />
                 </Col>
@@ -294,10 +265,9 @@ class SettingsForm extends React.Component {
                   <label className={classes.label}>持拍</label>
                 </Col>
                 <Col xs={8}>
-                  <SelectField
+                  <Field
+                    component={SelectField}
                     fullWidth
-                    value={settings.hand}
-                    onChange={this.handleChangeHand}
                     underlineStyle={underlineStyle}
                     name="hand"
                     style={{
@@ -306,7 +276,7 @@ class SettingsForm extends React.Component {
                   >
                     <MenuItem value={0} primaryText="右手" />
                     <MenuItem value={1} primaryText="左手" />
-                  </SelectField>
+                  </Field>
                 </Col>
                 <Divider />
               </Row>
@@ -315,10 +285,9 @@ class SettingsForm extends React.Component {
                   <label className={classes.label}>持拍方式</label>
                 </Col>
                 <Col xs={8}>
-                  <SelectField
+                  <Field
+                    component={SelectField}
                     fullWidth
-                    value={settings.habit}
-                    onChange={this.handleChangeHabit}
                     underlineStyle={underlineStyle}
                     name="habit"
                     style={{
@@ -329,7 +298,7 @@ class SettingsForm extends React.Component {
                     <MenuItem value={1} primaryText="双手正拍" />
                     <MenuItem value={2} primaryText="单手反拍" />
                     <MenuItem value={3} primaryText="双手反拍" />
-                  </SelectField>
+                  </Field>
                 </Col>
                 <Divider />
               </Row>
@@ -338,7 +307,8 @@ class SettingsForm extends React.Component {
                   <label className={classes.label}>身高(CM)</label>
                 </Col>
                 <Col xs={8}>
-                  <TextField
+                  <Field
+                    component={TextField}
                     inputStyle={{
                         textAlign: 'left',
                         color: '#929292',
@@ -346,8 +316,6 @@ class SettingsForm extends React.Component {
                     type="number"
                     name="height"
                     fullWidth
-                    onChange={this.handleChange('height')}
-                    value={settings.height}
                     underlineShow={false}
                   />
                 </Col>
@@ -358,7 +326,8 @@ class SettingsForm extends React.Component {
                   <label className={classes.label}>体重(KG)</label>
                 </Col>
                 <Col xs={8}>
-                  <TextField
+                  <Field
+                    component={TextField}
                     inputStyle={{
                         textAlign: 'left',
                         color: '#929292',
@@ -366,8 +335,6 @@ class SettingsForm extends React.Component {
                     type="number"
                     name="weight"
                     fullWidth
-                    onChange={this.handleChange('weight')}
-                    value={settings.weight}
                     underlineShow={false}
                   />
                 </Col>
@@ -415,8 +382,7 @@ class SettingsForm extends React.Component {
     )
   }
 }
-export default reduxForm({
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: 'SettingsForm',
-  fields,
   validate
-}, mapStateToProps, mapDispatchToProps)(SettingsForm)
+})(SettingsForm))

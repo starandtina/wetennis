@@ -1,23 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { reduxForm } from 'redux-form'
+import { reduxForm, getFormValues } from 'redux-form'
 import { bindActionCreators } from 'redux'
 import { push } from 'react-router-redux'
 import { uploadUserInfo } from '../../../modules/register';
 
 import RegisterConfirmation from '../components/RegisterConfirmation'
 
-const mapStateToProps = (state) => {
-  return ({
+const mapStateToProps = state => ({
   user: state.user.user,
   group: state.register.group,
   item: state.register.item,
   partnerId: state.register.partnerId,
   partners: state.register.partners,
-  initialValues: state.user.user
-})}
+  initialValues: state.user.user,
+  formValues: getFormValues('registerConfirmForm')(state)
+});
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ uploadUserInfo, push }, dispatch);
+const mapDispatchToProps = { uploadUserInfo, push };
 
 const validate = (values, props) => {
   const { restriction = {}, needPartner } = props.item
@@ -130,14 +130,9 @@ const pullAgeAndGenderFromCardId = (personCard = '') => {
     age,
     userGender
   }
-}
-// Wrap the component to inject dispatch and state into it
-export default reduxForm(
-  {
-    form: 'registerConfirmForm',
-    fields: ['username', 'gender', 'name', 'phone', 'personCard', 'passport', 'companyName', 'companyTitle', 'club'],
-    validate,
-  },
-  mapStateToProps,
-  mapDispatchToProps
-)(RegisterConfirmation)
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
+  form: 'registerConfirmForm',
+  validate
+})(RegisterConfirmation));

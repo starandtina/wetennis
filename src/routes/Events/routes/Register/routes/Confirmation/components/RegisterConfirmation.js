@@ -1,6 +1,10 @@
 import React from 'react'
-import TextField from 'material-ui/TextField'
-import SelectField from 'material-ui/SelectField';
+import { Field } from 'redux-form'
+import {
+  RadioButtonGroup,
+  TextField,
+  SelectField,
+} from 'redux-form-material-ui'
 import Dialog from 'material-ui/Dialog';
 import MenuItem from 'material-ui/MenuItem';
 import { Grid, Row, Col } from 'react-bootstrap'
@@ -18,21 +22,17 @@ export class RegisterConfirmation extends React.Component {
     });
   };
 
-  handleChangeGender = gender => (event, key, payload) => {
-    gender.onChange(payload);
-  }
-
   uploadUserInfo = () => {
-    const { uploadUserInfo, push, params, values } = this.props;
+    const { uploadUserInfo, push, params, formValues } = this.props;
     const eventId = params.eventId;
-    const { name, username, gender, personCard, passport, phone, companyName, companyTitle, club } = values;
+    const { name, username, gender, personCard, passport, phone } = formValues;
     if (name && username && gender && (personCard || passport) && phone) {
-      uploadUserInfo(values);
+      uploadUserInfo(formValues);
       push(`/events/${eventId}/register/announcement`)
     } else {
       alert('请完整填写信息')
     }
-  }
+  };
 
   render() {
     const {
@@ -40,17 +40,6 @@ export class RegisterConfirmation extends React.Component {
       item,
       partnerId,
       partners,
-      fields: {
-        username,
-        gender,
-        name,
-        phone,
-        personCard,
-        passport,
-        companyName,
-        companyTitle,
-        club,
-        },
       handleSubmit
       } = this.props
 
@@ -66,11 +55,12 @@ export class RegisterConfirmation extends React.Component {
               <label className={classes.label}>用户名</label>
             </Col>
             <Col xs={8}>
-              <TextField
+              <Field
+                component={TextField}
                 inputStyle={{
                     textAlign: 'left'
                   }}
-                name="username"
+                name="usernameForPartner"
                 fullWidth
                 disabled
                 value={myPartner.username}
@@ -82,11 +72,12 @@ export class RegisterConfirmation extends React.Component {
               <label className={classes.label}>性别</label>
             </Col>
             <Col xs={8}>
-              <TextField
+              <Field
+                component={TextField}
                 inputStyle={{
                   textAlign: 'left'
                 }}
-                name="gender"
+                name="genderForPartner"
                 fullWidth
                 disabled
                 value={myPartner.gender === "female" ? "女" : "男"}
@@ -98,11 +89,12 @@ export class RegisterConfirmation extends React.Component {
               <label className={classes.label}>真实姓名</label>
             </Col>
             <Col xs={8}>
-              <TextField
+              <Field
+                component={TextField}
                 inputStyle={{
                     textAlign: 'left'
                   }}
-                name="name"
+                name="nameForPartner"
                 fullWidth
                 disabled
                 value={myPartner.name}
@@ -114,11 +106,12 @@ export class RegisterConfirmation extends React.Component {
               <label className={classes.label}>电话</label>
             </Col>
             <Col xs={8}>
-              <TextField
+              <Field
+                component={TextField}
                 inputStyle={{
                     textAlign: 'left'
                   }}
-                name="phone"
+                name="phoneForPartner"
                 fullWidth
                 disabled
                 value={myPartner.phone}
@@ -142,14 +135,13 @@ export class RegisterConfirmation extends React.Component {
                 <label className={classes.label}>用户名</label>
               </Col>
               <Col xs={8}>
-                <TextField
+                <Field
+                  component={TextField}
                   inputStyle={{
                     textAlign: 'left'
                   }}
-                  name="name"
+                  name="username"
                   fullWidth
-                  {...username}
-                  errorText={username.error}
                 />
               </Col>
             </Row>
@@ -158,16 +150,15 @@ export class RegisterConfirmation extends React.Component {
                 <label className={classes.label}>性别</label>
               </Col>
               <Col xs={8}>
-                <SelectField
-                    value={this.state.gender}
-                    fullWidth
-                    {...gender}
-                    onChange={this.handleChangeGender(gender)}
-                    errorText={gender.error}
+                <Field
+                  name="gender"
+                  component={SelectField}
+                  value={this.state.gender}
+                  fullWidth
                 >
                   <MenuItem value='male' primaryText="男" />
                   <MenuItem value='female' primaryText="女" />
-                </SelectField>
+                </Field>
               </Col>
             </Row>
             <Row>
@@ -175,14 +166,13 @@ export class RegisterConfirmation extends React.Component {
                 <label className={classes.label}>真实姓名</label>
               </Col>
               <Col xs={8}>
-                <TextField
+                <Field
                   inputStyle={{
                     textAlign: 'left'
                   }}
                   name="name"
                   fullWidth
-                  {...name}
-                  errorText={name.error}
+                  component={TextField}
                 />
               </Col>
             </Row>
@@ -191,14 +181,13 @@ export class RegisterConfirmation extends React.Component {
                 <label className={classes.label}>电话</label>
               </Col>
               <Col xs={8}>
-                <TextField
+                <Field
                   inputStyle={{
                     textAlign: 'left'
                   }}
                   name="phone"
                   fullWidth
-                  {...phone}
-                  errorText={phone.error}
+                  component={TextField}
                 />
               </Col>
             </Row>
@@ -207,14 +196,13 @@ export class RegisterConfirmation extends React.Component {
                 <label className={classes.label}>身份证号</label>
               </Col>
               <Col xs={8}>
-                <TextField
+                <Field
                   inputStyle={{
                     textAlign: 'left'
                   }}
                   name="personCard"
                   fullWidth
-                  {...personCard}
-                  errorText={personCard.error}
+                  component={TextField}
                 />
               </Col>
             </Row>
@@ -223,14 +211,13 @@ export class RegisterConfirmation extends React.Component {
                 <label className={classes.label}>护照</label>
               </Col>
               <Col xs={8}>
-                <TextField
+                <Field
                   inputStyle={{
                     textAlign: 'left'
                   }}
                   name="passport"
                   fullWidth
-                  {...passport}
-                  errorText={passport.error}
+                  component={TextField}
                 />
               </Col>
             </Row>
@@ -239,14 +226,13 @@ export class RegisterConfirmation extends React.Component {
                 <label className={classes.label}>工作单位</label>
               </Col>
               <Col xs={8}>
-                <TextField
+                <Field
                   inputStyle={{
                     textAlign: 'left'
                   }}
                   name="companyName"
                   fullWidth
-                  {...companyName}
-                  errorText={companyName.error}
+                  component={TextField}
                 />
               </Col>
             </Row>
@@ -255,14 +241,13 @@ export class RegisterConfirmation extends React.Component {
                 <label className={classes.label}>职务</label>
               </Col>
               <Col xs={8}>
-                <TextField
+                <Field
                   inputStyle={{
                     textAlign: 'left'
                   }}
                   name="companyTitle"
                   fullWidth
-                  {...companyTitle}
-                  errorText={companyTitle.error}
+                  component={TextField}
                 />
               </Col>
             </Row>
@@ -271,14 +256,13 @@ export class RegisterConfirmation extends React.Component {
                 <label className={classes.label}>所属俱乐部</label>
               </Col>
               <Col xs={8}>
-                <TextField
+                <Field
                   inputStyle={{
                     textAlign: 'left'
                   }}
                   name="club"
                   fullWidth
-                  {...club}
-                  errorText={club.error}
+                  component={TextField}
                 />
               </Col>
             </Row>

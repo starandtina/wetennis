@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { push, goBack } from 'react-router-redux'
-import { reduxForm } from 'redux-form';
-import TextField from 'material-ui/TextField'
+import { reduxForm, getFormValues, Field, initialize } from 'redux-form'
 import NavBack from 'components/NavBack';
 import UploadImage from 'components/UploadImage/uploadImage';
+import {
+  TextField
+} from 'redux-form-material-ui'
 
 import cs from './EditBG.scss'
 
@@ -35,26 +38,31 @@ class AddressEdit extends React.Component {
     document.querySelector('body').classList.remove('u-backgroundColorGreen')
   }
 
+  state = {
+    backGroundImageUrl: this.props.initialValues.backGroundImageUrl
+  };
+
   uploadImage = uploadFile => {
-    const { uploadEquipmentImage, fields: { backGroundImageUrl } } = this.props;
+    const { uploadEquipmentImage } = this.props;
     uploadEquipmentImage({
       imgstr: uploadFile.base64,
       name: uploadFile.name
     }).then(action => {
-      backGroundImageUrl.onChange(action.payload.data.imageUrl);
+      this.setState({
+        backGroundImageUrl: action.payload.data.imageUrl
+      });
     });
   };
 
   updateBGImage = () => {
     const {
       updateBGImage,
-      values,
       id,
       push,
       } = this.props;
 
     updateBGImage({
-      ImageUrl: values.backGroundImageUrl,
+      ImageUrl: this.state.backGroundImageUrl,
       userId: id
     }).then(action => {
       if (!action.error) {
@@ -65,10 +73,11 @@ class AddressEdit extends React.Component {
 
   render () {
     const {
-      fields: { backGroundImageUrl },
       handleSubmit,
       submitting,
       } = this.props;
+
+    console.log(this.state.backGroundImageUrl);
 
     return (
       <div className='u-hasNav'>
@@ -88,17 +97,17 @@ class AddressEdit extends React.Component {
               <i className="material-icons">done</i>
             </button>
           </NavBack>
-          <div className={`${cs.imgContainer} u-aligner`}><img className='img-responsive' src={backGroundImageUrl.value} alt=""/></div>
+          <div className={`${cs.imgContainer} u-aligner`}>
+            <img className='img-responsive' src={this.state.backGroundImageUrl} alt=""/>
+          </div>
         </form>
       </div>
     )
   }
 }
-export default reduxForm(
-  {
-    form: 'updateBGForm',
-    fields: ['backGroundImageUrl'],
-  },
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddressEdit)
+)(reduxForm({
+  form: 'updateBGForm'
+})(AddressEdit));
