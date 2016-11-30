@@ -9,7 +9,7 @@ import {
 export default (store) => ({
   path: 'register',
   onEnter(nextState) {
-    // requireAuth.apply(this, arguments)
+    requireAuth.apply(this, arguments)
   },
   getComponent(nextState, next) {
     require.ensure([], (require) => {
