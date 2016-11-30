@@ -16,7 +16,8 @@ module.exports = function () {
   const router = express.Router()
 
   function show(req, res, next) {
-    const url = 'http://sports.sina.com.cn/tennis/'
+    const domain = 'sports.sina.com.cn'
+    const url = `http://${domain}/tennis/`
 
     request(url, function (error, response, html) {
       if (!error && response.statusCode === 200) {
@@ -27,35 +28,44 @@ module.exports = function () {
         const sinaNewsList = []
 
         $('.news_list .list01 a').each((index, link) => {
-          links.push($(link).attr('href'))
+          const href = $(link).attr('href')
+
+          if (href.indexOf(domain) !== -1) {
+            links.push(href)
+          }
         })
 
-        Promise.all(links.map(link => rp(link)))
-          .then(results => {
-            results.forEach(r => {
-              const $newsHTML = cheerio.load(r, {
+        Promise.all(links.map(link => rp({
+            uri: link,
+            headers: {
+              'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36'
+            },
+            transform(body) {
+              return cheerio.load(body, {
                 decodeEntities: false
               })
-
-              const date = $newsHTML('#pub_date').text().trim()
+            },
+          }))).then(results => {
+            results.forEach($ => {
+              const date = $('#pub_date').text().trim()
               const provider = 'Sina'
               const type = '新浪体育'
-              const thumbImgUrl = $newsHTML('.img_wrapper:first-of-type img').attr('src')
+              const thumbImgUrl = $('.img_wrapper:first-of-type img').attr('src')
               const providerIconUrl = 'http://sports.sina.com.cn/favicon.ico'
-                // const content = $newsHTML('#artibody p').map(function (i, el) {
+                // const content = $('#artibody p').map(function (i, el) {
                 //   return `<p>${$(this).text()}</p>`
                 // }).get().join(' ')
-              const content = $newsHTML('.BSHARE_POP')
+              const content = $('.BSHARE_POP')
                 .contents()
                 .not('.img_wrapper')
-                .map((i, el) => $newsHTML.html(el))
+                .map((i, el) => $.html(el))
                 .get().join(' ')
 
-              const title = $newsHTML('#artibodyTitle').text().trim()
+              const title = $('#artibodyTitle').text().trim()
 
               // TODO: ADD keyword list
 
-              const keywords = $newsHTML('.art_keywords a').map((i, el) => $(el).text()).get().join(',')
+              const keywords = $('.art_keywords a').map((i, el) => $(el).text()).get().join(',')
 
               sinaNewsList.push({
                 date,
