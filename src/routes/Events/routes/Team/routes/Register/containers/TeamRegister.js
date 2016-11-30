@@ -12,7 +12,7 @@ import {
   deleteTeamMember
 } from '../modules/teamMember'
 
-import { fetchEventGroups, submitTeamRegisterForm, registerTeam } from '../modules/register'
+import { fetchEventGroups, fetchRegisteredTeams, submitTeamRegisterForm, registerTeam } from '../modules/register'
 import { getGroups } from '../modules'
 
 const mapStateToProps = (state) => ({
@@ -32,6 +32,7 @@ export default connect(
 
     // register
     fetchEventGroups,
+    fetchRegisteredTeams,
     submitTeamRegisterForm,
     registerTeam,
 

@@ -16,6 +16,10 @@ export const REGISTER_TEAM = 'REGISTER_TEAM'
 export const REGISTER_TEAM_SUCCESS = 'REGISTER_TEAM_SUCCESS'
 export const REGISTER_TEAM_FAILTURE = 'REGISTER_TEAM_FAILTURE'
 
+export const FETCHED_REGISTERED_TEAMS = 'FETCHED_REGISTERED_TEAMS'
+export const FETCHED_REGISTERED_TEAMS_SUCCESS = 'FETCHED_REGISTERED_TEAMS_SUCCESS'
+export const FETCHED_REGISTERED_TEAMS_FAILTURE = 'FETCHED_REGISTERED_TEAMS_FAILTURE'
+
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -35,9 +39,18 @@ export const registerTeam = (data) => ({
     members: Object.keys(data.members).map(id => ({
       ...data.members[id],
       id
-    }))
+    })),
+    method: 'registerTeam',
   }),
   payload: data,
+})
+
+export const fetchRegisteredTeams = (data) => ({
+  types: [FETCHED_REGISTERED_TEAMS, FETCHED_REGISTERED_TEAMS_SUCCESS, FETCHED_REGISTERED_TEAMS_FAILTURE],
+  promise: () => API.post(URLConf.fetchRegisteredTeams, { 
+    ...data,
+    method: 'fetchRegisteredTeams',
+  })
 })
 
 export const submitTeamRegisterForm = (form) => 
@@ -65,8 +78,13 @@ export default handleActions({
     groups: action.payload.groups,
     groupId: action.payload.groups[0] && action.payload.groups[0].id,
   }),
+  [FETCHED_REGISTERED_TEAMS_SUCCESS]: (state, action) => ({
+    ...state,
+    registeredTeams: action.payload,
+  }),
 }, {
-  groups: []
+  groups: [],
+  registeredTeams: [],
 })
 
 // ------------------------------------

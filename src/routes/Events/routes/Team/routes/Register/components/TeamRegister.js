@@ -14,9 +14,10 @@ export default class TeamRegisterContainer extends PureComponent {
   componentDidMount() {
     document.body.classList.add(cs['body-backgroundColor'])
 
-    const { fetchEventGroups, params: { eventId } } = this.props
+    const { fetchEventGroups, fetchRegisteredTeams, params: { eventId } } = this.props
 
     fetchEventGroups({eventId})
+    fetchRegisteredTeams({eventId})
   }
 
   componentWillUnmount() {
@@ -37,13 +38,15 @@ export default class TeamRegisterContainer extends PureComponent {
     registerTeam({
       ...values,
       members,
-    }).then((data) => {
-      push(
-        buildUrl(`/events/${eventId}/team/pay`, {
-          payUrl: data.payload.data.payUrl,
-          price: group.price,
-        })
-      )
+    }).then(( { payload: { code, errorMsg, data } } = data) => {
+      if (Number(code) === 0 && !errorMsg) {
+        push(
+          buildUrl(`/events/${eventId}/team/pay`, {
+            payUrl: data.payUrl,
+            price: group.price,
+          })
+        )
+      }
     })
   }
 
@@ -59,10 +62,10 @@ export default class TeamRegisterContainer extends PureComponent {
   }
 
   render() {
-    const { editing, startAddTeamMember, cancelEditTeamMember, members } = this.props
+    const { editing, startAddTeamMember, cancelEditTeamMember, members, push, params: {eventId} } = this.props
 
     return <div className={`${cs['team-register-container']} u-hasNav`}>
-      <NavBack routes={this.props.routes} caption='团体报名'>
+      <NavBack routes={this.props.routes} caption='团体报名' handleGoBack={() => push(`/events/${eventId}`)}>
         <div onClick={startAddTeamMember}>
           <i className={`${cs['add-team-member-icon']} material-icons`}>add</i><i className={`${cs['add-team-member-icon']} material-icons`}>people</i>
         </div>

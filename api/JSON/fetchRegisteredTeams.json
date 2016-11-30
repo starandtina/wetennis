@@ -1,0 +1,17 @@
+{
+  "code": 0,
+  "data": [
+    {
+      "name": "team 1",
+      "coachName": "coach 1",
+      "groupName": "精英组",
+      "registerDate": "2016年12月12日"
+    },
+    {
+      "name": "team 2",
+      "coachName": "coach 2",
+      "groupName": "老年组",
+      "registerDate": "2016年12月13日"
+    }
+  ]
+}

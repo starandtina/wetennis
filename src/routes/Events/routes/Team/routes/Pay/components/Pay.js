@@ -19,7 +19,7 @@ export default class Pay extends PureComponent {
   }
 
   render() {
-    const { location: {query}, group = {name:''}, params: {eventId}, push } = this.props
+    const { location: {query}, group = {name:''}, registeredTeams = [], params: {eventId}, push } = this.props
 
     return (
       <div className={`${style.container} u-hasNav`}>
@@ -41,6 +41,13 @@ export default class Pay extends PureComponent {
         <div className={`${style['button-container']}`}>
           <button className={`btn btn-primary btn-lg btn-block`} onClick={this.pay}>确认支付</button>
         </div>
+        <p className={`${style['registered-team-header']}`}>已报名{registeredTeams.length > 0 && <span>{`(${registeredTeams.length})`}</span>}</p>
+        {registeredTeams.map( t => {
+          return <div key={t.name} className={`${style['registered-team']} clearfix`}>
+            <div className='pull-left'>{t.name}</div>
+            <div className='pull-right'>{t.registerDate}</div>
+          </div>
+        })}
       </div>
     )
   }
