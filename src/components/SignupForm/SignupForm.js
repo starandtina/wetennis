@@ -1,8 +1,7 @@
 import React from 'react'
-import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import { Field } from 'redux-form'
-import FormInput from '../form/input'
+import { TextField } from 'redux-form-material-ui'
 import { Grid, Row, Col } from 'react-bootstrap'
 import classes from './SignupForm.scss'
 
@@ -16,7 +15,6 @@ export class SignupForm extends React.Component {
     // If `authenticated` then redirect to
     if(nextProps.user.status === 'authenticated' && nextProps.user.user) {
       const locationState = this.props.location.state
-
       this.props.push('/');
     }
   }
@@ -64,7 +62,6 @@ export class SignupForm extends React.Component {
       handleSubmit,
       submitting,
       userNameDuplicated,
-      phoneDuplicated
       } = this.props;
 
     const style = {
@@ -86,10 +83,6 @@ export class SignupForm extends React.Component {
       lineHeight: '40px'
     };
 
-    const buttonStyle = {
-      marginTop: '5px'
-    }
-
     return (
       <form className='form' onSubmit={handleSubmit(this.props.signUpUserThenSetCookie.bind(this))}>
         <Grid>
@@ -97,7 +90,7 @@ export class SignupForm extends React.Component {
             <Col xs={12}>
               <Field
                 name="username"
-                component={FormInput}
+                component={TextField}
                 style={style}
                 hintText="用户名"
                 floatingLabelText="用户名"
@@ -112,7 +105,7 @@ export class SignupForm extends React.Component {
               <Field
                 name="password"
                 type="password"
-                component={FormInput}
+                component={TextField}
                 style={style}
                 hintText="密码"
                 floatingLabelText="密码"
@@ -126,7 +119,7 @@ export class SignupForm extends React.Component {
             <Col xs={12}>
               <Field
                 name="phone"
-                component={FormInput}
+                component={TextField}
                 style={style}
                 hintText="手机号"
                 floatingLabelText="手机号"
@@ -140,7 +133,7 @@ export class SignupForm extends React.Component {
             <Col xs={8}>
               <Field
                 name="activationCode"
-                component={FormInput}
+                component={TextField}
                 style={style}
                 hintText="验证码"
                 floatingLabelText="验证码"
@@ -162,7 +155,13 @@ export class SignupForm extends React.Component {
         </Grid>
         <div className='button-groups clearfix'>
           {this.props.user.error ? <p className='u-errorText'>{this.props.user.error.message}</p> : ''}
-          <button type="submit" className="btn btn-default btn-submit btn-lg btn-block" disabled={userNameDuplicated||userNameDuplicated||submitting}>注册</button>
+          <button
+            type="submit"
+            className="btn btn-default btn-submit btn-lg btn-block"
+            disabled={userNameDuplicated||userNameDuplicated||submitting}
+          >
+            注册
+          </button>
         </div>
       </form>
     )
