@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { push, goBack } from 'react-router-redux'
 import { reduxForm, getFormValues } from 'redux-form';
 import { Field } from 'redux-form'
-import FormInput from 'components/form/input'
+import { TextField } from 'redux-form-material-ui'
 import NavBack from 'components/NavBack';
 import UploadImage from 'components/UploadImage/uploadImage';
 
@@ -68,7 +68,7 @@ class AddressEdit extends React.Component {
       name: uploadFile.name
     }).then(action => {
       this.setState({
-        imgUrl: action.payload.data.ImageUrl,
+        imgUrl: action.payload.data.imageUrl
       });
     });
   };
@@ -81,7 +81,9 @@ class AddressEdit extends React.Component {
       } = this.props;
     addEquipment({
       imgUrl: this.state.imgUrl,
-      ...formValues
+      logo: formValues.logo,
+      price: +formValues.price,
+      size: +formValues.size,
     }).then(action => {
       if (!action.error) {
         goBack();
@@ -122,24 +124,28 @@ class AddressEdit extends React.Component {
         <div className={classes.Field}>
           <Field
             name="logo"
-            component={FormInput}
+            component={TextField}
             hintText="品牌"
             floatingLabelText="品牌"
             style={style}
           />
           <Field
             name="price"
-            component={FormInput}
+            component={TextField}
+            type="number"
             hintText="价格"
             floatingLabelText="价格"
             style={style}
+            step={0.1}
           />
           <Field
             name="size"
-            component={FormInput}
+            component={TextField}
+            type="number"
             hintText="尺码"
             floatingLabelText="尺码"
             style={style}
+            step={0.1}
           />
         </div>
       </form>

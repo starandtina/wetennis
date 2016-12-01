@@ -155,6 +155,7 @@ class AddressEdit extends React.Component {
             hintText="价格"
             floatingLabelText="价格"
             name="price"
+            step={0.1}
           />
           <Field
             component={TextField}
@@ -163,6 +164,7 @@ class AddressEdit extends React.Component {
             hintText="尺码"
             floatingLabelText="尺码"
             name="size"
+            step={0.1}
           />
         </div>
       </form>

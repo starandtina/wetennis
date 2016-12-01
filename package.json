@@ -108,6 +108,7 @@
     "morgan": "1.7.0",
     "node-sass": "3.13.0",
     "postcss-loader": "^0.8.0",
+    "prop-deep": "^2.1.2",
     "react": "15.3.2",
     "react-bootstrap": "0.30.3",
     "react-dom": "15.3.2",

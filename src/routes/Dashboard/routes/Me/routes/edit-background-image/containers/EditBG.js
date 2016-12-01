@@ -77,8 +77,6 @@ class AddressEdit extends React.Component {
       submitting,
       } = this.props;
 
-    console.log(this.state.backGroundImageUrl);
-
     return (
       <div className='u-hasNav'>
         <form className={cs.Root} onSubmit={handleSubmit(this.updateBGImage)}>

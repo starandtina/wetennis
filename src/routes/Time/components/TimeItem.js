@@ -58,14 +58,12 @@ class TimeItem extends Component {
     const {
       matchDate,
       location,
-      match,
       us,
-      myScore,
+      ourScore,
       opponent,
       opponentScore
       } = Item;
-
-    const win =  myScore > opponentScore;
+    const win =  ourScore > opponentScore;
     const imgContent = imgs.length > 0 ?
       imgs.map((img, index) => <div key={id+'_'+index} className={style.ImgMsg}>
         <img src={img.timesImgStr}/>
@@ -100,7 +98,7 @@ class TimeItem extends Component {
               doubles={false}
             >
               <div className={`${cs.teamItem} ${cs.score}`}>
-                {myScore}
+                {ourScore}
               </div>
               <div className={`${cs.teamItem} ${win ? cs.win : cs.lose}`}>
                 <i className="material-icons">done</i>

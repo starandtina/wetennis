@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux'
 import { reduxForm, getFormValues, Field } from 'redux-form'
-import FormInput from 'components/form/input'
+import { TextField } from 'redux-form-material-ui'
 import RaisedButton from 'material-ui/RaisedButton'
 import { Grid, Row, Col } from 'react-bootstrap'
 import { resetPassword, checkPhoneDuplicated, sendActivationCode } from 'routes/Dashboard/modules/user'
@@ -127,7 +127,7 @@ export class ResetPasswordForm extends React.Component {
           <Col xs={8}>
             <Field
               name="phone"
-              component={FormInput}
+              component={TextField}
               style={style}
               hintText="手机号"
               floatingLabelText="手机号"
@@ -147,7 +147,7 @@ export class ResetPasswordForm extends React.Component {
           <Col xs={12}>
             <Field
               name="activationCode"
-              component={FormInput}
+              component={TextField}
               style={style}
               hintText="验证码"
               floatingLabelText="验证码"
@@ -159,7 +159,7 @@ export class ResetPasswordForm extends React.Component {
             <Field
               name="password"
               type="password"
-              component={FormInput}
+              component={TextField}
               style={style}
               hintText="密码"
               floatingLabelText="密码"

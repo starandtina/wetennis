@@ -125,7 +125,7 @@ class Times extends Component {
                   return  <TimeItem isGuess={isGuess} key={index} Item={item} isLast={index === timeList.length -1} fetchDeleteTime={fetchDeleteTime} />
                 }
               )}
-              {(timeList.length !== 0 && this.state.hasMore ===false) ? <p className={style.text}>已经到最后</p> : null}
+              {(timeList.length !== 0 && this.state.hasMore ===false) ? <p className={style.text}>---我是有底线的---</p> : null}
             </InfiniteScroll>
             {footer}
           </div>

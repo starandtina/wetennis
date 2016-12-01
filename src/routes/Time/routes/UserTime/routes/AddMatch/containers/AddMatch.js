@@ -104,7 +104,6 @@ class AddMatch extends Component {
 
   addMatch = () => {
     const { formValues, time, addTimeMatch, goBack, user } = this.props;
-    console.log(formValues);
     addTimeMatch({
       ...formValues,
       date: formatDate(formValues.date),

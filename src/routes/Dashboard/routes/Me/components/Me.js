@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import NavBack from 'components/NavBack'
 import Footer from 'components/Footer'
+import props from 'prop-deep';
 
 import cs from './Me.scss'
 
@@ -37,22 +38,19 @@ export class Dashboard extends React.Component {
       </Link>
     </div>))
       : null;
-    const bgStyle = {
-      backgroundColor: 'lightgray',
-      backgroundImage:  `url(${userInfo && userInfo.backGroundImageUrl})`,
-      backgroundSize: 'cover',
-      backgroundRepeat: 'round',
-      color: 'white',
-    };
-    //let content = (<div>Dashboard<button onClick={this.props.logoutUser.bind(this)}>LOGOUT</button></div>);
     let content = userInfo ? (<div className={cs.container}>
       <NavBack routes={this.props.routes} caption='个人中心' hiddenBack={true} transparent>
         <Link className={cs.Icon} to="/dashboard/me/editBG"><i className="material-icons">collections</i></Link>
         <Link className={cs.Icon} to="/dashboard/settings"><i className="material-icons">settings</i></Link>
       </NavBack>
-      <div className={cs.BackGroundImage} cs={bgStyle}>
-        <div className={cs.Name}>{userInfo.name}</div>
-        <div className={cs.UserInfo}>{userInfo.gender === 'male' ? '男' : '女'} | {userInfo.birthday} | {userInfo.Constellation}</div>
+      <div className={cs.BackGroundImageContainer}>
+        <img src={props('userInfo.backGroundImageUrl')(user)} className={cs.BackGroundImage} />
+        <div className={cs.Information}>
+          <div className={cs.Name}>{userInfo.name}</div>
+          <div className={cs.UserInfo}>
+            {userInfo.gender === 'male' ? '男' : '女'} | {userInfo.birthday} | {userInfo.Constellation}
+          </div>
+        </div>
       </div>
       <div className='clearfix'>
         <div className={cs.Item}>
