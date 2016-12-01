@@ -78,7 +78,7 @@ class AddressEdit extends React.Component {
       } = this.props;
 
     return (
-      <div className='u-hasNav'>
+      <div className='u-has-nav'>
         <form className={cs.Root} onSubmit={handleSubmit(this.updateBGImage)}>
           <NavBack routes={this.props.routes} caption=" " leftText="close" transparent removeColor className='white-theme'>
             <button type="button" disabled={submitting}>

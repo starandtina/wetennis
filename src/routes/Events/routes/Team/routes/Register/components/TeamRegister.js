@@ -41,7 +41,7 @@ export default class TeamRegisterContainer extends PureComponent {
     }).then(( { payload: { code, errorMsg, data } } = data) => {
       if (Number(code) === 0 && !errorMsg) {
         push(
-          buildUrl(`/events/${eventId}/team/pay`, {
+          buildUrl(`/events/${eventId}/team/${data.teamId}/pay`, {
             payUrl: data.payUrl,
             price: group.price,
           })
@@ -64,10 +64,10 @@ export default class TeamRegisterContainer extends PureComponent {
   render() {
     const { editing, startAddTeamMember, cancelEditTeamMember, members, push, params: {eventId} } = this.props
 
-    return <div className={`${cs['team-register-container']} u-hasNav`}>
+    return <div className={`${cs['team-register-container']} u-has-nav`}>
       <NavBack routes={this.props.routes} caption='团体报名' handleGoBack={() => push(`/events/${eventId}`)}>
         <div onClick={startAddTeamMember}>
-          <i className={`${cs['add-team-member-icon']} material-icons`}>add</i><i className={`${cs['add-team-member-icon']} material-icons`}>people</i>
+          <i className={`material-icons`}>add</i><i className={`material-icons`}>people</i>
         </div>
       </NavBack>
       <div className='container'>

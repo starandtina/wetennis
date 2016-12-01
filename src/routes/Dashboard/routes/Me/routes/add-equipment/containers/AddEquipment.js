@@ -102,7 +102,7 @@ class AddressEdit extends React.Component {
       verticalAlign: 'bottom'
     };
     return (
-      <form className={`${classes.Root} u-hasNav`} onSubmit={handleSubmit(this.addEquipment)}>
+      <form className={`${classes.Root} u-has-nav`} onSubmit={handleSubmit(this.addEquipment)}>
         <NavBack routes={this.props.routes} caption=" " leftText="close" transparent className='white-theme'>
           <button type="button" disabled={submitting}>
             <label htmlFor="uploadImage" className={classes.AddImage}>

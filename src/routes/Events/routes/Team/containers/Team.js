@@ -8,7 +8,7 @@ export default class TeamRegisterContainer extends PureComponent {
       children
     } = this.props
 
-    let content = <div className='u-hasNav'><h1>Team</h1></div>
+    let content = <div className='u-has-nav'><h1>Team</h1></div>
 
     if (children) {
       content = children

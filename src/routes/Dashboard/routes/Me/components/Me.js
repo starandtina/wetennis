@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router';
 import NavBack from 'components/NavBack'
 import Footer from 'components/Footer'
-import props from 'prop-deep';
 
 import cs from './Me.scss'
 
@@ -44,7 +43,7 @@ export class Dashboard extends React.Component {
         <Link className={cs.Icon} to="/dashboard/settings"><i className="material-icons">settings</i></Link>
       </NavBack>
       <div className={cs.BackGroundImageContainer}>
-        <img src={props('userInfo.backGroundImageUrl')(user)} className={cs.BackGroundImage} />
+        <img src={user.userInfo.backGroundImageUrl} className={cs.BackGroundImage} />
         <div className={cs.Information}>
           <div className={cs.Name}>{userInfo.name}</div>
           <div className={cs.UserInfo}>

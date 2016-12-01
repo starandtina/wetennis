@@ -15,7 +15,7 @@ const muiTheme = getMuiTheme({
 class ResetPassword extends Component {
   render() {
     let content = (
-      <div className='u-hasNav container'>
+      <div className='u-has-nav container'>
         <NavBack routes={this.props.routes} caption='重置密码' transparent={false} className='white-theme' />
         <ResetPasswordFormContainer {...this.props} />
       </div>

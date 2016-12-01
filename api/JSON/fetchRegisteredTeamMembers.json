@@ -1,0 +1,23 @@
+{
+  "code": 0,
+  "data": [{
+    "id": "1",
+    "name": "testing1",
+    "gender": "male",
+    "identifyCard": "500230199010110010",
+    "passport": "passport",
+    "isBench": false
+  }, {
+    "id": "2",
+    "name": "testing2",
+    "gender": "female",
+    "identifyCard": "500230199010110010",
+    "isBench": false
+  }, {
+    "id": "3",
+    "name": "testing3",
+    "gender": "male",
+    "passport": "passport",
+    "isBench": true
+  }]
+}

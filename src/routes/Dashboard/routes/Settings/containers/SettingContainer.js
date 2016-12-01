@@ -148,7 +148,7 @@ class SettingsForm extends React.Component {
     (Number(settings.SelfTechRank) + Number(settings.OtherTechRank)) / 2 : settings.OtherTechRank;
 
     return (
-        <div className='u-hasNav'>
+        <div className='u-has-nav'>
           <NavBack routes={this.props.routes} caption='个人中心' transparent>
           </NavBack>
 

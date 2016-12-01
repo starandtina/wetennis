@@ -44,7 +44,7 @@ export default class TopNav extends React.Component {
       childRefs[item.ref] = item;
     });
     return (
-      <div className={`${cs.container}
+      <div className={`top-nav ${cs.container}
           ${stateTransparent ? cs.transparent : ''} 
           ${className ? cs[className] : ""}`} 
           {...props}>

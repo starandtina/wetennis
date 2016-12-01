@@ -37,7 +37,7 @@ class TechRank extends Component {
       display: 'none'
     }
     return (
-      <div class='u-hasNav'>
+      <div class='u-has-nav'>
         <NavBack routes={this.props.routes} caption='网球等级' />
         <form className={classes.Form}>
           <Grid>

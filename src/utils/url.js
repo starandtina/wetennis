@@ -21,6 +21,7 @@ export default {
   // Team
   registerTeam: `${ROOT_URL}registerTeam`,
   fetchRegisteredTeams: `${ROOT_URL}fetchRegisteredTeams`,
+  fetchRegisteredTeamMembers: `${ROOT_URL}fetchRegisteredTeamMembers`,
 
   // Dashbaord
   signUp: `${ROOT_URL}signup`,

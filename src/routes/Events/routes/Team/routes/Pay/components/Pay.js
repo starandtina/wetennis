@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 
 import { Accordion, Panel } from 'react-bootstrap'
-import RaisedButton from 'material-ui/RaisedButton'
 
 import NavBack from 'components/NavBack'
 import style from './Pay.scss'
@@ -22,7 +21,7 @@ export default class Pay extends PureComponent {
     const { location: {query}, group = {name:''}, registeredTeams = [], params: {eventId}, push } = this.props
 
     return (
-      <div className={`${style.container} u-hasNav`}>
+      <div className={`${style.container} u-has-nav`}>
         <NavBack routes={this.props.routes} caption='团体报名' handleGoBack={() => push(`/events/${eventId}/team/register`)}>
         </NavBack>
         <p className={`${style['group-name']}`}>{group.name}</p>

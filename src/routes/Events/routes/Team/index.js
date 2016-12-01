@@ -13,6 +13,7 @@ export default (store) => ({
       cb(null, [
          require('./routes/Register')(store),
          require('./routes/Pay')(store),
+         require('./routes/Allocate')(store),
       ])
     }, 'events')
   },
