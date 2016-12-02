@@ -5,7 +5,6 @@
     "name": "testing1",
     "gender": "male",
     "identifyCard": "500230199010110010",
-    "passport": "passport",
     "isBench": false
   }, {
     "id": "2",

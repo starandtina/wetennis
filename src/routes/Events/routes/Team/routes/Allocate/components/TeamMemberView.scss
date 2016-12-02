@@ -1,11 +1,17 @@
 @import 'variables.scss';
 
 .team-member-view-container {
+  margin-bottom: 15px;
   padding-left: 15px;
 
   border-left: 10*$px1 solid $mainColor;
+  background-color: white;
 }
 
 .team-member-action-icon {
   color: #999;
+}
+
+.identify {
+  font-size: 12px;
 }
