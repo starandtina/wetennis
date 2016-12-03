@@ -4,13 +4,15 @@ import dragula from 'react-dragula'
 
 import NavBack from 'components/NavBack'
 
+import TeamSequence from './TeamSequence'
 import TeamMemberView from './TeamMemberView'
 import cs from './TeamAllocate.scss'
 
 export default class TeamAllocate extends PureComponent {
   componentDidMount() {
-    const { fetchRegisteredTeamMembers } = this.props
+    const { fetchRegisteredTeamSequence, fetchRegisteredTeamMembers, params: { teamId } } = this.props
 
+    fetchRegisteredTeamSequence({teamId})
     fetchRegisteredTeamMembers({userId: ''})
 
      dragula([...document.querySelectorAll('.dragula-container')], {
@@ -32,7 +34,7 @@ export default class TeamAllocate extends PureComponent {
   }
 
   render() {
-    const { registeredTeamMembers } = this.props
+    const { registeredTeamSequence, registeredTeamMembers, push } = this.props
 
     return <div className='u-has-nav container'>
       <NavBack routes={this.props.routes} caption='出战顺序' handleGoBack={() => push(`/events/${eventId}`)}>
@@ -43,21 +45,9 @@ export default class TeamAllocate extends PureComponent {
       <Grid>
         <Row>
           <Col xs={6}>
-            <div className={`dragula-container u-aligner ${cs['dragula-target-container']}`}>
-              <i className={`material-icons ${cs['add-icon']}`}>add</i>
-            </div>
-            <hr />
-            <div className={`dragula-container u-aligner ${cs['dragula-target-container']}`}>
-              <i className={`material-icons ${cs['add-icon']}`}>add</i>
-            </div>
-            <hr />
-            <div className={`dragula-container u-aligner ${cs['dragula-target-container']}`}>
-              <i className={`material-icons ${cs['add-icon']}`}>add</i>
-            </div>
-            <hr />
-            <div className={`dragula-container u-aligner ${cs['dragula-target-container']}`}>
-              <i className={`material-icons ${cs['add-icon']}`}>add</i>
-            </div>
+            {registeredTeamSequence.map( s => {
+              return <TeamSequence key={s.id} {...s} />
+            })}
           </Col>
           <Col xs={6}>
             <p>队员</p>

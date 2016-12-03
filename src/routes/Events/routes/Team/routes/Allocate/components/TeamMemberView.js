@@ -5,7 +5,8 @@ import cs from './TeamMemberView.scss'
 const TeamMemberView = props => {
   const { id, name, gender, identifyCard, passport, isBench, deleteTeamMember, editTeamMember  } = props
 
-  return  <div className={`team-allocate-member-view ${cs['team-member-view-container']}`}>
+  return  <div className={`team-allocate-member-view ${cs['team-member-view-container']}`}
+            data-team-member-id={id}>
     <div>
       <label>{name}</label>
       { isBench && 

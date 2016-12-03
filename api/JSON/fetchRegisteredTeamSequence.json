@@ -1,0 +1,26 @@
+{
+  "code": 0,
+  "errMsg": "",
+  "data": [{
+    "id": "sequence1",
+    "name": "第一双打",
+    "teamMembers": ["member1 id", "member2 id"],
+    "restrictions": {
+
+    }
+  }, {
+    "id": "sequence2",
+    "name": "第二双打",
+    "teamMembers": [],
+    "restrictions": {
+
+    }
+  }, {
+    "id": "sequence3",
+    "name": "混合双打",
+    "teamMembers": [],
+    "restrictions": {
+
+    }
+  }]
+}
