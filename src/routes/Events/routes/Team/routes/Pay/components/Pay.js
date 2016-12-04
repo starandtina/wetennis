@@ -42,7 +42,7 @@ export default class Pay extends PureComponent {
         </div>
         <p className={`${style['registered-team-header']}`}>已报名{registeredTeams.length > 0 && <span>{`(${registeredTeams.length})`}</span>}</p>
         {registeredTeams.map( t => {
-          return <div key={t.name} className={`${style['registered-team']} clearfix`}>
+          return <div key={t.name} className={`${style['registered-team']} small clearfix`}>
             <div className='pull-left'>{t.name}</div>
             <div className='pull-right'>{t.registerDate}</div>
           </div>
