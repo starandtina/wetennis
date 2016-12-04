@@ -3,6 +3,7 @@ import path from 'path'
 import cssnano from 'cssnano'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import CompressionPlugin from 'compression-webpack-plugin'
 import StatsPlugin from 'stats-webpack-plugin'
 import config from '../config'
 import _debug from 'debug'
@@ -82,7 +83,15 @@ if (__DEV__) {
         warnings: false
       }
     }),
-    new webpack.optimize.AggressiveMergingPlugin() //Merge chunks
+    //Merge chunks, See https://webpack.github.io/docs/list-of-plugins.html#aggressivemergingplugin
+    // new webpack.optimize.AggressiveMergingPlugin(),
+    new CompressionPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8
+    }),
   )
 }
 
