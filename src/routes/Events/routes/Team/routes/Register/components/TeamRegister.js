@@ -73,9 +73,9 @@ export default class TeamRegisterContainer extends PureComponent {
       <div className='container'>
         <TeamRegisterFormContainer {...this.props} onSubmit={this.handleSubmitTeamRegisterForm} />
         <p className='text-muted'>队员</p>
-        {Object.keys(members).map( k => {
-          return members[k] && <TeamMemberView key={k} id={k} {...members[k]} {...this.props} />
-        })}
+        {Object.keys(members).map( k => (
+          members[k] && <TeamMemberView key={k} id={k} {...members[k]} {...this.props} />
+        ))}
         { editing && 
           <TeamMemberFormContainer {...this.props}
             onCancel={cancelEditTeamMember}

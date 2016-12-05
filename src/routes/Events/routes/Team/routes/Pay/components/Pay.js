@@ -41,12 +41,12 @@ export default class Pay extends PureComponent {
           <button className={`btn btn-primary btn-lg btn-block`} onClick={this.pay}>确认支付</button>
         </div>
         <p className={`${style['registered-team-header']}`}>已报名{registeredTeams.length > 0 && <span>{`(${registeredTeams.length})`}</span>}</p>
-        {registeredTeams.map( t => {
-          return <div key={t.name} className={`${style['registered-team']} small clearfix`}>
+        {registeredTeams.map( t => (
+          <div key={t.name} className={`${style['registered-team']} small clearfix`}>
             <div className='pull-left'>{t.name}</div>
             <div className='pull-right'>{t.registerDate}</div>
           </div>
-        })}
+        ))}
       </div>
     )
   }

@@ -4,14 +4,14 @@
   "data": [{
     "id": "sequence1",
     "name": "第一双打",
-    "teamMembers": ["member1 id", "member2 id"],
+    "teamMembers": ["1", "2"],
     "restrictions": {
 
     }
   }, {
     "id": "sequence2",
     "name": "第二双打",
-    "teamMembers": [],
+    "teamMembers": ["3"],
     "restrictions": {
 
     }
