@@ -10,23 +10,32 @@ import cs from './TeamAllocate.scss'
 
 export default class TeamAllocate extends PureComponent {
   componentDidMount() {
-    const { fetchRegisteredTeamSequence, fetchRegisteredTeamMembers, params: { teamId } } = this.props
+    const { fetchRegisteredTeamSequence, fetchRegisteredTeamMembers, moveTeamMember, params: { teamId } } = this.props
 
     fetchRegisteredTeamSequence({teamId})
-    fetchRegisteredTeamMembers({userId: ''})
+    fetchRegisteredTeamMembers({teamId})
 
-     dragula([...document.querySelectorAll('.dragula-container')], {
-    }).on('drop', (el, target, source, sibling) => {
-      const addIcon = target.getElementsByClassName('material-icons')[0]
-
-      if (target && 
-          target.children.length > 1 && 
-          !target.classList.contains('dragula-team-allocate-members-container')) {
-        addIcon && addIcon.classList.add('hide')
-      } else {
-        addIcon && addIcon.classList.remove('hide')
+    dragula([...document.querySelectorAll('.dragula-container')], {
+      copy: true,
+      // As some of the containers are rendered after `TeamAllocatecomponentDidMount`
+      isContainer: function (el) {
+        return el.classList.contains('dragula-container');
       }
-    }) 
+    }).on('drop', (el, target, source, sibling) => {
+      const teamMemberId = el.dataset.teamMemberId
+      const targetTeamSequenceId = target && target.dataset.teamSequenceId
+      const sourceTeamSequenceId = source.dataset.teamSequenceId
+
+      moveTeamMember({
+        teamMemberId,
+        targetTeamSequenceId,
+        sourceTeamSequenceId,
+      })
+
+      if (el.parentNode) {
+        el.parentNode.removeChild(el)
+      }
+    })
   }
 
   allocateTeamMembers = () => {
@@ -34,7 +43,7 @@ export default class TeamAllocate extends PureComponent {
   }
 
   render() {
-    const { registeredTeamSequence, registeredTeamMembers, push } = this.props
+    const { registeredTeamSequence, registeredTeamMembers, unScheduledTeamMemberIds, push } = this.props
 
     return <div className='u-has-nav container'>
       <NavBack routes={this.props.routes} caption='出战顺序' handleGoBack={() => push(`/events/${eventId}`)}>
@@ -45,16 +54,16 @@ export default class TeamAllocate extends PureComponent {
       <Grid>
         <Row>
           <Col xs={6}>
-            {registeredTeamSequence.map( s => {
-              return <TeamSequence key={s.id} {...s} />
-            })}
+            {registeredTeamSequence.map( s => (
+              <TeamSequence key={s.id} registeredTeamMembers={registeredTeamMembers} {...s} />
+            ))}
           </Col>
           <Col xs={6}>
             <p>队员</p>
             <div className={`dragula-container dragula-team-allocate-members-container`}>
-              {registeredTeamMembers.map( m => {
-                return <TeamMemberView key={m.id} {...m} />
-              })}
+              {unScheduledTeamMemberIds.map( teamMemberId => (
+                <TeamMemberView key={teamMemberId} {...registeredTeamMembers[teamMemberId]} />
+              ))}
             </div>
           </Col>
         </Row>

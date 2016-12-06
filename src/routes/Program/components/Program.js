@@ -33,8 +33,7 @@ export default class Program extends Component {
       }
 
       adjustMatch({
-        el: {...el.dataset
-        },
+        el: {...el.dataset},
         sibling: {
           matchId: sibling && sibling.dataset.matchId
         },
