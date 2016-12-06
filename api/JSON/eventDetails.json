@@ -14,7 +14,8 @@
         "friendRegisterCount": 0,
         "drawCountdown": 0,
         "registerList": null,
-        "state": "1",
+        "isGroup": true,
+        "state": "5",
         "follow": false
     }
 }

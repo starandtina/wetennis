@@ -83,6 +83,20 @@ export default class EventInfo extends React.Component {
                 className={`${cs.startedCol} ${cs.startedActive}`}
               >
                 <i className="material-icons">today</i>
+                <div>队员顺序</div>
+              </Link>
+            : <div className={`${cs.startedCol}`}>
+                <i className="material-icons">today</i>
+                <div>队员顺序</div>
+              </div>
+            }
+
+            {[4,5,6].indexOf(Number(state)) !== -1
+            ? <Link
+                to={`/events/${eventId}/drawTable`}
+                className={`${cs.startedCol} ${cs.startedActive}`}
+              >
+                <i className="material-icons">today</i>
                 <div>签表</div>
               </Link>
             : <div className={`${cs.startedCol}`}>

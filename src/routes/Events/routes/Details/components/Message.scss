@@ -35,6 +35,10 @@
   color: #fff;
 }
 
+.mainColorItem .messageItem {
+  background-color: $mainColor;
+}
+
 .rigisterLeft {
   float: left;
   width: calc(100% - #{88*$px1});

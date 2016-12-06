@@ -93,6 +93,17 @@ class Message extends React.Component {
               </div>}
           </MessageItem>
         : undefined}
+        
+        {true
+        ? <MessageItem className={`clearfix ${cs['mainColorItem']}`}>
+            <div className={cs.rigisterLeft}>分配队员顺序</div>
+            <div className={cs.rigisterRight}>
+              <Link to={`${path}/team/register`}>
+                <RaisedButton label="立刻分配" style={buttonStyle} />
+              </Link>
+            </div>
+          </MessageItem>
+        : undefined}
 
         {/* 已报名显示已经报名的比赛 */}
         {Array.isArray(registerList) && registerList.length > 0 && [3, 4, 5, 6].indexOf(Number(state) !== -1)
