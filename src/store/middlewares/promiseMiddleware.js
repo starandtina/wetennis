@@ -14,7 +14,7 @@ export default function promiseMiddleware({ dispatch, getState }) {
       ({ payload, error = false }) => {
         const { code, errorMsg, data } = payload
 
-        if (Number(code) === 0 && !errorMsg) {
+        if (Number(code) === 0) {
           return next({...rest, payload: data, error, type: SUCCESS})
         } else {
           error = true

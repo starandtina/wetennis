@@ -173,7 +173,6 @@ class SettingsForm extends React.Component {
                     component={TextField}
                     inputStyle={{
                         textAlign: 'left',
-                        color: '#929292',
                       }}
                     name="email"
                     fullWidth
