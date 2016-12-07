@@ -18,7 +18,7 @@ const TeamSequence = props => {
   }
 
   return <div className={`${cs['team-sequence-container']}`}>
-    <p>{name}</p>
+    <p><strong>{name}</strong></p>
     <div 
       className={cls`
           dragula-container 
