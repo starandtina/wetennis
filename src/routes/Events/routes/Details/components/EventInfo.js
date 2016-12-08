@@ -41,6 +41,8 @@ export default class EventInfo extends React.Component {
       endDate,
       banner,
       location,
+      isAllocate,
+      team,
       state
     } = this.props.data;
     const eventId = this.props.eventId
@@ -77,9 +79,9 @@ export default class EventInfo extends React.Component {
         </div>
         {[1,2,3].indexOf(Number(state)) === -1
         ? <div className={cs.started}>
-            {[4,5,6].indexOf(Number(state)) !== -1
+            {isAllocate && [5, 6].indexOf(Number(state)) !== -1
             ? <Link
-                to={`/events/${eventId}/drawTable`}
+                to={`/events/${eventId}/team/${team.id}/schedule`}
                 className={`${cs.startedCol} ${cs.startedActive}`}
               >
                 <i className="material-icons">today</i>

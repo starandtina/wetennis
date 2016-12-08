@@ -16,6 +16,10 @@
         "registerList": null,
         "isGroup": true,
         "state": "5",
-        "follow": false
+        "follow": false,
+        "isAllocate": true,
+        "team": {
+            "id": "1231"
+        }
     }
 }

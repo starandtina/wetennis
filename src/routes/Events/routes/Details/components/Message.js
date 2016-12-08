@@ -53,6 +53,8 @@ class Message extends React.Component {
       id,
       state,
       isGroup,
+      isAllocate,
+      team,
     } = data;
     const {countdown} = this.state;
     let countdownFormat;
@@ -94,11 +96,11 @@ class Message extends React.Component {
           </MessageItem>
         : undefined}
         
-        {true
+        {isGroup && !isAllocate && [5,6].includes(state)
         ? <MessageItem className={`clearfix ${cs['mainColorItem']}`}>
             <div className={cs.rigisterLeft}>分配队员顺序</div>
             <div className={cs.rigisterRight}>
-              <Link to={`${path}/team/register`}>
+              <Link to={`${path}/${team.id}/schedule`}>
                 <RaisedButton label="立刻分配" style={buttonStyle} />
               </Link>
             </div>
