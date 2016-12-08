@@ -104,7 +104,7 @@ class AddressEdit extends React.Component {
     return (
       <form className={`${classes.Root} u-has-nav`} onSubmit={handleSubmit(this.addEquipment)}>
         <NavBack routes={this.props.routes} caption=" " leftText="close" transparent className='white-theme'>
-          <button type="button" disabled={submitting}>
+          <button type="button" disabled={submitting} className={classes['icon-button']}>
             <label htmlFor="uploadImage" className={classes.AddImage}>
               <UploadImage
                 type="file"
@@ -114,7 +114,7 @@ class AddressEdit extends React.Component {
               <i className="material-icons">collections</i>
             </label>
           </button>
-          <button type="submit" disabled={submitting}>
+          <button type="submit" disabled={submitting} className={classes['icon-button']}>
             <i className="material-icons">done</i>
           </button>
         </NavBack>

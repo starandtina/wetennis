@@ -35,6 +35,11 @@ export const fetchRegisteredTeamMembers = (data) => ({
   promise: () => API.post(URLConf.fetchRegisteredTeamMembers, {...data}),
 })
 
+export const updateRegisteredTeamSequence = (data) => ({
+  types: [UPDATE_REGISTERED_TEAM_SEQUENCE, UPDATE_REGISTERED_TEAM_SEQUENCE_SUCCESS, UPDATE_REGISTERED_TEAM_SEQUENCE_FAILTURE],
+  promise: () => API.post(URLConf.updateRegisteredTeamSequence, {...data}),
+})
+
 export const moveTeamMember = (data) => ({
   type: MOVE_TEAM_MEMBER,
   payload: data,

@@ -1,5 +1,4 @@
 import { injectReducer } from 'store/reducers'
-
 import { requireAuth } from 'utils/auth'
 
 export default (store) => ({
@@ -14,7 +13,7 @@ export default (store) => ({
 
       injectReducer(store, {
         key: 'teamAllocate',
-        reducer
+        reducer,
       })
 
       next(null, teamAllocate)

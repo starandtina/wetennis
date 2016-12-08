@@ -15,17 +15,25 @@ export default class TeamAllocate extends PureComponent {
     fetchRegisteredTeamSequence({teamId})
     fetchRegisteredTeamMembers({teamId})
 
-    dragula([...document.querySelectorAll('.dragula-container')], {
+    dragula([...document.getElementsByClassName('dragula-container')], {
+      // Set it `copy` then it can't move in the same container
       copy: true,
       // As some of the containers are rendered after `TeamAllocatecomponentDidMount`
       isContainer: function (el) {
-        return el.classList.contains('dragula-container');
+        return el.classList.contains('dragula-container')
       }
     }).on('drop', (el, target, source, sibling) => {
-      const teamMemberId = el.dataset.teamMemberId
-      const targetTeamSequenceId = target && target.dataset.teamSequenceId
-      const sourceTeamSequenceId = source.dataset.teamSequenceId
+      // If target is null and it means the `source` and `target` is the same
+      // So we do nothing
 
+      if (!target) {
+        return true
+      }
+
+      const teamMemberId = el.dataset.teamMemberId
+      const sourceTeamSequenceId = source.dataset.teamSequenceId
+      const targetTeamSequenceId = target.dataset.teamSequenceId
+      
       moveTeamMember({
         teamMemberId,
         targetTeamSequenceId,
@@ -38,8 +46,23 @@ export default class TeamAllocate extends PureComponent {
     })
   }
 
-  allocateTeamMembers = () => {
+  updateRegisteredTeamSequence = () => {
+    const {
+      updateRegisteredTeamSequence,
+      registeredTeamSequence,
+      push,
+      params: { eventId },
+      location: { query },
+    } = this.props
 
+    updateRegisteredTeamSequence({
+      registeredTeamSequence,
+      matchId: query.matchId,
+    }).then(({payload: { code, data }}) => {
+      if (Number(code) === 0) {
+        push(`/events/${eventId}`)
+      }
+    })
   }
 
   render() {
@@ -47,7 +70,7 @@ export default class TeamAllocate extends PureComponent {
 
     return <div className='u-has-nav container'>
       <NavBack routes={this.props.routes} caption='出战顺序' handleGoBack={() => push(`/events/${eventId}`)}>
-        <div onClick={this.allocateTeamMembers}>
+        <div onClick={this.updateRegisteredTeamSequence}>
           <i className={`material-icons`}>done</i>
         </div>
       </NavBack>

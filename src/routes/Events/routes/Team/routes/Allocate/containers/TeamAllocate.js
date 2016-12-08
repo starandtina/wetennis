@@ -3,7 +3,14 @@ import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 
 import TeamAllocate from '../components/TeamAllocate'
-import { fetchRegisteredTeamSequence, fetchRegisteredTeamMembers, moveTeamMember, getUnScheduledTeamMemberIds } from '../modules'
+import {
+  fetchRegisteredTeamSequence,
+  updateRegisteredTeamSequence,
+
+  fetchRegisteredTeamMembers,
+  getUnScheduledTeamMemberIds,
+  moveTeamMember,
+} from '../modules'
 
 const mapStateToProps = (state) => ({
   unScheduledTeamMemberIds: getUnScheduledTeamMemberIds(state.teamAllocate),
@@ -15,6 +22,7 @@ export default connect(
   mapStateToProps,
   {
     fetchRegisteredTeamSequence,
+    updateRegisteredTeamSequence,
     fetchRegisteredTeamMembers,
     moveTeamMember,
 
