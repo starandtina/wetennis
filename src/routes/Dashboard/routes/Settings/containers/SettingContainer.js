@@ -59,7 +59,7 @@ const mapStateToProps = (state) => {
   formValues: getFormValues('SettingsForm')(state),
   initialValues: {
     ...settings,
-    birthday: (state.settings && state.settings.birthday ? new Date(state.settings.birthday) : new Date)
+    birthday: (state.settings && !Number.isNaN(Date.parse(state.settings.birthday)) ? new Date(state.settings.birthday) : new Date)
   }
 })};
 
@@ -96,7 +96,7 @@ class SettingsForm extends React.Component {
       const settings = action.payload.data;
       initialize({
         ...settings,
-        birthday: new Date(settings.birthday)
+        birthday: (settings && !Number.isNaN(Date.parse(settings.birthday)) ? new Date(settings.birthday) : new Date)
       })
     });
   }
@@ -209,6 +209,10 @@ class SettingsForm extends React.Component {
                 <Col xs={8}>
                   <Field
                     component={DatePicker}
+                    onChange={(value) => {
+                      console.log('date changed ', value) // eslint-disable-line no-console
+                    }}
+                    hintText="Day of delivery?"
                     underlineStyle={underlineStyle}
                     fullWidth
                     autoOk

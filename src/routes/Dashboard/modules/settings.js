@@ -55,9 +55,12 @@ const INITIAL_STATE = {
 }
 
 export default handleActions({
-  [FETCH_MY_SETTINGS_SUCCESS]: (settings, action) => action.payload,
+  [FETCH_MY_SETTINGS_SUCCESS]: (settings, action) => ({
+    ...settings,
+    ...action.payload,
+  }),
   [UPDATE_SETTINGS]: (settings, action) => ({
     ...settings,
     ...action.payload,
-  })
+  }),
 }, INITIAL_STATE)
