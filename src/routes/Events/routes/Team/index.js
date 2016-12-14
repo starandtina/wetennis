@@ -14,6 +14,7 @@ export default (store) => ({
          require('./routes/Register')(store),
          require('./routes/Pay')(store),
          require('./routes/Allocate')(store),
+         require('./routes/Schedule')(store),
       ])
     }, 'events')
   },

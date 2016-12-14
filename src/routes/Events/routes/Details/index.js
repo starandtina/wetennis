@@ -10,7 +10,6 @@ export default (store) => ({
         require('./routes/Match')(store),
         require('./routes/Score')(store),
         require('./routes/Schedule')(store),
-        require('./routes/TeamSchedule')(store),
         require('./routes/DrawTable')(store),
       ])
     }, 'events')
