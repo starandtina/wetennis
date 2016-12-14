@@ -25,8 +25,8 @@ export class RegisterConfirmation extends React.Component {
   uploadUserInfo = () => {
     const { uploadUserInfo, push, params, formValues } = this.props;
     const eventId = params.eventId;
-    const { name, username, gender, personCard, passport, phone } = formValues;
-    if (name && username && gender && (personCard || passport) && phone) {
+    const { name, username, gender, cardId, passport, phone } = formValues;
+    if (name && username && gender && (cardId || passport) && phone) {
       uploadUserInfo(formValues);
       push(`/events/${eventId}/register/announcement`)
     } else {
@@ -200,7 +200,7 @@ export class RegisterConfirmation extends React.Component {
                   inputStyle={{
                     textAlign: 'left'
                   }}
-                  name="personCard"
+                  name="cardId"
                   fullWidth
                   component={TextField}
                 />
