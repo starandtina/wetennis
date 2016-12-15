@@ -44,16 +44,23 @@ export class SignupForm extends React.Component {
 
   sendactivationCode = () => {
     const { sendActivationCode, formValues, theSyncErrors } = this.props;
+    
     if (formValues.phone && (!theSyncErrors || !theSyncErrors.phone)) {
       sendActivationCode({
         phone: formValues.phone
-      });
-
-      this.setState({
-        buttonSuspending: true,
-        Tip: 180,
+      }).then(({
+        payload: {
+          code
+        }
+      }) => {
+        if (Number(code) === 0) {
+          this.setState({
+            buttonSuspending: true,
+            Tip: 180,
+          })
+          this.thisEvent = setInterval(this.startTiming.bind(this), 1000)
+        }
       })
-      this.thisEvent = setInterval(this.startTiming.bind(this), 1000)
     }
   }
 

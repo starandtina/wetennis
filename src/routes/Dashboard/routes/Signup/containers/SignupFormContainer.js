@@ -40,19 +40,31 @@ const validate = values => {
 
 const asyncValidate = (values, dispatch, props, blurredField) => {
   if (blurredField === 'username') {
-    return dispatch(checkUserNameDuplicated(values.userName)).then(action => {
+    return dispatch(checkUserNameDuplicated({
+      userName: values.username
+    })).then(action => {
       if (action.payload.data.userNameDuplicated) {
-        throw { username: '用户名重复', hidenErrorBar: true }
+        throw {
+          username: '用户名重复',
+          hidenErrorBar: true
+        }
       }
-    });
+    })
   }
+
   if (blurredField === 'phone') {
-    return dispatch(checkPhoneDuplicated(values.phone)).then(action => {
+    return dispatch(checkPhoneDuplicated({
+      phone: values.phone
+    })).then(action => {
       if (action.payload.data.phoneDuplicated) {
-        throw ({ 'phone': '电话号码重复', hidenErrorBar: true })
+        throw ({
+          'phone': '电话号码重复',
+          hidenErrorBar: true
+        })
       }
-    });
+    })
   }
+
   return new Promise((resolve, reject) => resolve());
 };
 
