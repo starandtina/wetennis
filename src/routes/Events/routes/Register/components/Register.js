@@ -64,16 +64,14 @@ export class Register extends React.Component {
     const { partners } = this.props;
     const partner = this.state.item.needPartner ? (
       <Panel header='搭档' eventKey="2">
-        {partners.map(item => {
-        return (
-        <li className={this.state.partnerId == item.id ? `${classes.li} ${classes.selected}` : classes.li } key={item.id} onClick={this.handlePartnerHeaderClick.bind(this, item)}>
-          <div className='clearfix'>
-            <div className='pull-left'>{item.name}</div>
-            <div className='pull-right'></div>
-          </div>
-        </li>
-        )
-      })}
+        {partners.map((item, index) => (
+          <li className={this.state.partnerId == item.id ? `${classes.li} ${classes.selected}` : classes.li } key={index} onClick={this.handlePartnerHeaderClick.bind(this, item)}>
+            <div className='clearfix'>
+              <div className='pull-left'>{item.name}</div>
+              <div className='pull-right'></div>
+            </div>
+          </li>
+        ))}
       </Panel>
     ) : null;
 
