@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { push } from 'react-router-redux'
@@ -29,56 +28,37 @@ const formatDate = date => {
   return (year+'-'+month+'-'+day);
 }
 
-const validate = values => {
-  var errors = {};
-  var hasErrors = false;
-  //if(!values.password || values.password.trim() === '') {
-  //  errors.password = 'Enter password';
-  //  hasErrors = true;
-  //}
-  //if(!values.phone || values.phone.trim() === '') {
-  //  errors.phone = 'Enter phone';
-  //  hasErrors = true;
-  //}
-  //if (values.phone && !/\b\d{3}[-.]?\d{4}[-.]?\d{4}\b/i.test(values.phone)) {
-  //  errors.phone = '请输入正确的手机号'
-  //  hasErrors = true
-  //}
-  //if(!values.activationCode || values.activationCode.trim() === '') {
-  //  errors.activationCode = 'Enter Code';
-  //  hasErrors = true;
-  //}
-  return hasErrors && errors;
+const mapStateToProps = state => {
+  const settings = state.settings
+  const formValues = getFormValues('SettingsForm')(state) || {}
+
+  return {
+    user: state.user,
+    settings,
+    formValues: formValues,
+    initialValues: {
+      ...settings,
+      birthday: (state.settings && !Number.isNaN(Date.parse(state.settings.birthday)) ? new Date(state.settings.birthday) : new Date)
+    },
+  }
 }
 
-const mapStateToProps = (state) => {
-  const settings = state.settings;
-  return ({
-  user: state.user,
-  settings,
-  formValues: getFormValues('SettingsForm')(state),
-  initialValues: {
-    ...settings,
-    birthday: (state.settings && !Number.isNaN(Date.parse(state.settings.birthday)) ? new Date(state.settings.birthday) : new Date)
-  }
-})};
-
 const mapDispatchToProps = {
-    fetchMySettings,
-    updateSettings,
-    updateMySettings,
-    initialize,
-    push
-};
+  fetchMySettings,
+  updateSettings,
+  updateMySettings,
+  initialize,
+  push,
+}
 
-class SettingsForm extends React.Component {
+class SettingsForm extends PureComponent {
   constructor(props) {
     super(props)
   }
 
   state = {
     open: false
-  };
+  }
 
   handleOpen = () => {
     this.setState({open: true});
@@ -90,10 +70,12 @@ class SettingsForm extends React.Component {
 
   componentDidMount () {
     const { fetchMySettings, initialize , user: { user: { id } } } = this.props;
+    
     fetchMySettings({
-      userId: id
+      userId: id,
     }).then(action => {
       const settings = action.payload.data;
+
       initialize({
         ...settings,
         birthday: (settings && !Number.isNaN(Date.parse(settings.birthday)) ? new Date(settings.birthday) : new Date)
@@ -102,22 +84,19 @@ class SettingsForm extends React.Component {
   }
 
   updateMySettings = () => {
-    const {
-      updateMySettings,
-      user: { user },
-      formValues
-    } = this.props;
+    const { updateMySettings, user: { user }, formValues, } = this.props
 
     updateMySettings({
+      ...user,
       ...formValues,
       birthday: formatDate(formValues.birthday),
-      userId: user.id
+      userId: user.id,
     }).then(({payload: { code }}) => {
       if (Number(code) === 0) {
         this.handleOpen()
       }
     })
-  };
+  }
 
   render () {
     const {
@@ -125,10 +104,13 @@ class SettingsForm extends React.Component {
       user,
       settings,
       children,
-      } = this.props;
-    if(children){
-      return children;
+      formValues,
+    } = this.props
+
+    if (children) {
+      return children
     }
+
     const actions = [
       <FlatButton
         label="OK"
@@ -144,8 +126,9 @@ class SettingsForm extends React.Component {
     const underlineStyle = {
       display: 'none'
     }
-    const FinalRank = settings.SelfTechRank ?
-    (Number(settings.SelfTechRank) + Number(settings.OtherTechRank)) / 2 : settings.OtherTechRank;
+
+    const FinalRank = formValues.SelfTechRank ?
+    (Number(formValues.SelfTechRank) + Number(formValues.OtherTechRank)) / 2 : formValues.OtherTechRank;
 
     return (
         <div className='u-has-nav'>
@@ -385,7 +368,10 @@ class SettingsForm extends React.Component {
     )
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
+
+export default connect(
+  mapStateToProps, 
+  mapDispatchToProps
+)(reduxForm({
   form: 'SettingsForm',
-  validate
 })(SettingsForm))

@@ -25,13 +25,7 @@ export class RegisterConfirmation extends PureComponent {
   }
 
   render() {
-    const {
-      group,
-      item,
-      partnerId,
-      partners,
-      handleSubmit,
-    } = this.props
+    const { group, item, partnerId, partners, handleSubmit } = this.props
 
     const partnerContent = item.needPartner ? (
       <div>

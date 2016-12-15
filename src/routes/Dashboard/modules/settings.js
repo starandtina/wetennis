@@ -1,21 +1,14 @@
 import {
   createAction,
-  handleActions
+  handleActions,
 } from 'redux-actions'
 
-import {
-  setCookie,
-  logout
-} from 'utils/auth'
-
 import API from 'utils/API'
-
 import URLConf from 'utils/url'
 
 // ------------------------------------
 // Constants
 // ------------------------------------
-
 
 // FETCH_MY_SETTINGS
 export const FETCH_MY_SETTINGS = 'FETCH_MY_SETTINGS'
@@ -38,15 +31,16 @@ export const UPDATE_SETTINGS = 'UPDATE_SETTINGS'
 export const fetchMySettings = data => ({
   types: [FETCH_MY_SETTINGS, FETCH_MY_SETTINGS_SUCCESS, FETCH_MY_SETTINGS],
   promise: () => API.post(URLConf.fetchMySettings, data)
-  });
+})
 
-export const updateMySettings = data => (
-{
+export const updateMySettings = data => ({
   types: [UPDATE_MY_SETTINGS, UPDATE_MY_SETTINGS_SUCCESS, UPDATE_MY_SETTINGS],
   promise: () => API.post(URLConf.updateMySettings, data)
-});
+})
 
 export const updateSettings = createAction(UPDATE_SETTINGS)
+
+
 // ------------------------------------
 // Reducer
 // ------------------------------------
