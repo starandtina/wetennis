@@ -1,32 +1,25 @@
 {
-    "code": 0,
-    "errorMsg": null,
-    "data": {
-        "id": "541AE7377CC343B5A6D2F23DAAB8EF74",
-        "name": "成都市网球协会年终团体赛",
-        "startDate": "2016-12-01",
-        "endDate": "2016-12-01",
-        "type": "公开赛",
-        "location": "网球中心",
-        "countdown": 1000000,
-        "banner": "http://wetennis.cn:86/banner/hainan.jpg",
-        "thumb": "http://wetennis.cn/http://wetennis.cn:86/upload/E075F99C-B94B-44D7-A287-A3C99033139F.jpg",
-        "friendRegisterCount": 1,
-        "drawCountdown": 0,
-<<<<<<< HEAD
-        "registerList": null,
-        "isGroup": true,
-        "state": "5",
-        "follow": false,
-        "isAllocate": true,
-        "team": {
-            "id": "1231"
-        }
-=======
-        "registerList": [],
-        "state": "1",
-        "follow": false,
-        "isGroup": true
->>>>>>> 036a92155062297fc4b9d7f65632fcb0127a77a0
+  "code": 0,
+  "errorMsg": null,
+  "data": {
+    "id": "541AE7377CC343B5A6D2F23DAAB8EF74",
+    "name": "成都市网球协会年终团体赛",
+    "startDate": "2016-12-01",
+    "endDate": "2016-12-01",
+    "type": "公开赛",
+    "location": "网球中心",
+    "countdown": 1000000,
+    "banner": "http://wetennis.cn:86/banner/hainan.jpg",
+    "thumb": "http://wetennis.cn/http://wetennis.cn:86/upload/E075F99C-B94B-44D7-A287-A3C99033139F.jpg",
+    "friendRegisterCount": 1,
+    "drawCountdown": 0,
+    "registerList": null,
+    "isGroup": true,
+    "state": "5",
+    "follow": false,
+    "isAllocate": true,
+    "team": {
+      "id": "1231"
     }
+  }
 }
