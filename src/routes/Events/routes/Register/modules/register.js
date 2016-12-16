@@ -64,9 +64,19 @@ export const uploadUserInfo = createAction(UPLOAD_USER_INFO)
 // ------------------------------------
 // Reducer
 // ------------------------------------
+const initializeState = {
+  groups: [],
+  registeredUsers: [],
+  group: { name: '级别', items: []  },
+  item: { name: '项目' },
+  partners: [],
+  partnerId: ''
+}
+
 export default handleActions({
   [FETCH_EVENT_GROUPS]: (state, action) => ({
-    ...state
+    ...state,
+    ...initializeState,
   }),
   [FETCH_EVENT_GROUPS_SUCCESS]: (state, action) => ({
     ...state,
@@ -97,11 +107,4 @@ export default handleActions({
     ...state,
     user: action.payload,
   })
-}, {
-  groups: [],
-  registeredUsers: [],
-  group: { name: '级别', items: []  },
-  item: { name: '项目' },
-  partners: [],
-  partnerId: ''
-})
+}, initializeState)
