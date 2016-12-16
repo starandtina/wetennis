@@ -34,11 +34,11 @@ const asyncValidate = (values, dispatch, props, blurredField) => {
     return dispatch(checkPhoneDuplicated({
       phone: values.phone
     })).then(action => {
-      if (action.payload.data.phoneDuplicated) {
-        throw ({
-          'phone': '电话号码重复',
-          hidenErrorBar: true
-        })
+      if (!action.payload.data.phoneDuplicated) {
+        throw {
+          phone: '电话号码不存在',
+          hidenErrorBar: true,
+        }
       }
     })
   }
