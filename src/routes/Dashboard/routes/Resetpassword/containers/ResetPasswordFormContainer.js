@@ -31,12 +31,18 @@ const validate = values => {
 
 const asyncValidate = (values, dispatch, props, blurredField) => {
   if (blurredField === 'phone') {
-    return dispatch(checkPhoneDuplicated(values.phone)).then(action => {
+    return dispatch(checkPhoneDuplicated({
+      phone: values.phone
+    })).then(action => {
       if (action.payload.data.phoneDuplicated) {
-        throw ({ 'phone': '电话号码重复', hidenErrorBar: true })
+        throw ({
+          'phone': '电话号码重复',
+          hidenErrorBar: true
+        })
       }
-    });
+    })
   }
+
   return new Promise((resolve, reject) => resolve());
 };
 
@@ -68,7 +74,7 @@ export class ResetPasswordForm extends React.Component {
     buttonSuspending: false,
     leftTime: 180,
     Tip: '发送',
-  };
+  }
 
   resetPassword = () => {
     const { resetPassword, formValues, push } = this.props;
@@ -77,7 +83,7 @@ export class ResetPasswordForm extends React.Component {
         push('/dashboard/signin')
       }
     })
-  };
+  }
   
   sendActivationCode = () => {
     const {
@@ -87,28 +93,30 @@ export class ResetPasswordForm extends React.Component {
     
     sendActivationCode({
       phone: formValues.phone
-    });
-    
-    this.setState({
-      buttonSuspending: true,
-      Tip: 180
-    });
-    
-    window.startTiming = () => {
-      let time = this.state.Tip - 1;
+    }).then(() => {
       this.setState({
-        Tip: time
-      });
-      if (time < 1) {
-        clearInterval(window.thisEvent);
-        this.setState({
-          buttonSuspending: false,
-          Tip: '发送',
-        })
-      }
-    };
+        buttonSuspending: true,
+        Tip: 180,
+      })
 
-    window.thisEvent = setInterval("startTiming()", 1000);
+      window.startTiming = () => {
+        let time = this.state.Tip - 1;
+        
+        this.setState({
+          Tip: time
+        })
+        
+        if (time < 1) {
+          clearInterval(window.thisEvent);
+          this.setState({
+            buttonSuspending: false,
+            Tip: '发送',
+          })
+        }
+      }
+
+      window.thisEvent = setInterval("startTiming()", 1000)
+    })
   };
 
   render () {
