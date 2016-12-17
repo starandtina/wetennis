@@ -41,7 +41,7 @@ export default class EventDetails extends React.Component {
         <NavBack routes={this.props.routes} ref="nav" title=" " transparent className={`${cs.navTransiton}`}>
           <div className={cs.topRightButton}>
             <div className={cs.info}>
-              <i className="material-icons">info</i>
+              <a href={details.eventDetailLink}><i className="material-icons">info</i></a>
             </div>
             <div className={cs.favorite} onClick={follow.bind(this, eventId)}>
               {details.follow

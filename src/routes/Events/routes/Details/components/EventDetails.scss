@@ -4,6 +4,10 @@
   transition: all .5s;
 }
 
+.info {
+  margin-right: 3px;
+}
+
 .nav {
   background-color: transparent;
   border-bottom: none;
@@ -15,7 +19,7 @@
 .topRightButton {
   display: flex;
   height: $topNavHeight;
-  > div {
+  > div, a {
     display: flex;
     align-items: center;
     justify-content: center;
