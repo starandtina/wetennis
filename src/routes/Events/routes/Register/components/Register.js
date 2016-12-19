@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Accordion, Panel } from 'react-bootstrap'
+import { Link } from 'react-router'
 
 import NavBack from 'components/NavBack'
 import RegisterView from './RegisterView'
@@ -10,7 +11,6 @@ export default class Register extends PureComponent {
   state = {
     group: this.props.group,
     item: this.props.item,
-    partners: this.props.partners,
   }
 
   componentDidMount() {
@@ -27,7 +27,34 @@ export default class Register extends PureComponent {
     this.props.fetchEventGroups(requestPayload)
   }
 
-  _renderEventGroups() {
+  handleGroupHeaderClick(group) {
+    this.setState({
+      group: group,
+      item: {},
+    })
+
+    this.props.selectCategory({
+      group,
+    })
+  }
+
+  handleItemHeaderClick(item) {
+    const { userId } = this.props
+    
+    this.setState({
+      item: item
+    })
+
+    this.props.fetchRegisteredUsers({
+      itemId: item.id
+    })
+
+    this.props.selectCategory({
+      item,
+    })
+  }
+
+  renderEventGroups() {
     const { groups } = this.props
 
     return (
@@ -41,7 +68,7 @@ export default class Register extends PureComponent {
     )
   }
 
-  _renderEventGroupItems() {
+  renderEventGroupItems() {
     const { items } = this.state.group
 
     return (
@@ -59,29 +86,31 @@ export default class Register extends PureComponent {
   }
 
   renderCategories() {
-    const { partners } = this.props
-    const partner = this.state.item.needPartner ? (
+    const { partner } = this.props
+
+    const partnerContainer = this.state.item.needPartner ? (
       <Panel header='搭档' eventKey="2">
-        {partners.map((item, index) => (
-          <li className={this.state.partnerId == item.id ? `${cs.li} ${cs.selected}` : cs.li } key={index} onClick={this.handlePartnerHeaderClick.bind(this, item)}>
-            <div className='clearfix'>
-              <div className='pull-left'>{item.name}</div>
-              <div className='pull-right'></div>
-            </div>
-          </li>
-        ))}
+        {partner ? 
+          <ul className='list-unstyled'>
+            <li className={`${cs.li} ${cs.selected}`}>
+              <div className='clearfix'>
+                <div className='pull-left'>{partner.name}</div>
+                <div className='pull-right'></div>
+              </div>
+            </li>
+           </ul> : <Link to={`/dashboard/partner`}>添加搭档</Link>}
       </Panel>
     ) : null
 
     return (
       <Accordion defaultActiveKey="1">
         <Panel header={this.state.group.name} eventKey="1">
-          {this._renderEventGroups()}
+          {this.renderEventGroups()}
         </Panel>
         <Panel header={this.state.item.name || '项目'} eventKey="2">
-          {this._renderEventGroupItems()}
+          {this.renderEventGroupItems()}
         </Panel>
-        {partner}
+        {partnerContainer}
       </Accordion>
     )
   }
@@ -118,38 +147,5 @@ export default class Register extends PureComponent {
          {content}
       </div>
     )
-  }
-
-  handleGroupHeaderClick(group) {
-    this.setState({
-      group: group,
-      item: {},
-    })
-  }
-
-  handleItemHeaderClick(item) {
-    const { userId } = this.props
-    
-    this.setState({
-      item: item
-    })
-    
-    if (item.needPartner) {
-      this.props.fetchPartners({
-        userid: userId
-      })
-    }
-    
-    this.props.fetchRegisteredUsers({
-      itemId: item.id
-    })
-  }
-
-  handlePartnerHeaderClick(item) {
-    const { setPartnerId } = this.props;
-    this.setState({
-      partnerId: item.id
-    });
-    setPartnerId(item.id)
   }
 }

@@ -4,7 +4,7 @@ import cs from './Register.scss'
 export default class RegisterView extends React.Component {
 
   render() {
-    const { group, item } = this.props
+    const { item } = this.props
 
     return (
       <div className={`text-center container ${cs.fontcolor}`}>
@@ -18,13 +18,10 @@ export default class RegisterView extends React.Component {
   handleClick(e) {
     e.preventDefault()
 
-    const { group, item, partnerId } = this.props
+    const { item, partner } = this.props
     const eventId = this.props.params.eventId
-    this.props.selectCategory({
-      group,
-      item
-    })
-    if(item.needPartner && !partnerId) {
+
+    if(item.needPartner && !partner) {
       alert('双打尚未选择搭档');
     } else {
       this.props.push(`/events/${eventId}/register/confirmation`)

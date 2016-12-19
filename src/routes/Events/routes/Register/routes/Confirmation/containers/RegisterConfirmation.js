@@ -10,9 +10,7 @@ import RegisterConfirmation from '../components/RegisterConfirmation'
 const partnerFields = ['usernameForPartner', 'genderForPartner', 'nameForPartner', 'phoneForPartner']
 
 const mapStateToProps = state => {
-  const partnerId = state.register.partnerId
-  const partners = state.register.partners
-  const partner = partners.find(p => p.id == partnerId)
+  const partner = state.partner.partner
   const partnerInitialValues = {}
   const formValues = getFormValues('registerConfirmForm')(state)
 
@@ -26,8 +24,7 @@ const mapStateToProps = state => {
     user: state.user.user,
     group: state.register.group,
     item: state.register.item,
-    partnerId: partnerId,
-    partners: partners,
+    partnerId: partner.id,
     initialValues: {
       ...state.user.user,
       ...partnerInitialValues,
@@ -86,7 +83,7 @@ const validate = (values, props) => {
       }
 
       if (restriction.isMixedPair) {
-        const userPartner = props.partners.find(partner => partner.id === props.partnerId)
+        const userPartner = props.partner
         if (userGender == userPartner.gender) {
           errors.cardId = '混双性别不符合报名条件';
           hasErrors = true;
@@ -106,7 +103,7 @@ const validate = (values, props) => {
         const {
           minAmountAge
         } = restriction
-        const partner = props.partners.find(partner => partner.id === props.partnerId)
+        const partner = props.partner
 
         if (age + partner.age < minAmountAge) {
           errors.cardId = `您（${parseInt(age)}）与您搭档（${partner.age}）的年龄和不满足年龄条件（${minAmountAge}）`

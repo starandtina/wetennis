@@ -25,10 +25,6 @@ export const FETCH_REGISTERED_USERS_FAILTURE = 'FETCH_REGISTERED_USERS_FAILTURE'
 
 export const SET_PARTNERID = 'SET_PARTNERID';
 
-export const FETCH_PARTNERS = 'FETCH_PARTNERS';
-export const FETCH_PARTNERS_SUCCESS = 'FETCH_PARTNERS_SUCCESS';
-export const FETCH_PARTNERS_FAILTURE = 'FETCH_PARTNERS_FAILTURE';
-
 export const SELECT_CATEGORY = 'SELECT_CATEGORY';
 export const UPLOAD_USER_INFO = 'UPLOAD_USER_INFO';
 
@@ -46,10 +42,6 @@ export const fetchEventGroups = (data) => ({
 export const fetchRegisteredUsers = (data) => ({
   types: [FETCH_REGISTERED_USERS, FETCH_REGISTERED_USERS_SUCCESS, FETCH_REGISTERED_USERS_FAILTURE],
   promise: () => API.post(URLConf.fetchRegisteredUsers, data)
-})
-export const fetchPartners = (data) => ({
-  types: [FETCH_PARTNERS, FETCH_PARTNERS_SUCCESS, FETCH_PARTNERS_FAILTURE],
-  promise: () => API.post(URLConf.fetchPartners, data)
 })
 
 export const registerEvent = (data) => ({
@@ -69,7 +61,7 @@ const initializeState = {
   registeredUsers: [],
   group: { name: '级别', items: []  },
   item: { name: '项目' },
-  partners: [],
+  partner: {},
   partnerId: ''
 }
 
@@ -89,15 +81,6 @@ export default handleActions({
   [SELECT_CATEGORY]: (state, action) => ({
     ...state,
     ...action.payload
-  }),
-  [FETCH_PARTNERS]: (state, action) => ({
-    ...state,
-    partners: [],
-    partnerId: ''
-  }),
-  [FETCH_PARTNERS_SUCCESS]: (state, action) => ({
-    ...state,
-    partners: action.payload,
   }),
   [SET_PARTNERID]: (state, action) => ({
     ...state,

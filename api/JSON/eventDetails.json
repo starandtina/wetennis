@@ -14,8 +14,8 @@
     "friendRegisterCount": 1,
     "drawCountdown": 0,
     "registerList": null,
-    "isGroup": true,
-    "state": "5",
+    "isGroup": false,
+    "state": "1",
     "follow": false,
     "isAllocate": true,
     "team": {
