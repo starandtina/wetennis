@@ -1,29 +1,27 @@
-import React from 'react'
-
-import NavBack from 'components/NavBack'
+import React, { PureComponent } from 'react'
 import { Accordion, Panel } from 'react-bootstrap'
 
+import NavBack from 'components/NavBack'
 import RegisterView from './RegisterView'
 import RegisteredUsers from './RegisteredUsers'
-import classes from './Register.scss'
+import cs from './Register.scss'
 
-export class Register extends React.Component {
+export default class Register extends PureComponent {
   state = {
     group: this.props.group,
     item: this.props.item,
-    partners: this.props.partners
-  }
-
-  constructor(props) {
-    super(props)
+    partners: this.props.partners,
   }
 
   componentDidMount() {
-    const { params, userId } = this.props;
+    const { params, userId } = this.props
+    
     if (!userId) {
       this.props.push('/dashboard/signin')
-      return;
+
+      return
     }
+
     const requestPayload = { eventId: params.eventId }
 
     this.props.fetchEventGroups(requestPayload)
@@ -35,7 +33,7 @@ export class Register extends React.Component {
     return (
       <ul className='list-unstyled'>
         {groups.map(group => (
-          <li className={this.state.group.id === group.id ? `${classes.li} ${classes.selected}` : classes.li } key={group.id} onClick={this.handleGroupHeaderClick.bind(this, group)}>
+          <li className={this.state.group.id === group.id ? `${cs.li} ${cs.selected}` : cs.li } key={group.id} onClick={this.handleGroupHeaderClick.bind(this, group)}>
             <div>{group.name}</div>
           </li>
         ))}
@@ -44,12 +42,12 @@ export class Register extends React.Component {
   }
 
   _renderEventGroupItems() {
-    const { items } = this.state.group;
+    const { items } = this.state.group
 
     return (
       <ul className='list-unstyled'>
         {items.map(item => (
-          <li className={this.state.item.id === item.id ? `${classes.li} ${classes.selected}` : classes.li } key={item.id} onClick={this.handleItemHeaderClick.bind(this, item)}>
+          <li className={this.state.item.id === item.id ? `${cs.li} ${cs.selected}` : cs.li } key={item.id} onClick={this.handleItemHeaderClick.bind(this, item)}>
             <div className='clearfix'>
               <div className='pull-left'>{item.name}</div>
               <div className='pull-right'>&yen; {item.price}</div>
@@ -61,11 +59,11 @@ export class Register extends React.Component {
   }
 
   renderCategories() {
-    const { partners } = this.props;
+    const { partners } = this.props
     const partner = this.state.item.needPartner ? (
       <Panel header='搭档' eventKey="2">
         {partners.map((item, index) => (
-          <li className={this.state.partnerId == item.id ? `${classes.li} ${classes.selected}` : classes.li } key={index} onClick={this.handlePartnerHeaderClick.bind(this, item)}>
+          <li className={this.state.partnerId == item.id ? `${cs.li} ${cs.selected}` : cs.li } key={index} onClick={this.handlePartnerHeaderClick.bind(this, item)}>
             <div className='clearfix'>
               <div className='pull-left'>{item.name}</div>
               <div className='pull-right'></div>
@@ -73,7 +71,7 @@ export class Register extends React.Component {
           </li>
         ))}
       </Panel>
-    ) : null;
+    ) : null
 
     return (
       <Accordion defaultActiveKey="1">
@@ -95,8 +93,7 @@ export class Register extends React.Component {
 
     if (children) {
       content = children
-    }
-    else {
+    } else {
       const categories = this.renderCategories()
       let registerView = (<div></div>)
       let registeredUsers = (<div></div>)
@@ -107,7 +104,7 @@ export class Register extends React.Component {
       }
 
       content = (
-        <div className={classes.MarginTop}>
+        <div className={cs.MarginTop}>
           {categories}
           {registerView}
           {registeredUsers}
@@ -126,23 +123,26 @@ export class Register extends React.Component {
   handleGroupHeaderClick(group) {
     this.setState({
       group: group,
-      item: {}
+      item: {},
     })
   }
 
   handleItemHeaderClick(item) {
-    const { userId } = this.props;
+    const { userId } = this.props
+    
     this.setState({
       item: item
-    });
+    })
+    
     if (item.needPartner) {
       this.props.fetchPartners({
         userid: userId
       })
     }
+    
     this.props.fetchRegisteredUsers({
       itemId: item.id
-    });
+    })
   }
 
   handlePartnerHeaderClick(item) {
@@ -153,5 +153,3 @@ export class Register extends React.Component {
     setPartnerId(item.id)
   }
 }
-
-export default Register

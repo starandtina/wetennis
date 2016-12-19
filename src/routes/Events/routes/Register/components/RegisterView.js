@@ -1,16 +1,16 @@
 import React from 'react'
-import classes from './Register.scss'
+import cs from './Register.scss'
 
-export class RegisterView extends React.Component {
+export default class RegisterView extends React.Component {
 
   render() {
     const { group, item } = this.props
 
     return (
-      <div className={`text-center container ${classes.fontcolor}`}>
-        <h5>报名费用</h5>
-        <h1>&yen; {item.price}</h1>
-        <button type='button' onClick={this.handleClick.bind(this)} className='btn btn-primary btn-lg btn-block'>立即报名</button>
+      <div className={`text-center container ${cs.fontcolor}`}>
+        <h4>报名费用</h4>
+        <div><span className={cs.yen}>¥ </span><h1 className={`${cs.price}`}>{item.price}</h1></div>
+        <button type='button' onClick={this.handleClick.bind(this)} className={`btn btn-primary btn-lg btn-block ${cs['submit-button']}`}>立即报名</button>
       </div>
     )
   }
@@ -31,6 +31,3 @@ export class RegisterView extends React.Component {
     }
   }
 }
-
-export default RegisterView
-
