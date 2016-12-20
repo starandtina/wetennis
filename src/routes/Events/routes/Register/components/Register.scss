@@ -1,31 +1,25 @@
-.li
-{
-    display: block;
+.li {
+  display: block;
 
-    padding: 6px 15px;
+  padding: 6px 15px;
 }
 
-.li:hover
-{
-    cursor: pointer;
+.li:hover {
+  cursor: pointer;
 }
 
-.selected
-{
-    background-color: #5cb85c;
-
-    color: white;
+.selected {
+  color: white;
+  background-color: #5cb85c;
 }
 
-.fontcolor
-{
-    color: #5cb85c;
+.fontcolor {
+  color: #5cb85c;
 }
 
 
-.register-user-container
-{
-    margin: 10px;
+.register-user-container {
+  margin: 10px;
 }
 
 
@@ -76,4 +70,13 @@
 
 .submit-button {
   background-color: #2245b4;
+}
+
+.add-partner-link,
+.update-partner-link {
+  margin-left: 10px;
+}
+
+.update-partner-link {
+  margin-left: 15px;
 }

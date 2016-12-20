@@ -8,16 +8,16 @@ import NavBack from 'components/NavBack'
 import { cls, debounce } from 'utils'
 import cs from './Partner.scss'
 
-const goBack = e => {
+const goBack = (routes, e) => {
   e && e.preventDefault()
   return browserHistory.goBack()
 }
 
 export default class Partner extends PureComponent {
-  state = { open: false }
-
   constructor(props) {
     super(props)
+
+    this.state = { open: false, partnerId: props.partner.id }
 
     const { fetchMyFriendList, user } = this.props
 
@@ -59,10 +59,10 @@ export default class Partner extends PureComponent {
   }
 
   render() {
-    const { partnerList } = this.props 
+    const { partnerList } = this.props
     const actions = [
       <FlatButton
-        label="Cancel"
+        label='取消'
         primary={true}
         onTouchTap={this.handleClose}
       />
@@ -82,8 +82,8 @@ export default class Partner extends PureComponent {
         />
       </div>
       {partnerList.map(p => (
-        <div key={p.id} 
-          className={cls`row 
+        <div key={p.id}
+          className={cls`row
             ${cs['partner-container']}
             ${this.state.partnerId === p.id ? cs.selected : ''}`} onClick={this.handleClickPartner.bind(this, p.id)}>
           <div className='col-xs-6'>{p.name}</div>

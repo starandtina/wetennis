@@ -61,14 +61,12 @@ const initializeState = {
   registeredUsers: [],
   group: { name: '级别', items: []  },
   item: { name: '项目' },
-  partner: {},
-  partnerId: ''
 }
 
 export default handleActions({
   [FETCH_EVENT_GROUPS]: (state, action) => ({
     ...state,
-    ...initializeState,
+    // ...initializeState,
   }),
   [FETCH_EVENT_GROUPS_SUCCESS]: (state, action) => ({
     ...state,
