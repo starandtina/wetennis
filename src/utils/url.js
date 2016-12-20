@@ -122,4 +122,7 @@ export default {
   fetchComments: `${ROOT_URL}fetchComments`,
   sendComment: `${ROOT_URL}sendComment`,
   likeComment: `${ROOT_URL}likeComment`,
+
+  // event infomation
+  fetchEventInfomation: `${ROOT_URL}eventInfomation`,
 }

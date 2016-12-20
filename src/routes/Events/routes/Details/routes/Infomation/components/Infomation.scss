@@ -1,0 +1,73 @@
+@import "variables.scss";
+
+.container {
+  padding-top: $topNavHeight;
+}
+
+.info {
+  display: flex;
+  padding: 15*$px1 0;
+  background-color: $thirdColor;
+  border-top: 1px solid $borderColor;
+}
+
+.thumb {
+  padding: 0 15*$px1;
+  img {
+    height: 64*$px1;
+    width: 64*$px1;
+    border-radius: 32*$px1;
+  }
+}
+
+.infoText {
+  flex-grow: 1;
+}
+.name {
+  margin: 5*$px1 0 7*$px1; 
+}
+.type {
+  border-radius: 3*$px1;
+  border: 1px solid $borderColor;
+  display: inline;
+  font-size: 9*$px1;
+  padding: 2px 5px;
+}
+
+.locationAndDate {
+  background-color: $thirdColor;
+  > div {
+    height: 40*$px1;
+    line-height: 40*$px1;
+    color: $mainFontColor;
+    font-size: $px14;
+  }
+  .icons {
+    font-size: 21*$px1;
+    vertical-align: middle;
+    margin-right: 5*$px1;
+    color: #bbb;
+  }
+}
+
+.title {
+  color: #fff;
+  background-color: $mainColor;
+  font-size: $px14;
+  height: 40*$px1;
+  line-height: 40*$px1;
+  padding: 0 15*$px1;
+  margin: 0;
+}
+
+.content {
+  padding: 15*$px1;
+  font-size: 12*$px1;
+  h4 {
+    font-size: 14*$px1;
+  }
+  ul {
+    margin-bottom: 0;
+    padding-left: 15px;
+  }
+}
