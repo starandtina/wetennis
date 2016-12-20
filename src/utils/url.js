@@ -43,8 +43,7 @@ export default {
   updateEquipment: `${ROOT_URL}editEquipment`,
   deleteEquipment: `${ROOT_URL}deleteEquipment`,
   updateBGImage: `${ROOT_URL}updateBGImage`,
-  fetchFollowedPartnerList: `${ROOT_URL}fetchFollowedPartnerList`,
-  addPartner: `${ROOT_URL}addPartner`,
+  fetchMyFriendList: `${ROOT_URL}fetchMyFriendList`,
 
   //Times
   times: `${WETENNIS_WEB_API_URL}times`,

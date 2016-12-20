@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import TeamRegisterForm from '../components/TeamRegisterForm'
 import { getTeamRegisterFormInitialValues } from '../modules'
 
-const validate = values => {
+const validate = (values = {}) => {
   const errors = {}
   const requiredFields = ['name', 'groupId', 'coachName']
   requiredFields.forEach(field => {
@@ -19,12 +19,15 @@ const validate = values => {
 
 const form = reduxForm({
   form: 'TeamRegisterForm',
-  validate
+  validate,
+  enableReinitialize: true,
 })(TeamRegisterForm)
 
-const mapStateToProps = (state) => ({
-  initialValues: getTeamRegisterFormInitialValues(state.register)
-})
+const mapStateToProps = state => {
+  return {
+    initialValues: getTeamRegisterFormInitialValues(state.register)
+  }
+}
 
 export default connect(
   mapStateToProps,

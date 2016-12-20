@@ -1,20 +1,20 @@
 import { injectReducer } from 'store/reducers'
 
 export default (store) => ({
-  path: 'follow',
+  path: 'partner',
   getComponent (nextState, next) {
     require.ensure([
-      './containers/Follow'
+      './containers/Partner'
     ], (require) => {
-      const followContainer = require('./containers/Follow')
+      const partnerContainer = require('./containers/Partner')
       const reducer = require('./modules').default
 
       injectReducer(store, {
-        key: 'follow',
+        key: 'partner',
         reducer
       })
 
-      next(null, followContainer)
+      next(null, partnerContainer)
     }, 'dashboard')
   }
 })

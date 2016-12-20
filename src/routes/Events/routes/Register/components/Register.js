@@ -1,41 +1,66 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
+import { Accordion, Panel } from 'react-bootstrap'
+import { Link } from 'react-router'
 
 import NavBack from 'components/NavBack'
-import { Accordion, Panel } from 'react-bootstrap'
-
 import RegisterView from './RegisterView'
 import RegisteredUsers from './RegisteredUsers'
-import classes from './Register.scss'
+import cs from './Register.scss'
 
-export class Register extends React.Component {
+export default class Register extends PureComponent {
   state = {
     group: this.props.group,
     item: this.props.item,
-    partners: this.props.partners
-  }
-
-  constructor(props) {
-    super(props)
   }
 
   componentDidMount() {
-    const { params, userId } = this.props;
+    const { params, userId } = this.props
+    
     if (!userId) {
       this.props.push('/dashboard/signin')
-      return;
+
+      return
     }
+
     const requestPayload = { eventId: params.eventId }
 
     this.props.fetchEventGroups(requestPayload)
   }
 
-  _renderEventGroups() {
+  handleGroupHeaderClick(group) {
+    this.setState({
+      group: group,
+      item: {},
+    })
+
+    this.props.selectCategory({
+      group,
+    })
+  }
+
+  handleItemHeaderClick(item) {
+    const { userId } = this.props
+    
+    this.setState({
+      item: item
+    })
+
+    this.props.fetchRegisteredUsers({
+      itemId: item.id
+    })
+
+    this.props.selectCategory({
+      item,
+    })
+  }
+
+  renderEventGroups() {
     const { groups } = this.props
 
     return (
       <ul className='list-unstyled'>
         {groups.map(group => (
-          <li className={this.state.group.id === group.id ? `${classes.li} ${classes.selected}` : classes.li } key={group.id} onClick={this.handleGroupHeaderClick.bind(this, group)}>
+          <li className={this.state.group.id === group.id ? `${cs.li} ${cs.selected}` : cs.li } key={group.id} onClick={this.handleGroupHeaderClick.bind(this, group)}>
             <div>{group.name}</div>
           </li>
         ))}
@@ -43,13 +68,13 @@ export class Register extends React.Component {
     )
   }
 
-  _renderEventGroupItems() {
-    const { items } = this.state.group;
+  renderEventGroupItems() {
+    const { items } = this.state.group
 
     return (
       <ul className='list-unstyled'>
         {items.map(item => (
-          <li className={this.state.item.id === item.id ? `${classes.li} ${classes.selected}` : classes.li } key={item.id} onClick={this.handleItemHeaderClick.bind(this, item)}>
+          <li className={this.state.item.id === item.id ? `${cs.li} ${cs.selected}` : cs.li } key={item.id} onClick={this.handleItemHeaderClick.bind(this, item)}>
             <div className='clearfix'>
               <div className='pull-left'>{item.name}</div>
               <div className='pull-right'>&yen; {item.price}</div>
@@ -61,29 +86,31 @@ export class Register extends React.Component {
   }
 
   renderCategories() {
-    const { partners } = this.props;
-    const partner = this.state.item.needPartner ? (
+    const { partner } = this.props
+
+    const partnerContainer = this.state.item.needPartner ? (
       <Panel header='搭档' eventKey="2">
-        {partners.map((item, index) => (
-          <li className={this.state.partnerId == item.id ? `${classes.li} ${classes.selected}` : classes.li } key={index} onClick={this.handlePartnerHeaderClick.bind(this, item)}>
-            <div className='clearfix'>
-              <div className='pull-left'>{item.name}</div>
-              <div className='pull-right'></div>
-            </div>
-          </li>
-        ))}
+        {partner ? 
+          <ul className='list-unstyled'>
+            <li className={`${cs.li} ${cs.selected}`}>
+              <div className='clearfix'>
+                <div className='pull-left'>{partner.name}</div>
+                <div className='pull-right'></div>
+              </div>
+            </li>
+           </ul> : <Link to={`/dashboard/partner`}>添加搭档</Link>}
       </Panel>
-    ) : null;
+    ) : null
 
     return (
       <Accordion defaultActiveKey="1">
         <Panel header={this.state.group.name} eventKey="1">
-          {this._renderEventGroups()}
+          {this.renderEventGroups()}
         </Panel>
         <Panel header={this.state.item.name || '项目'} eventKey="2">
-          {this._renderEventGroupItems()}
+          {this.renderEventGroupItems()}
         </Panel>
-        {partner}
+        {partnerContainer}
       </Accordion>
     )
   }
@@ -95,8 +122,7 @@ export class Register extends React.Component {
 
     if (children) {
       content = children
-    }
-    else {
+    } else {
       const categories = this.renderCategories()
       let registerView = (<div></div>)
       let registeredUsers = (<div></div>)
@@ -107,7 +133,7 @@ export class Register extends React.Component {
       }
 
       content = (
-        <div className={classes.MarginTop}>
+        <div className={cs.MarginTop}>
           {categories}
           {registerView}
           {registeredUsers}
@@ -122,36 +148,4 @@ export class Register extends React.Component {
       </div>
     )
   }
-
-  handleGroupHeaderClick(group) {
-    this.setState({
-      group: group,
-      item: {}
-    })
-  }
-
-  handleItemHeaderClick(item) {
-    const { userId } = this.props;
-    this.setState({
-      item: item
-    });
-    if (item.needPartner) {
-      this.props.fetchPartners({
-        userid: userId
-      })
-    }
-    this.props.fetchRegisteredUsers({
-      itemId: item.id
-    });
-  }
-
-  handlePartnerHeaderClick(item) {
-    const { setPartnerId } = this.props;
-    this.setState({
-      partnerId: item.id
-    });
-    setPartnerId(item.id)
-  }
 }
-
-export default Register

@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
   group: state.register.group,
   item: state.register.item,
   registeredUsers: state.register.registeredUsers,
-  partners: state.register.partners,
+  partner: state.partner && state.partner.partner,
   userId: state.user.user.id
 })
 
