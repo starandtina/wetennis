@@ -62,7 +62,7 @@ export default {
   fetchEventGroups: `${ROOT_URL}eventGroups`,
   eventFilter: `${ROOT_URL}eventFilter`,
   fetchRegisteredUsers: `${ROOT_URL}registeredUsers`,
-  fetchPartners: `${ROOT_URL}fetchPartners`,
+  fetchPartnerList: `${ROOT_URL}fetchPartners`,
 
   // event details
   fetchEventDetails: `${ROOT_URL}eventDetails`,

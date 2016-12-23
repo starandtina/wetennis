@@ -104,51 +104,8 @@ export default handleActions({
     }
   },
 }, {
-  registeredTeamSequence: [{
-    "id": "sequence1",
-    "name": "第一双打",
-    "teamMembers": ["1", "2"],
-    "restrictions": {
-
-    }
-  }, {
-    "id": "sequence2",
-    "name": "第二双打",
-    "teamMembers": ["3"],
-    "restrictions": {
-
-    }
-  }, {
-    "id": "sequence3",
-    "name": "混合双打",
-    "teamMembers": [],
-    "restrictions": {
-
-    }
-  }],
-  registeredTeamMembers: {
-    "1": {
-      "id": "1",
-      "name": "fucking yourself",
-      "gender": "male",
-      "identifyCard": "500230199010110010",
-      "isBench": false
-    },
-    "2": {
-      "id": "2",
-      "name": "testing2",
-      "gender": "female",
-      "identifyCard": "500230199010110010",
-      "isBench": false
-    },
-    "3": {
-      "id": "3",
-      "name": "testing3",
-      "gender": "male",
-      "passport": "passport",
-      "isBench": true
-    }
-  }
+  registeredTeamSequence: [],
+  registeredTeamMembers: {},
 })
 
 // ------------------------------------

@@ -35,13 +35,13 @@ export const setPartner = data => ({
 export default handleActions({
   [FETCH_MY_FRIEND_LIST_SUCCESS]: (state, action) => ({
     ...state,
-    partnerList: action.payload,
+    friendList: action.payload,
   }),
   [SET_PARTNER]: (state, action) => ({
     ...state,
-    partner: state.partnerList.find(p => p.id == action.payload.partnerId),
+    friend: state.friendList.find(p => p.id == action.payload.friendId),
   })
 }, {
-  partnerList: [],
-  partner: {},
+  friendList: [],
+  friend: null,
 })

@@ -15,7 +15,7 @@ export default class Register extends PureComponent {
 
   componentDidMount() {
     const { params, userId } = this.props
-    
+
     if (!userId) {
       this.props.push('/dashboard/signin')
 
@@ -40,7 +40,7 @@ export default class Register extends PureComponent {
 
   handleItemHeaderClick(item) {
     const { userId } = this.props
-    
+
     this.setState({
       item: item
     })
@@ -86,19 +86,20 @@ export default class Register extends PureComponent {
   }
 
   renderCategories() {
-    const { partner } = this.props
+    const { partner = {} } = this.props
 
     const partnerContainer = this.state.item.needPartner ? (
-      <Panel header='搭档' eventKey="2">
-        {partner ? 
+      <Panel header={partner.name || '搭档'} eventKey="2">
+        {partner.name ?
           <ul className='list-unstyled'>
             <li className={`${cs.li} ${cs.selected}`}>
               <div className='clearfix'>
-                <div className='pull-left'>{partner.name}</div>
+                <div className='pull-left'>{partner.name}<Link className={`small $cs['update-partner-link']`} to={`/dashboard/partner`}>修改搭档</Link></div>
                 <div className='pull-right'></div>
               </div>
             </li>
-           </ul> : <Link to={`/dashboard/partner`}>添加搭档</Link>}
+           </ul> :
+           <Link className={cs['add-partner-link']} to={`/dashboard/partner`}>添加搭档</Link>}
       </Panel>
     ) : null
 

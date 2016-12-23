@@ -10,10 +10,14 @@ import cs from './TeamAllocate.scss'
 
 export default class TeamAllocate extends PureComponent {
   componentDidMount() {
-    const { fetchRegisteredTeamSequence, fetchRegisteredTeamMembers, moveTeamMember, params: { teamId } } = this.props
+    const { fetchRegisteredTeamSequence, fetchRegisteredTeamMembers, moveTeamMember, 
+      params: { teamId }, 
+      location: { query },
+    } = this.props
+    const { matchId } = query
 
-    fetchRegisteredTeamSequence({teamId})
-    fetchRegisteredTeamMembers({teamId})
+    fetchRegisteredTeamSequence({teamId, matchId})
+    fetchRegisteredTeamMembers({teamId, matchId})
 
     dragula([...document.getElementsByClassName('dragula-container')], {
       // Set it `copy` then it can't move in the same container

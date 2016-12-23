@@ -18,6 +18,7 @@ export default (store) => ({
         require('./routes/Me')(store),
         require('./routes/MyMatch')(store),
         require('./routes/Partner')(store),
+        require('./routes/Friend')(store),
       ])
     }, 'dashboard')
   },
