@@ -1,3 +1,10 @@
+import { browserHistory } from 'react-router'
+
+export const goBack = e => {
+  e && e.preventDefault()
+  return browserHistory.goBack()
+}
+
 // buildUrl('http://www.a.com/?a=1', {
 //   b: 1,
 //   c: 'khalil zhang'

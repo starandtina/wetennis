@@ -1,0 +1,22 @@
+@import 'variables.scss';
+
+.friend-container {
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  border-bottom: 1px solid #ccc;
+}
+
+.add-icon {
+  color: $mainColor;
+}
+
+.selected {
+  color: white;
+  background-color: #5cb85c;
+
+  .add-icon {
+    color: white;
+  }
+}
+

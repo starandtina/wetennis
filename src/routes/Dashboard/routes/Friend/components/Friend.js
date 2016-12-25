@@ -9,8 +9,14 @@ export default class Partner extends PureComponent {
     const { fetchMyFriendList, user } = this.props
 
     fetchMyFriendList({
-      userId: user.id
+      userId: user.id,
     })
+  }
+
+  handleAddFriendClick = () => {
+    const { push } = this.props
+
+    push('/dashboard/addFriend')
   }
 
   render() {
@@ -18,9 +24,7 @@ export default class Partner extends PureComponent {
 
     return <div className='u-has-nav container-fluid'>
       <NavBack routes={routes} caption='好友' transparent={false}>
-        <div>
-          <i className={`material-icons`}>add</i><i className={`material-icons`}>people</i>
-        </div>
+        <div onClick={this.handleAddFriendClick}><i className={`material-icons`}>add</i><i className={`material-icons`}>people</i></div>
       </NavBack>
       {friendList.map(p => (
         <div key={p.id} 

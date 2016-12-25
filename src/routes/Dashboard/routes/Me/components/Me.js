@@ -52,10 +52,10 @@ export class Dashboard extends React.Component {
         </div>
       </div>
       <div className='clearfix'>
-        <div className={cs.Item}>
+        <Link to="/dashboard/friend" className={cs.Item}>
           <div className={cs.Num}>{userInfo.friendsNum}</div>
           <div className={cs.Des}>我的朋友</div>
-        </div>
+        </Link>
         <div className={cs.Item}>
           <div className={cs.Num}>{userInfo.attentionsNum}</div>
           <div className={cs.Des}>我的关注</div>

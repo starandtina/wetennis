@@ -44,6 +44,8 @@ export default {
   deleteEquipment: `${ROOT_URL}deleteEquipment`,
   updateBGImage: `${ROOT_URL}updateBGImage`,
   fetchMyFriendList: `${ROOT_URL}fetchMyFriendList`,
+  searchParticipants: `${ROOT_URL}searchParticipants`,
+  saveFriends: `${ROOT_URL}saveFriends`,
 
   //Times
   times: `${WETENNIS_WEB_API_URL}times`,

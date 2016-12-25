@@ -2,16 +2,10 @@ import React, { PureComponent } from 'react'
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
 import Dialog from 'material-ui/Dialog'
-import { browserHistory } from 'react-router'
 
 import NavBack from 'components/NavBack'
-import { cls, debounce } from 'utils'
+import { cls, goBack, debounce } from 'utils'
 import cs from './Partner.scss'
-
-const goBack = (routes, e) => {
-  e && e.preventDefault()
-  return browserHistory.goBack()
-}
 
 export default class Partner extends PureComponent {
   constructor(props) {
@@ -41,21 +35,27 @@ export default class Partner extends PureComponent {
     })
 
     if (this.state.partnerId) {
-      setPartner({partnerId: this.state.partnerId})
+      setPartner({
+        partnerId: this.state.partnerId
+      })
       goBack()
     }
   }
 
-  handleChange = event => {
+  handleSearchTextFieldChange = event => {
     this.setState({
       open: false,
-      partnerId: null
+      partnerId: null,
     })
-    this.debouncedFetchMyFriendList({searchValue: event.target.value})
+    this.debouncedFetchMyFriendList({
+      searchValue: event.target.value,
+    })
   }
 
   handleClickPartner = (partnerId) => {
-    this.setState({partnerId})
+    this.setState({
+      partnerId,
+    })
   }
 
   render() {
@@ -77,7 +77,7 @@ export default class Partner extends PureComponent {
       <div className=''>
         <TextField
           hintText='输入姓名或电话号码进行搜索'
-          onChange={this.handleChange}
+          onChange={this.handleSearchTextFieldChange}
           fullWidth
         />
       </div>

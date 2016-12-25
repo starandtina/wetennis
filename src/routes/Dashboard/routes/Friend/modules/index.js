@@ -43,5 +43,4 @@ export default handleActions({
   })
 }, {
   friendList: [],
-  friend: null,
 })
