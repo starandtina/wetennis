@@ -10,7 +10,7 @@ export default (store) => ({
       const reducer = require('./modules').default
 
       injectReducer(store, {
-        key: 'friend',
+        key: 'addFriend',
         reducer,
       })
 

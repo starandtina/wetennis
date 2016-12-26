@@ -18,6 +18,8 @@ export const SAVE_FRIENDS = 'SAVE_FRIENDS'
 export const SAVE_FRIENDS_SUCCESS = 'SAVE_FRIENDS_SUCCESS'
 export const SAVE_FRIENDS_FAILTURE = 'SAVE_FRIENDS_FAILTURE' 
 
+export const CLEAR_ADD_FRIEND = 'CLEAR_ADD_FRIEND'
+
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -45,11 +47,27 @@ export const removeFriend = data => ({
   payload: data,
 })
 
+export const clearAddFriend = () => ({
+  type: CLEAR_ADD_FRIEND,
+})
+
 // ------------------------------------
 // Reducer
 // ------------------------------------
+const initialState = {
+  participantList: [],
+  selectedParticipants: [],
+}
 
 export default handleActions({
+  [CLEAR_ADD_FRIEND]: (state, action) => ({
+    ...state,
+    ...initialState,
+  }),
+  [SEARCH_PARTICIPANTS]: (state, action) => ({
+    ...state,
+    ...initialState,
+  }),
   [SEARCH_PARTICIPANTS_SUCCESS]: (state, action) => ({
     ...state,
     participantList: action.payload,
@@ -62,7 +80,4 @@ export default handleActions({
     ...state,
     selectedParticipants: state.selectedParticipants.filter(friendId => friendId !== action.payload),
   }),
-}, {
-  participantList: [],
-  selectedParticipants: [],
-})
+}, initialState)

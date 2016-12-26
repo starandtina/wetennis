@@ -73,6 +73,10 @@ export default class Partner extends PureComponent {
           fullWidth
         />
       </div>
+      {partnerList.length === 0 && <div className='text-muted small  text-center'>
+        <div><i className='material-icons'>sentiment_very_dissatisfied</i></div>
+        <p>没有结果，请输入姓名或电话号码进行搜索！</p>
+      </div>}
       {partnerList.map(p => (
         <div key={p.id}
           className={cls`row

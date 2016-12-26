@@ -15,6 +15,8 @@ export const reducers = (asyncReducers) => {
 }
 
 export const injectReducer = (store, { key, reducer }) => {
+  if (Reflect.has(store.asyncReducers, key)) return
+  
   store.asyncReducers[key] = reducer
   store.replaceReducer(reducers(store.asyncReducers))
 }

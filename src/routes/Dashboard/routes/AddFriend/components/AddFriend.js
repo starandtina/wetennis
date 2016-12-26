@@ -23,8 +23,15 @@ export default class AddFriend extends PureComponent {
     })
   }
 
+  handleGoBack = e => {
+    const { clearAddFriend } = this.props
+
+    clearAddFriend()
+    goBack(e)
+  }
+
   handleSaveSelectedFriendsClick = () => {
-    const { saveFriends, selectedParticipants } = this.props
+    const { saveFriends, selectedParticipants, clearAddFriend } = this.props
 
     saveFriends({
       selectedParticipants,
@@ -34,6 +41,7 @@ export default class AddFriend extends PureComponent {
       }
     }) => {
       if (code === 0) {
+        clearAddFriend()
         goBack()
       }
     })
@@ -52,15 +60,15 @@ export default class AddFriend extends PureComponent {
   }
 
   render() {
-    const { participantList = [], selectedParticipants = [] } = this.props
+    const { participantList = [], selectedParticipants = [], friendIds = [] } = this.props
 
     return <div className='u-has-nav container-fluid'>
-      <NavBack routes={this.props.routes} caption='添加好友' transparent={false} handleGoBack={goBack}>
+      <NavBack routes={this.props.routes} caption='添加好友' transparent={false} handleGoBack={this.handleGoBack}>
       {
         selectedParticipants.length !== 0 &&
-          <div onClick={this.handleSaveSelectedFriendsClick}>
-              <i className={`material-icons`}>done</i>
-            </div>
+        <div onClick={this.handleSaveSelectedFriendsClick}>
+            <i className={`material-icons`}>done</i>
+        </div>
       }
       </NavBack>
       <div className=''>
@@ -70,7 +78,12 @@ export default class AddFriend extends PureComponent {
           fullWidth
         />
       </div>
+      {participantList.length === 0 && <div className='text-muted small  text-center'>
+        <div><i className='material-icons'>sentiment_very_dissatisfied</i></div>
+        <p>没有结果，请输入姓名或电话号码进行搜索！</p>
+      </div>}
       {participantList.map(p => (
+        !friendIds.includes(p.id) &&
         <div key={p.id} 
           className={cls`clearfix ${cs['friend-container']}
             ${selectedParticipants.includes(p.id) ? cs.selected : ''}`}>

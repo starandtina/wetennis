@@ -29,7 +29,7 @@ export default class Partner extends PureComponent {
       {friendList.length === 0 && '请添加您的朋友！'}
       {friendList.map(p => (
         <div key={p.id} 
-          className={cls`row 
+          className={cls`row small
             ${cs['friend-container']}`}>
           <div className='col-xs-6'>{p.name}</div>
           <div className='col-xs-6 text-right'>{p.phone}</div>
