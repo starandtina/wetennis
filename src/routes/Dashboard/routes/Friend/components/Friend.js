@@ -26,6 +26,7 @@ export default class Partner extends PureComponent {
       <NavBack routes={routes} caption='好友' transparent={false}>
         <div onClick={this.handleAddFriendClick}><i className={`material-icons`}>add</i><i className={`material-icons`}>people</i></div>
       </NavBack>
+      {friendList.length === 0 && '请添加您的朋友！'}
       {friendList.map(p => (
         <div key={p.id} 
           className={cls`row 

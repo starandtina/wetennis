@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react'
 import TextField from 'material-ui/TextField'
-import FlatButton from 'material-ui/FlatButton'
-import Dialog from 'material-ui/Dialog'
 
 import NavBack from 'components/NavBack'
 import { cls, goBack, debounce } from 'utils'
@@ -11,7 +9,7 @@ export default class Partner extends PureComponent {
   constructor(props) {
     super(props)
 
-    this.state = { open: false, partnerId: props.partner.id }
+    this.state = { partnerId: props.partner.id }
 
     const { fetchMyFriendList, user } = this.props
 
@@ -21,18 +19,17 @@ export default class Partner extends PureComponent {
     }), 500)
   }
 
-  handleClose = () => {
-    this.setState({
-      open: false
+  componentDidMount() {
+    const { fetchMyFriendList, user } = this.props
+
+    fetchMyFriendList({
+      userId: user.id,
+      searchValue: '',
     })
   }
 
   setPartner = () => {
     const { setPartner } = this.props
-
-    this.setState({
-      open: !this.state.partnerId
-    })
 
     if (this.state.partnerId) {
       setPartner({
@@ -42,13 +39,12 @@ export default class Partner extends PureComponent {
     }
   }
 
-  handleSearchTextFieldChange = event => {
+  handleSearchTextFieldChange = e => {
     this.setState({
-      open: false,
       partnerId: null,
     })
     this.debouncedFetchMyFriendList({
-      searchValue: event.target.value,
+      searchValue: String(e.target.value).trim(),
     })
   }
 
@@ -60,19 +56,15 @@ export default class Partner extends PureComponent {
 
   render() {
     const { partnerList } = this.props
-    const actions = [
-      <FlatButton
-        label='取消'
-        primary={true}
-        onTouchTap={this.handleClose}
-      />
-    ]
 
     return <div className='u-has-nav container-fluid'>
       <NavBack routes={this.props.routes} caption='搭档' transparent={false} handleGoBack={goBack}>
-        <div onClick={this.setPartner}>
-          <i className={`material-icons`}>done</i>
-        </div>
+      {
+        this.state.partnerId &&
+          <div onClick={this.setPartner}>
+            <i className={`material-icons`}>done</i>
+          </div>
+      }
       </NavBack>
       <div className=''>
         <TextField
@@ -90,13 +82,6 @@ export default class Partner extends PureComponent {
           <div className='col-xs-6 text-right'>{p.phone}</div>
         </div>
       ))}
-      <Dialog
-          title="请先添加你的搭档"
-          actions={actions}
-          modal={true}
-          open={this.state.open}
-        >请先添加你的搭档
-        </Dialog>
     </div>
   }
 }

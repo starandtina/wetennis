@@ -25,6 +25,9 @@ export const SAVE_FRIENDS_FAILTURE = 'SAVE_FRIENDS_FAILTURE'
 export const searchParticipants = data => ({
   types: [SEARCH_PARTICIPANTS, SEARCH_PARTICIPANTS_SUCCESS, SEARCH_PARTICIPANTS_FAILTURE],
   promise: () => API.post(URLConf.searchParticipants, data),
+  meta: {
+    isHideLoadingBar: true,
+  },
 })
 
 export const saveFriends = data => ({

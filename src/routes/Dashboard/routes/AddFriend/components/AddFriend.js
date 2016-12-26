@@ -19,7 +19,7 @@ export default class AddFriend extends PureComponent {
 
   handleSearchTextFieldChange = e => {
     this.debouncedSearchParticipant({
-      searchValue: e.target.value,
+      searchValue: String(e.target.value).trim(),
     })
   }
 

@@ -20,7 +20,10 @@ export const SET_PARTNER = 'SET_PARTNER'
 
 export const fetchMyFriendList = data => ({
   types: [FETCH_MY_FRIEND_LIST, FETCH_MY_FRIEND_LIST_SUCCESS, FETCH_MY_FRIEND_LIST_FAILTURE],
-  promise: () => API.post(URLConf.fetchMyFriendList, data)
+  promise: () => API.post(URLConf.fetchMyFriendList, data),
+  meta: {
+    isHideLoadingBar: true,
+  }
 })
 
 export const setPartner = data => ({
