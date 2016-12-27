@@ -67,7 +67,7 @@ export default class AddFriend extends PureComponent {
       {
         selectedParticipants.length !== 0 &&
         <div onClick={this.handleSaveSelectedFriendsClick}>
-            <i className={`material-icons`}>done</i>
+          <i className={`material-icons`}>done</i>
         </div>
       }
       </NavBack>
