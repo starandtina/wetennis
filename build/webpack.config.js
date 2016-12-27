@@ -4,13 +4,12 @@ import cssnano from 'cssnano'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import CompressionPlugin from 'compression-webpack-plugin'
-import StatsPlugin from 'stats-webpack-plugin'
 import config from '../config'
 import _debug from 'debug'
 
 const debug = _debug('app:webpack:config')
 const paths = config.utils_paths
-const {__DEV__, __PROD__, __TEST__} = config.globals
+const {__DEV__, __PROD__, __TEST__, __ANALYZER__} = config.globals
 
 debug('Create configuration.')
 const webpackConfig = {
@@ -61,24 +60,30 @@ webpackConfig.plugins = [
   })
 ]
 
-if (__DEV__) {
+if (__ANALYZER__) {
   const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+  const StatsPlugin = require('stats-webpack-plugin')
 
+  webpackConfig.plugins.push(
+    new BundleAnalyzerPlugin(),
+    new StatsPlugin('stats.json', {
+      chunkModules: true,
+      exclude: [/node_modules[\\\/]react/]
+    }),
+  )
+}
+
+if (__DEV__) {
   debug('Enable plugins for live development (HMR, NoErrors).')
   webpackConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    // new BundleAnalyzerPlugin(),
   )
 } else if (__PROD__) {
   debug('Enable plugins for production (OccurenceOrder, Dedupe & UglifyJS).')
   webpackConfig.plugins.push(
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(), //dedupe similar code 
-    new StatsPlugin('stats.json', {
-      chunkModules: true,
-      exclude: [/node_modules[\\\/]react/]
-    }),
+    new webpack.optimize.DedupePlugin(), //dedupe similar code
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         unused: true,
