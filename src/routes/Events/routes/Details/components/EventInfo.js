@@ -15,7 +15,7 @@ export default class EventInfo extends React.Component {
     const {countdown} = nextProps.data;
     if (stateCountdown === false && countdown) {
       this.setState({
-        countdown: countdown 
+        countdown: countdown
       });
       this.__timer = setInterval(() => {
         let {countdown} = this.state;
@@ -32,7 +32,7 @@ export default class EventInfo extends React.Component {
   componentWillUnmount() {
     clearInterval(this.__timer);
   }
-  
+
   render() {
     const {
       thumb,
@@ -79,7 +79,7 @@ export default class EventInfo extends React.Component {
         </div>
         {[1,2,3].indexOf(Number(state)) === -1
         ? <div className={cs.started}>
-            {[5, 6].indexOf(Number(state)) !== -1
+            {isAllocate && team.id && [5, 6].indexOf(Number(state)) !== -1
             ? <Link
                 to={`/events/${eventId}/team/${team.id}/schedule`}
                 className={`${cs.startedCol} ${cs.startedActive}`}
@@ -106,7 +106,7 @@ export default class EventInfo extends React.Component {
                 <div>签表</div>
               </div>
             }
-            
+
             {[5,6].indexOf(Number(state)) !== -1
             ? <Link
                 to={`/events/${eventId}/schedule`}
