@@ -11,6 +11,9 @@ import NavBack from "components/NavBack";
 import cs from "./EventDetails.scss";
 
 export default class EventDetails extends React.Component {
+  state = {
+    detailsReady: false,
+  }
   componentDidMount() {
     const {
       details,
@@ -22,7 +25,11 @@ export default class EventDetails extends React.Component {
     if (children && !!details.name) {
       return
     };
-    getDetails(eventId);
+    getDetails(eventId).then(() => {
+      this.setState({
+        detailsReady: true
+      });
+    });
     getNotices(eventId);
     getSponsors(eventId);
   }
@@ -36,6 +43,7 @@ export default class EventDetails extends React.Component {
     if (children) {
       return <div>{children}</div>
     }
+    const {detailsReady} = this.state;
     return (
       <div className={cs.box}>
         <NavBack routes={this.props.routes} ref="nav" title=" " transparent className={`${cs.navTransiton}`}>
@@ -50,7 +58,9 @@ export default class EventDetails extends React.Component {
             </div>
           </div>
         </NavBack>
-        <EventInfo data={details} eventId={eventId} />
+        {detailsReady
+        ? <EventInfo data={details} eventId={eventId} />
+        : undefined}
         <Notice data={notices} />
         <Sponsors data={sponsors} />
         <Comments groupId={eventId} />

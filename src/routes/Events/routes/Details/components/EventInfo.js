@@ -5,18 +5,10 @@ import cs from "./EventInfo.scss";
 export default class EventInfo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      countdown: false
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const stateCountdown = this.state.countdown;
-    const {countdown} = nextProps.data;
-    if (stateCountdown === false && countdown) {
-      this.setState({
-        countdown: countdown
-      });
+    const {data: {countdown}} = this.props;
+    let __countdown = false;
+    if (countdown) {
+      __countdown = countdown;
       this.__timer = setInterval(() => {
         let {countdown} = this.state;
         countdown -= 1000;
@@ -26,6 +18,9 @@ export default class EventInfo extends React.Component {
           clearInterval(this.__timer);
         }
       }, 1000);
+    }
+    this.state = {
+      countdown: __countdown
     }
   }
 
