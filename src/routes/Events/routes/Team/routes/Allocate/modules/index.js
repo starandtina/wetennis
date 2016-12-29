@@ -105,7 +105,7 @@ export default handleActions({
   },
 }, {
   registeredTeamSequence: [],
-  registeredTeamMembers: {},
+  registeredTeamMembers: [],
 })
 
 // ------------------------------------
@@ -118,5 +118,5 @@ export const getUnScheduledTeamMemberIds = ({ registeredTeamMembers,  registered
     return [...memo, ...teamSequence.teamMembers]
   }, [])
 
-  return Object.keys(registeredTeamMembers).filter(key => scheduledTeamMemberIds.indexOf(key) === -1)
+  return registeredTeamMembers.filter(m => scheduledTeamMemberIds.indexOf(m.id) === -1).map(m => m.id)
 }

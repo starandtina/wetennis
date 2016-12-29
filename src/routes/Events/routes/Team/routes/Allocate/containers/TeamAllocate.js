@@ -15,7 +15,11 @@ import {
 const mapStateToProps = (state) => ({
   unScheduledTeamMemberIds: getUnScheduledTeamMemberIds(state.teamAllocate),
   registeredTeamSequence: state.teamAllocate && state.teamAllocate.registeredTeamSequence,
-  registeredTeamMembers: state.teamAllocate && state.teamAllocate.registeredTeamMembers,
+  registeredTeamMembers: state.teamAllocate && state.teamAllocate.registeredTeamMembers.reduce((members, m) => {
+    members[m.id] = m
+
+    return members
+  }, {}),
 })
 
 export default connect(

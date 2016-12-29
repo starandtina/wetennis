@@ -60,7 +60,7 @@ export default class TeamAllocate extends PureComponent {
     } = this.props
 
     updateRegisteredTeamSequence({
-      registeredTeamSequence,
+      schedule: registeredTeamSequence,
       matchId: query.matchId,
     }).then(({payload: { code, data }}) => {
       if (Number(code) === 0) {
@@ -81,16 +81,17 @@ export default class TeamAllocate extends PureComponent {
       <Grid>
         <Row>
           <Col xs={6}>
-            {registeredTeamSequence.map( s => (
+            {registeredTeamSequence.map(s =>
               <TeamSequence key={s.id} registeredTeamMembers={registeredTeamMembers} {...s} />
-            ))}
+            )}
           </Col>
           <Col xs={6}>
             <p>队员</p>
             <div className={`dragula-container dragula-team-allocate-members-container`}>
-              {unScheduledTeamMemberIds.map( teamMemberId => (
-                <TeamMemberView key={teamMemberId} {...registeredTeamMembers[teamMemberId]} />
-              ))}
+              {unScheduledTeamMemberIds.map(teamMemberId =>
+                registeredTeamMembers[teamMemberId] &&
+                  <TeamMemberView key={teamMemberId} {...registeredTeamMembers[teamMemberId]} />
+              )}
             </div>
           </Col>
         </Row>

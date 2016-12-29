@@ -11,9 +11,9 @@ const TeamSequence = props => {
 
   if (teamMembers.length > 0) {
     content = (
-      teamMembers.map( teamMemberId => (
-        <TeamMemberView key={teamMemberId} {...registeredTeamMembers[teamMemberId]} />
-      ))
+      teamMembers.map(teamMemberId =>
+        registeredTeamMembers[teamMemberId] && <TeamMemberView key={teamMemberId} {...registeredTeamMembers[teamMemberId]} />
+      )
     )
   }
 
@@ -21,10 +21,10 @@ const TeamSequence = props => {
     <p><strong>{name}</strong></p>
     <div 
       className={cls`
-          dragula-container 
-          u-aligner
-          ${cs['dragula-target-container']}
-          ${teamMembers.length === 0 && cs['dragula-target-container--with-border']}
+        dragula-container 
+        ${teamMembers.length <= 0 ? 'u-aligner' : ''}
+        ${cs['dragula-target-container']}
+        ${teamMembers.length === 0 && cs['dragula-target-container--with-border']}
       `}
       data-team-sequence-id={id}>
       {content}
