@@ -5,7 +5,7 @@ import cs from "./MatchList.scss";
 
 import style from './TimeItem.scss';
 
-class TimeItem extends Component {
+export default class TimeItem extends Component {
   deleteItem = () => {
     const { Item, fetchDeleteTime } = this.props;
     fetchDeleteTime({
@@ -16,15 +16,17 @@ class TimeItem extends Component {
     const { Item, isLast, isGuess } = this.props;
     const { date, TimesPics: imgs, message, permission, id } = Item;
     let PermissionIcon = <i className="material-icons">public</i>;
+    
     if (Number(permission) == 1) {
       PermissionIcon = <i className="material-icons">person</i>;
     } else if (Number(permission) == 2) {
       PermissionIcon = <i className="material-icons">lock</i>;
     }
+    
     if (Item.type === "Message") {
       const imgContent = imgs.length > 0 ?
         imgs.map((img, index) => <div key={id+'_'+index} className={style.ImgMsg}>
-          <img src={img.timesImgStr}/>
+          <a target='_blank' href={img.timesImgStr}><img className='img-responsive' src={img.timesImgStr}/></a>
         </div>)
         : null;
       return (
@@ -72,7 +74,7 @@ class TimeItem extends Component {
     return (
       <div>
         <div className={style.TipLine}>
-          <div className={style.Left}>{date && date.substring(0,10)}</div>
+          <div className={`${style.Left} small`}>{date && date.substring(0,10)}</div>
           <div className={style.Right}>
             <span className={style.Circle}></span>
             约球
@@ -128,5 +130,3 @@ class TimeItem extends Component {
     )
   }
 }
-
-export default TimeItem;

@@ -1,37 +1,46 @@
-import React, { Component } from 'react';
-import UploadImage from './uploadImage';
+import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
+import UploadImage from 'components/UploadImage'
+import { uploadImage } from 'store/modules/image'
 
-import style from './addImage.scss';
+import style from './addImage.scss'
 
-class AddImage extends Component {
-  uploadImage = uploadFile => {
-    const { addImage } = this.props;
-    addImage({
+class AddImage extends PureComponent {
+  handleUploadImage = uploadFile => {
+    const { addImage, uploadImage } = this.props
+
+    uploadImage({
       imgstr: uploadFile.base64,
-      name: uploadFile.name
-    });
-  };
+      name: uploadFile.name,
+    }).then(({payload: { code, data }}) => {
+      addImage({
+        imgUrl: data.imageUrl,
+        name: uploadFile.name,
+      })
+    })
+  }
 
   render() {
-    const { uploadedImages } = this.props;
+    const { uploadedImages = [] } = this.props
 
     return (
-      <div className={style.Root}>
+      <div className={style.container}>
         {uploadedImages.map((img, index) => (
-          <div key={index} className={style.Image}><img src={img} alt=""/></div>
+          <div key={index} className={style.Image}><img src={img} alt='' /></div>
         ))}
-        <label htmlFor="uploadImage" className={style.AddImage}>
+        <label htmlFor='uploadImage' className={style.AddImage}>
           <UploadImage
-            type="file"
-            id="uploadImage"
-            onDone={this.uploadImage}
+            type='file'
+            id='uploadImage'
+            onDone={this.handleUploadImage}
           />
-          <i className="material-icons">add</i>
+          <i className='material-icons'>add</i>
         </label>
-
       </div>
     )
   }
 }
 
-export default AddImage;
+export default connect(null, {
+  uploadImage,
+})(AddImage)

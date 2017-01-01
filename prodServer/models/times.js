@@ -36,7 +36,7 @@ module.exports = function (sequelize, DataTypes) {
     classMethods: {
       associate: function (models) {
         Times.hasMany(models.TimesPics, {
-          foreignKey: 'times_id'
+          foreignKey: 'times_id',
         })
       }
     }

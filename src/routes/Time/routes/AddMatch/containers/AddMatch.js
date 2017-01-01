@@ -1,71 +1,71 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { push, goBack } from 'react-router-redux'
 import { reduxForm, getFormValues, Field } from 'redux-form'
-import { Grid, Row, Col } from 'react-bootstrap';
-import { RadioButton } from 'material-ui/RadioButton';
+import { Grid, Row, Col } from 'react-bootstrap'
+import { RadioButton } from 'material-ui/RadioButton'
 import {
   RadioButtonGroup,
   TextField,
   DatePicker,
 } from 'redux-form-material-ui'
 
-import { uploadTimeImage, clearTimeImage, addTimeMessage as addTimeMatch } from '../../../../../actions';
-import NavBack from 'components/NavBack';
-import AddImage from '../../../../../components/addImage';
-import style from './AddMatch.scss';
+import { addImage, clearTimeImage, addTimeMessage as addTimeMatch } from 'routes/Time/modules'
+import NavBack from 'components/NavBack'
+import AddImage from 'routes/Time/components/addImage'
+import style from './AddMatch.scss'
 
 const formatDate = date => {
-  var year = date.getFullYear();
+  var year = date.getFullYear()
   var month = date.getMonth() < 9 ? '0'+ (date.getMonth()+1) : date.getMonth()+1
 
   var day =  date.getDate() < 10 ? '0'+ date.getDate(): date.getDate()
-  return (year+'-'+month+'-'+day);
-};
+  return (year+'-'+month+'-'+day)
+}
 
 const validate = (values) => {
-  var errors = {};
-  var hasErrors = false;
+  var errors = {}
+  var hasErrors = false
   if (!values.message || values.message.trim() === '') {
-    errors.message = '请添加心情';
-    hasErrors = true;
+    errors.message = '请添加心情'
+    hasErrors = true
   }
   if (!values.date) {
-    errors.date = '请选择时间';
-    hasErrors = true;
+    errors.date = '请选择时间'
+    hasErrors = true
   }
   if (!values.location || values.location.trim() === '') {
-    errors.location = '请输入地点';
-    hasErrors = true;
+    errors.location = '请输入地点'
+    hasErrors = true
   }
   if (!values.match || values.match.trim() === '') {
-    errors.match = '请选择比赛类型';
-    hasErrors = true;
+    errors.match = '请选择比赛类型'
+    hasErrors = true
   }
   if (!values.us || values.us.trim() === '') {
-    errors.us = '请输入本方选手';
-    hasErrors = true;
+    errors.us = '请输入本方选手'
+    hasErrors = true
   }
   if (!values.ourScore || values.ourScore.trim() === '') {
-    errors.ourScore = '请输入比分';
-    hasErrors = true;
+    errors.ourScore = '请输入比分'
+    hasErrors = true
   } else if (Number(values.ourScore) > 7) {
-    errors.ourScore = '比分错误';
-    hasErrors = true;
+    errors.ourScore = '比分错误'
+    hasErrors = true
   }
   if (!values.opponent || values.opponent.trim() === '') {
-    errors.opponent = '请输入对手';
-    hasErrors = true;
+    errors.opponent = '请输入对手'
+    hasErrors = true
   }
   if (!values.opponentScore || values.opponentScore.trim() === '') {
-    errors.opponentScore = '请输入比分';
-    hasErrors = true;
+    errors.opponentScore = '请输入比分'
+    hasErrors = true
   } else if (Number(values.opponentScore) > 7) {
-    errors.opponentScore = '比分错误';
-    hasErrors = true;
+    errors.opponentScore = '比分错误'
+    hasErrors = true
   }
 
-  return hasErrors && errors;
+  return hasErrors && errors
 }
 
 const mapStateToProps = (state) => ({
@@ -76,15 +76,15 @@ const mapStateToProps = (state) => ({
     date: new Date
   },
   formValues: getFormValues('AddMatchForm')(state)
-});
+})
 
 const mapDispatchToProps = {
   push,
   goBack,
-  uploadTimeImage,
+  addImage,
   clearTimeImage,
   addTimeMatch
-};
+}
 
 class AddMatch extends Component {
 
@@ -98,12 +98,12 @@ class AddMatch extends Component {
   }
 
   componentDidMount(){
-    const { clearTimeImage } = this.props;
-    clearTimeImage();
+    const { clearTimeImage } = this.props
+    clearTimeImage()
   }
 
   addMatch = () => {
-    const { formValues, time, addTimeMatch, goBack, user } = this.props;
+    const { formValues, time, addTimeMatch, goBack, user } = this.props
     addTimeMatch({
       ...formValues,
       date: formatDate(formValues.date),
@@ -111,23 +111,23 @@ class AddMatch extends Component {
       type: "Match",
       userId: user.id
     }).then(() => {
-      goBack();
+      goBack()
     })
-  };
+  }
 
   render() {
     const {
       handleSubmit,
       submitting,
       time,
-      uploadTimeImage
-      } = this.props;
+      addImage
+      } = this.props
     const fieldStyle = {
       radioButton: {
         marginBottom: 16,
         color: 'white'
       }
-    };
+    }
     return (
       <form className={style.Root} onSubmit={handleSubmit(this.addMatch)}>
         <NavBack routes={this.props.routes} caption="添加我的约球" leftText="close" transparent removeColor className='white-theme'>
@@ -219,7 +219,7 @@ class AddMatch extends Component {
           />
           <AddImage
             uploadedImages={time.imageList}
-            addImage={uploadTimeImage}
+            addImage={addImage}
           />
           <Field name="permission" defaultSelected="0" component={RadioButtonGroup}>
             <RadioButton
@@ -253,6 +253,6 @@ class AddMatch extends Component {
 const MyForm = reduxForm({
   form: 'AddMatchForm',
   validate
-})(AddMatch);
+})(AddMatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyForm)

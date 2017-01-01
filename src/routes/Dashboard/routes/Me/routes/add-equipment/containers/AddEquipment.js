@@ -5,7 +5,7 @@ import { reduxForm, getFormValues } from 'redux-form';
 import { Field } from 'redux-form'
 import { TextField } from 'redux-form-material-ui'
 import NavBack from 'components/NavBack';
-import UploadImage from 'components/UploadImage/uploadImage';
+import UploadImage from 'components/UploadImage';
 
 import classes from './AddEquipment.scss'
 

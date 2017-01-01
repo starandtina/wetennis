@@ -15,9 +15,8 @@ module.exports = function (sequelize, DataTypes) {
     classMethods: {
       associate: function (models) {
         TimesPics.belongsTo(models.Times, {
-          onDelete: 'CASCADE',
           foreignKey: 'times_id',
-          constraints: false,
+          onDelete: 'CASCADE',
         })
       }
     }

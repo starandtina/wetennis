@@ -1,59 +1,42 @@
-import React, { Component } from 'react';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import React, { PureComponent } from 'react'
 import InfiniteScroll from 'react-infinite-scroller'
-import { connect } from 'react-redux'
-import { push } from 'react-router-redux'
-import { Link } from 'react-router'
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
-import IconButton from 'material-ui/IconButton/IconButton';
 
 import Footer from 'components/Footer'
-import style from './UserTime.scss';
-import TimeItem from '../../../components/TimeItem';
-import { fetchTimesList, fetchTimeInfo, fetchDeleteTime, clearTime } from '../../../actions';
+import TimeItem from './TimeItem'
+import style from './Time.scss'
 
-const mapStateToProps = (state) => ({
-  user: state.user,
-  time: state.time
-});
+export default class Time extends PureComponent {
+  state = {
+    pageStart: -1,
+  }
 
-const mapDispatchToProps = ({
-  fetchTimesList, fetchTimeInfo, push, fetchDeleteTime, clearTime
-})
-
-class Times extends Component {
   componentDidMount(){
-    const { fetchTimesList, fetchTimeInfo, params, clearTime, user: { user } } = this.props;
-    //debugger;
-    // fetchTimeInfo({
-    //   id: user.id
-    // });
-    clearTime();
+    const { fetchTimesList, location: { query }, clearTime, user: { user } } = this.props
+    const userId = query.userId || user.id
+
+    clearTime()
+    
     fetchTimesList({
-      id: params.userId,
+      id: userId,
       currentPage: 1,
       needLoading: true
-    }).then(action => {
+    }).then(data => {
       this.setState({
         pageStart:0,
-        hasMore: !action.payload.data.lastPage
+        hasMore: !data.payload.data.lastPage,
       })
-    });
-  }
-  state = {
-    pageStart: -1
+    })
   }
 
   addNewTime = event => {
-    const { user: { user } } = this.props;
-    const value = event.target.value;
-    const { push } = this.props;
-    push(`/time/users/${user.id}/${value}`);
+    const { user: { user } } = this.props
+    const value = event.target.value
+    const { push } = this.props
+    push(`/time/${value}`)
   }
 
   loadData = () => {
-    const { fetchTimesList, params, time: { currentPage }, user: { user } } = this.props;
+    const { fetchTimesList, params, time: { currentPage }, user: { user } } = this.props
     fetchTimesList({
       currentPage: currentPage + 1,
       id: params.userId,
@@ -62,19 +45,20 @@ class Times extends Component {
         pageStart:this.pageStart + 1,
         hasMore: !action.payload.data.lastPage
       })
-    });
+    })
   }
 
   debounceFuc = this.loadData
 
   render() {
-    const { time, children, fetchDeleteTime, params, user: { user } } = this.props;
-    let content = null;
-    let footer =  null;
-    const isGuess = !(params.userId === user.id);
+    const { time, children, fetchDeleteTime, location: { query }, user: { user } } = this.props
+    let content = null
+    let footer =  null
+    const isGuess = query.userId &&  query.userId !== user.id
+    
     if (children) {
-      content = children;
-      footer =  null;
+      content = children
+      footer =  null
     } else {
       const bgstyle = {
         backgroundColor: 'lightgray',
@@ -82,11 +66,11 @@ class Times extends Component {
         backgroundSize: 'contain',
         backgroundRepeat: 'round',
         color: 'white'
-      };
+      }
 
-      const footer = <Footer activeNavTab='TIME' />;
-      const timeList = time.timeList;
-      const height = window.innerHeight - 55;
+      const footer = <Footer activeNavTab='TIME' />
+      const timeList = time.timeList
+      const height = window.innerHeight - 55
       const addComponent = isGuess ? null : (
         <label htmlFor="addTimeIcon">
           <i className="material-icons">add</i>
@@ -105,7 +89,7 @@ class Times extends Component {
         <div>
           <div className={style.Timelist} style={({height:height, overflow: 'auto', clear: 'both'})}>
             <InfiniteScroll
-              className={style.loader}
+              className='clearfix'
               pageStart={this.state.pageStart}
               loadMore={this.debounceFuc}
               hasMore={this.state.hasMore}
@@ -117,8 +101,8 @@ class Times extends Component {
                 <div className={style.add}>
                   {addComponent}
                 </div>
-                <div className={style.Name}>{time.name}</div>
-                <div className={style.UserInfo}>{time.gender} | {time.birthday} | {time.Constellation}</div>
+                <div className={style.name}>{user.name}</div>
+                <div className={style['user-info']}>{user.gender === 'male' ? '男' : '女'} | {user.birthday}</div>
               </div>
               {(timeList.length === 0 && this.state.hasMore ===false) ? <p className={style.text}>您的朋友圈没有任何内容</p>
                 : timeList.map((item, index) => {
@@ -132,13 +116,8 @@ class Times extends Component {
         </div>
       )
     }
-    return (
-      <div style={{ height: '100%'}}>
-        {content}
-      </div>
-    )
+    return <div style={{ height: '100%'}}>
+      {content}
+    </div>
   }
 }
-
-// Wrap the component to inject dispatch and state into it
-export default connect(mapStateToProps, mapDispatchToProps)(Times)

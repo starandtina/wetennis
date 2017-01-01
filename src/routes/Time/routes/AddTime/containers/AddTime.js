@@ -1,37 +1,37 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { goBack } from 'react-router-redux'
 import { reduxForm, getFormValues, Field } from 'redux-form'
-import { RadioButton } from 'material-ui/RadioButton';
+import { RadioButton } from 'material-ui/RadioButton'
 import {
   RadioButtonGroup,
   TextField,
 } from 'redux-form-material-ui'
 
-import { uploadTimeImage, clearTimeImage, addTimeMessage } from '../../../../../actions';
-import NavBack from 'components/NavBack';
-import AddImage from '../../../../../components/addImage';
-import style from './AddTime.scss';
+import { addImage, clearTimeImage, addTimeMessage } from 'routes/Time/modules'
+import NavBack from 'components/NavBack'
+import AddImage from 'routes/Time/components/addImage'
+import style from './AddTime.scss'
 
 const formatDate = date => {
-  var year = date.getFullYear();
+  var year = date.getFullYear()
   var month = date.getMonth() < 9 ? '0'+ (date.getMonth()+1) : date.getMonth()+1
 
   var day =  date.getDate() < 10 ? '0'+ date.getDate(): date.getDate()
-  return (year+'-'+month+'-'+day);
+  return (year+'-'+month+'-'+day)
 }
 
 const validate = values => {
-  var errors = {};
-  var hasErrors = false;
+  var errors = {}
+  var hasErrors = false
 
   if (!values.message || values.message.trim() === '') {
-    errors.message = '请添加心情';
-    hasErrors = true;
+    errors.message = '请添加心情'
+    hasErrors = true
   }
 
-  return hasErrors && errors;
-};
+  return hasErrors && errors
+}
 
 const mapStateToProps = (state) => ({
   time: state.time,
@@ -40,15 +40,15 @@ const mapStateToProps = (state) => ({
     permission: "0"
   },
   formValues: getFormValues('AddTimeForm')(state)
-});
+})
 
 
 const mapDispatchToProps = ({
   goBack,
-  uploadTimeImage,
+  addImage,
   clearTimeImage,
   addTimeMessage
-});
+})
 
 class AddTime extends Component {
 
@@ -62,12 +62,12 @@ class AddTime extends Component {
   }
 
   componentDidMount(){
-    const { clearTimeImage } = this.props;
-    clearTimeImage();
+    const { clearTimeImage } = this.props
+    clearTimeImage()
   }
 
   addTime = () => {
-    const { formValues, time, addTimeMessage, goBack, user } = this.props;
+    const { formValues, time, addTimeMessage, goBack, user } = this.props
     addTimeMessage({
       ...formValues,
       imgs: time.imageList,
@@ -75,23 +75,23 @@ class AddTime extends Component {
       userId: user.id,
       date: formatDate(new Date)
     }).then(() => {
-      goBack();
+      goBack()
     })
-  };
+  }
 
   render() {
     const {
       handleSubmit,
       submitting,
       time,
-      uploadTimeImage
-      } = this.props;
+      addImage
+      } = this.props
     const fieldStyle = {
       radioButton: {
         marginBottom: 16,
         color: 'white'
       }
-    };
+    }
 
     return (
     <form className={style.Root} onSubmit={handleSubmit(this.addTime)}>
@@ -116,7 +116,7 @@ class AddTime extends Component {
         />
         <AddImage
           uploadedImages={time.imageList}
-          addImage={uploadTimeImage}
+          addImage={addImage}
         />
         <Field name="permission" defaultSelected="0" component={RadioButtonGroup}>
           <RadioButton
@@ -150,6 +150,6 @@ class AddTime extends Component {
 const MyForm = reduxForm({
   form: 'AddTimeForm',
   validate
-})(AddTime);
+})(AddTime)
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyForm)

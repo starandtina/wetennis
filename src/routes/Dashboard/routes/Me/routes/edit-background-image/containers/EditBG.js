@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { push, goBack } from 'react-router-redux'
 import { reduxForm, getFormValues, Field, initialize } from 'redux-form'
 import NavBack from 'components/NavBack';
-import UploadImage from 'components/UploadImage/uploadImage';
+import UploadImage from 'components/UploadImage';
 import {
   TextField
 } from 'redux-form-material-ui'

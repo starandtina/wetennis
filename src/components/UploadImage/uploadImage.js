@@ -1,57 +1,50 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { PureComponent } from 'react'
 
-class FileBase64 extends React.Component {
+export default class UploadImage extends PureComponent {
+  constructor(props) {
+    super(props)
 
-  constructor() {
-    super();
     this.state = {
-      files: []
+      files: [],
     }
+
     this.props = {
-      multiple: false
+      multiple: false,
     }
   }
 
-  handleChange(e){
-
-    let files = e.target.files;
+  handleChange = e => {
+    let files = e.target.files
 
     for (var i = 0; i < files.length; i++) {
-
-      let file = files[i]
-
-      let reader = new FileReader()
+      const file = files[i]
+      const reader = new FileReader()
 
       reader.readAsDataURL(file)
-
       reader.onload = () => {
-
-        let fileInfo = {
+        const fileInfo = {
           name: file.name,
           type: file.type,
-          size: Math.round(file.size / 1000)+' kB',
+          size: Math.round(file.size / 1000) + ' kB',
           base64: reader.result,
-          file: file
+          file: file,
         }
-          this.props.onDone(fileInfo)
+
+        this.props.onDone(fileInfo)
       }
-
     }
-
   }
 
-  render(){
+  render() {
+    const { onDone, ...rest } = this.props
+
     return (
       <input
         type="file"
-        onChange={ this.handleChange.bind(this) }
+        onChange={this.handleChange}
         accept=".png,.jpeg,.jpg"
-        {...this.props}
+        {...rest}
       />
     )
   }
-
 }
-
-export default FileBase64;

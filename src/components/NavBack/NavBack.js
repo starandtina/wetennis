@@ -28,8 +28,8 @@ export default class NavBack extends React.Component {
   }
 
   render() {
-    const {children, title, caption, leftText, routes, hiddenBack, transparent = true, handleGoBack, ...props} = this.props;
-    const backIcon = hiddenBack ? null : <i className={`material-icons ${this.props.removeColor ? '' : cs.navBackIcon}`}>{leftText||'keyboard_backspace'}</i>;
+    const {children, title, caption, leftText, routes, hiddenBack, transparent = true, removeColor, handleGoBack, ...props} = this.props;
+    const backIcon = hiddenBack ? null : <i className={`material-icons ${removeColor ? '' : cs.navBackIcon}`}>{leftText||'keyboard_backspace'}</i>;
     return (
       <TopNav title={caption || title || "wetennis"} transparent={transparent} {...props}>
         <div ref="left" onClick={handleGoBack || this.goBack} className={cs.left}>
