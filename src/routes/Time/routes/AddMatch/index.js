@@ -1,5 +1,5 @@
 export default (store) => ({
-  path: 'AddMatch',
+  path: 'addMatch',
   getComponent (nextState, next) {
     require.ensure([
       './containers/AddMatch'

@@ -7,10 +7,6 @@ export default class UploadImage extends PureComponent {
     this.state = {
       files: [],
     }
-
-    this.props = {
-      multiple: false,
-    }
   }
 
   handleChange = e => {

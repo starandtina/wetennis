@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { push, goBack } from 'react-router-redux'
-import { reduxForm, getFormValues, Field } from 'redux-form'
+import { reduxForm, Field, submit } from 'redux-form'
 import { Grid, Row, Col } from 'react-bootstrap'
 import { RadioButton } from 'material-ui/RadioButton'
 import {
@@ -68,24 +68,6 @@ const validate = (values) => {
   return hasErrors && errors
 }
 
-const mapStateToProps = (state) => ({
-  time: state.time,
-  user: state.user.user,
-  initialValues: {
-    permission: "0",
-    date: new Date
-  },
-  formValues: getFormValues('AddMatchForm')(state)
-})
-
-const mapDispatchToProps = {
-  push,
-  goBack,
-  addImage,
-  clearTimeImage,
-  addTimeMatch
-}
-
 class AddMatch extends Component {
 
   constructor(props) {
@@ -102,17 +84,10 @@ class AddMatch extends Component {
     clearTimeImage()
   }
 
-  addMatch = () => {
-    const { formValues, time, addTimeMatch, goBack, user } = this.props
-    addTimeMatch({
-      ...formValues,
-      date: formatDate(formValues.date),
-      imgs: time.imageList,
-      type: "Match",
-      userId: user.id
-    }).then(() => {
-      goBack()
-    })
+  handleDoneClick = () => {
+    const { submit } = this.props
+
+    submit('AddMatchForm')
   }
 
   render() {
@@ -122,27 +97,27 @@ class AddMatch extends Component {
       time,
       addImage
       } = this.props
+
     const fieldStyle = {
       radioButton: {
         marginBottom: 16,
-        color: 'white'
+        color: 'white',
       }
     }
-    return (
-      <form className={style.Root} onSubmit={handleSubmit(this.addMatch)}>
-        <NavBack routes={this.props.routes} caption="添加我的约球" leftText="close" transparent removeColor className='white-theme'>
-          <button type="submit" disabled={submitting} className={style.Button}>
-            <i className="material-icons">done</i>
-          </button>
+
+    return <div className='u-has-nav'>
+      <form className={style.container} onSubmit={handleSubmit}>
+        <NavBack routes={this.props.routes} caption='添加我的约球' leftText='close' transparent removeColor className='white-theme'>
+          <i onClick={this.handleDoneClick} className='material-icons'>done</i>
         </NavBack>
         <div className={style.Fields}>
           <Grid>
             <Row>
               <Col xs={6}>
                 <Field
-                  name="date"
+                  name='date'
                   component={DatePicker}
-                  floatingLabelText="选择时间"
+                  floatingLabelText='选择时间'
                   fullWidth
                   defaultDate={new Date}
                   maxDate={new Date}
@@ -151,108 +126,147 @@ class AddMatch extends Component {
               </Col>
               <Col xs={6}>
                 <Field
-                  name="location"
+                  name='location'
                   component={TextField}
                   fullWidth
-                  floatingLabelText="选择地点..."
+                  floatingLabelText='选择地点...'
                 />
               </Col>
             </Row>
             <Row>
               <Col xs={12}>
                 <Field
-                  name="match"
+                  name='match'
                   component={TextField}
                   fullWidth
-                  floatingLabelText="比赛"
+                  floatingLabelText='比赛'
                 />
               </Col>
             </Row>
             <Row>
               <Col xs={6}>
                 <Field
-                  name="us"
+                  name='us'
                   component={TextField}
                   fullWidth
-                  floatingLabelText="选手"
+                  floatingLabelText='选手'
                 />
               </Col>
               <Col xs={6}>
                 <Field
-                  name="ourScore"
-                  type="number"
+                  name='ourScore'
+                  type='number'
                   component={TextField}
                   fullWidth
-                  floatingLabelText="比分"
+                  floatingLabelText='比分'
                 />
               </Col>
             </Row>
             <Row>
               <Col xs={6}>
                 <Field
-                  name="opponent"
+                  name='opponent'
                   component={TextField}
                   fullWidth
-                  floatingLabelText="对手"
+                  floatingLabelText='对手'
                 />
               </Col>
               <Col xs={6}>
                 <Field
-                  name="opponentScore"
-                  type="number"
+                  name='opponentScore'
+                  type='number'
                   component={TextField}
                   fullWidth
-                  floatingLabelText="比分"
+                  floatingLabelText='比分'
                 />
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12}>
+                <Field
+                  name='message'
+                  component={TextField}
+                  multiLine
+                  hintText='添加这一刻的心情...'
+                  floatingLabelText='添加这一刻的心情...'
+                  fullWidth
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12}>
+                <AddImage
+                  uploadedImages={time.imageList}
+                  addImage={addImage}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12}>
+                <Field name='permission' defaultSelected='0' component={RadioButtonGroup}>
+                  <RadioButton
+                    value='0'
+                    label='公开'
+                    style={fieldStyle.radioButton}
+                    iconStyle={({fill: 'white'})}
+                    labelStyle={({color: 'white'})}
+                  />
+                  <RadioButton
+                    value='1'
+                    label='只有我的朋友可以看见'
+                    style={fieldStyle.radioButton}
+                    iconStyle={({fill: 'white'})}
+                    labelStyle={({color: 'white'})}
+                  />
+                  <RadioButton
+                    value='2'
+                    label='只有我能看见'
+                    style={fieldStyle.radioButton}
+                    iconStyle={({fill: 'white'})}
+                    labelStyle={({color: 'white'})}
+                  />
+                </Field>
               </Col>
             </Row>
           </Grid>
-          <Field
-            name="message"
-            component={TextField}
-            className={style.Message}
-            multiLine
-            hintText="添加这一刻的心情..."
-            floatingLabelText="添加这一刻的心情..."
-            fullWidth
-            style={({paddingLeft:'15px', paddingRight: '15px'})}
-          />
-          <AddImage
-            uploadedImages={time.imageList}
-            addImage={addImage}
-          />
-          <Field name="permission" defaultSelected="0" component={RadioButtonGroup}>
-            <RadioButton
-              value="0"
-              label="公开"
-              style={fieldStyle.radioButton}
-              iconStyle={({fill: 'white'})}
-              labelStyle={({color: 'white'})}
-            />
-            <RadioButton
-              value="1"
-              label="只有我的朋友可以看见"
-              style={fieldStyle.radioButton}
-              iconStyle={({fill: 'white'})}
-              labelStyle={({color: 'white'})}
-            />
-            <RadioButton
-              value="2"
-              label="只有我能看见"
-              style={fieldStyle.radioButton}
-              iconStyle={({fill: 'white'})}
-              labelStyle={({color: 'white'})}
-            />
-          </Field>
         </div>
       </form>
-    )
+    </div>  
   }
 }
 
 const MyForm = reduxForm({
   form: 'AddMatchForm',
-  validate
+  validate,
+  onSubmit: (values, dispatch, props) => {
+    const { time, addTimeMatch, goBack, user } = props
+
+    addTimeMatch({
+      ...values,
+      date: formatDate(values.date),
+      imgs: time.imageList,
+      type: 'Match',
+      userId: user.id
+    }).then(() => {
+      goBack()
+    })
+  },
 })(AddMatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyForm)
+const mapStateToProps = state => ({
+  time: state.time,
+  user: state.user.user,
+  initialValues: {
+    permission: '0',
+    date: new Date,
+  },
+})
+
+export default connect(mapStateToProps, {
+  push,
+  goBack,
+  addImage,
+  clearTimeImage,
+  addTimeMatch,
+  submit,
+})(MyForm)

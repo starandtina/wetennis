@@ -1,5 +1,5 @@
 export default (store) => ({
-  path: 'AddTime',
+  path: 'addTime',
   getComponent (nextState, next) {
     require.ensure([
       './containers/AddTime'

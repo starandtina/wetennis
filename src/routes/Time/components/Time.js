@@ -51,7 +51,7 @@ export default class Time extends PureComponent {
   debounceFuc = this.loadData
 
   render() {
-    const { time, children, fetchDeleteTime, location: { query }, user: { user } } = this.props
+    const { time, children, deleteTime, location: { query }, user: { user } } = this.props
     let content = null
     let footer =  null
     const isGuess = query.userId &&  query.userId !== user.id
@@ -102,14 +102,17 @@ export default class Time extends PureComponent {
                   {addComponent}
                 </div>
                 <div className={style.name}>{user.name}</div>
-                <div className={style['user-info']}>{user.gender === 'male' ? '男' : '女'} | {user.birthday}</div>
+                <div className={style['user-info']}>
+                  {user.gender === 'male' ? '男' : '女'}
+                  {user.birthday && `| ${user.birthday}`}
+                </div>
               </div>
               {(timeList.length === 0 && this.state.hasMore ===false) ? <p className={style.text}>您的朋友圈没有任何内容</p>
                 : timeList.map((item, index) => {
-                  return  <TimeItem isGuess={isGuess} key={index} Item={item} isLast={index === timeList.length -1} fetchDeleteTime={fetchDeleteTime} />
+                  return  <TimeItem isGuess={isGuess} key={index} Item={item} isLast={index === timeList.length -1} deleteTime={deleteTime} />
                 }
               )}
-              {(timeList.length !== 0 && this.state.hasMore ===false) ? <p className={style.text}>---我是有底线的---</p> : null}
+              {(timeList.length !== 0 && this.state.hasMore ===false) ? <p className={`${style.text} text-muted small`}>---我是有底线的---</p> : null}
             </InfiniteScroll>
             {footer}
           </div>

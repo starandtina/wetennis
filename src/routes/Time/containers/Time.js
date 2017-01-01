@@ -7,7 +7,7 @@ import Time from '../components/Time'
 import {
   fetchTimesList,
   fetchTimeInfo,
-  fetchDeleteTime,
+  deleteTime,
   clearTime,
 } from '../modules'
 
@@ -20,6 +20,6 @@ export default connect(mapStateToProps, {
   fetchTimesList,
   fetchTimeInfo,
   push,
-  fetchDeleteTime,
+  deleteTime,
   clearTime,
 })(Time)

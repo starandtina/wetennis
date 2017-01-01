@@ -21,12 +21,13 @@ class AddImage extends PureComponent {
   }
 
   render() {
-    const { uploadedImages = [] } = this.props
+    const { uploadedImages = [], className } = this.props
 
     return (
-      <div className={style.container}>
+      <div className={`${style.container}
+          ${className || ''}`}>
         {uploadedImages.map((img, index) => (
-          <div key={index} className={style.Image}><img src={img} alt='' /></div>
+          <div key={index} className={style.image}><img src={img} alt='' /></div>
         ))}
         <label htmlFor='uploadImage' className={style.AddImage}>
           <UploadImage

@@ -1,24 +1,11 @@
 @import "variables.scss";
-.Root {
-  background-color: $mainColor;
-  height: 100%;
-  margin-top: 55px;
-  margin-bottom: 55px;
+
+.container {
   color: $whiteTranBgc;
+
+  margin:  0 25px;
 }
-.Fields {
-  padding: 0 40px;
-  > div {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-}
-.Message {
-  > div {
-    position: relative;
-  }
-}
-.Button {
-  background-color: transparent;
-  border: 0;
+
+.add-image {
+  padding: 0 15px;
 }

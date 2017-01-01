@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { goBack } from 'react-router-redux'
-import { reduxForm, getFormValues, Field } from 'redux-form'
+import { reduxForm, Field, submit } from 'redux-form'
 import { RadioButton } from 'material-ui/RadioButton'
 import {
   RadioButtonGroup,
@@ -33,27 +33,10 @@ const validate = values => {
   return hasErrors && errors
 }
 
-const mapStateToProps = (state) => ({
-  time: state.time,
-  user: state.user.user,
-  initialValues: {
-    permission: "0"
-  },
-  formValues: getFormValues('AddTimeForm')(state)
-})
-
-
-const mapDispatchToProps = ({
-  goBack,
-  addImage,
-  clearTimeImage,
-  addTimeMessage
-})
-
-class AddTime extends Component {
-
+class AddTime extends PureComponent {
   constructor(props) {
     super(props)
+
     document.querySelector('body').classList.add('u-backgroundColorGreen')
   }
 
@@ -66,17 +49,10 @@ class AddTime extends Component {
     clearTimeImage()
   }
 
-  addTime = () => {
-    const { formValues, time, addTimeMessage, goBack, user } = this.props
-    addTimeMessage({
-      ...formValues,
-      imgs: time.imageList,
-      type: "Message",
-      userId: user.id,
-      date: formatDate(new Date)
-    }).then(() => {
-      goBack()
-    })
+  handleDoneClick = () => {
+    const { submit } = this.props
+
+    submit('AddTimeForm')
   }
 
   render() {
@@ -86,70 +62,95 @@ class AddTime extends Component {
       time,
       addImage
       } = this.props
+
     const fieldStyle = {
       radioButton: {
         marginBottom: 16,
-        color: 'white'
+        color: 'white',
       }
     }
 
-    return (
-    <form className={style.Root} onSubmit={handleSubmit(this.addTime)}>
-      <NavBack routes={this.props.routes} caption="添加我的时光" leftText="close" transparent removeColor className='white-theme'>
-        <button
-          type="submit"
-          disabled={submitting}
-          className={style.Button}
-        >
-          <i className="material-icons">done</i>
-        </button>
+    return <div className='container u-has-nav'>
+      <NavBack routes={this.props.routes} caption='添加我的时光' leftText='close' transparent removeColor className='white-theme'>
+        <i onClick={this.handleDoneClick} className='material-icons'>done</i>
       </NavBack>
-      <div className={style.Fields}>
-        <Field
-          name="message"
-          component={TextField}
-          style={fieldStyle}
-          fullWidth
-          multiLine
-          hintText="添加这一刻的心情..."
-          floatingLabelText="添加这一刻的心情..."
-        />
-        <AddImage
-          uploadedImages={time.imageList}
-          addImage={addImage}
-        />
-        <Field name="permission" defaultSelected="0" component={RadioButtonGroup}>
-          <RadioButton
-            value="0"
-            label="公开"
-            style={fieldStyle.radioButton}
-            iconStyle={({fill: 'white'})}
-            labelStyle={({color: 'white'})}
+      <form className={style.container} onSubmit={handleSubmit}>
+        <div className={style.Fields}>
+          <Field
+            name='message'
+            component={TextField}
+            style={fieldStyle}
+            fullWidth
+            multiLine
+            hintText='添加这一刻的心情...'
+            floatingLabelText='添加这一刻的心情...'
           />
-          <RadioButton
-            value="1"
-            label="只有我的朋友可以看见"
-            style={fieldStyle.radioButton}
-            iconStyle={({fill: 'white'})}
-            labelStyle={({color: 'white'})}
+          <AddImage
+            uploadedImages={time.imageList}
+            addImage={addImage}
           />
-          <RadioButton
-            value="2"
-            label="只有我能看见"
-            style={fieldStyle.radioButton}
-            iconStyle={({fill: 'white'})}
-            labelStyle={({color: 'white'})}
-          />
-        </Field>
-      </div>
-    </form>
-    )
+          <Field name='permission' defaultSelected='0' component={RadioButtonGroup}>
+            <RadioButton
+              value='0'
+              label='公开'
+              style={fieldStyle.radioButton}
+              iconStyle={({fill: 'white'})}
+              labelStyle={({color: 'white'})}
+            />
+            <RadioButton
+              value='1'
+              label='只有我的朋友可以看见'
+              style={fieldStyle.radioButton}
+              iconStyle={({fill: 'white'})}
+              labelStyle={({color: 'white'})}
+            />
+            <RadioButton
+              value='2'
+              label='只有我能看见'
+              style={fieldStyle.radioButton}
+              iconStyle={({fill: 'white'})}
+              labelStyle={({color: 'white'})}
+            />
+          </Field>
+        </div>
+      </form>
+    </div>
   }
 }
 
 const MyForm = reduxForm({
   form: 'AddTimeForm',
-  validate
+  validate,
+  onSubmit: (values, dispatch, props) => {
+    const { time, addTimeMessage, goBack, user } = props
+    
+    addTimeMessage({
+      ...values,
+      imgs: time.imageList,
+      type: 'Message',
+      userId: user.id,
+      date: formatDate(new Date)
+    }).then(({payload: { code }}) => {
+      if (code === 0) {
+        goBack()
+      }
+    })
+  }
 })(AddTime)
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyForm)
+const mapStateToProps = (state) => ({
+  time: state.time,
+  user: state.user.user,
+  initialValues: {
+    permission: '0',
+  },
+})
+
+
+export default connect(mapStateToProps, {
+  goBack,
+  addImage,
+  clearTimeImage,
+  addTimeMessage,
+  submit,
+})(MyForm)

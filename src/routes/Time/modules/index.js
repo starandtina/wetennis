@@ -61,7 +61,7 @@ export const addTimeMatch = data => ({
   promise: () => API.post(URL.addTimeMatch, data)
 })
 
-export const fetchDeleteTime = ({ id }) => ({
+export const deleteTime = ({ id }) => ({
   types: [DELETE_TIME, DELETE_TIME_SUCCESS, DELETE_TIME_FAILED],
   promise: () => API.delete(`${URL.times}?id=${id}`),
   meta: { id }
