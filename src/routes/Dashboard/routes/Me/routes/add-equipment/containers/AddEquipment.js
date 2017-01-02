@@ -1,50 +1,39 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { push, goBack } from 'react-router-redux'
-import { reduxForm, getFormValues } from 'redux-form';
+import { reduxForm, submit } from 'redux-form'
 import { Field } from 'redux-form'
 import { TextField } from 'redux-form-material-ui'
-import NavBack from 'components/NavBack';
-import UploadImage from 'components/UploadImage';
+import NavBack from 'components/NavBack'
+import UploadImage from 'components/UploadImage'
 
 import classes from './AddEquipment.scss'
 
-import { addEquipment, uploadEquipmentImage } from 'routes/Dashboard/modules/user'
-
-const mapStateToProps = (state) => ({
-  settings: state.settings,
-  formValues: getFormValues('addEquipmentForm')(state)
-});
-
-const mapDispatchToProps = {
-  addEquipment,
-  uploadEquipmentImage,
-  push,
-  goBack
-};
+import { addEquipment, uploadEquipmentImage, clearUploadEquipmentImageUrl } from 'routes/Dashboard/modules/user'
 
 const validate = (values) => {
-  var errors = {};
-  var hasErrors = false;
+  var errors = {}
+  var hasErrors = false
   if(!values.imgUrl || values.imgUrl.trim() === '') {
-    errors.imgUrl = '请上传图片';
-    hasErrors = true;
+    errors.imgUrl = '请上传图片'
+    hasErrors = true
   }
   if(!values.logo || values.logo.trim() === '') {
-    errors.logo = '请输入品牌名';
-    hasErrors = true;
+    errors.logo = '请输入品牌名'
+    hasErrors = true
   }
 
   if(!values.price || values.price.trim() === '') {
-    errors.price = '请输入价格';
-    hasErrors = true;
+    errors.price = '请输入价格'
+    hasErrors = true
   }
 
   if(!values.size || values.size.trim() === '') {
-    errors.size = '请输入尺码';
-    hasErrors = true;
+    errors.size = '请输入尺码'
+    hasErrors = true
   }
-  return hasErrors && errors;
+
+  return hasErrors && errors
 }
 
 class AddressEdit extends React.Component {
@@ -53,81 +42,69 @@ class AddressEdit extends React.Component {
     document.querySelector('body').classList.add('u-backgroundColorGreen')
   }
 
+  componentWillMount() {
+    const { clearUploadEquipmentImageUrl } = this.props
+
+    clearUploadEquipmentImageUrl()
+  }
+
   componentWillUnmount() {
     document.querySelector('body').classList.remove('u-backgroundColorGreen')
   }
 
-  state = {
-    imgUrl: null
-  };
-
   uploadImage = uploadFile => {
-    const { uploadEquipmentImage } = this.props;
+    const { uploadEquipmentImage } = this.props
     uploadEquipmentImage({
       imgstr: uploadFile.base64,
       name: uploadFile.name
-    }).then(action => {
-      this.setState({
-        imgUrl: action.payload.data.imageUrl
-      });
-    });
-  };
-
-  addEquipment = () => {
-    const {
-      addEquipment,
-      formValues,
-      goBack,
-      } = this.props;
-    addEquipment({
-      imgUrl: this.state.imgUrl,
-      logo: formValues.logo,
-      price: +formValues.price,
-      size: +formValues.size,
-    }).then(action => {
-      if (!action.error) {
-        goBack();
-      }
     })
-  };
+  }
+
+  handleDoneClick = () => {
+    const { submit } = this.props
+
+    submit('addEquipmentForm')
+  }
 
   render () {
     const {
       handleSubmit,
-      submitting,
-      } = this.props;
+      uploadEquipmentImageUrl,
+    } = this.props
+
     const style = {
       width: '25%',
-      marginLeft: '20px',
-      verticalAlign: 'bottom'
-    };
-    return (
-      <form className={`${classes.Root} u-has-nav`} onSubmit={handleSubmit(this.addEquipment)}>
-        <NavBack routes={this.props.routes} caption=" " leftText="close" transparent className='white-theme'>
-          <button type="button" disabled={submitting} className={classes['icon-button']}>
-            <label htmlFor="uploadImage" className={classes.AddImage}>
-              <UploadImage
-                type="file"
-                id="uploadImage"
-                onDone={this.uploadImage}
-              />
-              <i className="material-icons">collections</i>
-            </label>
-          </button>
-          <button type="submit" disabled={submitting} className={classes['icon-button']}>
-            <i className="material-icons">done</i>
-          </button>
-        </NavBack>
-        <div className={`${classes.imgContainer} u-aligner`}>
-          {this.state.imgUrl && <img src={this.state.imgUrl} alt=""/>}
-        </div>
-        <div className={classes.Field}>
+      marginRight: '20px',
+      verticalAlign: 'bottom',
+    }
+
+    return <div className='u-has-nav'>
+      <NavBack routes={this.props.routes} caption="新增装备" leftText="close" transparent className='white-theme'>
+        <label htmlFor="uploadImage" className={classes.AddImage}>
+          <UploadImage
+            type="file"
+            id="uploadImage"
+            onDone={this.uploadImage}
+          />
+          <i className="material-icons u-marginRight5">collections</i>
+        </label>
+        <i onClick={this.handleDoneClick} className="material-icons">done</i>
+      </NavBack>
+      <div className={`${classes.imgContainer} u-aligner`}>
+        {uploadEquipmentImageUrl && <img className='img-responsive' src={uploadEquipmentImageUrl} alt=""/>}
+      </div>
+      <form className={`${classes.container}`} onSubmit={handleSubmit}>
+        <div className={`container ${classes['form']}`}>
           <Field
             name="logo"
             component={TextField}
             hintText="品牌"
             floatingLabelText="品牌"
-            style={style}
+            style={{
+              width: '30%',
+              marginRight: '20px',
+              verticalAlign: 'bottom',
+            }}
           />
           <Field
             name="price"
@@ -149,13 +126,43 @@ class AddressEdit extends React.Component {
           />
         </div>
       </form>
-
-    )
+    </div>
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(reduxForm(
-  {
-    form: 'addEquipmentForm',
-    validate
-  }
-)(AddressEdit));
+
+const onSubmit = (values, dispatch, props) => {
+  const {
+    addEquipment,
+    goBack,
+    uploadEquipmentImageUrl,
+  } = props
+
+  addEquipment({
+    imgUrl: uploadEquipmentImageUrl,
+    logo: values.logo,
+    price: +values.price,
+    size: +values.size,
+  }).then(action => {
+    if (!action.error) {
+      goBack()
+    }
+  })
+}
+
+
+const mapStateToProps = state => ({
+  uploadEquipmentImageUrl: state.user.uploadEquipmentImageUrl,
+})
+
+export default connect(mapStateToProps, {
+  addEquipment,
+  uploadEquipmentImage,
+  clearUploadEquipmentImageUrl,
+  push,
+  goBack,
+  submit,
+})(reduxForm({
+  form: 'addEquipmentForm',
+  validate,
+  onSubmit: onSubmit,
+})(AddressEdit))

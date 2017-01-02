@@ -78,6 +78,8 @@ export const DELETE_EQUIPMENT_SUCCESS = 'DELETE_EQUIPMENT_SUCCESS'
 export const UPDATE_BG_IMAGE = 'UPDATE_BG_IMAGE'
 export const UPDATE_BG_IMAGE_SUCCESS = 'UPDATE_BG_IMAGE_SUCCESS'
 
+const CLEAR_UPLOAD_EQUIPMENT_IMAGE_URL = 'CLEAR_UPLOAD_EQUIPMENT_IMAGE_URL'
+
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -192,6 +194,10 @@ export const uploadEquipmentImage = data => ({
   promise: () => API.post(URLConf.uploadEquipmentImage, data)
 })
 
+export const clearUploadEquipmentImageUrl = () => ({
+  type: CLEAR_UPLOAD_EQUIPMENT_IMAGE_URL,
+})
+
 // ------------------------------------
 // Reducer
 // ------------------------------------
@@ -217,7 +223,8 @@ const INITIAL_STATE = {
   error: null,
   loading: false,
   userNameDuplicated: false,
-  phoneDuplicated: false
+  phoneDuplicated: false,
+  uploadEquipmentImageUrl: '',
 }
 
 export default handleActions({
@@ -326,5 +333,13 @@ export default handleActions({
   [CHECK_PHONE_DUPLICATED_FAILTURE]: (state, action) => ({
     ...state,
     phoneDuplicated: true
-  })
+  }),
+  [UPLOAD_EQUIPMENT_IMAGE_SUCCESS]: (state, action) => ({
+    ...state,
+    uploadEquipmentImageUrl: action.payload.imageUrl,
+  }),
+  [CLEAR_UPLOAD_EQUIPMENT_IMAGE_URL]: (state, action) => ({
+    ...state,
+    uploadEquipmentImageUrl: '',
+  }),
 }, INITIAL_STATE)

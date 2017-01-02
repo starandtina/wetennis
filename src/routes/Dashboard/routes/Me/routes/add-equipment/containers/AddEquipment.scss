@@ -1,14 +1,7 @@
 @import "variables.scss";
-.Root {
-  background-color: $mainColor;
+
+.container {
   color: $whiteTranBgc;
-}
-.Fields {
-  padding: 0 40px;
-  > div {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
 }
 
 .imgContainer {
@@ -23,7 +16,8 @@
   }
 }
 
-.icon-button {
-  border: none;
-  background: none;
+.form {
+  position: fixed;
+
+  bottom:  15px;
 }
