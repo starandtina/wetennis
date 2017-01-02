@@ -43,7 +43,9 @@ export class Dashboard extends React.Component {
         <Link className={cs.Icon} to="/dashboard/settings"><i className="material-icons">settings</i></Link>
       </NavBack>
       <div className={cs.BackGroundImageContainer}>
-        <img src={user.userInfo.backGroundImageUrl} className={cs.BackGroundImage} />
+        <Link to={`/dashboard/me/editBG`}>
+          <img src={user.userInfo.backGroundImageUrl} className={`img-responsive ${cs.BackGroundImage}`} />
+        </Link>
         <div className={cs.Information}>
           <div className={cs.Name}>{userInfo.name}</div>
           <div className={cs.UserInfo}>

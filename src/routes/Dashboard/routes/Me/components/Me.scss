@@ -1,38 +1,37 @@
-.container
-{
-    padding-top: 3.5rem;
+.container {
+  padding-top: 3.5rem;
 }
 
-.BackGroundImageContainer
-{
+.BackGroundImageContainer {
   position: relative;
+  z-index: 15;
+
+  overflow: hidden;
+
   width: 100%;
   max-height: 500px;
-  min-height: 300px;
-  overflow: hidden;
-  z-index: 15;
 }
 
-.BackGroundImage
-{
+.BackGroundImage {
+  z-index: 5;
+
   width: 100%;
   height: 100%;
-  z-index: 5;
 }
-.Name
-{
-    font-size: 36px;
-    font-weight: normal;
-    line-height: 40px;
+.Name {
+  font-size: 36px;
+  font-weight: normal;
+  line-height: 40px;
+
   margin-right: 20px;
 }
 
-.UserInfo
-{
-    font-size: 12px;
-    font-weight: normal;
-    line-height: 40px;
+.UserInfo {
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 40px;
 }
+
 
 
 .Item {

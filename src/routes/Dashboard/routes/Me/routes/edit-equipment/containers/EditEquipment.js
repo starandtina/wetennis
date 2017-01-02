@@ -10,7 +10,6 @@ import classes from './EditEquipment.scss'
 
 import { updateEquipment, deleteEquipment, uploadEquipmentImage, clearUploadEquipmentImageUrl } from 'routes/Dashboard/modules/user'
 
-
 const validate = (values) => {
   var errors = {}
   var hasErrors = false
@@ -107,10 +106,10 @@ class EditEquipment extends PureComponent {
             id='uploadImage'
             onDone={this.uploadImage}
           />
-          <i className='material-icons u-marginRight5'>collections</i>
+          <i className='material-icons u-marginRight10'>collections</i>
         </label>
-        <i onClick={this.deleteEquipment} className='material-icons u-marginRight5'>delete</i>
-        <i onClick={this.handleDoneClick} className='material-icons'>done</i>
+        <i onClick={this.deleteEquipment} className='material-icons u-marginRight10'>delete</i>
+        <i onClick={this.handleDoneClick} className='material-icons u-marginRight10'>done</i>
       </NavBack>
       <div className={`${classes.imgContainer} u-aligner`}>
         {uploadEquipmentImageUrl && <img className='img-responsive' src={uploadEquipmentImageUrl} alt=''/>}

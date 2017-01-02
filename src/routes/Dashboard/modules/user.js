@@ -1,21 +1,12 @@
-import {
-  createAction,
-  handleActions
-} from 'redux-actions'
+import { createAction, handleActions } from 'redux-actions'
 
-import {
-  setCookie,
-  logout
-} from 'utils/auth'
-
+import { setCookie, logout } from 'utils/auth'
 import API from 'utils/API'
-
 import URLConf from 'utils/url'
 
 // ------------------------------------
 // Constants
 // ------------------------------------
-
 
 // Sign Up User
 export const SIGNUP_USER = 'SIGNUP_USER'
@@ -30,9 +21,9 @@ export const SIGNIN_USER_FAILTURE = 'SIGNIN_USER_FAILTURE'
 export const RESET_SIGNIN_USER = 'RESET_SIGNIN_USER'
 
 export const RESET_PASSWORD = 'RESET_PASSWORD'
-export const SEND_ACTIVATION_CODE =  'SEND_ACTIVATION_CODE'
-export const SEND_ACTIVATION_CODE_SUCCESS =  'SEND_ACTIVATION_CODE_SUCCESS'
-export const SEND_ACTIVATION_CODE_FAILTURE =  'SEND_ACTIVATION_CODE_FAILTURE'
+export const SEND_ACTIVATION_CODE = 'SEND_ACTIVATION_CODE'
+export const SEND_ACTIVATION_CODE_SUCCESS = 'SEND_ACTIVATION_CODE_SUCCESS'
+export const SEND_ACTIVATION_CODE_FAILTURE = 'SEND_ACTIVATION_CODE_FAILTURE'
 
 // Verify Code
 export const VERIFY_PHONE = 'VERIFY_PHONE'
@@ -79,6 +70,7 @@ export const UPDATE_BG_IMAGE = 'UPDATE_BG_IMAGE'
 export const UPDATE_BG_IMAGE_SUCCESS = 'UPDATE_BG_IMAGE_SUCCESS'
 
 const CLEAR_UPLOAD_EQUIPMENT_IMAGE_URL = 'CLEAR_UPLOAD_EQUIPMENT_IMAGE_URL'
+const SET_USER_BACKGROUND_IMAGE_URL = 'SET_USER_BACKGROUND_IMAGE_URL'
 
 // ------------------------------------
 // Actions
@@ -110,7 +102,7 @@ function signUpUser(data) {
 export function signUpUserThenSetCookie(data) {
   return (dispatch, getState) =>
     dispatch(signUpUser(data)).then(resp => {
-      setCookie(resp.payload.data.id);
+      setCookie(resp.payload.data.id)
     })
 }
 
@@ -119,11 +111,12 @@ export const resetSignupUser = (data) => ({
 })
 
 export const signInUser = (data) => {
-  console.log(URLConf.signIn);
+  console.log(URLConf.signIn)
   return ({
-  types: [SIGNIN_USER, SIGNIN_USER_SUCCESS, SIGNIN_USER_FAILTURE],
-  promise: () => API.post(URLConf.signIn, data)
-})}
+    types: [SIGNIN_USER, SIGNIN_USER_SUCCESS, SIGNIN_USER_FAILTURE],
+    promise: () => API.post(URLConf.signIn, data)
+  })
+}
 
 export const resetSigninUser = (data) => ({
   type: RESET_SIGNIN_USER
@@ -134,17 +127,15 @@ export const sendActivationCode = data => ({
   promise: () => API.post(URLConf.sendActivationCode, data)
 })
 
-export const resetPassword = data => (
-{
+export const resetPassword = data => ({
   types: [RESET_PASSWORD, RESET_PASSWORD, RESET_PASSWORD],
   promise: () => API.post(URLConf.resetPassword, data)
-});
+})
 
-export const fetchMyData = data => (
-{
+export const fetchMyData = data => ({
   types: [FETCH_MY_DATA, FETCH_MY_DATA_SUCCESS, FETCH_MY_DATA_FAILTURE],
   promise: () => API.post(URLConf.fetchMyData, data)
-});
+})
 
 export const verifyPhoneSuccess = createAction(VERIFY_PHONE_SUCCESS)
 export const verifyPhoneFailure = createAction(VERIFY_PHONE_FAILTURE)
@@ -156,39 +147,33 @@ export const logoutUser = createAction(
   }
 )
 
-export const updateUserInfo = createAction(UPDATE_USERINFO);
+export const updateUserInfo = createAction(UPDATE_USERINFO)
 
-export const fetchUserInfo = data => (
-{
+export const fetchUserInfo = data => ({
   types: [FETCH_USERINFO, FETCH_USERINFO_SUCCESS, FETCH_USERINFO_FAILTURE],
   promise: () => API.post(URLConf.fetchUserInfo, data)
-});
+})
 
-export const addEquipment = data => (
-{
+export const addEquipment = data => ({
   types: [ADD_EQUIPMENT, ADD_EQUIPMENT_SUCCESS, ADD_EQUIPMENT],
-  promise: () => API.post(URLConf.addEquipment, data)
-});
+  promise: () => API.post(URLConf.addEquipment, data),
+})
 
-export const updateEquipment = data => (
-{
+export const updateEquipment = data => ({
   types: [UPDATE_EQUIPMENT, UPDATE_EQUIPMENT_SUCCESS, UPDATE_EQUIPMENT],
-  promise: () => API.post(URLConf.updateEquipment, data)
-});
+  promise: () => API.post(URLConf.updateEquipment, data),
+})
 
-export const updateBGImage = data => (
-{
+export const updateBGImage = data => ({
   types: [UPDATE_BG_IMAGE, UPDATE_BG_IMAGE_SUCCESS, UPDATE_BG_IMAGE],
   promise: () => API.post(URLConf.updateBGImage, data),
-  meta: data
-});
+  meta: data,
+})
 
-export const deleteEquipment = data => (
-{
+export const deleteEquipment = data => ({
   types: [DELETE_EQUIPMENT, DELETE_EQUIPMENT_SUCCESS, DELETE_EQUIPMENT],
-  promise: () => API.post(URLConf.deleteEquipment, data)
-});
-
+  promise: () => API.post(URLConf.deleteEquipment, data),
+})
 export const uploadEquipmentImage = data => ({
   types: [UPLOAD_EQUIPMENT_IMAGE, UPLOAD_EQUIPMENT_IMAGE_SUCCESS, UPLOAD_EQUIPMENT_IMAGE_SUCCESS],
   promise: () => API.post(URLConf.uploadEquipmentImage, data)
@@ -196,6 +181,11 @@ export const uploadEquipmentImage = data => ({
 
 export const clearUploadEquipmentImageUrl = () => ({
   type: CLEAR_UPLOAD_EQUIPMENT_IMAGE_URL,
+})
+
+export const setUserBackgroundImageUrl = imageUrl => ({
+  type: SET_USER_BACKGROUND_IMAGE_URL,
+  payload: imageUrl,
 })
 
 // ------------------------------------
@@ -309,17 +299,19 @@ export default handleActions({
     ...state,
     userInfo: {
       ...state.userInfo,
-      equipment:action.payload
+      equipment: action.payload
     }
   }),
   [UPDATE_EQUIPMENT_SUCCESS]: (state, action) => ({
     ...state,
     userInfo: {
       ...state.userInfo,
-      equipment:action.payload
+      equipment: action.payload
     }
   }),
-  [UPDATE_BG_IMAGE_SUCCESS]: (state, { meta }) => ({
+  [UPDATE_BG_IMAGE_SUCCESS]: (state, {
+    meta
+  }) => ({
     ...state,
     userInfo: {
       ...state.userInfo,
@@ -341,5 +333,12 @@ export default handleActions({
   [CLEAR_UPLOAD_EQUIPMENT_IMAGE_URL]: (state, action) => ({
     ...state,
     uploadEquipmentImageUrl: '',
+  }),
+  [SET_USER_BACKGROUND_IMAGE_URL]: (state, action) => ({
+    ...state,
+    userInfo: {
+      ...state.userInfo,
+      backGroundImageUrl: action.payload,
+    }
   }),
 }, INITIAL_STATE)

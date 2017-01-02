@@ -1,36 +1,19 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
 import { push, goBack } from 'react-router-redux'
 import { reduxForm, getFormValues, Field, initialize } from 'redux-form'
-import NavBack from 'components/NavBack';
-import UploadImage from 'components/UploadImage';
-import {
-  TextField
-} from 'redux-form-material-ui'
+import NavBack from 'components/NavBack'
+import UploadImage from 'components/UploadImage'
+import { TextField } from 'redux-form-material-ui'
 
 import cs from './EditBG.scss'
+import { uploadImage } from 'store/modules/image'
+import { updateBGImage, setUserBackgroundImageUrl } from 'routes/Dashboard/modules/user'
 
-import { updateBGImage, uploadEquipmentImage } from 'routes/Dashboard/modules/user'
-
-const mapStateToProps = state => {
-  const backGroundImageUrl = state.user && state.user.userInfo && state.user.userInfo.backGroundImageUrl;
-  const initialValues = { backGroundImageUrl };
-  return ({
-    settings: state.settings,
-    id:state.user.user && state.user.user.id,
-    initialValues
-})};
-
-const mapDispatchToProps = {
-  updateBGImage,
-  uploadEquipmentImage,
-  push,
-  goBack
-};
-
-class AddressEdit extends React.Component {
+class EditBG extends PureComponent {
   constructor(props) {
     super(props)
+
     document.querySelector('body').classList.add('u-backgroundColorGreen')
   }
 
@@ -38,74 +21,73 @@ class AddressEdit extends React.Component {
     document.querySelector('body').classList.remove('u-backgroundColorGreen')
   }
 
-  state = {
-    backGroundImageUrl: this.props.initialValues.backGroundImageUrl
-  };
-
   uploadImage = uploadFile => {
-    const { uploadEquipmentImage } = this.props;
-    uploadEquipmentImage({
+    const { uploadImage, setUserBackgroundImageUrl } = this.props
+    
+    uploadImage({
       imgstr: uploadFile.base64,
       name: uploadFile.name
-    }).then(action => {
-      this.setState({
-        backGroundImageUrl: action.payload.data.imageUrl
-      });
-    });
-  };
+    }).then(data => {
+      setUserBackgroundImageUrl(data.payload.data.imageUrl)
+    })
+  }
 
   updateBGImage = () => {
     const {
       updateBGImage,
+      backGroundImageUrl,
       id,
       push,
-      } = this.props;
+    } = this.props
 
     updateBGImage({
-      ImageUrl: this.state.backGroundImageUrl,
+      ImageUrl: backGroundImageUrl,
       userId: id
-    }).then(action => {
-      if (!action.error) {
-        push('/dashboard/me');
+    }).then(({
+      payload: {
+        code
+      }
+    }) => {
+      if (code === 0) {
+        push('/dashboard/me')
       }
     })
-  };
+  }
 
   render () {
-    const {
-      handleSubmit,
-      submitting,
-      } = this.props;
+    const { backGroundImageUrl } = this.props
 
-    return (
-      <div className='u-has-nav'>
-        <form className={cs.Root} onSubmit={handleSubmit(this.updateBGImage)}>
-          <NavBack routes={this.props.routes} caption=" " leftText="close" transparent removeColor className='white-theme'>
-            <button type="button" disabled={submitting}>
-              <label htmlFor="uploadImage" className={cs.AddImage}>
-                <UploadImage
-                  type="file"
-                  id="uploadImage"
-                  onDone={this.uploadImage}
-                />
-                <i className="material-icons">collections</i>
-              </label>
-            </button>
-            <button type="submit" disabled={submitting}>
-              <i className="material-icons">done</i>
-            </button>
-          </NavBack>
-          <div className={`${cs.imgContainer} u-aligner`}>
-            <img className='img-responsive' src={this.state.backGroundImageUrl} alt=""/>
-          </div>
-        </form>
+    return <div className='container u-has-nav'>
+      <NavBack routes={this.props.routes} caption='更新背景图片' leftText='close' transparent removeColor className='white-theme'>
+        <label htmlFor='uploadImage' className={cs.AddImage}>
+          <UploadImage
+            type='file'
+            id='uploadImage'
+            onDone={this.uploadImage}
+          />
+          <i className='material-icons u-marginRight10'>collections</i>
+        </label>
+        <i onClick={this.updateBGImage} className='material-icons u-marginRight10'>done</i>
+      </NavBack>
+      <div className={`${cs.imgContainer} u-aligner`}>
+        <img className='img-responsive' src={backGroundImageUrl} alt=''/>
       </div>
-    )
+    </div>
   }
 }
+
+const mapStateToProps = state => ({
+  settings: state.settings,
+  id: state.user.user && state.user.user.id,
+  backGroundImageUrl: state.user && state.user.userInfo && state.user.userInfo.backGroundImageUrl,
+})
+
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(reduxForm({
-  form: 'updateBGForm'
-})(AddressEdit));
+  mapStateToProps, {
+    updateBGImage,
+    uploadImage,
+    push,
+    goBack,
+    setUserBackgroundImageUrl,
+  }
+)(EditBG)
