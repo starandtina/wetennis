@@ -36,7 +36,7 @@ export default class TeamRegisterContainer extends PureComponent {
     return <div className={`${cs['team-register-container']} u-has-nav`}>
       <NavBack routes={this.props.routes} caption='团体报名' handleGoBack={() => push(`/events/${eventId}`)}>
         <div onClick={startAddTeamMember}>
-          <i className={`material-icons`}>add</i><i className={`material-icons`}>people</i>
+          <i className={`material-icons`}>person_add</i>
         </div>
       </NavBack>
       <div className='container'>
