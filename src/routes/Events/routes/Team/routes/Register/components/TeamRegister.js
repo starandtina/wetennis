@@ -30,37 +30,6 @@ export default class TeamRegisterContainer extends PureComponent {
     submitTeamRegisterForm('TeamRegisterForm')
   }
 
-  handleSubmitTeamRegisterForm = (values) => {
-    const { registerTeam, members, groups, push, params: {eventId} } = this.props
-    const { groupId } = values
-    const group = groups.find( group => group.id === groupId)
-
-    registerTeam({
-      ...values,
-      members,
-    }).then(( { payload: { code, errorMsg, data } } = data) => {
-      if (Number(code) === 0 && !errorMsg) {
-        push(
-          buildUrl(`/events/${eventId}/team/${data.teamId}/pay`, {
-            payUrl: data.payUrl,
-            price: group.price,
-          })
-        )
-      }
-    })
-  }
-
-  handleSubmitTeamMemberForm = (values) => {
-    const { saveTeamMember, currentEditingTeamMember } = this.props
-    const { identify, idNumber } = values
-
-    saveTeamMember({
-      ...values,
-      [identify]: idNumber,
-      id: currentEditingTeamMember && currentEditingTeamMember.id ||　uuid()
-    })
-  }
-
   render() {
     const { editing, startAddTeamMember, cancelEditTeamMember, members, push, params: {eventId} } = this.props
 
@@ -71,15 +40,16 @@ export default class TeamRegisterContainer extends PureComponent {
         </div>
       </NavBack>
       <div className='container'>
-        <TeamRegisterFormContainer {...this.props} onSubmit={this.handleSubmitTeamRegisterForm} />
+        <TeamRegisterFormContainer {...this.props} />
         <p className='text-muted'>队员</p>
         {Object.keys(members).map( k => (
           members[k] && <TeamMemberView key={k} id={k} {...members[k]} {...this.props} />
         ))}
-        { editing && 
-          <TeamMemberFormContainer {...this.props}
-            onCancel={cancelEditTeamMember}
-            onSubmit={this.handleSubmitTeamMemberForm} /> }
+        {
+          editing &&
+            <TeamMemberFormContainer {...this.props}
+                onCancel={cancelEditTeamMember} />
+        }
       </div>
       <div className={cs['submit-btn-container']}>
         <button className='btn btn-primary btn-lg btn-block' onClick={this.handleSubmitForm} type='button'>确认团队信息</button>

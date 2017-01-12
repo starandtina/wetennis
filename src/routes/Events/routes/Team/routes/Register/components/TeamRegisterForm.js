@@ -9,7 +9,7 @@ import cs from './TeamRegisterForm.scss'
 const TeamRegisterForm = props => {
   const { handleSubmit, groups } = props
 
-  return  <div>
+  return <div>
     <form className='form-horizontal' onSubmit={handleSubmit}>
       <Field name='groupId' component={renderSelectField} label='组别'>
         {groups.map( group => (

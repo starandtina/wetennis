@@ -6,13 +6,12 @@ import TeamRegister from '../components/TeamRegister'
 
 import {
   startAddTeamMember,
-  saveTeamMember,
   cancelEditTeamMember,
   editTeamMember,
   deleteTeamMember
 } from '../modules/teamMember'
 
-import { fetchEventGroups, fetchRegisteredTeams, submitTeamRegisterForm, registerTeam } from '../modules/register'
+import { fetchEventGroups, fetchRegisteredTeams, submitTeamRegisterForm } from '../modules/register'
 import { getGroups } from '../modules'
 
 const mapStateToProps = (state) => ({
@@ -25,7 +24,6 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps, {
     startAddTeamMember,
-    saveTeamMember,
     cancelEditTeamMember,
     editTeamMember,
     deleteTeamMember,
@@ -34,7 +32,6 @@ export default connect(
     fetchEventGroups,
     fetchRegisteredTeams,
     submitTeamRegisterForm,
-    registerTeam,
 
     push,
   }

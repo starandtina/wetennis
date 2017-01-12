@@ -47,13 +47,13 @@ export const registerTeam = (data) => ({
 
 export const fetchRegisteredTeams = (data) => ({
   types: [FETCHED_REGISTERED_TEAMS, FETCHED_REGISTERED_TEAMS_SUCCESS, FETCHED_REGISTERED_TEAMS_FAILTURE],
-  promise: () => API.post(URLConf.fetchRegisteredTeams, { 
+  promise: () => API.post(URLConf.fetchRegisteredTeams, {
     ...data,
     method: 'fetchRegisteredTeams',
   })
 })
 
-export const submitTeamRegisterForm = (form) => 
+export const submitTeamRegisterForm = (form) =>
   (dispatch, state) => {
     dispatch(submit(form))
 }
