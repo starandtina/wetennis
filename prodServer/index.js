@@ -18,7 +18,7 @@ const routes = require('./routes')
 const scrapeRoutes = require('./scrapeRoutes')
 
 const targetUrl = "http://wetennis.cn:8883/API/FEservice.ashx";
-
+const adminServiceUrl = 'http://wetennis.cn:83/BackService/TourMgm.ashx?typename=CreateNewTour'
 
 // Enable compression
 app.use(compression())

@@ -1,12 +1,10 @@
 import React, { PureComponent } from 'react'
-import uuid from 'uuid'
 import { browserHistory } from 'react-router'
 
 import NavBack from 'components/NavBack'
 import TeamRegisterFormContainer from '../containers/TeamRegisterForm'
 import TeamMemberFormContainer from '../containers/TeamMemberForm'
 import TeamMemberView from './TeamMemberView'
-import { buildUrl } from 'utils'
 
 import cs from './TeamRegister.scss'
 

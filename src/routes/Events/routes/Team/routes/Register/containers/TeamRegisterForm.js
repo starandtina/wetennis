@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import TeamRegisterForm from '../components/TeamRegisterForm'
 import { getTeamRegisterFormInitialValues } from '../modules'
 import { registerTeam } from '../modules/register'
-
+import { buildUrl } from 'utils'
 
 const validate = (values = {}) => {
   const errors = {}

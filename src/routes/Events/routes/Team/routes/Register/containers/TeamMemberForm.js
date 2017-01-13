@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
+import uuid from 'uuid'
 
 import TeamMemberForm from '../components/TeamMemberForm'
 import { getTeamMemberFormInitialValues } from '../modules'
@@ -24,7 +25,7 @@ const validate = values => {
 const form = reduxForm({
   form: 'TeamMemberForm',
   validate,
-  onSubmit: () => {
+  onSubmit: (values, dispatch, props) => {
     const { saveTeamMember, currentEditingTeamMember } = props
     const { identify, idNumber } = values
 

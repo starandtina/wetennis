@@ -1,0 +1,78 @@
+{
+  "code": 0,
+  "errMsg": "",
+  "data": [{
+    "TourSys": "BDD81B817330464EA5A1021903A2F0DE",
+    "TourName": "赛事名称",
+    "TourImg": "http://wetennis.cn/Lib/img/tour/500A.png",
+    "TourType": "公开赛",
+    "TourTypeImg": "http://wetennis.cn:86/Common/TourType_gks.png",
+    "TourDate": "2017-01-10",
+    "Province": null,
+    "City": null,
+    "TourAddress": "赛事地点",
+    "StatusDesc": "筹备中",
+    "Status": "0",
+    "host": "",
+    "asso_host": "",
+    "advertise": [],
+    "Tour_Controls": [{
+      "ControlName": "开始报名",
+      "ControlUrl": "javascript:void",
+      "ControlFun": "StartApply"
+    }, {
+      "ControlName": "修改赛事信息",
+      "ControlUrl": "javascript:void",
+      "ControlFun": "ModifyTourInfo"
+    }]
+  }, {
+    "TourSys": "BD80164049CD49B6BDD7AA314B2DE372",
+    "TourName": "ATP成都公开赛",
+    "TourImg": "http://wetennis.cn/Lib/img/tour/250A.png",
+    "TourType": "公开赛",
+    "TourTypeImg": "http://wetennis.cn:86/Common/TourType_gks.png",
+    "TourDate": "2016-09-26",
+    "Province": null,
+    "City": null,
+    "TourAddress": "四川国际网球中心",
+    "StatusDesc": "筹备中",
+    "Status": "0",
+    "host": "",
+    "asso_host": "",
+    "advertise": [],
+    "Tour_Controls": [{
+      "ControlName": "开始报名",
+      "ControlUrl": "javascript:void",
+      "ControlFun": "StartApply"
+    }, {
+      "ControlName": "修改赛事信息",
+      "ControlUrl": "javascript:void",
+      "ControlFun": "ModifyTourInfo"
+    }]
+  }, {
+    "TourSys": "864868AA1B6A4E4CB11F6E3DDE28B44F",
+    "TourName": "湖南公开赛",
+    "TourImg": "http://wetennis.cn/Lib/img/tour/125A.png",
+    "TourType": "俱乐部赛",
+    "TourTypeImg": "http://wetennis.cn:86/Common/TourType_jlb.png",
+    "TourDate": "2016-10-07",
+    "Province": null,
+    "City": null,
+    "TourAddress": "荷叶塘",
+    "StatusDesc": "筹备中",
+    "Status": "0",
+    "host": "",
+    "asso_host": "",
+    "advertise": [],
+    "Tour_Controls": [{
+      "ControlName": "开始报名",
+      "ControlUrl": "javascript:void",
+      "ControlFun": "StartApply"
+    }, {
+      "ControlName": "修改赛事信息",
+      "ControlUrl": "javascript:void",
+      "ControlFun": "ModifyTourInfo"
+    }]
+  }],
+  "requestdate": "2017-1-11 21:46:53"
+}
