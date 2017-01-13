@@ -38,7 +38,7 @@ export default class UploadImage extends PureComponent {
       <input
         type="file"
         onChange={this.handleChange}
-        accept=".png,.jpeg,.jpg"
+        accept="image/*"
         {...rest}
       />
     )
