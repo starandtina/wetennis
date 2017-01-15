@@ -23,7 +23,9 @@ function setCookie(user_id) {
 }
 
 function getCookie() {
-  return getSimple(USER_ID);
+  if (is(USER_ID)) {
+    return getSimple(USER_ID)
+  }
 }
 
 function loggedIn() {

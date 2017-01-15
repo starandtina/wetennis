@@ -4,15 +4,7 @@ import { requireAuth, getCookie } from 'utils/auth'
 export default (store) => ({
   path: 'time',
   onEnter(nextState, replace) {
-    const {
-      params: {
-        userId,
-      }
-    } = nextState
-
-    if (userId == 'undefined' || userId === getCookie()) {
-      requireAuth.apply(this, arguments)
-    }
+    requireAuth.apply(this, arguments)
   },
   getChildRoutes(location, cb) {
     require.ensure([], (require) => {
