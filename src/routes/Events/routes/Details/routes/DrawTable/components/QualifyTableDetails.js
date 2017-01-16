@@ -12,7 +12,7 @@ export default ({data, eventId}) => {
             <div className={cs.groupTitle}>{`第${index + 1}组`}</div>
             {item.games.map((item, index) => {
               return (
-                <Link to={`/events/${eventId}/match/${item.matchId}`}>
+                // <Link to={`/events/${eventId}/match/${item.matchId}`}>
                   <ScoreItem
                     key={index}
                     user={item.users}
@@ -34,7 +34,7 @@ export default ({data, eventId}) => {
                       <span>{index + 1}</span>
                     </div>
                   </ScoreItem>
-                </Link>
+                // </Link>
               );
             })}
           </div>
