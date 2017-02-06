@@ -16,16 +16,26 @@ export default class TeamAllocate extends PureComponent {
     } = this.props
     const { matchId } = query
 
-    fetchRegisteredTeamSequence({eventId, teamId, matchId})
-    fetchRegisteredTeamMembers({eventId, teamId, matchId})
+    fetchRegisteredTeamSequence({
+      eventId,
+      teamId,
+      matchId
+    }).then(() => {
+      this.forceUpdate()
+    })
+    fetchRegisteredTeamMembers({
+      eventId,
+      teamId,
+      matchId
+    }).then(() => {
+      this.forceUpdate()
+    })
 
     dragula([...document.getElementsByClassName('dragula-container')], {
-      // Set it `copy` then it can't move in the same container
-      copy: true,
       // As some of the containers are rendered after `TeamAllocatecomponentDidMount`
       isContainer: function (el) {
         return el.classList.contains('dragula-container')
-      }
+      },
     }).on('drop', (el, target, source, sibling) => {
       // If target is null and it means the `source` and `target` is the same
       // So we do nothing
@@ -43,11 +53,11 @@ export default class TeamAllocate extends PureComponent {
         targetTeamSequenceId,
         sourceTeamSequenceId,
       })
-
-      if (el.parentNode) {
-        el.parentNode.removeChild(el)
-      }
     })
+  }
+
+  shouldComponentUpdate() {
+    return false
   }
 
   updateRegisteredTeamSequence = () => {
@@ -72,30 +82,32 @@ export default class TeamAllocate extends PureComponent {
   render() {
     const { registeredTeamSequence, registeredTeamMembers, unScheduledTeamMemberIds, push } = this.props
 
-    return <div className='u-has-nav container'>
-      <NavBack routes={this.props.routes} caption='出战顺序' handleGoBack={() => push(`/events/${eventId}`)}>
-        <div onClick={this.updateRegisteredTeamSequence}>
-          <i className={`material-icons`}>done</i>
-        </div>
-      </NavBack>
-      <Grid>
-        <Row>
-          <Col xs={6}>
-            {registeredTeamSequence.map(s =>
-              <TeamSequence key={s.id} registeredTeamMembers={registeredTeamMembers} {...s} />
-            )}
-          </Col>
-          <Col xs={6}>
-            <p>队员</p>
-            <div className={`dragula-container dragula-team-allocate-members-container`}>
-              {unScheduledTeamMemberIds.map(teamMemberId =>
-                registeredTeamMembers[teamMemberId] &&
-                  <TeamMemberView key={teamMemberId} {...registeredTeamMembers[teamMemberId]} />
+    return (
+      <div className='u-has-nav container'>
+        <NavBack routes={this.props.routes} caption='出战顺序' handleGoBack={() => push(`/events/${eventId}`)}>
+          <div onClick={this.updateRegisteredTeamSequence}>
+            <i className={`material-icons`}>done</i>
+          </div>
+        </NavBack>
+        <Grid>
+          <Row>
+            <Col xs={6}>
+              {registeredTeamSequence.map(s =>
+                <TeamSequence key={s.id} registeredTeamMembers={registeredTeamMembers} {...s} />
               )}
-            </div>
-          </Col>
-        </Row>
-      </Grid>
-    </div>
+            </Col>
+            <Col xs={6}>
+              <p>队员</p>
+              <div className={`dragula-container dragula-team-allocate-members-container`}>
+                {unScheduledTeamMemberIds.map(teamMemberId =>
+                  registeredTeamMembers[teamMemberId] &&
+                    <TeamMemberView key={teamMemberId} {...registeredTeamMembers[teamMemberId]} />
+                )}
+              </div>
+            </Col>
+          </Row>
+        </Grid>
+      </div>
+    )
   }
 }

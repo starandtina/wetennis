@@ -15,13 +15,15 @@ export default class Program extends Component {
       params
     } = this.props
 
-    fetchProgram(params)
+    fetchProgram(params).then(() => {
+      this.forceUpdate()
+    })
 
     dragula([...document.querySelectorAll('.dragula-container')], {
-      copy: true,
+      // copy: true,
       isContainer: function (el) {
         return el.classList.contains('dragula-container');
-      }
+      },
     }).on('drop', function (el, target, source, sibling) {
       // If we only adjust order in current court, then targe'd be `null`
       const targetCourtId = target ? target.dataset.courtId : source.dataset.courtId
@@ -39,13 +41,13 @@ export default class Program extends Component {
         },
         targetCourtId,
         isFromTemporary,
-        isReorder
+        isReorder,
       })
-
-      if (el.parentNode) {
-        el.parentNode.removeChild(el)
-      }
     })
+  }
+
+  shouldComponentUpdate() {
+    return false
   }
 
   handleClick = () => {
@@ -72,18 +74,20 @@ export default class Program extends Component {
       courts
     } = program
 
-    return <div className={`${cs.container} container`}>
-      <p><button onClick={this.handleClick}>Update Program</button></p>
-      <div className='dragula-container temporary'>
-        {unScheduledMatchIds.map(key => (
-          <Match key={key} match={matches[key]} matchId={key} {...program} />
-        ))}
+    return (
+      <div className={`${cs.container} container`}>
+        <p><button onClick={this.handleClick}>Update Program</button></p>
+        <div className='dragula-container temporary'>
+          {unScheduledMatchIds.map(key => (
+            <Match key={key} match={matches[key]} matchId={key} {...program} />
+          ))}
+        </div>
+        <div className={cs['court-container']}>
+          {Object.keys(courts).map(key => (
+            <Court key={key} court={courts[key]} courtId={key} {...program} />
+          ))}
+        </div>
       </div>
-      <div className={cs['court-container']}>
-        {Object.keys(courts).map(key => (
-          <Court key={key} court={courts[key]} courtId={key} {...program} />
-        ))}
-      </div>
-    </div>
+    )
   }
 }

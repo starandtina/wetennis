@@ -24,12 +24,12 @@ export const ADJUST_MATCH = 'ADJUST_MATCH'
 // Actions
 // ------------------------------------
 
-export const fetchProgram = (data) => ({
+export const fetchProgram = data => ({
   types: [FETCH_PROGRAM, FETCH_PROGRAM_SUCCESS, FETCH_PROGRAM_FAILTURE],
   promise: () => API.post(URLConf.fetchProgram, {...data})
 })
 
-export const updateProgram = (data) => {
+export const updateProgram = data => {
   // Covert {"courts": {"courtId1": { "name": "courtName1", "matches": ["match1", ....]}}}
   // => {"courts": [{"id": "courtId1" "name": "courtName1", "matches": ["match1", ....]}...]}
   const {
@@ -48,7 +48,7 @@ export const updateProgram = (data) => {
   }
 }
 
-export const adjustMatch = (data) => ({
+export const adjustMatch = data => ({
   type: ADJUST_MATCH,
   payload: data
 })
