@@ -61,7 +61,11 @@ module.exports = function () {
                 .map((i, el) => $.html(el))
                 .get().join(' ')
 
-              const title = $('#artibodyTitle').text().trim()
+              let title = $('#artibodyTitle').text().trim()
+
+              if (!title) {
+                title = $('.art_title_h1').text().trim()
+              }
 
               // TODO: ADD keyword list
 
