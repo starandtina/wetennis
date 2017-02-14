@@ -21,18 +21,22 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => bindActionCreators({ push, registerEvent }, dispatch);
 
 class Purchase extends Component {
-
   register = () => {
-    const { item, user, registerEvent, partnerId, params: { eventId } } = this.props;
+    const { item, user, registerEvent, partnerId, params: { eventId }, push } = this.props;
+    const redirectUrl = `${WETENNIS_URL}/events/${eventId}`
 
     registerEvent({
       itemId: item.id,
       ...user,
       partnerId
     }).then(action => {
-      location.replace(
-        buildUrl(action.payload.data.payUrl, { redirectUrl: `${WETENNIS_URL}/events/${eventId}`})
-      )
+      if (parseFloat(item.price) === 0 || !action.payload.data.payUrl) {
+        push(`/events/${eventId}`)
+      } else {
+        location.replace(
+          buildUrl(action.payload.data.payUrl, { redirectUrl })
+        )
+      }
     })
   }
 
