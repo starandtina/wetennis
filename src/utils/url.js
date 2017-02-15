@@ -76,6 +76,7 @@ export default {
   registerEvent: `${ROOT_URL}registerEvent`,
   eventDraw: `${ROOT_URL}eventDraw`,
   eventFollow: `${ROOT_URL}eventFollow`,
+  fetchRegisteredMembers: `${ROOT_URL}fetchRegisteredMembers`,
 
   // event score
   fetchEventScore: `${ROOT_URL}eventScore`,

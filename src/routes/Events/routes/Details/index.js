@@ -12,6 +12,7 @@ export default (store) => ({
         require('./routes/Schedule')(store),
         require('./routes/DrawTable')(store),
         require('./routes/Infomation')(store),
+        require('./routes/RegisteredMembers')(store),
       ])
     }, 'events')
   },

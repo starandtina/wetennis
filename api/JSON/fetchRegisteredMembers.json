@@ -1,0 +1,18 @@
+{
+  "code": 0,
+  "errorMsg": "",
+  "data": [
+    {
+      "id": 1,
+      "name": ["注册玩家1"],
+      "thumbImgUrl": ["http://img0.imgtn.bdimg.com/it/u=2833976744,4249581374&fm=11&gp=0.jpg"],
+      "registerDatestr": "2016.04.20"
+      },
+    {
+      "id": 2,
+      "name": ["注册玩家2","注册玩家3"],
+      "thumbImgUrl": ["http://img0.imgtn.bdimg.com/it/u=2833976744,4249581374&fm=11&gp=0.jpg","http://img0.imgtn.bdimg.com/it/u=2833976744,4249581374&fm=11&gp=0.jpg"],
+      "registerDatestr": "2016.04.21"
+      }
+    ]
+}

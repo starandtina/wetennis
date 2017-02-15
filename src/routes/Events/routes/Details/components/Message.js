@@ -81,6 +81,7 @@ class Message extends React.Component {
                 {`你的 ${friendRegisterCount} 位朋友已经报名了比赛`}
               </div>
             : undefined}
+            {isRegistered && <Link to={`${path}/registeredMembers`}><RaisedButton label="查看报名" style={buttonStyle} /></Link>}
             {isGroup
             ? !isRegistered && <div className={cs.rigisterRight}>
                 <Link to={`${path}/team/register`}>
