@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import NavBack from 'components/NavBack'
 import Footer from 'components/Footer'
+import { logout } from 'utils/auth'
+import { WETENNIS_URL } from 'utils/url'
 
 import cs from './Me.scss'
 
@@ -27,6 +29,12 @@ export class Dashboard extends React.Component {
     });
   }
 
+  handleExitToAppClick = e => {
+    logout(() => {
+      window.location.replace(WETENNIS_URL)
+    })
+  }
+
   render () {
     const { children, user } = this.props;
     const userInfo = user.userInfo;
@@ -41,6 +49,7 @@ export class Dashboard extends React.Component {
       <NavBack routes={this.props.routes} caption='个人中心' hiddenBack={true} transparent>
         <Link className={cs.Icon} to="/dashboard/me/editBG"><i className="material-icons">collections</i></Link>
         <Link className={cs.Icon} to="/dashboard/settings"><i className="material-icons">settings</i></Link>
+        <Link className={cs.Icon}><i className='material-icons' onClick={this.handleExitToAppClick}>exit_to_app</i></Link>
       </NavBack>
       <div className={cs.BackGroundImageContainer}>
         <Link to={`/dashboard/me/editBG`}>
