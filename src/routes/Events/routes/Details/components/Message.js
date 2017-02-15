@@ -55,7 +55,7 @@ class Message extends React.Component {
       isGroup,
       isAllocate,
       team,
-      isPaid,
+      isRegistered,
     } = data;
     const {countdown} = this.state;
     let countdownFormat;
@@ -82,12 +82,12 @@ class Message extends React.Component {
               </div>
             : undefined}
             {isGroup
-            ? !isPaid && <div className={cs.rigisterRight}>
+            ? !isRegistered && <div className={cs.rigisterRight}>
                 <Link to={`${path}/team/register`}>
                   <RaisedButton label="团队报名" style={buttonStyle} />
                 </Link>
               </div>
-            : !isPaid && <div className={cs.rigisterRight}>
+            : !isRegistered && <div className={cs.rigisterRight}>
                 <Link to={`${path}/register`}>
                   <RaisedButton label="立即报名" style={buttonStyle} />
                 </Link>

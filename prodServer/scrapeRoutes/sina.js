@@ -47,29 +47,26 @@ module.exports = function () {
             },
           }))).then(results => {
             results.forEach($ => {
-              const date = $('#pub_date').text().trim()
+              const date = $('.article-a__time').text().trim()
               const provider = 'Sina'
               const type = '新浪体育'
-              const thumbImgUrl = $('.img_wrapper:first-of-type img').attr('src')
+              const thumbImgUrl = $('#artibody img').attr('src')
               const providerIconUrl = 'http://sports.sina.com.cn/favicon.ico'
                 // const content = $('#artibody p').map(function (i, el) {
                 //   return `<p>${$(this).text()}</p>`
                 // }).get().join(' ')
-              const content = $('.BSHARE_POP')
+              const content = $('#artibody')
                 .contents()
-                .not('.img_wrapper')
+                .not('.article-a__figure')
                 .map((i, el) => $.html(el))
                 .get().join(' ')
 
-              let title = $('#artibodyTitle').text().trim()
+              const title = $('#j_title').text().trim()
 
-              if (!title) {
-                title = $('.art_title_h1').text().trim()
-              }
 
               // TODO: ADD keyword list
 
-              const keywords = $('.art_keywords a').map((i, el) => $(el).text()).get().join(',')
+              const keywords = $('.article-a_keywords a').map((i, el) => $(el).text()).get().join(',')
 
               sinaNewsList.push({
                 date,
@@ -122,9 +119,11 @@ module.exports = function () {
   router.route('/')
     .get(show)
 
+  const scrape = () => rp(`http://${host}:${port}/scrape/news/sina`)
+    .then(() => debug(`Server is now fetching tennis news from Sina at http://${host}:${port}.`))
+  
   setInterval(() => {
-    rp(`http://${host}:${port}/scrape/news/sina`)
-      .then(() => debug(`Server is now fetching tennis news from Sina at http://${host}:${port}.`))
+    scrape()
   }, 1000 * 60 * 60 * 12)
 
   return router

@@ -31,7 +31,7 @@ class Purchase extends Component {
       partnerId
     }).then(action => {
       if (parseFloat(item.price) === 0 || !action.payload.data.payUrl) {
-        push(`/events/${eventId}`)
+        location.replace(redirectUrl)
       } else {
         location.replace(
           buildUrl(action.payload.data.payUrl, { redirectUrl })
