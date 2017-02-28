@@ -24,7 +24,7 @@ const mapStateToProps = state => {
     user: state.user.user,
     group: state.register.group,
     item: state.register.item,
-    partnerId: partner.id,
+    partner,
     initialValues: {
       ...state.user.user,
       ...partnerInitialValues,
@@ -105,7 +105,7 @@ const validate = (values, props) => {
         } = restriction
         const partner = props.partner
 
-        if (age + partner.age < minAmountAge) {
+        if (age + Number(partner.age) < minAmountAge) {
           errors.cardId = `您（${parseInt(age)}）与您搭档（${partner.age}）的年龄和不满足年龄条件（${minAmountAge}）`
           hasErrors = true
         }
