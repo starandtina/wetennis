@@ -10,13 +10,12 @@ import style from './Purchase.scss';
 import { buildUrl } from 'utils'
 import { WETENNIS_URL } from 'utils/url'
 
-const mapStateToProps = (state) => {
-  return ({
+const mapStateToProps = (state) => ({
   user: state.register.user,
   group: state.register.group,
   item: state.register.item,
-  partnerId: state.register.partnerId
-})}
+  partnerId: state.partner.partner.id,
+})
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({ push, registerEvent }, dispatch);
 
