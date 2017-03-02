@@ -14,7 +14,7 @@ const mapStateToProps = (state) => ({
   user: state.register.user,
   group: state.register.group,
   item: state.register.item,
-  partnerId: state.partner.partner.id,
+  partnerId: state.partner && state.partner.partner && state.partner.partner.id,
 })
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({ push, registerEvent }, dispatch);
