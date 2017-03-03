@@ -28,7 +28,11 @@ class Purchase extends Component {
       itemId: item.id,
       ...user,
       partnerId
-    }).then(action => {
+    }).then(({ payload: { data, code } }) => {
+      if (code !== 0) {
+        return
+      }
+
       if (parseFloat(item.price) === 0 || !action.payload.data.payUrl) {
         location.replace(redirectUrl)
       } else {
