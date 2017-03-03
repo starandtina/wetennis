@@ -10,7 +10,7 @@ import RegisterConfirmation from '../components/RegisterConfirmation'
 const partnerFields = ['usernameForPartner', 'genderForPartner', 'nameForPartner', 'phoneForPartner']
 
 const mapStateToProps = state => {
-  const partner = state.partner && state.partner.partner || {}
+  const partner = state.partner && state.partner.partner
   const partnerInitialValues = {}
   const formValues = getFormValues('registerConfirmForm')(state)
 

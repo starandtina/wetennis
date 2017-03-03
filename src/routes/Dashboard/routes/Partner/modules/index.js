@@ -46,5 +46,5 @@ export default handleActions({
   })
 }, {
   partnerList: [],
-  partner: {},
+  partner: undefined,
 })

@@ -24,7 +24,7 @@ export default class RegisteredMembers extends  PureComponent  {
         <NavBack routes={this.props.routes} title='赛事报名列表' transparent />
         {Object.keys(groupedRegisteredMembers).map(k => (
           <div key={k}>
-            <div className='well'>{k}</div>
+            <div className='well'>{k}({groupedRegisteredMembers[k].length})</div>
             <RegisteredUsers registeredUsers={groupedRegisteredMembers[k]} />
           </div>
         ))}

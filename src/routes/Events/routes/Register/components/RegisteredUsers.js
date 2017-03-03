@@ -13,7 +13,6 @@ export const RegisterView = ( { registeredUsers } ) => {
           </div>
           <div className='col-xs-6'>
             <div className={classes.fontcolor}>{user.name.join(',')}</div>
-            <p>({user.groupName} - {user.itemName})</p>
           </div>
           <div className='col-xs-4'>
             <div className={classes.right}>{user.registerDatestr}</div>

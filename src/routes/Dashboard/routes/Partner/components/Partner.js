@@ -9,7 +9,7 @@ export default class Partner extends PureComponent {
   constructor(props) {
     super(props)
 
-    this.state = { partnerId: props.partner.id }
+    this.state = { partnerId: props.partner && props.partner.id }
 
     const { fetchMyFriendList, user } = this.props
 
