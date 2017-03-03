@@ -110,9 +110,21 @@ const validate = (values, props) => {
           hasErrors = true
         }
 
-        if (restriction.isMixedPair && partner.gender && values.gender === partner.gender) {
-          errors.gender = `性别不符合报名条件（要求为${restriction.gender}）`
-          hasErrors = true;
+        // 混双限制
+        if (partner.gender) {
+          if (restriction.isMixedPair && values.gender === partner.gender) {
+            errors.gender = `性别不符合报名条件（要求为${restriction.gender === 'male' ? '男性' : '女性'}）`;
+            hasErrors = true;
+          }
+
+          // 男双，女双限制
+          if (!restriction.isMixedPair &&
+            (restriction.gender !== values.gender ||
+              values.gender !== partner.gender)
+          ) {
+            errors.gender = `双打性别不符合报名条件（要求为${restriction.gender === 'male' ? '男性' : '女性'}）`;
+            hasErrors = true;
+          }
         }
       }
     }
