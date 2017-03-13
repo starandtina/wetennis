@@ -6,7 +6,7 @@ import cs from "./Comments.scss";
 const CommentItem = ({data, likeAction, isLogin}) => {
   return (
     <div className={`clearfix ${cs.container}`}>
-      <Link to={`/time/users/${data.id}`}><img className={cs.userimage} src={data.userimage} alt="" /></Link>
+      <Link to={`/time?userId=${data.id}`}><img className={cs.userimage} src={data.userimage} alt="" /></Link>
       <div className={cs.right}>
         <div className="clearfix">
           <div className={cs.username}>{data.username}</div>

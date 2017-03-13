@@ -6,6 +6,7 @@ import TeamRegisterForm from '../components/TeamRegisterForm'
 import { getTeamRegisterFormInitialValues } from '../modules'
 import { registerTeam } from '../modules/register'
 import { buildUrl } from 'utils'
+import { WETENNIS_URL } from 'utils/url'
 
 const validate = (values = {}) => {
   const errors = {}
@@ -28,13 +29,20 @@ const form = reduxForm({
     const { registerTeam, members, groups, push, params: {eventId} } = props
     const { groupId } = values
     const group = groups.find( group => group.id === groupId)
+    const redirectUrl = `${WETENNIS_URL}/events/${eventId}`
 
     registerTeam({
       ...values,
       members,
     }).then(( { payload: { code, errorMsg, data } } = data) => {
-      if (Number(code) === 0 && !errorMsg) {
-        push(
+      if (code !== 0) {
+        return
+      }
+
+      if (parseFloat(group.price) === 0 || !data.payUrl) {
+        location.replace(redirectUrl)
+      } else {
+        location.replace(
           buildUrl(`/events/${eventId}/team/${data.teamId}/pay`, {
             payUrl: data.payUrl,
             price: group.price,

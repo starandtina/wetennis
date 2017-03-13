@@ -33,11 +33,11 @@ class Purchase extends Component {
         return
       }
 
-      if (parseFloat(item.price) === 0 || !action.payload.data.payUrl) {
+      if (parseFloat(item.price) === 0 || !data.payUrl) {
         location.replace(redirectUrl)
       } else {
         location.replace(
-          buildUrl(action.payload.data.payUrl, { redirectUrl })
+          buildUrl(data.payUrl, { redirectUrl })
         )
       }
     })
