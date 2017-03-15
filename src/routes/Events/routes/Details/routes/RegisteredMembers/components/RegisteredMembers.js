@@ -14,7 +14,7 @@ export default class RegisteredMembers extends  PureComponent  {
     const groupedRegisteredMembers = registeredMembers.reduce((r, m) => {
       const key = `${m.groupName} - ${m.itemName}`
       
-      r[key] = r[key] ? [...r[key], m] : []
+      r[key] = r[key] ? [...r[key], m] : [m]
       
       return r
     }, {})
