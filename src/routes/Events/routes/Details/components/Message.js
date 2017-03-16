@@ -90,12 +90,12 @@ class Message extends React.Component {
                 </div>
             }
             {isGroup
-            ? !isRegistered && <div className={cs.rigisterRight}>
+            ? <div className={cs.rigisterRight}>
                 <Link to={`${path}/team/register`}>
                   <RaisedButton label="团队报名" style={buttonStyle} />
                 </Link>
               </div>
-            : !isRegistered && <div className={cs.rigisterRight}>
+            : <div className={cs.rigisterRight}>
                 <Link to={`${path}/register`}>
                   <RaisedButton label="立即报名" style={buttonStyle} />
                 </Link>

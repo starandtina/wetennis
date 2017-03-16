@@ -24,7 +24,6 @@
 
 .messageItem {
   padding: 9*$px1 15*$px1;
-  height: 50*$px1;
   line-height: 32*$px1;
   font-size: 12*$px1;
   background-color: #2245b4;
@@ -46,6 +45,10 @@
 .rigisterRight {
   float: right;
   width: 88*$px1;
+
+  &+.rigisterRight {
+    margin-top: 5px;
+  }
 }
 
 .registerListBox {
