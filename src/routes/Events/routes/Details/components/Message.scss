@@ -40,14 +40,16 @@
 
 .rigisterLeft {
   float: left;
-  width: calc(100% - #{88*$px1});
+  width: 46%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
+
 .rigisterRight {
   float: right;
-  width: 88*$px1;
-
-  &+.rigisterRight {
-    margin-top: 5px;
+  a+a {
+    margin-left: 5px;
   }
 }
 

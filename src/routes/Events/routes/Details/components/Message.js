@@ -77,29 +77,27 @@ class Message extends React.Component {
         {state == 1
         ? <MessageItem className="clearfix">
             {friendRegisterCount > 0
-            ? <div className={cs.rigisterLeft}>
+            ? <div className={cs.rigisterLeft} title={`你的 ${friendRegisterCount} 位朋友已经报名了比赛`}>
                 {`你的 ${friendRegisterCount} 位朋友已经报名了比赛`}
               </div>
             : undefined}
+            <div className={cs.rigisterRight}>
+            {isGroup
+            ? 
+              <Link to={`${path}/team/register`}>
+                <RaisedButton label="团队报名" style={buttonStyle} />
+              </Link>
+            : <Link to={`${path}/register`}>
+                <RaisedButton label="立即报名" style={buttonStyle} />
+              </Link>
+            }
             {
               isRegistered &&
-                <div className={cs.rigisterRight}>
-                  <Link to={`${path}/registeredMembers`}>
-                    <RaisedButton label="查看报名" style={buttonStyle} />
-                  </Link>
-                </div>
+              <Link to={`${path}/registeredMembers`}>
+                <RaisedButton label="查看报名" style={buttonStyle} />
+              </Link>
             }
-            {isGroup
-            ? <div className={cs.rigisterRight}>
-                <Link to={`${path}/team/register`}>
-                  <RaisedButton label="团队报名" style={buttonStyle} />
-                </Link>
-              </div>
-            : <div className={cs.rigisterRight}>
-                <Link to={`${path}/register`}>
-                  <RaisedButton label="立即报名" style={buttonStyle} />
-                </Link>
-              </div>}
+            </div>
           </MessageItem>
         : undefined}
         
