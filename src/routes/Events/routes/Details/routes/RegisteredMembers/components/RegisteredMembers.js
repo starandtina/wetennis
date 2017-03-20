@@ -10,7 +10,7 @@ export default class RegisteredMembers extends  PureComponent  {
     fetchRegisteredMembers(eventId)
   }
   render() {
-    const { registeredMembers = [] } = this.props
+    const { registeredMembers = [], params: { eventId } } = this.props
     const groupedRegisteredMembers = registeredMembers.reduce((r, m) => {
       const key = `${m.groupName} - ${m.itemName}`
       
@@ -25,7 +25,7 @@ export default class RegisteredMembers extends  PureComponent  {
         {Object.keys(groupedRegisteredMembers).map(k => (
           <div key={k}>
             <div className='well'>{k}({groupedRegisteredMembers[k].length})</div>
-            <RegisteredUsers registeredUsers={groupedRegisteredMembers[k]} />
+            <RegisteredUsers eventId={eventId} registeredUsers={groupedRegisteredMembers[k]} />
           </div>
         ))}
       </div>
