@@ -13,6 +13,7 @@ export default (store) => ({
         require('./routes/DrawTable')(store),
         require('./routes/Infomation')(store),
         require('./routes/RegisteredMembers')(store),
+        require('./routes/RegisteredTeams')(store),
       ])
     }, 'events')
   },

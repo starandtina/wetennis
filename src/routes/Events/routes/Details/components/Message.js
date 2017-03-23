@@ -92,10 +92,16 @@ class Message extends React.Component {
               </Link>
             }
             {
-              isRegistered &&
-              <Link to={`${path}/registeredMembers`}>
-                <RaisedButton label="查看报名" style={buttonStyle} />
-              </Link>
+              isRegistered && (isGroup ? (
+                  <Link to={`${path}/registeredTeams`}>
+                    <RaisedButton label="查看报名" style={buttonStyle} />
+                  </Link>
+                ) : (
+                  <Link to={`${path}/registeredMembers`}>
+                    <RaisedButton label="查看报名" style={buttonStyle} />
+                  </Link>
+                )
+              )
             }
             </div>
           </MessageItem>

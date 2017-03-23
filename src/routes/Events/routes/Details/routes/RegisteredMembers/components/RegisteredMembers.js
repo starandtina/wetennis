@@ -3,7 +3,7 @@ import NavBack from 'components/NavBack'
 
 import RegisteredUsers from 'routes/Events/routes/Register/components/RegisteredUsers'
 
-export default class RegisteredMembers extends  PureComponent  {
+export default class RegisteredMembers extends PureComponent  {
   componentDidMount() {
     const { fetchRegisteredMembers, params: { eventId } } = this.props
     
