@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import TextField from 'material-ui/TextField'
+import { Link } from 'react-router'
 
 import NavBack from 'components/NavBack'
 import { cls, goBack, debounce } from 'utils'
@@ -73,9 +74,9 @@ export default class Partner extends PureComponent {
           fullWidth
         />
       </div>
-      {partnerList.length === 0 && <div className='text-muted small  text-center'>
+      {partnerList.length === 0 && <div className='text-muted small text-center'>
         <div><i className='material-icons'>sentiment_very_dissatisfied</i></div>
-        <p>没有结果，请输入姓名或电话号码进行搜索！</p>
+        <p>没有结果，请输入姓名或电话号码进行搜索! </p>
       </div>}
       {partnerList.map(p => (
         <div key={p.id}
@@ -86,6 +87,7 @@ export default class Partner extends PureComponent {
           <div className='col-xs-6 text-right'>{p.phone}</div>
         </div>
       ))}
+      <p className='text-center'><Link to='/dashboard/friend'>继续添加你的朋友</Link></p>
     </div>
   }
 }
