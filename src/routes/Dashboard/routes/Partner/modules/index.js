@@ -11,6 +11,10 @@ export const FETCH_MY_FRIEND_LIST = 'FETCH_MY_FRIEND_LIST'
 export const FETCH_MY_FRIEND_LIST_SUCCESS = 'FETCH_MY_FRIEND_LIST_SUCCESS'
 export const FETCH_MY_FRIEND_LIST_FAILTURE = 'FETCH_MY_FRIEND_LIST_FAILTURE'
 
+export const SEARCH_PARTICIPANTS = 'SEARCH_PARTICIPANTS'
+export const SEARCH_PARTICIPANTS_SUCCESS = 'SEARCH_PARTICIPANTS_SUCCESS'
+export const SEARCH_PARTICIPANTS_FAILTURE = 'SEARCH_PARTICIPANTS_FAILTURE'
+
 export const SET_PARTNER = 'SET_PARTNER'
 
 
@@ -26,6 +30,14 @@ export const fetchMyFriendList = data => ({
   }
 })
 
+export const searchParticipants = data => ({
+  types: [SEARCH_PARTICIPANTS, SEARCH_PARTICIPANTS_SUCCESS, SEARCH_PARTICIPANTS_FAILTURE],
+  promise: () => API.post(URLConf.searchParticipants, data),
+  meta: {
+    isHideLoadingBar: true,
+  },
+})
+
 export const setPartner = data => ({
   type: SET_PARTNER,
   payload: data,
@@ -36,15 +48,19 @@ export const setPartner = data => ({
 // ------------------------------------
 
 export default handleActions({
+  [SEARCH_PARTICIPANTS_SUCCESS]: (state, action) => ({
+    ...state,
+    participantList: action.payload,
+  }),
   [FETCH_MY_FRIEND_LIST_SUCCESS]: (state, action) => ({
     ...state,
-    partnerList: action.payload,
+    participantList: action.payload,
   }),
   [SET_PARTNER]: (state, action) => ({
     ...state,
-    partner: state.partnerList.find(p => p.id == action.payload.partnerId),
+    partner: state.participantList.find(p => p.id == action.payload.partnerId),
   })
 }, {
-  partnerList: [],
+  participantList: [],
   partner: undefined,
 })

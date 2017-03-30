@@ -2,18 +2,18 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Partner from '../components/Partner'
-import { fetchMyFriendList, setPartner } from '../modules'
+import { fetchMyFriendList, searchParticipants, setPartner } from '../modules'
 
 const mapStateToProps = state => ({
   user: state.user.user,
-  partnerList: state.partner.partnerList,
-  partner: state.partner.partner,
+  ...state.partner,
 })
 
 export default connect(
   mapStateToProps,
   {
     fetchMyFriendList,
+    searchParticipants,
     setPartner,
   },
 )(Partner)
