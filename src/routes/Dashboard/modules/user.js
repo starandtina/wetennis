@@ -102,7 +102,7 @@ function signUpUser(data) {
 export function signUpUserThenSetCookie(data) {
   return (dispatch, getState) =>
     dispatch(signUpUser(data)).then(resp => {
-      setCookie(resp.payload.data.id)
+      resp.payload.data.id && setCookie(resp.payload.data.id)
     })
 }
 
@@ -111,7 +111,6 @@ export const resetSignupUser = (data) => ({
 })
 
 export const signInUser = (data) => {
-  console.log(URLConf.signIn)
   return ({
     types: [SIGNIN_USER, SIGNIN_USER_SUCCESS, SIGNIN_USER_FAILTURE],
     promise: () => API.post(URLConf.signIn, data)

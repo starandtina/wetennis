@@ -35,6 +35,14 @@ const validate = values => {
     errors.activationCode = '请输入验证码';
     hasErrors = true;
   }
+  if (!values.name || values.name.trim() === '') {
+    errors.name = '请输入真实姓名';
+    hasErrors = true;
+  }
+  if (!values.cardId || values.cardId.trim() === '') {
+    errors.cardId = '请输入身体证号码';
+    hasErrors = true;
+  }
   return hasErrors && errors;
 };
 
@@ -78,12 +86,12 @@ const mapStateToProps = (state) =>  ({
 });
 
 const mapDispatchToProps = {
-    signUpUserThenSetCookie,
-    verifyPhone,
-    sendActivationCode,
-    push,
-    checkUserNameDuplicated,
-    checkPhoneDuplicated
+  signUpUserThenSetCookie,
+  verifyPhone,
+  sendActivationCode,
+  push,
+  checkUserNameDuplicated,
+  checkPhoneDuplicated
 };
 
 const MyForm = reduxForm({

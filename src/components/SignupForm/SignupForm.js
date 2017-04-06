@@ -6,8 +6,16 @@ import { Grid, Row, Col } from 'react-bootstrap'
 import classes from './SignupForm.scss'
 
 export class SignupForm extends React.Component {
+  state = {
+    buttonSuspending: false,
+    Tip: '发送',
+  }
+
   constructor(props) {
     super(props)
+  }
+
+  componentDidMount() {
     document.querySelector('body').classList.add('u-backgroundColorGreen')
   }
 
@@ -23,26 +31,27 @@ export class SignupForm extends React.Component {
     document.querySelector('body').classList.remove('u-backgroundColorGreen')
   }
 
-  state = {
-    buttonSuspending: false,
-    Tip: '发送',
-  };
-
   startTiming = () => {
     let time = this.state.Tip - 1;
+    
     this.setState({
       Tip: time,
     })
+
     if(time < 1){
-      window.clearInterval(this.thisEvent);
-      this.setState({
-        buttonSuspending: false,
-        Tip: '发送',
-      })
+      this.clearSendActivationStatus()
     }
   }
 
-  sendactivationCode = () => {
+  clearSendActivationStatus() {
+    window.clearInterval(this.thisEvent);
+    this.setState({
+      buttonSuspending: false,
+      Tip: '发送',
+    })
+  }
+
+  sendActivationCode = () => {
     const { sendActivationCode, formValues, theSyncErrors } = this.props;
     
     if (formValues.phone && (!theSyncErrors || !theSyncErrors.phone)) {
@@ -64,12 +73,17 @@ export class SignupForm extends React.Component {
     }
   }
 
+  handlePhoneChange = e => {
+    this.clearSendActivationStatus()
+  }
+
   render () {
     const {
       handleSubmit,
       submitting,
       userNameDuplicated,
-      } = this.props;
+      phoneDuplicated,
+    } = this.props
 
     const style = {
       width: '100%'
@@ -133,6 +147,7 @@ export class SignupForm extends React.Component {
                 inputStyle={inputStyle}
                 underlineStyle={underlineStyle}
                 errorStyle={errorStyle}
+                onChange={this.handlePhoneChange}
               />
             </Col>
           </Row>
@@ -154,9 +169,39 @@ export class SignupForm extends React.Component {
                 style={{marginTop: '28px'}}
                 className='btn btn-default btn-block btn-transparent'
                 disabled={this.state.buttonSuspending}
-                onClick={this.sendactivationCode}>
+                onClick={this.sendActivationCode}
+                disabled={phoneDuplicated}
+              >
                 {this.state.Tip}
               </button>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <Field
+                name="name"
+                component={TextField}
+                style={style}
+                hintText="真实姓名"
+                floatingLabelText="真实姓名"
+                inputStyle={inputStyle}
+                underlineStyle={underlineStyle}
+                errorStyle={errorStyle}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <Field
+                name="cardId"
+                component={TextField}
+                style={style}
+                hintText="身份证号码"
+                floatingLabelText="身份证号码"
+                inputStyle={inputStyle}
+                underlineStyle={underlineStyle}
+                errorStyle={errorStyle}
+              />
             </Col>
           </Row>
         </Grid>
@@ -165,7 +210,7 @@ export class SignupForm extends React.Component {
           <button
             type="submit"
             className="btn btn-default btn-submit btn-lg btn-block"
-            disabled={userNameDuplicated||userNameDuplicated||submitting}
+            disabled={phoneDuplicated||userNameDuplicated||submitting}
           >
             注册
           </button>
