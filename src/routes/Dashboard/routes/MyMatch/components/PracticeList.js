@@ -76,7 +76,7 @@ class RankingTabBody extends Component {
           {singleMatch.map((item, index) => {
             return (
               <div key={index} className={`${cs.MatchBox} ${cs.open}`}>
-                {item.games.map(this.groupItem)}
+                {item.games && item.games.map(this.groupItem)}
               </div>
             );
           })}
